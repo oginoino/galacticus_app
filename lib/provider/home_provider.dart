@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../di/di.dart';
 import '../domain/dashboard_overview.dart';
 import '../repository/home_repository.dart';
+import '../util/const/app_constants.dart';
 
 class HomeProvider extends ChangeNotifier {
   HomeProvider(this._repository);
@@ -26,7 +28,7 @@ class HomeProvider extends ChangeNotifier {
     try {
       _overview = await _repository.getDashboard();
     } catch (_) {
-      _errorMessage = 'Não foi possível carregar o dashboard agora.';
+      _errorMessage = sl<AppConstants>().homeLoadErrorMessage;
     } finally {
       _isLoading = false;
       notifyListeners();

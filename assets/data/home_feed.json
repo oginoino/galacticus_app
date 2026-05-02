@@ -2,7 +2,53 @@
   "user": {
     "name": "Paulo Henrique",
     "levelLabel": "Level 6",
-    "pointsLabel": "4.250 pts"
+    "pointsLabel": "4.250 pts",
+    "avatarAsset": "assets/images/prototype/paulo.jpg"
+  },
+  "assets": {
+    "assistantLogoAsset": "assets/images/prototype/ai-logo.png",
+    "heroImageAsset": "assets/images/prototype/hero-court.jpg"
+  },
+  "sections": {
+    "lessonsTitle": "Aulas",
+    "lessonsActionLabel": "Ver todas",
+    "lessonsActionMessage": "Lista completa de aulas em breve.",
+    "leaderboardTitle": "Leaderboard",
+    "leaderboardActionLabel": "Ver ranking",
+    "leaderboardActionMessage": "Ranking completo em breve.",
+    "exploreTitle": "Explorar Hoje",
+    "exploreActionLabel": "Ver todos",
+    "exploreActionMessage": "Agenda completa em breve.",
+    "friendsTitle": "Jogue com Amigos",
+    "friendsActionLabel": "Ver agenda",
+    "friendsActionMessage": "Agenda social em breve.",
+    "calendarTitle": "Calendário",
+    "calendarActionLabel": "Ver tudo",
+    "calendarActionMessage": "Calendário completo em breve.",
+    "quickAccessTitle": "Acesso Rápido"
+  },
+  "messages": {
+    "bookingAction": "Fluxo de reserva conectado na próxima fase.",
+    "heroPrimaryAction": "Treino guiado conectado na próxima etapa.",
+    "heroSecondaryAction": "Busca de partidas será habilitada na integração.",
+    "quickAction": "Ação rápida disponível na próxima iteração."
+  },
+  "uiLabels": {
+    "lessonAiBadge": "IA",
+    "inviteActionLabel": "Entrar →",
+    "leaderboardCurrentUserLabel": "Você",
+    "leaderboardPositionPrefix": "#",
+    "weeklyTimeLabel": "Tempo total",
+    "weeklyCaloriesLabel": "Calorias",
+    "weeklyConsistencyLabel": "Consistência",
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil"
+  },
+  "workoutPromo": {
+    "title": "CHECK-IN WORKOUT",
+    "subtitle": "Registre seu treino agora"
   },
   "progress": 0.86,
   "locationLabel": "Perto de você · 350m",
@@ -28,34 +74,56 @@
       "title": "Saque slice perfeito em 4 passos",
       "coach": "Coach Marcos",
       "views": "12.4k views",
-      "isAi": true
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-saque-slice.jpg"
     },
     {
       "duration": "8:58",
       "title": "Forehand topspin: técnica moderna",
       "coach": "Gabriel T.",
       "views": "8.9k views",
-      "isAi": true
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-forehand-topspin.jpg"
     },
     {
       "duration": "6:07",
       "title": "Backhand de duas mãos para iniciantes",
       "coach": "Sofia P.",
       "views": "21.3k views",
-      "isAi": true
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-backhand-iniciante.jpg"
     },
     {
       "duration": "4:49",
       "title": "Volêio na rede: timing e bloqueio",
       "coach": "Leonardo R.",
       "views": "5.4k views",
-      "isAi": false
+      "isAi": false,
+      "imageAsset": "assets/images/prototype/lesson-voleio.jpg"
     }
   ],
   "leaderboard": [
-    { "position": 1, "name": "Gabriel T.", "points": "5,420 pts", "isCurrentUser": false },
-    { "position": 2, "name": "Leonardo R.", "points": "4,780 pts", "isCurrentUser": false },
-    { "position": 3, "name": "Paulo H. Você", "points": "4,250 pts", "isCurrentUser": true }
+    {
+      "position": 1,
+      "name": "Gabriel T.",
+      "points": "5,420 pts",
+      "isCurrentUser": false,
+      "avatarAsset": "assets/images/prototype/avatar-gabe.jpg"
+    },
+    {
+      "position": 2,
+      "name": "Leonardo R.",
+      "points": "4,780 pts",
+      "isCurrentUser": false,
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg"
+    },
+    {
+      "position": 3,
+      "name": "Paulo H.",
+      "points": "4,250 pts",
+      "isCurrentUser": true,
+      "avatarAsset": "assets/images/prototype/paulo.jpg"
+    }
   ],
   "weeklyStats": {
     "headline": "Esta Semana",
@@ -63,12 +131,28 @@
     "variation": "+12%",
     "time": "3h 45m",
     "calories": "1.870",
-    "consistency": "85%"
+    "consistency": "85%",
+    "weekdays": ["S", "T", "Q", "Q", "S", "S", "D"]
   },
   "exploreEvents": [
-    { "title": "Torneio de Duplas", "subtitle": "Sáb, 17 Mai · 14 vagas", "tag": "Evento" },
-    { "title": "Aula com Marcos", "subtitle": "Amanhã · 7:00 AM", "tag": "Coach" },
-    { "title": "Open Padel Night", "subtitle": "Sex, 16 Mai · 8 vagas", "tag": "Padel" }
+    {
+      "title": "Torneio de Duplas",
+      "subtitle": "Sáb, 17 Mai · 14 vagas",
+      "tag": "Evento",
+      "imageAsset": "assets/images/prototype/social-tournament.jpg"
+    },
+    {
+      "title": "Aula com Marcos",
+      "subtitle": "Amanhã · 7:00 AM",
+      "tag": "Coach",
+      "imageAsset": "assets/images/prototype/coach-marcos.jpg"
+    },
+    {
+      "title": "Open Padel Night",
+      "subtitle": "Sex, 16 Mai · 8 vagas",
+      "tag": "Padel",
+      "imageAsset": "assets/images/prototype/hero-court.jpg"
+    }
   ],
   "matchInvites": [
     {
@@ -77,7 +161,8 @@
       "schedule": "Sáb, 17 Mai · 10:00",
       "location": "Quadra 04 · Itaim",
       "availability": "2 vagas abertas",
-      "isLastSpot": false
+      "isLastSpot": false,
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg"
     },
     {
       "hostName": "Gabriel T.",
@@ -85,7 +170,8 @@
       "schedule": "Dom, 18 Mai · 08:00",
       "location": "Quadra 01 · Pinheiros",
       "availability": "Última vaga!",
-      "isLastSpot": true
+      "isLastSpot": true,
+      "avatarAsset": "assets/images/prototype/avatar-gabe.jpg"
     },
     {
       "hostName": "Leonardo R.",
@@ -93,53 +179,159 @@
       "schedule": "Qui, 22 Mai · 17:00",
       "location": "Quadra 01 · Moema",
       "availability": "Última vaga!",
-      "isLastSpot": true
+      "isLastSpot": true,
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg"
     }
   ],
   "calendar": {
     "monthLabel": "maio",
+    "weekdays": ["S", "T", "Q", "Q", "S", "S", "D"],
     "days": [
-      { "label": "1", "isSelected": false, "isActive": false },
-      { "label": "2", "isSelected": false, "isActive": false },
-      { "label": "3", "isSelected": false, "isActive": false },
-      { "label": "4", "isSelected": false, "isActive": false },
-      { "label": "5", "isSelected": false, "isActive": false },
-      { "label": "6", "isSelected": false, "isActive": true },
-      { "label": "7", "isSelected": false, "isActive": false },
-      { "label": "8", "isSelected": false, "isActive": false },
-      { "label": "9", "isSelected": false, "isActive": false },
-      { "label": "10", "isSelected": false, "isActive": true },
-      { "label": "11", "isSelected": false, "isActive": false },
-      { "label": "12", "isSelected": false, "isActive": false },
-      { "label": "13", "isSelected": false, "isActive": false },
-      { "label": "14", "isSelected": false, "isActive": true },
-      { "label": "15", "isSelected": true, "isActive": true },
-      { "label": "16", "isSelected": false, "isActive": false },
-      { "label": "17", "isSelected": false, "isActive": true },
-      { "label": "18", "isSelected": false, "isActive": false },
-      { "label": "19", "isSelected": false, "isActive": false },
-      { "label": "20", "isSelected": false, "isActive": false },
-      { "label": "21", "isSelected": false, "isActive": false },
-      { "label": "22", "isSelected": false, "isActive": true },
-      { "label": "23", "isSelected": false, "isActive": false },
-      { "label": "24", "isSelected": false, "isActive": false },
-      { "label": "25", "isSelected": false, "isActive": false },
-      { "label": "26", "isSelected": false, "isActive": false },
-      { "label": "27", "isSelected": false, "isActive": false },
-      { "label": "28", "isSelected": false, "isActive": true },
-      { "label": "29", "isSelected": false, "isActive": true },
-      { "label": "30", "isSelected": false, "isActive": false },
-      { "label": "31", "isSelected": false, "isActive": true }
+      { "label": "1", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "2", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "3", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "4", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "5", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "6", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-1.jpg" },
+      { "label": "7", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "8", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "9", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "10", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-2.jpg" },
+      { "label": "11", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "12", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "13", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "14", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-3.jpg" },
+      { "label": "15", "isSelected": true, "isActive": true, "imageAsset": null },
+      { "label": "16", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "17", "isSelected": false, "isActive": true, "imageAsset": null },
+      { "label": "18", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "19", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "20", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "21", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "22", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-2.jpg" },
+      { "label": "23", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "24", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "25", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "26", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "27", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "28", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-3.jpg" },
+      { "label": "29", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/hero-court.jpg" },
+      { "label": "30", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "31", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-1.jpg" }
     ]
   },
   "quickAccess": [
-    { "title": "Check-in", "subtitle": "4 check-ins esta semana", "accentLabel": "✓", "icon": "check" },
-    { "title": "Eventos", "subtitle": "Torneio de Duplas · 14/20", "accentLabel": "Sáb, 17 Mai", "icon": "event" },
-    { "title": "Partidas", "subtitle": "Você 6 × Rafael 4", "accentLabel": "Vitória", "icon": "sports" },
-    { "title": "Progresso", "subtitle": "85% consistência", "accentLabel": "Em alta", "icon": "chart" },
-    { "title": "Ranking", "subtitle": "#12 · ↑ 3 posições", "accentLabel": "Top Club", "icon": "ranking" },
-    { "title": "Shooting", "subtitle": "novas fotos", "accentLabel": "+1", "icon": "shooting" },
-    { "title": "Clubes", "subtitle": "3 clubes ativos", "accentLabel": "+12", "icon": "clubs" },
-    { "title": "Reservar", "subtitle": "Quadra 03 disponível hoje", "accentLabel": "18:00 – 19:00", "icon": "calendar" }
+    {
+      "title": "Check-in",
+      "subtitle": "4 check-ins esta semana",
+      "accentLabel": "✓",
+      "icon": "check",
+      "type": "check",
+      "backgroundAsset": "assets/images/prototype/widget-checkin.jpg",
+      "content": {
+        "weekdays": ["S", "T", "Q", "Q", "S", "S", "D"],
+        "activeDays": [true, false, true, true, false, true, false]
+      }
+    },
+    {
+      "title": "Eventos",
+      "subtitle": "Torneio de Duplas · 14/20",
+      "accentLabel": "Sáb, 17 Mai",
+      "icon": "event",
+      "type": "event",
+      "backgroundAsset": "assets/images/prototype/widget-eventos.jpg",
+      "content": {
+        "detailTitle": "Torneio de Duplas",
+        "progressLabel": "14/20"
+      }
+    },
+    {
+      "title": "Partidas",
+      "subtitle": "Você 6 × Rafael 4",
+      "accentLabel": "Vitória",
+      "icon": "sports",
+      "type": "sports",
+      "backgroundAsset": "assets/images/prototype/widget-partidas.jpg",
+      "content": {
+        "headline": "Última partida",
+        "playersLine": "Você    Rafael",
+        "scoreLine": "6 × 4",
+        "statusLabel": "Vitória"
+      }
+    },
+    {
+      "title": "Progresso",
+      "subtitle": "85% consistência",
+      "accentLabel": "Em alta",
+      "icon": "chart",
+      "type": "chart",
+      "backgroundAsset": "assets/images/prototype/widget-progresso.jpg",
+      "content": {
+        "metricValue": "85%",
+        "metricLabel": "consistência"
+      }
+    },
+    {
+      "title": "Ranking",
+      "subtitle": "#12 · ↑ 3 posições",
+      "accentLabel": "Top Club",
+      "icon": "ranking",
+      "type": "ranking",
+      "backgroundAsset": "assets/images/prototype/widget-ranking.jpg",
+      "content": {
+        "positionValue": "#12",
+        "positionLabel": "Sua posição",
+        "positionDelta": "↑ 3 posições"
+      }
+    },
+    {
+      "title": "Shooting",
+      "subtitle": "novas fotos",
+      "accentLabel": "+1",
+      "icon": "shooting",
+      "type": "shooting",
+      "backgroundAsset": "assets/images/prototype/widget-shooting.jpg",
+      "content": {
+        "detailTitle": "novas fotos",
+        "avatars": [
+          "assets/images/prototype/avatar-gabe.jpg",
+          "assets/images/prototype/avatar-sofia.jpg",
+          "assets/images/prototype/avatar-leo.jpg",
+          "assets/images/prototype/paulo.jpg"
+        ]
+      }
+    },
+    {
+      "title": "Clubes",
+      "subtitle": "3 clubes ativos",
+      "accentLabel": "+12",
+      "icon": "clubs",
+      "type": "clubs",
+      "backgroundAsset": "assets/images/prototype/widget-clubes.jpg",
+      "content": {
+        "detailTitle": "3 clubes ativos",
+        "avatars": [
+          "assets/images/prototype/paulo.jpg",
+          "assets/images/prototype/avatar-sofia.jpg",
+          "assets/images/prototype/avatar-leo.jpg"
+        ]
+      }
+    },
+    {
+      "title": "Reservar",
+      "subtitle": "Quadra 03 disponível hoje",
+      "accentLabel": "18:00 – 19:00",
+      "icon": "calendar",
+      "type": "calendar",
+      "backgroundAsset": "assets/images/prototype/widget-reservar.jpg",
+      "content": {
+        "detailTitle": "Quadra 03 disponível",
+        "timeLabel": "Hoje · 18:00–19:00",
+        "chips": [
+          { "label": "Tennis", "highlighted": true },
+          { "label": "Padel", "highlighted": false }
+        ]
+      }
+    }
   ]
 }

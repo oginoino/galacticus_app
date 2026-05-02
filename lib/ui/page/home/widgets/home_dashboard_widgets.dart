@@ -39,7 +39,7 @@ class HomeLeaderboardCard extends StatelessWidget {
                         SizedBox(
                           width: AppIconSize.giant,
                           child: Text(
-                            '#${entry.position}',
+                            '${overview.uiLabels.leaderboardPositionPrefix}${entry.position}',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium
@@ -55,10 +55,8 @@ class HomeLeaderboardCard extends StatelessWidget {
                         ),
                         const SizedBox(width: AppSpacing.lg),
                         CircleAvatar(
-                          radius: AppSpacing.giant,
-                          backgroundImage: AssetImage(
-                            HomePrototypeAssets.leaderboardAvatar(entry.name),
-                          ),
+                          radius: AppSize.leaderboardAvatarRadius,
+                          backgroundImage: AssetImage(entry.avatarAsset),
                         ),
                         const SizedBox(width: AppSpacing.xl),
                         Expanded(
@@ -66,7 +64,7 @@ class HomeLeaderboardCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                entry.name.replaceAll(' Você', ''),
+                                entry.name,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium
@@ -89,7 +87,7 @@ class HomeLeaderboardCard extends StatelessWidget {
                         ),
                         if (entry.isCurrentUser)
                           Text(
-                            'Você',
+                            overview.uiLabels.leaderboardCurrentUserLabel,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -164,26 +162,26 @@ class HomeLeaderboardCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: AppSpacing.huge),
-              const HomeBarChart(),
+              HomeBarChart(labels: overview.chartWeekdays),
               const SizedBox(height: AppSpacing.huge),
               Row(
                 children: [
                   Expanded(
                     child: HomeStatMetric(
                       value: overview.totalTime,
-                      label: 'Tempo total',
+                      label: overview.uiLabels.weeklyTimeLabel,
                     ),
                   ),
                   Expanded(
                     child: HomeStatMetric(
                       value: overview.calories,
-                      label: 'Calorias',
+                      label: overview.uiLabels.weeklyCaloriesLabel,
                     ),
                   ),
                   Expanded(
                     child: HomeStatMetric(
                       value: overview.consistency,
-                      label: 'Consistência',
+                      label: overview.uiLabels.weeklyConsistencyLabel,
                       highlight: true,
                     ),
                   ),
@@ -207,17 +205,13 @@ class HomeCalendarCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const weekdays = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
     final cells = List<HomeCalendarCell?>.filled(4, null, growable: true)
       ..addAll(
         overview.calendarDays.map(
           (day) => HomeCalendarCell(
             label: day.label,
             isSelected: day.isSelected,
-            imageAsset: HomePrototypeAssets.calendarImage(
-              day.label,
-              day.isActive,
-            ),
+            imageAsset: day.imageAsset,
           ),
         ),
       );
@@ -248,7 +242,7 @@ class HomeCalendarCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.xxl),
           Row(
-            children: weekdays
+            children: overview.calendarWeekdays
                 .map(
                   (day) => Expanded(
                     child: Center(
@@ -309,6 +303,7 @@ class HomeCalendarCard extends StatelessWidget {
                           ),
                           border: Border.all(
                             color: AppPalette.white.withValues(alpha: AppOpacity.lg),
+                            width: AppStroke.hairline,
                           ),
                         ),
                         alignment: Alignment.center,
@@ -353,29 +348,31 @@ class HomeCalendarCard extends StatelessWidget {
 }
 
 class HomeBarChart extends StatelessWidget {
-  const HomeBarChart({super.key});
+  const HomeBarChart({
+    super.key,
+    required this.labels,
+  });
+
+  final List<String> labels;
 
   @override
   Widget build(BuildContext context) {
-    const heights = [28.0, 42.0, 20.0, 52.0, 36.0, 58.0, 46.0];
-    const labels = ['S', 'T', 'Q', 'Q', 'S', 'S', 'D'];
-
     return Column(
       children: [
         SizedBox(
-          height: 72,
+          height: AppSize.chartHeight,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: List.generate(
-              heights.length,
+              AppChartHeights.weekly.length,
               (index) => Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 3),
                   child: Container(
-                    height: heights[index],
+                    height: AppChartHeights.weekly[index],
                     decoration: BoxDecoration(
                       color: AppPalette.chartBarA,
-                      borderRadius: BorderRadius.circular(AppStroke.hairline),
+                      borderRadius: BorderRadius.circular(AppSize.chartBarWidthRadius),
                     ),
                   ),
                 ),
@@ -410,19 +407,17 @@ class HomeMiniBarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const heights = [18.0, 26.0, 14.0, 24.0, 20.0, 28.0, 24.0];
-
     return SizedBox(
-      height: 34,
+      height: AppSize.miniChartHeight,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: List.generate(
-          heights.length,
+          AppChartHeights.mini.length,
           (index) => Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 2),
               child: Container(
-                height: heights[index],
+                height: AppChartHeights.mini[index],
                 color: index.isEven ? AppPalette.chartBarB : AppPalette.chartBarC,
               ),
             ),
@@ -454,10 +449,10 @@ class HomeStatMetric extends StatelessWidget {
           value,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.w800,
-                color: highlight ? AppPalette.primary : Colors.white,
+                color: highlight ? AppPalette.primary : AppPalette.white,
               ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: AppSpacing.xs),
         Text(
           label,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -480,8 +475,8 @@ class HomeNavCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 28,
-      height: 28,
+      width: AppSize.navCircle,
+      height: AppSize.navCircle,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: AppPalette.calendarDark,
@@ -489,7 +484,7 @@ class HomeNavCircle extends StatelessWidget {
           color: AppPalette.white.withValues(alpha: AppOpacity.xs),
         ),
       ),
-      child: Icon(icon, size: AppIconSize.lg, color: const Color(0xFF9BA1A7)),
+      child: Icon(icon, size: AppIconSize.lg, color: AppPalette.iconSubtle),
     );
   }
 }
@@ -519,7 +514,10 @@ class HomeSportChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.lg,
+        vertical: AppSpacing.sm,
+      ),
       decoration: BoxDecoration(
         color: highlighted
             ? AppPalette.successDark

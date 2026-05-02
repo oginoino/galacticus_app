@@ -9,11 +9,19 @@ class BottomNavigationShell extends StatelessWidget {
     super.key,
     required this.currentIndex,
     required this.onSelect,
+    required this.homeLabel,
+    required this.feedLabel,
+    required this.clubsLabel,
+    required this.profileLabel,
     this.onCreateTap,
   });
 
   final int currentIndex;
   final ValueChanged<int> onSelect;
+  final String homeLabel;
+  final String feedLabel;
+  final String clubsLabel;
+  final String profileLabel;
   final VoidCallback? onCreateTap;
 
   @override
@@ -81,7 +89,7 @@ class BottomNavigationShell extends StatelessWidget {
                       Expanded(
                         child: _NavItem(
                           icon: Icons.home_outlined,
-                          label: 'Início',
+                          label: homeLabel,
                           selected: currentIndex == 0,
                           onTap: () => onSelect(0),
                         ),
@@ -89,7 +97,7 @@ class BottomNavigationShell extends StatelessWidget {
                       Expanded(
                         child: _NavItem(
                           icon: Icons.rss_feed_outlined,
-                          label: 'Feed',
+                          label: feedLabel,
                           selected: currentIndex == 1,
                           onTap: () => onSelect(1),
                         ),
@@ -98,7 +106,7 @@ class BottomNavigationShell extends StatelessWidget {
                       Expanded(
                         child: _NavItem(
                           icon: Icons.shield_outlined,
-                          label: 'Clubes',
+                          label: clubsLabel,
                           selected: currentIndex == 2,
                           onTap: () => onSelect(2),
                         ),
@@ -106,7 +114,7 @@ class BottomNavigationShell extends StatelessWidget {
                       Expanded(
                         child: _NavItem(
                           icon: Icons.person_outline,
-                          label: 'Perfil',
+                          label: profileLabel,
                           selected: currentIndex == 3,
                           onTap: () => onSelect(3),
                         ),

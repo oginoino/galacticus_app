@@ -5,6 +5,7 @@ class Lesson {
     required this.coach,
     required this.views,
     required this.isAi,
+    required this.imageAsset,
   });
 
   final String duration;
@@ -12,4 +13,5 @@ class Lesson {
   final String coach;
   final String views;
   final bool isAi;
+  final String imageAsset;
 }

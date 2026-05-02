@@ -1,4 +1,6 @@
 export '../../service/api/api_service_factory.dart';
+export '../../service/home/home_mock_service.dart';
+export '../../service/home/home_service_interface.dart';
 export '../../service/http/http_request.dart';
 export '../../service/http/http_response.dart';
 export '../../service/http/http_service.dart';

@@ -35,7 +35,7 @@ class HomeQuickAccessCard extends StatelessWidget {
             fit: StackFit.expand,
             children: [
               Image.asset(
-                HomePrototypeAssets.quickAccessBackground(item.icon),
+                item.backgroundAsset,
                 fit: BoxFit.cover,
               ),
               DecoratedBox(
@@ -92,14 +92,22 @@ class HomeQuickAccessCard extends StatelessWidget {
   }
 
   List<Widget> _content(BuildContext context) {
-    switch (item.icon) {
+    final content = item.content;
+
+    switch (item.type) {
       case 'check':
+        final weekdays = (content['weekdays'] as List<dynamic>)
+            .cast<String>()
+            .toList(growable: false);
+        final activeDays = (content['activeDays'] as List<dynamic>)
+            .cast<bool>()
+            .toList(growable: false);
         return [
           Wrap(
             spacing: AppSpacing.xs,
             runSpacing: AppSpacing.xs,
             children: [
-              for (final active in [true, false, true, true, false, true, false])
+              for (final active in activeDays)
                 Container(
                   width: AppSpacing.giant,
                   height: AppSpacing.giant,
@@ -121,7 +129,7 @@ class HomeQuickAccessCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.xs),
           Row(
-            children: ['S', 'T', 'Q', 'Q', 'S', 'S', 'D']
+            children: weekdays
                 .map(
                   (label) => Expanded(
                     child: Text(
@@ -156,7 +164,7 @@ class HomeQuickAccessCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           Text(
-            'Torneio de Duplas',
+            content['detailTitle'] as String,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -177,9 +185,9 @@ class HomeQuickAccessCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: AppSpacing.lg),
-              const Text(
-                '14/20',
-                style: TextStyle(color: AppPalette.textNeutralAlt),
+              Text(
+                content['progressLabel'] as String,
+                style: const TextStyle(color: AppPalette.textNeutralAlt),
               ),
             ],
           ),
@@ -187,7 +195,7 @@ class HomeQuickAccessCard extends StatelessWidget {
       case 'sports':
         return [
           Text(
-            'Última partida',
+            content['headline'] as String,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppPalette.textNeutralAlt,
                   fontSize: AppFontSize.titleSm,
@@ -195,7 +203,7 @@ class HomeQuickAccessCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.lg),
           Text(
-            'Você    Rafael',
+            content['playersLine'] as String,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppPalette.textNeutralAlt,
                   fontSize: AppFontSize.body,
@@ -203,7 +211,7 @@ class HomeQuickAccessCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
-            '6 × 4',
+            content['scoreLine'] as String,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.w800,
                   fontSize: AppFontSize.metric,
@@ -220,7 +228,7 @@ class HomeQuickAccessCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Text(
-              'Vitória',
+              content['statusLabel'] as String,
               style: Theme.of(context).textTheme.labelLarge?.copyWith(
                     color: AppPalette.primary,
                     fontWeight: FontWeight.w700,
@@ -236,7 +244,7 @@ class HomeQuickAccessCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '85%',
+                content['metricValue'] as String,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.w800,
                       color: AppPalette.white,
@@ -244,7 +252,7 @@ class HomeQuickAccessCard extends StatelessWidget {
                     ),
               ),
               Text(
-                'consistência',
+                content['metricLabel'] as String,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
                       color: AppPalette.textGlass,
                     ),
@@ -258,7 +266,7 @@ class HomeQuickAccessCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '#12',
+                content['positionValue'] as String,
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.w800,
                       fontSize: AppFontSize.displaySm,
@@ -272,7 +280,7 @@ class HomeQuickAccessCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Sua posição',
+                        content['positionLabel'] as String,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -280,7 +288,7 @@ class HomeQuickAccessCard extends StatelessWidget {
                             ),
                       ),
                       Text(
-                        '↑ 3 posições',
+                        content['positionDelta'] as String,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
@@ -300,7 +308,7 @@ class HomeQuickAccessCard extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text(
-              'novas fotos',
+              content['detailTitle'] as String,
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     color: AppPalette.textGlass,
                   ),
@@ -312,9 +320,9 @@ class HomeQuickAccessCard extends StatelessWidget {
             runSpacing: AppSpacing.xs,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              ...HomePrototypeAssets.quickAccessAvatars.map(
+              ...((content['avatars'] as List<dynamic>).cast<String>()).map(
                 (asset) => CircleAvatar(
-                  radius: 14,
+                  radius: AppSize.quickAccessAvatarRadius,
                   backgroundImage: AssetImage(asset),
                 ),
               ),
@@ -344,7 +352,7 @@ class HomeQuickAccessCard extends StatelessWidget {
       case 'clubs':
         return [
           Text(
-            '3 clubes ativos',
+            content['detailTitle'] as String,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppPalette.textGlass,
                 ),
@@ -355,9 +363,9 @@ class HomeQuickAccessCard extends StatelessWidget {
             runSpacing: AppSpacing.xs,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              ...HomePrototypeAssets.clubAvatars.map(
+              ...((content['avatars'] as List<dynamic>).cast<String>()).map(
                 (asset) => CircleAvatar(
-                  radius: 14,
+                  radius: AppSize.quickAccessAvatarRadius,
                   backgroundImage: AssetImage(asset),
                 ),
               ),
@@ -368,7 +376,7 @@ class HomeQuickAccessCard extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color: AppPalette.white.withValues(alpha: AppOpacity.xxl),
-                  borderRadius: BorderRadius.circular(AppSpacing.xxxl),
+                  borderRadius: BorderRadius.circular(AppRadius.xxxl),
                 ),
                 child: Text(
                   item.accentLabel,
@@ -384,7 +392,7 @@ class HomeQuickAccessCard extends StatelessWidget {
       case 'calendar':
         return [
           Text(
-            'Quadra 03 disponível',
+            content['detailTitle'] as String,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   color: AppPalette.textCalendarLight,
                   fontSize: AppFontSize.titleSm,
@@ -392,7 +400,7 @@ class HomeQuickAccessCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           Text(
-            'Hoje · 18:00–19:00',
+            content['timeLabel'] as String,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -401,13 +409,17 @@ class HomeQuickAccessCard extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: AppSpacing.xl),
-          const Wrap(
+          Wrap(
             spacing: AppSpacing.md,
             runSpacing: AppSpacing.md,
-            children: [
-              HomeSportChip(label: 'Tennis', highlighted: true),
-              HomeSportChip(label: 'Padel'),
-            ],
+            children: ((content['chips'] as List<dynamic>).cast<Map<String, dynamic>>())
+                .map(
+                  (chip) => HomeSportChip(
+                    label: chip['label'] as String,
+                    highlighted: chip['highlighted'] as bool? ?? false,
+                  ),
+                )
+                .toList(growable: false),
           ),
         ];
       default:

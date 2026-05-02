@@ -11,11 +11,11 @@ class HomeLessonCard extends StatelessWidget {
   const HomeLessonCard({
     super.key,
     required this.lesson,
-    required this.imagePath,
+    required this.aiBadgeLabel,
   });
 
   final Lesson lesson;
-  final String imagePath;
+  final String aiBadgeLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +43,14 @@ class HomeLessonCard extends StatelessWidget {
                 child: Stack(
                   fit: StackFit.expand,
                   children: [
-                    Image.asset(imagePath, fit: BoxFit.cover),
+                    Image.asset(lesson.imageAsset, fit: BoxFit.cover),
                     DecoratedBox(
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
                           colors: [
-                            AppPalette.black.withValues(alpha: 0.6),
+                            AppPalette.black.withValues(alpha: AppOpacity.rich),
                             AppPalette.black.withValues(alpha: AppOpacity.lg),
                           ],
                         ),
@@ -60,8 +60,8 @@ class HomeLessonCard extends StatelessWidget {
                       top: AppSpacing.md,
                       left: AppSpacing.md,
                       child: lesson.isAi
-                          ? const HomeMiniBadge(
-                              label: 'IA',
+                          ? HomeMiniBadge(
+                              label: aiBadgeLabel,
                               icon: Icons.trending_up_rounded,
                               highlighted: true,
                             )
@@ -153,11 +153,9 @@ class HomeExploreCard extends StatelessWidget {
   const HomeExploreCard({
     super.key,
     required this.event,
-    required this.imagePath,
   });
 
   final CommunityEvent event;
-  final String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -168,7 +166,7 @@ class HomeExploreCard extends StatelessWidget {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            Image.asset(imagePath, fit: BoxFit.cover),
+            Image.asset(event.imageAsset, fit: BoxFit.cover),
             DecoratedBox(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
@@ -215,9 +213,11 @@ class HomeInviteCard extends StatelessWidget {
   const HomeInviteCard({
     super.key,
     required this.invite,
+    required this.actionLabel,
   });
 
   final MatchInvite invite;
+  final String actionLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -239,9 +239,7 @@ class HomeInviteCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   radius: compact ? 20 : 24,
-                  backgroundImage: AssetImage(
-                    HomePrototypeAssets.inviteAvatar(invite.hostName),
-                  ),
+                  backgroundImage: AssetImage(invite.avatarAsset),
                 ),
                 SizedBox(width: compact ? AppSpacing.lg : AppSpacing.xl),
                 Expanded(
@@ -317,7 +315,7 @@ class HomeInviteCard extends StatelessWidget {
                 ),
                 SizedBox(width: compact ? AppSpacing.md : AppSpacing.lg),
                 Text(
-                  'Entrar →',
+                  actionLabel,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppPalette.primary,
                         fontWeight: FontWeight.w700,

@@ -26,8 +26,8 @@ class HomeHeader extends StatelessWidget {
               color: AppPalette.white.withValues(alpha: AppOpacity.xl),
               width: AppStroke.hairline,
             ),
-            image: const DecorationImage(
-              image: AssetImage('${HomePrototypeAssets.basePath}/paulo.jpg'),
+            image: DecorationImage(
+              image: AssetImage(overview.user.avatarAsset),
               fit: BoxFit.cover,
             ),
           ),
@@ -75,8 +75,8 @@ class HomeHeader extends StatelessWidget {
                 size: AppIconSize.giant,
               ),
               Positioned(
-                top: 13,
-                right: 14,
+                top: AppSpacing.xxl,
+                right: AppSpacing.xxl,
                 child: Container(
                   width: AppSize.statusDot,
                   height: AppSize.statusDot,
@@ -109,7 +109,7 @@ class HomeProgressBar extends StatelessWidget {
       child: LinearProgressIndicator(
         value: progress,
         minHeight: AppSize.progressHeight,
-        backgroundColor: const Color(0xFF1A2128),
+        backgroundColor: AppPalette.surfaceAlt,
         valueColor: const AlwaysStoppedAnimation<Color>(AppPalette.primary),
       ),
     );
@@ -187,7 +187,10 @@ class HomeBookingCard extends StatelessWidget {
             style: FilledButton.styleFrom(
               backgroundColor: AppPalette.primary,
               foregroundColor: AppPalette.black,
-              minimumSize: Size(compact ? 92 : 104, compact ? 46 : 52),
+              minimumSize: Size(
+                compact ? AppSize.bookingButtonWidthCompact : AppSize.bookingButtonWidth,
+                compact ? AppSize.buttonHeightCompact : AppSize.buttonHeight,
+              ),
               padding: EdgeInsets.symmetric(
                 horizontal: compact ? AppSpacing.xl : AppSpacing.xxxl,
               ),
@@ -246,9 +249,11 @@ class HomeAssistantCard extends StatelessWidget {
               shape: BoxShape.circle,
               color: AppPalette.white.withValues(alpha: AppOpacity.md),
             ),
-            padding: EdgeInsets.all(compact ? AppSpacing.md : 9),
+            padding: EdgeInsets.all(
+              compact ? AppSpacing.md : AppSize.assistantInnerPadding,
+            ),
             child: Image.asset(
-              '${HomePrototypeAssets.basePath}/ai-logo.png',
+                      overview.assistantLogoAsset,
               fit: BoxFit.contain,
             ),
           ),
@@ -330,7 +335,7 @@ class HomeHeroCard extends StatelessWidget {
                 fit: StackFit.expand,
                 children: [
                   Image.asset(
-                    '${HomePrototypeAssets.basePath}/hero-court.jpg',
+                            overview.heroImageAsset,
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(
@@ -339,19 +344,23 @@ class HomeHeroCard extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          AppPalette.heroOverlayWarm.withValues(alpha: 0.38),
-                          AppPalette.heroOverlayDark.withValues(alpha: 0.25),
+                          AppPalette.heroOverlayWarm.withValues(alpha: AppOpacity.accent),
+                          AppPalette.heroOverlayDark.withValues(alpha: AppOpacity.quarter),
                           AppPalette.black.withValues(alpha: AppOpacity.overlay),
                         ],
                       ),
                     ),
                   ),
                   Positioned(
-                    top: compact ? 16 : 22,
-                    right: compact ? 14 : 20,
+                    top: compact ? AppHeroLayout.topCompact : AppHeroLayout.top,
+                    right: compact ? AppSpacing.xxl : AppSpacing.giant,
                     child: Container(
-                      width: compact ? 14 : 18,
-                      height: compact ? 14 : 18,
+                              width: compact
+                                  ? AppSize.heroIndicatorCompact
+                                  : AppSize.heroIndicator,
+                              height: compact
+                                  ? AppSize.heroIndicatorCompact
+                                  : AppSize.heroIndicator,
                       decoration: const BoxDecoration(
                         color: AppPalette.primary,
                         shape: BoxShape.circle,
@@ -365,10 +374,16 @@ class HomeHeroCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(
-                      compact ? 12 : 16,
-                      compact ? 12 : 16,
-                      compact ? 12 : 16,
-                      compact ? 12 : 14,
+                      compact
+                          ? AppSize.heroOverlayPaddingCompact
+                          : AppSize.heroOverlayPadding,
+                      compact
+                          ? AppSize.heroOverlayPaddingCompact
+                          : AppSize.heroOverlayPadding,
+                      compact
+                          ? AppSize.heroOverlayPaddingCompact
+                          : AppSize.heroOverlayPadding,
+                      compact ? AppSpacing.xl : AppSpacing.xxl,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -376,7 +391,10 @@ class HomeHeroCard extends StatelessWidget {
                       children: [
                         ConstrainedBox(
                           constraints: BoxConstraints(
-                            maxWidth: contentWidth * (compact ? 0.58 : 0.62),
+                            maxWidth: contentWidth *
+                                (compact
+                                    ? AppSize.heroTitleWidthFactorCompact
+                                    : AppSize.heroTitleWidthFactor),
                           ),
                           child: Text(
                             overview.heroTitle,
@@ -387,7 +405,7 @@ class HomeHeroCard extends StatelessWidget {
                                 .headlineLarge
                                 ?.copyWith(
                                   fontWeight: FontWeight.w700,
-                                  height: 0.95,
+                                  height: AppSize.heroLineHeight,
                                   letterSpacing: AppLetterSpacing.display,
                                   fontSize: compact
                                       ? AppFontSize.displaySm
@@ -418,7 +436,9 @@ class HomeHeroCard extends StatelessWidget {
                                   backgroundColor: AppPalette.primary,
                                   foregroundColor: AppPalette.black,
                                   minimumSize: Size.fromHeight(
-                                    compact ? 46 : 52,
+                                    compact
+                                        ? AppSize.buttonHeightCompact
+                                        : AppSize.buttonHeight,
                                   ),
                                   padding: EdgeInsets.symmetric(
                                     horizontal: compact ? AppSpacing.md : AppSpacing.xl,
@@ -453,7 +473,9 @@ class HomeHeroCard extends StatelessWidget {
                                     color: AppPalette.white.withValues(alpha: AppOpacity.strong),
                                   ),
                                   minimumSize: Size.fromHeight(
-                                    compact ? 46 : 52,
+                                    compact
+                                        ? AppSize.buttonHeightCompact
+                                        : AppSize.buttonHeight,
                                   ),
                                   padding: EdgeInsets.symmetric(
                                     horizontal: compact ? AppSpacing.sm : AppSpacing.lg,
@@ -492,7 +514,12 @@ class HomeHeroCard extends StatelessWidget {
 }
 
 class HomeWorkoutCard extends StatelessWidget {
-  const HomeWorkoutCard({super.key});
+  const HomeWorkoutCard({
+    super.key,
+    required this.overview,
+  });
+
+  final DashboardOverview overview;
 
   @override
   Widget build(BuildContext context) {
@@ -517,8 +544,8 @@ class HomeWorkoutCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: compact ? AppSize.navCenterButton : 48,
-            height: compact ? AppSize.navCenterButton : 48,
+            width: compact ? AppSize.navCenterButton : AppSize.workoutLeading,
+            height: compact ? AppSize.navCenterButton : AppSize.workoutLeading,
             decoration: BoxDecoration(
               color: AppPalette.black.withValues(alpha: AppOpacity.xl),
               borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -535,7 +562,7 @@ class HomeWorkoutCard extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  'CHECK-IN WORKOUT',
+                  overview.workoutPromo.title,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
@@ -549,11 +576,11 @@ class HomeWorkoutCard extends StatelessWidget {
                 ),
                 const SizedBox(height: AppSpacing.xs),
                 Text(
-                  'Registre seu treino agora',
+                  overview.workoutPromo.subtitle,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppPalette.black.withValues(alpha: 0.66),
+                        color: AppPalette.black.withValues(alpha: AppOpacity.text),
                         fontSize: compact ? AppFontSize.body : AppFontSize.bodyLg,
                       ),
                 ),
@@ -562,7 +589,7 @@ class HomeWorkoutCard extends StatelessWidget {
           ),
           Icon(
             Icons.north_east_rounded,
-            color: AppPalette.black.withValues(alpha: 0.5),
+            color: AppPalette.black.withValues(alpha: AppOpacity.half),
             size: compact ? AppIconSize.xxxl : AppIconSize.giant,
           ),
         ],
@@ -581,14 +608,14 @@ class HomeHeroCourtOverlayPainter extends CustomPainter {
       ..strokeWidth = AppStroke.thin;
 
     canvas.drawLine(
-      Offset(size.width * 0.48, size.height * 0.16),
-      Offset(size.width * 0.48, size.height * 0.86),
+      Offset(size.width * AppHeroLayout.lineX, size.height * AppHeroLayout.lineTop),
+      Offset(size.width * AppHeroLayout.lineX, size.height * AppHeroLayout.lineBottom),
       paint,
     );
 
     canvas.drawLine(
-      Offset(0, size.height * 0.62),
-      Offset(size.width, size.height * 0.62),
+      Offset(0, size.height * AppHeroLayout.baselineY),
+      Offset(size.width, size.height * AppHeroLayout.baselineY),
       paint,
     );
   }

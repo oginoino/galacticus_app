@@ -1,10 +1,14 @@
 import 'app_user.dart';
 import 'calendar_day.dart';
 import 'community_event.dart';
+import 'home_messages.dart';
+import 'home_sections.dart';
+import 'home_ui_labels.dart';
 import 'leaderboard_entry.dart';
 import 'lesson.dart';
 import 'match_invite.dart';
 import 'quick_access_item.dart';
+import 'workout_promo.dart';
 
 class DashboardOverview {
   const DashboardOverview({
@@ -33,7 +37,15 @@ class DashboardOverview {
     required this.matchInvites,
     required this.calendarMonthLabel,
     required this.calendarDays,
+    required this.calendarWeekdays,
+    required this.chartWeekdays,
     required this.quickAccessItems,
+    required this.sections,
+    required this.messages,
+    required this.workoutPromo,
+    required this.uiLabels,
+    required this.assistantLogoAsset,
+    required this.heroImageAsset,
   });
 
   final AppUser user;
@@ -61,5 +73,13 @@ class DashboardOverview {
   final List<MatchInvite> matchInvites;
   final String calendarMonthLabel;
   final List<CalendarDay> calendarDays;
+  final List<String> calendarWeekdays;
+  final List<String> chartWeekdays;
   final List<QuickAccessItem> quickAccessItems;
+  final HomeSections sections;
+  final HomeMessages messages;
+  final WorkoutPromo workoutPromo;
+  final HomeUiLabels uiLabels;
+  final String assistantLogoAsset;
+  final String heroImageAsset;
 }

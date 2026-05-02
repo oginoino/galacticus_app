@@ -31,6 +31,7 @@ abstract final class AppPalette {
   static const textGlass = Color(0xFFCECECE);
   static const textEvent = Color(0xFFD5D5D5);
   static const textCalendarLight = Color(0xFFD1D1D1);
+  static const iconSubtle = Color(0xFF9BA1A7);
   static const successDark = Color(0xFF223913);
   static const successSoft = Color(0xFF253413);
   static const successHighlight = Color(0xFF31401D);
@@ -69,9 +70,15 @@ abstract final class AppOpacity {
   static const soft = 0.14;
   static const medium = 0.16;
   static const strong = 0.18;
+  static const quarter = 0.25;
   static const stronger = 0.26;
   static const emphasis = 0.30;
+  static const accent = 0.38;
+  static const half = 0.5;
   static const heavy = 0.58;
+  static const rich = 0.6;
+  static const text = 0.66;
+  static const snackbar = 0.87;
   static const overlay = 0.72;
   static const overlayStrong = 0.75;
   static const scrim = 0.82;
@@ -180,19 +187,62 @@ abstract final class AppSize {
   static const progressHeight = 8.0;
   static const bookingIcon = 42.0;
   static const bookingIconCompact = 40.0;
+  static const bookingButtonWidth = 104.0;
+  static const bookingButtonWidthCompact = 92.0;
+  static const workoutLeading = 48.0;
+  static const buttonHeight = 52.0;
+  static const buttonHeightCompact = 46.0;
   static const assistantIcon = 50.0;
   static const assistantIconCompact = 46.0;
+  static const assistantInnerPadding = 9.0;
   static const heroHeight = 224.0;
   static const heroHeightCompact = 204.0;
+  static const heroIndicator = 18.0;
+  static const heroIndicatorCompact = 14.0;
+  static const heroOverlayPadding = 16.0;
+  static const heroOverlayPaddingCompact = 12.0;
+  static const heroTitleWidthFactor = 0.62;
+  static const heroTitleWidthFactorCompact = 0.58;
+  static const heroLineHeight = 0.95;
   static const lessonCardWidth = 176.0;
   static const lessonCardWidthCompact = 162.0;
+  static const lessonPlayButton = 52.0;
+  static const lessonPlayButtonCompact = 46.0;
   static const inviteCardWidth = 226.0;
   static const inviteCardWidthCompact = 208.0;
+  static const inviteAvatarRadius = 24.0;
+  static const inviteAvatarRadiusCompact = 20.0;
   static const quickAccessCardHeight = 194.0;
   static const quickAccessCardHeightCompact = 182.0;
   static const exploreCardWidth = 210.0;
+  static const lessonListHeight = 176.0;
+  static const lessonListHeightCompact = 170.0;
+  static const exploreListHeight = 114.0;
+  static const exploreListHeightCompact = 122.0;
+  static const inviteListHeight = 152.0;
+  static const inviteListHeightCompact = 164.0;
+  static const leaderboardAvatarRadius = 20.0;
+  static const quickAccessAvatarRadius = 14.0;
+  static const navCircle = 28.0;
+  static const chartHeight = 72.0;
+  static const miniChartHeight = 34.0;
   static const ringSmall = 5.0;
   static const badgeSquare = 28.0;
+  static const chartBarWidthRadius = 1.0;
+}
+
+abstract final class AppChartHeights {
+  static const weekly = [28.0, 42.0, 20.0, 52.0, 36.0, 58.0, 46.0];
+  static const mini = [18.0, 26.0, 14.0, 24.0, 20.0, 28.0, 24.0];
+}
+
+abstract final class AppHeroLayout {
+  static const top = 22.0;
+  static const topCompact = 16.0;
+  static const lineX = 0.48;
+  static const lineTop = 0.16;
+  static const lineBottom = 0.86;
+  static const baselineY = 0.62;
 }
 
 abstract final class AppInsets {
@@ -251,7 +301,7 @@ class AppTheme {
       ),
       textTheme: GoogleFonts.interTextTheme(base.textTheme),
       snackBarTheme: SnackBarThemeData(
-        backgroundColor: AppPalette.black.withValues(alpha: 0.87),
+        backgroundColor: AppPalette.black.withValues(alpha: AppOpacity.snackbar),
         contentTextStyle: GoogleFonts.inter(
           color: AppPalette.white,
         ),

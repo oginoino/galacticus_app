@@ -6,6 +6,7 @@ class MatchInvite {
     required this.location,
     required this.availability,
     required this.isLastSpot,
+    required this.avatarAsset,
   });
 
   final String hostName;
@@ -14,4 +15,5 @@ class MatchInvite {
   final String location;
   final String availability;
   final bool isLastSpot;
+  final String avatarAsset;
 }

@@ -1,10 +1,14 @@
 import '../domain/dashboard_overview.dart';
 import '../dto/dashboard_dto.dart';
-import 'base_repository.dart';
+import '../service/home/home_service_interface.dart';
 
-class HomeRepository extends BaseRepository {
+class HomeRepository {
+  HomeRepository(this._homeService);
+
+  final HomeServiceInterface _homeService;
+
   Future<DashboardOverview> getDashboard() async {
-    final json = await loadJsonObject(assetPath('home_feed.json'));
+    final json = await _homeService.fetchHomeFeed();
     return DashboardDto.fromJson(json).toDomain();
   }
 }

@@ -8,6 +8,8 @@ class AppConstants {
     required this.appDescription,
     required this.authBaseUrl,
     required this.coreApiBaseUrl,
+    required this.homeLoadErrorMessage,
+    required this.retryLabel,
   });
 
   final String appName;
@@ -16,6 +18,8 @@ class AppConstants {
   final String appDescription;
   final String authBaseUrl;
   final String coreApiBaseUrl;
+  final String homeLoadErrorMessage;
+  final String retryLabel;
 
   static const instance = AppConstants(
     appName: Environment.appName,
@@ -24,5 +28,7 @@ class AppConstants {
     appDescription: Environment.appDescription,
     authBaseUrl: Environment.authBaseUrl,
     coreApiBaseUrl: Environment.coreApiBaseUrl,
+    homeLoadErrorMessage: 'Não foi possível carregar o dashboard agora.',
+    retryLabel: 'Tentar novamente',
   );
 }

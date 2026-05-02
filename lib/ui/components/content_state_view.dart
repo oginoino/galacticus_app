@@ -9,11 +9,13 @@ class ContentStateView extends StatelessWidget {
     required this.child,
     this.errorMessage,
     this.onRetry,
+    this.retryLabel,
   });
 
   final bool isLoading;
   final String? errorMessage;
   final VoidCallback? onRetry;
+  final String? retryLabel;
   final Widget child;
 
   @override
@@ -37,7 +39,7 @@ class ContentStateView extends StatelessWidget {
                 const SizedBox(height: AppSpacing.xxxl),
                 FilledButton(
                   onPressed: onRetry,
-                  child: const Text('Tentar novamente'),
+                  child: Text(retryLabel ?? ''),
                 ),
               ],
             ],

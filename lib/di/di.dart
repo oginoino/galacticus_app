@@ -2,6 +2,8 @@ import 'package:get_it/get_it.dart';
 
 import '../repository/home_repository.dart';
 import '../service/api/api_service_factory.dart';
+import '../service/home/home_mock_service.dart';
+import '../service/home/home_service_interface.dart';
 import '../service/http/http_service.dart';
 import '../service/http/http_service_interface.dart';
 import '../service/localization/localization_service.dart';
@@ -29,7 +31,10 @@ class DependencyInjection {
       ..registerLazySingleton<ApiServiceFactory>(
         () => ApiServiceFactory(sl<HttpServiceInterface>()),
       )
-      ..registerLazySingleton<HomeRepository>(HomeRepository.new);
+      ..registerLazySingleton<HomeServiceInterface>(HomeMockService.new)
+      ..registerLazySingleton<HomeRepository>(
+        () => HomeRepository(sl<HomeServiceInterface>()),
+      );
   }
 
   static Future<void> reset() async {

@@ -2,10 +2,14 @@ import '../domain/app_user.dart';
 import '../domain/calendar_day.dart';
 import '../domain/community_event.dart';
 import '../domain/dashboard_overview.dart';
+import '../domain/home_messages.dart';
+import '../domain/home_sections.dart';
+import '../domain/home_ui_labels.dart';
 import '../domain/leaderboard_entry.dart';
 import '../domain/lesson.dart';
 import '../domain/match_invite.dart';
 import '../domain/quick_access_item.dart';
+import '../domain/workout_promo.dart';
 
 class DashboardDto {
   DashboardDto({
@@ -25,12 +29,18 @@ class DashboardDto {
     final hero = payload['hero'] as Map<String, dynamic>;
     final weeklyStats = payload['weeklyStats'] as Map<String, dynamic>;
     final calendar = payload['calendar'] as Map<String, dynamic>;
+    final sections = payload['sections'] as Map<String, dynamic>;
+    final messages = payload['messages'] as Map<String, dynamic>;
+    final workoutPromo = payload['workoutPromo'] as Map<String, dynamic>;
+    final uiLabels = payload['uiLabels'] as Map<String, dynamic>;
+    final assets = payload['assets'] as Map<String, dynamic>;
 
     return DashboardOverview(
       user: AppUser(
         name: user['name'] as String,
         levelLabel: user['levelLabel'] as String,
         pointsLabel: user['pointsLabel'] as String,
+        avatarAsset: user['avatarAsset'] as String,
       ),
       progress: (payload['progress'] as num).toDouble(),
       locationLabel: payload['locationLabel'] as String,
@@ -52,6 +62,7 @@ class DashboardDto {
           coach: item['coach'] as String,
           views: item['views'] as String,
           isAi: item['isAi'] as bool,
+          imageAsset: item['imageAsset'] as String,
         ),
       ),
       leaderboard: _mapList(
@@ -61,6 +72,7 @@ class DashboardDto {
           name: item['name'] as String,
           points: item['points'] as String,
           isCurrentUser: item['isCurrentUser'] as bool,
+          avatarAsset: item['avatarAsset'] as String,
         ),
       ),
       weeklyHeadline: weeklyStats['headline'] as String,
@@ -75,6 +87,7 @@ class DashboardDto {
           title: item['title'] as String,
           subtitle: item['subtitle'] as String,
           tag: item['tag'] as String,
+          imageAsset: item['imageAsset'] as String,
         ),
       ),
       matchInvites: _mapList(
@@ -86,6 +99,7 @@ class DashboardDto {
           location: item['location'] as String,
           availability: item['availability'] as String,
           isLastSpot: item['isLastSpot'] as bool,
+          avatarAsset: item['avatarAsset'] as String,
         ),
       ),
       calendarMonthLabel: calendar['monthLabel'] as String,
@@ -95,8 +109,15 @@ class DashboardDto {
           label: item['label'] as String,
           isSelected: item['isSelected'] as bool,
           isActive: item['isActive'] as bool,
+          imageAsset: item['imageAsset'] as String?,
         ),
       ),
+      calendarWeekdays: (calendar['weekdays'] as List<dynamic>)
+          .cast<String>()
+          .toList(growable: false),
+      chartWeekdays: (weeklyStats['weekdays'] as List<dynamic>)
+          .cast<String>()
+          .toList(growable: false),
       quickAccessItems: _mapList(
         payload['quickAccess'] as List<dynamic>,
         (item) => QuickAccessItem(
@@ -104,8 +125,57 @@ class DashboardDto {
           subtitle: item['subtitle'] as String,
           accentLabel: item['accentLabel'] as String,
           icon: item['icon'] as String,
+          type: item['type'] as String,
+          backgroundAsset: item['backgroundAsset'] as String,
+          content: Map<String, dynamic>.from(item['content'] as Map),
         ),
       ),
+      sections: HomeSections(
+        lessonsTitle: sections['lessonsTitle'] as String,
+        lessonsActionLabel: sections['lessonsActionLabel'] as String,
+        lessonsActionMessage: sections['lessonsActionMessage'] as String,
+        leaderboardTitle: sections['leaderboardTitle'] as String,
+        leaderboardActionLabel: sections['leaderboardActionLabel'] as String,
+        leaderboardActionMessage: sections['leaderboardActionMessage'] as String,
+        exploreTitle: sections['exploreTitle'] as String,
+        exploreActionLabel: sections['exploreActionLabel'] as String,
+        exploreActionMessage: sections['exploreActionMessage'] as String,
+        friendsTitle: sections['friendsTitle'] as String,
+        friendsActionLabel: sections['friendsActionLabel'] as String,
+        friendsActionMessage: sections['friendsActionMessage'] as String,
+        calendarTitle: sections['calendarTitle'] as String,
+        calendarActionLabel: sections['calendarActionLabel'] as String,
+        calendarActionMessage: sections['calendarActionMessage'] as String,
+        quickAccessTitle: sections['quickAccessTitle'] as String,
+      ),
+      messages: HomeMessages(
+        bookingAction: messages['bookingAction'] as String,
+        heroPrimaryAction: messages['heroPrimaryAction'] as String,
+        heroSecondaryAction: messages['heroSecondaryAction'] as String,
+        quickAction: messages['quickAction'] as String,
+      ),
+      workoutPromo: WorkoutPromo(
+        title: workoutPromo['title'] as String,
+        subtitle: workoutPromo['subtitle'] as String,
+      ),
+      uiLabels: HomeUiLabels(
+        lessonAiBadge: uiLabels['lessonAiBadge'] as String,
+        inviteActionLabel: uiLabels['inviteActionLabel'] as String,
+        leaderboardCurrentUserLabel:
+            uiLabels['leaderboardCurrentUserLabel'] as String,
+        leaderboardPositionPrefix:
+            uiLabels['leaderboardPositionPrefix'] as String,
+        weeklyTimeLabel: uiLabels['weeklyTimeLabel'] as String,
+        weeklyCaloriesLabel: uiLabels['weeklyCaloriesLabel'] as String,
+        weeklyConsistencyLabel:
+            uiLabels['weeklyConsistencyLabel'] as String,
+        navigationHomeLabel: uiLabels['navigationHomeLabel'] as String,
+        navigationFeedLabel: uiLabels['navigationFeedLabel'] as String,
+        navigationClubsLabel: uiLabels['navigationClubsLabel'] as String,
+        navigationProfileLabel: uiLabels['navigationProfileLabel'] as String,
+      ),
+      assistantLogoAsset: assets['assistantLogoAsset'] as String,
+      heroImageAsset: assets['heroImageAsset'] as String,
     );
   }
 

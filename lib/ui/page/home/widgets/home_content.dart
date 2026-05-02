@@ -41,108 +41,99 @@ class HomeContent extends StatelessWidget {
         const SizedBox(height: AppSpacing.xxxl),
         HomeBookingCard(
           overview: overview,
-          onPressed: () => onMessage(
-            'Fluxo de reserva conectado na próxima fase.',
-          ),
+          onPressed: () => onMessage(overview.messages.bookingAction),
         ),
         const SizedBox(height: AppSpacing.huge),
         HomeAssistantCard(overview: overview),
         const SizedBox(height: AppSpacing.huge),
         HomeHeroCard(
           overview: overview,
-          onPrimaryTap: () => onMessage(
-            'Treino guiado conectado na próxima etapa.',
-          ),
-          onSecondaryTap: () => onMessage(
-            'Busca de partidas será habilitada na integração.',
-          ),
+          onPrimaryTap: () => onMessage(overview.messages.heroPrimaryAction),
+          onSecondaryTap: () => onMessage(overview.messages.heroSecondaryAction),
         ),
         const SizedBox(height: AppSpacing.huge),
-        const HomeWorkoutCard(),
+        HomeWorkoutCard(overview: overview),
         const SizedBox(height: AppSpacing.section),
         SectionHeader(
-          title: 'Aulas',
-          actionLabel: 'Ver todas',
-          onActionTap: () => onMessage(
-            'Lista completa de aulas em breve.',
-          ),
+          title: overview.sections.lessonsTitle,
+          actionLabel: overview.sections.lessonsActionLabel,
+          onActionTap: () => onMessage(overview.sections.lessonsActionMessage),
         ),
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
-          height: compact ? 170 : 176,
+          height: compact
+              ? AppSize.lessonListHeightCompact
+              : AppSize.lessonListHeight,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: overview.lessons.length,
             separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
             itemBuilder: (context, index) => HomeLessonCard(
               lesson: overview.lessons[index],
-              imagePath: HomePrototypeAssets.lessonByIndex(index),
+              aiBadgeLabel: overview.uiLabels.lessonAiBadge,
             ),
           ),
         ),
         const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
-          title: 'Leaderboard',
-          actionLabel: 'Ver ranking',
-          onActionTap: () => onMessage(
-            'Ranking completo em breve.',
-          ),
+          title: overview.sections.leaderboardTitle,
+          actionLabel: overview.sections.leaderboardActionLabel,
+          onActionTap: () =>
+              onMessage(overview.sections.leaderboardActionMessage),
         ),
         const SizedBox(height: AppSpacing.xl),
         HomeLeaderboardCard(overview: overview),
         const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
-          title: 'Explorar Hoje',
-          actionLabel: 'Ver todos',
-          onActionTap: () => onMessage(
-            'Agenda completa em breve.',
-          ),
+          title: overview.sections.exploreTitle,
+          actionLabel: overview.sections.exploreActionLabel,
+          onActionTap: () => onMessage(overview.sections.exploreActionMessage),
         ),
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
-          height: compact ? 122 : 114,
+          height: compact
+              ? AppSize.exploreListHeightCompact
+              : AppSize.exploreListHeight,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: overview.exploreEvents.length,
             separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
             itemBuilder: (context, index) => HomeExploreCard(
               event: overview.exploreEvents[index],
-              imagePath: HomePrototypeAssets.exploreByIndex(index),
             ),
           ),
         ),
         const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
-          title: 'Jogue com Amigos',
-          actionLabel: 'Ver agenda',
-          onActionTap: () => onMessage(
-            'Agenda social em breve.',
-          ),
+          title: overview.sections.friendsTitle,
+          actionLabel: overview.sections.friendsActionLabel,
+          onActionTap: () => onMessage(overview.sections.friendsActionMessage),
         ),
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
-          height: compact ? 164 : 152,
+          height: compact
+              ? AppSize.inviteListHeightCompact
+              : AppSize.inviteListHeight,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: overview.matchInvites.length,
             separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
             itemBuilder: (context, index) => HomeInviteCard(
               invite: overview.matchInvites[index],
+              actionLabel: overview.uiLabels.inviteActionLabel,
             ),
           ),
         ),
         const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
-          title: 'Calendário',
-          actionLabel: 'Ver tudo',
-          onActionTap: () => onMessage(
-            'Calendário completo em breve.',
-          ),
+          title: overview.sections.calendarTitle,
+          actionLabel: overview.sections.calendarActionLabel,
+          onActionTap: () => onMessage(overview.sections.calendarActionMessage),
         ),
         const SizedBox(height: AppSpacing.xl),
         HomeCalendarCard(overview: overview),
         const SizedBox(height: AppSpacing.sectionLg),
-        const SectionHeader(title: 'Acesso Rápido'),
+        SectionHeader(title: overview.sections.quickAccessTitle),
         const SizedBox(height: AppSpacing.xl),
         LayoutBuilder(
           builder: (context, constraints) {
