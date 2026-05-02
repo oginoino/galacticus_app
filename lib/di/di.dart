@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 import '../repository/home_repository.dart';
@@ -19,7 +20,13 @@ class DependencyInjection {
     }
 
     final persistenceService = PersistenceService();
-    await persistenceService.init();
+    try {
+      await persistenceService.init();
+    } catch (error, stackTrace) {
+      debugPrint(
+        'Falha ao inicializar PersistenceService. O app seguirá sem persistência local.\n$error\n$stackTrace',
+      );
+    }
 
     sl
       ..registerSingleton<AppConstants>(AppConstants.instance)

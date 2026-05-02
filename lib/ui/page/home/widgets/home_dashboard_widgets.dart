@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../domain/dashboard_overview.dart';
 import '../../../components/glow_card.dart';
 import '../../../theme/app_theme.dart';
-import 'home_assets.dart';
 
 class HomeLeaderboardCard extends StatelessWidget {
-  const HomeLeaderboardCard({
-    super.key,
-    required this.overview,
-  });
+  const HomeLeaderboardCard({super.key, required this.overview});
 
   final DashboardOverview overview;
 
@@ -40,15 +36,13 @@ class HomeLeaderboardCard extends StatelessWidget {
                           width: AppIconSize.giant,
                           child: Text(
                             '${overview.uiLabels.leaderboardPositionPrefix}${entry.position}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
+                            style: Theme.of(context).textTheme.titleMedium
                                 ?.copyWith(
                                   color: entry.position == 1
                                       ? AppPalette.gold
                                       : entry.position == 2
-                                          ? AppPalette.silver
-                                          : AppPalette.bronze,
+                                      ? AppPalette.silver
+                                      : AppPalette.bronze,
                                   fontWeight: FontWeight.w800,
                                 ),
                           ),
@@ -65,22 +59,14 @@ class HomeLeaderboardCard extends StatelessWidget {
                             children: [
                               Text(
                                 entry.name,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                style: Theme.of(context).textTheme.titleMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
                               ),
                               const SizedBox(height: AppSpacing.xxs),
                               Text(
                                 entry.points,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium
-                                    ?.copyWith(
-                                      color: AppPalette.textSoft,
-                                    ),
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(color: AppPalette.textSoft),
                               ),
                             ],
                           ),
@@ -88,9 +74,7 @@ class HomeLeaderboardCard extends StatelessWidget {
                         if (entry.isCurrentUser)
                           Text(
                             overview.uiLabels.leaderboardCurrentUserLabel,
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium
+                            style: Theme.of(context).textTheme.bodyMedium
                                 ?.copyWith(
                                   color: AppPalette.primary,
                                   fontWeight: FontWeight.w700,
@@ -125,9 +109,9 @@ class HomeLeaderboardCard extends StatelessWidget {
               Text(
                 overview.weeklyHeadline.toUpperCase(),
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppPalette.textStats,
-                      letterSpacing: AppLetterSpacing.wideSm,
-                    ),
+                  color: AppPalette.textStats,
+                  letterSpacing: AppLetterSpacing.wideSm,
+                ),
               ),
               const SizedBox(height: AppSpacing.md),
               Row(
@@ -135,8 +119,8 @@ class HomeLeaderboardCard extends StatelessWidget {
                   Text(
                     overview.weeklyTrainings,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.w800,
-                        ),
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                   const Spacer(),
                   Container(
@@ -150,13 +134,10 @@ class HomeLeaderboardCard extends StatelessWidget {
                     ),
                     child: Text(
                       overview.weeklyVariation,
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelLarge
-                          ?.copyWith(
-                            color: AppPalette.primary,
-                            fontWeight: FontWeight.w800,
-                          ),
+                      style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                        color: AppPalette.primary,
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                   ),
                 ],
@@ -196,10 +177,7 @@ class HomeLeaderboardCard extends StatelessWidget {
 }
 
 class HomeCalendarCard extends StatelessWidget {
-  const HomeCalendarCard({
-    super.key,
-    required this.overview,
-  });
+  const HomeCalendarCard({super.key, required this.overview});
 
   final DashboardOverview overview;
 
@@ -232,9 +210,9 @@ class HomeCalendarCard extends StatelessWidget {
               Text(
                 overview.calendarMonthLabel[0].toUpperCase() +
                     overview.calendarMonthLabel.substring(1),
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const Spacer(),
               const HomeNavCircle(icon: Icons.chevron_right_rounded),
@@ -249,8 +227,8 @@ class HomeCalendarCard extends StatelessWidget {
                       child: Text(
                         day,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: AppPalette.textCalendar,
-                            ),
+                          color: AppPalette.textCalendar,
+                        ),
                       ),
                     ),
                   ),
@@ -283,9 +261,9 @@ class HomeCalendarCard extends StatelessWidget {
                   child: Text(
                     cell.label,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: AppPalette.black,
-                          fontWeight: FontWeight.w800,
-                        ),
+                      color: AppPalette.black,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 );
               }
@@ -302,19 +280,17 @@ class HomeCalendarCard extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                           border: Border.all(
-                            color: AppPalette.white.withValues(alpha: AppOpacity.lg),
+                            color: AppPalette.white.withValues(
+                              alpha: AppOpacity.lg,
+                            ),
                             width: AppStroke.hairline,
                           ),
                         ),
                         alignment: Alignment.center,
                         child: Text(
                           cell.label,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelLarge
-                              ?.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
+                          style: Theme.of(context).textTheme.labelLarge
+                              ?.copyWith(fontWeight: FontWeight.w700),
                         ),
                       ),
                     ),
@@ -334,9 +310,9 @@ class HomeCalendarCard extends StatelessWidget {
               return Center(
                 child: Text(
                   cell.label,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppPalette.textDim,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: AppPalette.textDim),
                 ),
               );
             },
@@ -348,10 +324,7 @@ class HomeCalendarCard extends StatelessWidget {
 }
 
 class HomeBarChart extends StatelessWidget {
-  const HomeBarChart({
-    super.key,
-    required this.labels,
-  });
+  const HomeBarChart({super.key, required this.labels});
 
   final List<String> labels;
 
@@ -372,7 +345,9 @@ class HomeBarChart extends StatelessWidget {
                     height: AppChartHeights.weekly[index],
                     decoration: BoxDecoration(
                       color: AppPalette.chartBarA,
-                      borderRadius: BorderRadius.circular(AppSize.chartBarWidthRadius),
+                      borderRadius: BorderRadius.circular(
+                        AppSize.chartBarWidthRadius,
+                      ),
                     ),
                   ),
                 ),
@@ -389,8 +364,8 @@ class HomeBarChart extends StatelessWidget {
                     child: Text(
                       label,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: AppPalette.textAxis,
-                          ),
+                        color: AppPalette.textAxis,
+                      ),
                     ),
                   ),
                 ),
@@ -418,7 +393,9 @@ class HomeMiniBarChart extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 2),
               child: Container(
                 height: AppChartHeights.mini[index],
-                color: index.isEven ? AppPalette.chartBarB : AppPalette.chartBarC,
+                color: index.isEven
+                    ? AppPalette.chartBarB
+                    : AppPalette.chartBarC,
               ),
             ),
           ),
@@ -448,16 +425,16 @@ class HomeStatMetric extends StatelessWidget {
         Text(
           value,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.w800,
-                color: highlight ? AppPalette.primary : AppPalette.white,
-              ),
+            fontWeight: FontWeight.w800,
+            color: highlight ? AppPalette.primary : AppPalette.white,
+          ),
         ),
         const SizedBox(height: AppSpacing.xs),
         Text(
           label,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppPalette.textStats,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodyMedium?.copyWith(color: AppPalette.textStats),
         ),
       ],
     );
@@ -465,10 +442,7 @@ class HomeStatMetric extends StatelessWidget {
 }
 
 class HomeNavCircle extends StatelessWidget {
-  const HomeNavCircle({
-    super.key,
-    required this.icon,
-  });
+  const HomeNavCircle({super.key, required this.icon});
 
   final IconData icon;
 
@@ -519,17 +493,13 @@ class HomeSportChip extends StatelessWidget {
         vertical: AppSpacing.sm,
       ),
       decoration: BoxDecoration(
-        color: highlighted
-            ? AppPalette.successDark
-            : AppPalette.chipInactive,
+        color: highlighted ? AppPalette.successDark : AppPalette.chipInactive,
         borderRadius: BorderRadius.circular(AppRadius.sm),
       ),
       child: Text(
         label,
         style: TextStyle(
-          color: highlighted
-              ? AppPalette.primary
-              : AppPalette.textGlass,
+          color: highlighted ? AppPalette.primary : AppPalette.textGlass,
           fontWeight: FontWeight.w600,
         ),
       ),
