@@ -104,7 +104,7 @@
       { "label": "3", "isSelected": false, "isActive": false },
       { "label": "4", "isSelected": false, "isActive": false },
       { "label": "5", "isSelected": false, "isActive": false },
-      { "label": "6", "isSelected": true, "isActive": true },
+      { "label": "6", "isSelected": false, "isActive": true },
       { "label": "7", "isSelected": false, "isActive": false },
       { "label": "8", "isSelected": false, "isActive": false },
       { "label": "9", "isSelected": false, "isActive": false },
@@ -113,7 +113,7 @@
       { "label": "12", "isSelected": false, "isActive": false },
       { "label": "13", "isSelected": false, "isActive": false },
       { "label": "14", "isSelected": false, "isActive": true },
-      { "label": "15", "isSelected": false, "isActive": false },
+      { "label": "15", "isSelected": true, "isActive": true },
       { "label": "16", "isSelected": false, "isActive": false },
       { "label": "17", "isSelected": false, "isActive": true },
       { "label": "18", "isSelected": false, "isActive": false },
@@ -127,9 +127,9 @@
       { "label": "26", "isSelected": false, "isActive": false },
       { "label": "27", "isSelected": false, "isActive": false },
       { "label": "28", "isSelected": false, "isActive": true },
-      { "label": "29", "isSelected": false, "isActive": false },
+      { "label": "29", "isSelected": false, "isActive": true },
       { "label": "30", "isSelected": false, "isActive": false },
-      { "label": "31", "isSelected": false, "isActive": false }
+      { "label": "31", "isSelected": false, "isActive": true }
     ]
   },
   "quickAccess": [
@@ -138,6 +138,8 @@
     { "title": "Partidas", "subtitle": "Você 6 × Rafael 4", "accentLabel": "Vitória", "icon": "sports" },
     { "title": "Progresso", "subtitle": "85% consistência", "accentLabel": "Em alta", "icon": "chart" },
     { "title": "Ranking", "subtitle": "#12 · ↑ 3 posições", "accentLabel": "Top Club", "icon": "ranking" },
+    { "title": "Shooting", "subtitle": "novas fotos", "accentLabel": "+1", "icon": "shooting" },
+    { "title": "Clubes", "subtitle": "3 clubes ativos", "accentLabel": "+12", "icon": "clubs" },
     { "title": "Reservar", "subtitle": "Quadra 03 disponível hoje", "accentLabel": "18:00 – 19:00", "icon": "calendar" }
   ]
 }

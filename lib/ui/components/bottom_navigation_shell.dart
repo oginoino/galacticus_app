@@ -19,17 +19,20 @@ class BottomNavigationShell extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 16),
+        padding: const EdgeInsets.fromLTRB(14, 0, 14, 12),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
           decoration: BoxDecoration(
-            color: AppPalette.primary.withValues(alpha: 0.92),
-            borderRadius: BorderRadius.circular(32),
+            color: const Color(0xF10A0C10),
+            borderRadius: BorderRadius.circular(999),
+            border: Border.all(
+              color: Colors.white.withValues(alpha: 0.08),
+            ),
             boxShadow: [
               BoxShadow(
-                color: AppPalette.primary.withValues(alpha: 0.18),
-                blurRadius: 22,
-                offset: const Offset(0, 12),
+                color: Colors.black.withValues(alpha: 0.45),
+                blurRadius: 32,
+                offset: const Offset(0, 16),
               ),
             ],
           ),
@@ -57,8 +60,8 @@ class BottomNavigationShell extends StatelessWidget {
                   borderRadius: BorderRadius.circular(22),
                   onTap: onCreateTap,
                   child: Ink(
-                    width: 56,
-                    height: 56,
+                          width: 64,
+                          height: 64,
                     decoration: const BoxDecoration(
                       color: AppPalette.primaryStrong,
                       shape: BoxShape.circle,
@@ -110,23 +113,25 @@ class _NavItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final foreground = selected ? Colors.black : Colors.black.withValues(alpha: 0.55);
+    final foreground = selected
+        ? Colors.white
+        : Colors.white.withValues(alpha: 0.34);
 
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(18),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6),
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: foreground),
+            Icon(icon, color: foreground, size: 24),
             const SizedBox(height: 4),
             Text(
               label,
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: foreground,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
                   ),
             ),
           ],

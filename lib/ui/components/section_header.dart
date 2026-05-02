@@ -23,17 +23,33 @@ class SectionHeader extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w800,
+                  letterSpacing: -0.3,
                 ),
           ),
         ),
         if (actionLabel != null)
-          TextButton(
-            onPressed: onActionTap,
-            child: Text(
-              actionLabel!,
-              style: const TextStyle(
-                color: AppPalette.primary,
-                fontWeight: FontWeight.w700,
+          InkWell(
+            onTap: onActionTap,
+            borderRadius: BorderRadius.circular(20),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    actionLabel!,
+                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                          color: AppPalette.primary,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                  const SizedBox(width: 4),
+                  const Icon(
+                    Icons.chevron_right_rounded,
+                    color: AppPalette.primary,
+                    size: 18,
+                  ),
+                ],
               ),
             ),
           ),
