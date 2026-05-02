@@ -1,0 +1,143 @@
+{
+  "user": {
+    "name": "Paulo Henrique",
+    "levelLabel": "Level 6",
+    "pointsLabel": "4.250 pts"
+  },
+  "progress": 0.86,
+  "locationLabel": "Perto de você · 350m",
+  "booking": {
+    "venue": "Quadra Itaim Bibi",
+    "time": "18:00",
+    "cta": "Reservar"
+  },
+  "assistant": {
+    "label": "Assistente",
+    "title": "Pergunte sobre sua evolução",
+    "subtitle": "120 dias analisados"
+  },
+  "hero": {
+    "title": "Ready to play today?",
+    "subtitle": "3 jogadores disponíveis perto de você",
+    "primaryAction": "Iniciar Treino",
+    "secondaryAction": "Encontrar Partida"
+  },
+  "lessons": [
+    {
+      "duration": "6:52",
+      "title": "Saque slice perfeito em 4 passos",
+      "coach": "Coach Marcos",
+      "views": "12.4k views",
+      "isAi": true
+    },
+    {
+      "duration": "8:58",
+      "title": "Forehand topspin: técnica moderna",
+      "coach": "Gabriel T.",
+      "views": "8.9k views",
+      "isAi": true
+    },
+    {
+      "duration": "6:07",
+      "title": "Backhand de duas mãos para iniciantes",
+      "coach": "Sofia P.",
+      "views": "21.3k views",
+      "isAi": true
+    },
+    {
+      "duration": "4:49",
+      "title": "Volêio na rede: timing e bloqueio",
+      "coach": "Leonardo R.",
+      "views": "5.4k views",
+      "isAi": false
+    }
+  ],
+  "leaderboard": [
+    { "position": 1, "name": "Gabriel T.", "points": "5,420 pts", "isCurrentUser": false },
+    { "position": 2, "name": "Leonardo R.", "points": "4,780 pts", "isCurrentUser": false },
+    { "position": 3, "name": "Paulo H. Você", "points": "4,250 pts", "isCurrentUser": true }
+  ],
+  "weeklyStats": {
+    "headline": "Esta Semana",
+    "trainings": "4 treinos",
+    "variation": "+12%",
+    "time": "3h 45m",
+    "calories": "1.870",
+    "consistency": "85%"
+  },
+  "exploreEvents": [
+    { "title": "Torneio de Duplas", "subtitle": "Sáb, 17 Mai · 14 vagas", "tag": "Evento" },
+    { "title": "Aula com Marcos", "subtitle": "Amanhã · 7:00 AM", "tag": "Coach" },
+    { "title": "Open Padel Night", "subtitle": "Sex, 16 Mai · 8 vagas", "tag": "Padel" }
+  ],
+  "matchInvites": [
+    {
+      "hostName": "Sofia P.",
+      "sport": "Padel",
+      "schedule": "Sáb, 17 Mai · 10:00",
+      "location": "Quadra 04 · Itaim",
+      "availability": "2 vagas abertas",
+      "isLastSpot": false
+    },
+    {
+      "hostName": "Gabriel T.",
+      "sport": "Tennis",
+      "schedule": "Dom, 18 Mai · 08:00",
+      "location": "Quadra 01 · Pinheiros",
+      "availability": "Última vaga!",
+      "isLastSpot": true
+    },
+    {
+      "hostName": "Leonardo R.",
+      "sport": "Padel",
+      "schedule": "Qui, 22 Mai · 17:00",
+      "location": "Quadra 01 · Moema",
+      "availability": "Última vaga!",
+      "isLastSpot": true
+    }
+  ],
+  "calendar": {
+    "monthLabel": "maio",
+    "days": [
+      { "label": "1", "isSelected": false, "isActive": false },
+      { "label": "2", "isSelected": false, "isActive": false },
+      { "label": "3", "isSelected": false, "isActive": false },
+      { "label": "4", "isSelected": false, "isActive": false },
+      { "label": "5", "isSelected": false, "isActive": false },
+      { "label": "6", "isSelected": true, "isActive": true },
+      { "label": "7", "isSelected": false, "isActive": false },
+      { "label": "8", "isSelected": false, "isActive": false },
+      { "label": "9", "isSelected": false, "isActive": false },
+      { "label": "10", "isSelected": false, "isActive": true },
+      { "label": "11", "isSelected": false, "isActive": false },
+      { "label": "12", "isSelected": false, "isActive": false },
+      { "label": "13", "isSelected": false, "isActive": false },
+      { "label": "14", "isSelected": false, "isActive": true },
+      { "label": "15", "isSelected": false, "isActive": false },
+      { "label": "16", "isSelected": false, "isActive": false },
+      { "label": "17", "isSelected": false, "isActive": true },
+      { "label": "18", "isSelected": false, "isActive": false },
+      { "label": "19", "isSelected": false, "isActive": false },
+      { "label": "20", "isSelected": false, "isActive": false },
+      { "label": "21", "isSelected": false, "isActive": false },
+      { "label": "22", "isSelected": false, "isActive": true },
+      { "label": "23", "isSelected": false, "isActive": false },
+      { "label": "24", "isSelected": false, "isActive": false },
+      { "label": "25", "isSelected": false, "isActive": false },
+      { "label": "26", "isSelected": false, "isActive": false },
+      { "label": "27", "isSelected": false, "isActive": false },
+      { "label": "28", "isSelected": false, "isActive": true },
+      { "label": "29", "isSelected": false, "isActive": false },
+      { "label": "30", "isSelected": false, "isActive": false },
+      { "label": "31", "isSelected": false, "isActive": false }
+    ]
+  },
+  "quickAccess": [
+    { "title": "Check-in", "subtitle": "4 check-ins esta semana", "accentLabel": "✓", "icon": "check" },
+    { "title": "Eventos", "subtitle": "Torneio de Duplas · 14/20", "accentLabel": "Sáb, 17 Mai", "icon": "event" },
+    { "title": "Partidas", "subtitle": "Você 6 × Rafael 4", "accentLabel": "Vitória", "icon": "sports" },
+    { "title": "Progresso", "subtitle": "85% consistência", "accentLabel": "Em alta", "icon": "chart" },
+    { "title": "Ranking", "subtitle": "#12 · ↑ 3 posições", "accentLabel": "Top Club", "icon": "ranking" },
+    { "title": "Reservar", "subtitle": "Quadra 03 disponível hoje", "accentLabel": "18:00 – 19:00", "icon": "calendar" }
+  ]
+}
