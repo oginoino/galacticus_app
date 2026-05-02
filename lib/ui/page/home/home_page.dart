@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
     final overview = provider.overview;
 
     return Scaffold(
+          extendBody: true,
       bottomNavigationBar: BottomNavigationShell(
         currentIndex: provider.selectedTabIndex,
         onSelect: provider.selectTab,
@@ -24,24 +25,22 @@ class HomePage extends StatelessWidget {
           'Ação rápida disponível na próxima iteração.',
         ),
       ),
-      body: SafeArea(
-        child: ContentStateView(
-          isLoading: provider.isLoading && overview == null,
-          errorMessage: provider.errorMessage != null && overview == null
-              ? provider.errorMessage
-              : null,
-          onRetry: provider.loadDashboard,
-          child: overview == null
-              ? const SizedBox.shrink()
-              : RefreshIndicator(
-                  onRefresh: provider.loadDashboard,
-                  color: AppPalette.primary,
-                  child: HomeContent(
-                    overview: overview,
-                    onMessage: (message) => _showSnack(context, message),
+          body: ContentStateView(
+            isLoading: provider.isLoading && overview == null,
+            errorMessage: provider.errorMessage != null && overview == null
+                ? provider.errorMessage
+                : null,
+            onRetry: provider.loadDashboard,
+            child: overview == null
+                ? const SizedBox.shrink()
+                : RefreshIndicator(
+                    onRefresh: provider.loadDashboard,
+                    color: AppPalette.primary,
+                    child: HomeContent(
+                      overview: overview,
+                      onMessage: (message) => _showSnack(context, message),
+                    ),
                   ),
-                ),
-        ),
       ),
     );
   }

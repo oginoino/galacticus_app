@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../theme/app_theme.dart';
+
 class ContentStateView extends StatelessWidget {
   const ContentStateView({
     super.key,
@@ -23,7 +25,7 @@ class ContentStateView extends StatelessWidget {
     if (errorMessage != null) {
       return Center(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(AppSpacing.page),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -32,7 +34,7 @@ class ContentStateView extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               if (onRetry != null) ...[
-                const SizedBox(height: 16),
+                const SizedBox(height: AppSpacing.xxxl),
                 FilledButton(
                   onPressed: onRetry,
                   child: const Text('Tentar novamente'),

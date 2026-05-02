@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import '../theme/app_theme.dart';
@@ -16,82 +18,114 @@ class BottomNavigationShell extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
     return SafeArea(
       top: false,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(14, 0, 14, 12),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
-          decoration: BoxDecoration(
-            color: const Color(0xF10A0C10),
-            borderRadius: BorderRadius.circular(999),
-            border: Border.all(
-              color: Colors.white.withValues(alpha: 0.08),
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withValues(alpha: 0.45),
-                blurRadius: 32,
-                offset: const Offset(0, 16),
-              ),
-            ],
-          ),
-          child: Row(
-            children: [
-              Expanded(
-                child: _NavItem(
-                  icon: Icons.home_outlined,
-                  label: 'Início',
-                  selected: currentIndex == 0,
-                  onTap: () => onSelect(0),
-                ),
-              ),
-              Expanded(
-                child: _NavItem(
-                  icon: Icons.rss_feed_outlined,
-                  label: 'Feed',
-                  selected: currentIndex == 1,
-                  onTap: () => onSelect(1),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(22),
-                  onTap: onCreateTap,
-                  child: Ink(
-                          width: 64,
-                          height: 64,
-                    decoration: const BoxDecoration(
-                      color: AppPalette.primaryStrong,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.add,
-                      color: Colors.black,
-                      size: 28,
+        padding: EdgeInsets.fromLTRB(16, 0, 16, bottomInset > 0 ? 2 : 8),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Positioned(
+              child: IgnorePointer(
+                child: Container(
+                  width: 118,
+                  height: 118,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        AppPalette.primaryStrong.withValues(alpha: 0.58),
+                        AppPalette.primaryStrong.withValues(alpha: 0.18),
+                        AppPalette.primaryStrong.withValues(alpha: 0.0),
+                      ],
+                      stops: const [0.0, 0.42, 1.0],
                     ),
                   ),
                 ),
               ),
-              Expanded(
-                child: _NavItem(
-                  icon: Icons.shield_outlined,
-                  label: 'Clubes',
-                  selected: currentIndex == 2,
-                  onTap: () => onSelect(2),
+            ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(999),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
+                child: Container(
+                  height: 82,
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: const Color(0x6B2A2E34),
+                    borderRadius: BorderRadius.circular(999),
+                    border: Border.all(
+                      color: Colors.white.withValues(alpha: 0.10),
+                      width: 1,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.26),
+                        blurRadius: 28,
+                        offset: const Offset(0, 14),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: _NavItem(
+                          icon: Icons.home_outlined,
+                          label: 'Início',
+                          selected: currentIndex == 0,
+                          onTap: () => onSelect(0),
+                        ),
+                      ),
+                      Expanded(
+                        child: _NavItem(
+                          icon: Icons.rss_feed_outlined,
+                          label: 'Feed',
+                          selected: currentIndex == 1,
+                          onTap: () => onSelect(1),
+                        ),
+                      ),
+                      const SizedBox(width: 72),
+                      Expanded(
+                        child: _NavItem(
+                          icon: Icons.shield_outlined,
+                          label: 'Clubes',
+                          selected: currentIndex == 2,
+                          onTap: () => onSelect(2),
+                        ),
+                      ),
+                      Expanded(
+                        child: _NavItem(
+                          icon: Icons.person_outline,
+                          label: 'Perfil',
+                          selected: currentIndex == 3,
+                          onTap: () => onSelect(3),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Expanded(
-                child: _NavItem(
-                  icon: Icons.person_outline,
-                  label: 'Perfil',
-                  selected: currentIndex == 3,
-                  onTap: () => onSelect(3),
+            ),
+            InkWell(
+              borderRadius: BorderRadius.circular(999),
+              onTap: onCreateTap,
+              child: Container(
+                width: 44,
+                height: 44,
+                decoration: const BoxDecoration(
+                  color: AppPalette.primaryStrong,
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.add,
+                  color: Colors.black,
+                  size: 28,
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -115,23 +149,29 @@ class _NavItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final foreground = selected
         ? Colors.white
-        : Colors.white.withValues(alpha: 0.34);
+        : Colors.white.withValues(alpha: 0.26);
 
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(18),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(icon, color: foreground, size: 24),
-            const SizedBox(height: 4),
+            Icon(
+              icon,
+              color: foreground,
+              size: 24,
+            ),
+            const SizedBox(height: 3),
             Text(
               label,
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: foreground,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
+                    fontSize: 10,
                   ),
             ),
           ],

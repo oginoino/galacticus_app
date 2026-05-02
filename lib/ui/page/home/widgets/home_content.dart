@@ -21,12 +21,13 @@ class HomeContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final compact = isCompactWidth(context);
+    final topInset = MediaQuery.viewPaddingOf(context).top;
 
     return ListView(
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
       ),
-      padding: const EdgeInsets.fromLTRB(16, 10, 16, 124),
+      padding: EdgeInsets.fromLTRB(16, topInset + 10, 16, 124),
       children: [
         HomeHeader(overview: overview),
         const SizedBox(height: 18),

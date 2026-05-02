@@ -23,16 +23,16 @@ class SectionHeader extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w800,
-                  letterSpacing: -0.3,
+                  letterSpacing: AppLetterSpacing.tightXs,
                 ),
           ),
         ),
         if (actionLabel != null)
           InkWell(
             onTap: onActionTap,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius: BorderRadius.circular(AppRadius.button),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 4),
+              padding: AppInsets.sectionAction,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -43,11 +43,11 @@ class SectionHeader extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                         ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(width: AppSpacing.xs),
                   const Icon(
                     Icons.chevron_right_rounded,
                     color: AppPalette.primary,
-                    size: 18,
+                    size: AppIconSize.lg,
                   ),
                 ],
               ),

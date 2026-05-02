@@ -6,7 +6,7 @@ class GlowCard extends StatelessWidget {
   const GlowCard({
     super.key,
     required this.child,
-    this.padding = const EdgeInsets.all(20),
+    this.padding = AppInsets.glowCard,
     this.gradient,
     this.onTap,
   });
@@ -23,15 +23,16 @@ class GlowCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: gradient,
         color: gradient == null ? AppPalette.card : null,
-        borderRadius: BorderRadius.circular(28),
+        borderRadius: BorderRadius.circular(AppRadius.card),
         border: Border.all(
           color: AppPalette.border,
+          width: AppStroke.hairline,
         ),
         boxShadow: [
           BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.18),
-            blurRadius: 24,
-            offset: const Offset(0, 12),
+            color: AppPalette.black.withValues(alpha: AppOpacity.strong),
+            blurRadius: AppShadow.cardBlur,
+            offset: const Offset(0, AppShadow.cardOffsetY),
           ),
         ],
       ),
@@ -43,7 +44,7 @@ class GlowCard extends StatelessWidget {
     }
 
     return InkWell(
-      borderRadius: BorderRadius.circular(28),
+      borderRadius: BorderRadius.circular(AppRadius.card),
       onTap: onTap,
       child: content,
     );
