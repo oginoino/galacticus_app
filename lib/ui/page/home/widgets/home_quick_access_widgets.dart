@@ -18,16 +18,19 @@ class HomeQuickAccessCard extends StatelessWidget {
     final compact = isCompactWidth(context);
 
     return SizedBox(
-      height: compact ? 182 : 194,
+      height: compact
+          ? AppSize.quickAccessCardHeightCompact
+          : AppSize.quickAccessCardHeight,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppRadius.md),
           border: Border.all(
-            color: Colors.white.withValues(alpha: 0.05),
+            color: AppPalette.white.withValues(alpha: AppOpacity.sm),
+            width: AppStroke.hairline,
           ),
         ),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(AppRadius.md),
           child: Stack(
             fit: StackFit.expand,
             children: [
@@ -41,14 +44,14 @@ class HomeQuickAccessCard extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withValues(alpha: 0.26),
-                      Colors.black.withValues(alpha: 0.72),
+                      AppPalette.black.withValues(alpha: AppOpacity.stronger),
+                      AppPalette.black.withValues(alpha: AppOpacity.overlay),
                     ],
                   ),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(compact ? 12 : 14),
+                padding: EdgeInsets.all(compact ? AppSpacing.xl : AppSpacing.xxl),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -58,11 +61,13 @@ class HomeQuickAccessCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                             fontWeight: FontWeight.w800,
-                            letterSpacing: -0.8,
-                            fontSize: compact ? 16 : 18,
+                            letterSpacing: AppLetterSpacing.tightXl,
+                            fontSize: compact
+                                ? AppFontSize.title
+                                : AppFontSize.headingSm,
                           ),
                     ),
-                    SizedBox(height: compact ? 8 : 10),
+                    SizedBox(height: compact ? AppSpacing.md : AppSpacing.lg),
                     Expanded(
                       child: Align(
                         alignment: Alignment.bottomLeft,
@@ -91,30 +96,30 @@ class HomeQuickAccessCard extends StatelessWidget {
       case 'check':
         return [
           Wrap(
-            spacing: 4,
-            runSpacing: 4,
+            spacing: AppSpacing.xs,
+            runSpacing: AppSpacing.xs,
             children: [
               for (final active in [true, false, true, true, false, true, false])
                 Container(
-                  width: 20,
-                  height: 20,
+                  width: AppSpacing.giant,
+                  height: AppSpacing.giant,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: active
                         ? AppPalette.primary
-                        : const Color(0xFF3A3F45),
+                        : AppPalette.inactiveDot,
                   ),
                   child: active
                       ? const Icon(
                           Icons.check,
-                          size: 13,
-                          color: Colors.black,
+                          size: AppFontSize.body,
+                          color: AppPalette.black,
                         )
                       : null,
                 ),
             ],
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: AppSpacing.xs),
           Row(
             children: ['S', 'T', 'Q', 'Q', 'S', 'S', 'D']
                 .map(
@@ -123,20 +128,20 @@ class HomeQuickAccessCard extends StatelessWidget {
                       label,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: const Color(0xFF848A90),
-                            fontSize: 9,
+                            color: AppPalette.textHint,
+                            fontSize: AppFontSize.caption,
                           ),
                     ),
                   ),
                 )
                 .toList(growable: false),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.md),
           Text(
             item.subtitle,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: const Color(0xFFCECECE),
-                  fontSize: 13,
+                  color: AppPalette.textGlass,
+                  fontSize: AppFontSize.body,
                 ),
           ),
         ];
@@ -145,36 +150,36 @@ class HomeQuickAccessCard extends StatelessWidget {
           Text(
             item.accentLabel,
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: const Color(0xFFBDBDBD),
-                  fontSize: 15,
+                  color: AppPalette.textNeutral,
+                  fontSize: AppFontSize.titleSm,
                 ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.md),
           Text(
             'Torneio de Duplas',
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
-                  fontSize: 18,
+                  fontSize: AppFontSize.headingSm,
                 ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.xl),
           Row(
             children: [
               Expanded(
                 child: Container(
-                  height: 6,
+                  height: AppSpacing.sm,
                   decoration: BoxDecoration(
                     color: AppPalette.primary,
-                    borderRadius: BorderRadius.circular(999),
+                    borderRadius: BorderRadius.circular(AppRadius.pill),
                   ),
                 ),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.lg),
               const Text(
                 '14/20',
-                style: TextStyle(color: Color(0xFFBEBEBE)),
+                style: TextStyle(color: AppPalette.textNeutralAlt),
               ),
             ],
           ),
@@ -184,32 +189,35 @@ class HomeQuickAccessCard extends StatelessWidget {
           Text(
             'Última partida',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: const Color(0xFFBEBEBE),
-                  fontSize: 15,
+                  color: AppPalette.textNeutralAlt,
+                  fontSize: AppFontSize.titleSm,
                 ),
           ),
-          const SizedBox(height: 10),
+          const SizedBox(height: AppSpacing.lg),
           Text(
             'Você    Rafael',
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: const Color(0xFFBEBEBE),
-                  fontSize: 13,
+                  color: AppPalette.textNeutralAlt,
+                  fontSize: AppFontSize.body,
                 ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: AppSpacing.xs),
           Text(
             '6 × 4',
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.w800,
-                  fontSize: 28,
+                  fontSize: AppFontSize.metric,
                 ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.md),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            padding: const EdgeInsets.symmetric(
+              horizontal: AppSpacing.lg,
+              vertical: AppSpacing.sm,
+            ),
             decoration: BoxDecoration(
-              color: const Color(0xFF223913),
-              borderRadius: BorderRadius.circular(8),
+              color: AppPalette.successDark,
+              borderRadius: BorderRadius.circular(AppRadius.md),
             ),
             child: Text(
               'Vitória',
@@ -223,7 +231,7 @@ class HomeQuickAccessCard extends StatelessWidget {
       case 'chart':
         return [
           const HomeMiniBarChart(),
-          const SizedBox(height: 10),
+          const SizedBox(height: AppSpacing.lg),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -231,14 +239,14 @@ class HomeQuickAccessCard extends StatelessWidget {
                 '85%',
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.w800,
-                      color: Colors.white,
-                      fontSize: 28,
+                      color: AppPalette.white,
+                      fontSize: AppFontSize.metric,
                     ),
               ),
               Text(
                 'consistência',
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: const Color(0xFFC8C8C8),
+                      color: AppPalette.textGlass,
                     ),
               ),
             ],
@@ -253,13 +261,13 @@ class HomeQuickAccessCard extends StatelessWidget {
                 '#12',
                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                       fontWeight: FontWeight.w800,
-                      fontSize: 30,
+                      fontSize: AppFontSize.displaySm,
                     ),
               ),
-              const SizedBox(width: 10),
+              const SizedBox(width: AppSpacing.lg),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(bottom: 6),
+                  padding: const EdgeInsets.only(bottom: AppSpacing.sm),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -268,7 +276,7 @@ class HomeQuickAccessCard extends StatelessWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: const Color(0xFFCECECE),
+                              color: AppPalette.textGlass,
                             ),
                       ),
                       Text(
@@ -294,14 +302,14 @@ class HomeQuickAccessCard extends StatelessWidget {
             child: Text(
               'novas fotos',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: const Color(0xFFCECECE),
+                    color: AppPalette.textGlass,
                   ),
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.xl),
           Wrap(
-            spacing: 4,
-            runSpacing: 4,
+            spacing: AppSpacing.xs,
+            runSpacing: AppSpacing.xs,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               ...HomePrototypeAssets.quickAccessAvatars.map(
@@ -311,20 +319,21 @@ class HomeQuickAccessCard extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 28,
-                height: 28,
+                width: AppSize.badgeSquare,
+                height: AppSize.badgeSquare,
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.14),
-                  borderRadius: BorderRadius.circular(6),
+                  color: AppPalette.white.withValues(alpha: AppOpacity.soft),
+                  borderRadius: BorderRadius.circular(AppRadius.sm),
                   border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.16),
+                    color: AppPalette.white.withValues(alpha: AppOpacity.medium),
+                    width: AppStroke.hairline,
                   ),
                 ),
                 alignment: Alignment.center,
                 child: Text(
                   item.accentLabel,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.white,
+                        color: AppPalette.white,
                         fontWeight: FontWeight.w700,
                       ),
                 ),
@@ -337,13 +346,13 @@ class HomeQuickAccessCard extends StatelessWidget {
           Text(
             '3 clubes ativos',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: const Color(0xFFCECECE),
+                  color: AppPalette.textGlass,
                 ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.xl),
           Wrap(
-            spacing: 4,
-            runSpacing: 4,
+            spacing: AppSpacing.xs,
+            runSpacing: AppSpacing.xs,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               ...HomePrototypeAssets.clubAvatars.map(
@@ -353,15 +362,18 @@ class HomeQuickAccessCard extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.md,
+                  vertical: AppSpacing.sm,
+                ),
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(16),
+                  color: AppPalette.white.withValues(alpha: AppOpacity.xxl),
+                  borderRadius: BorderRadius.circular(AppSpacing.xxxl),
                 ),
                 child: Text(
                   item.accentLabel,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.white,
+                        color: AppPalette.white,
                         fontWeight: FontWeight.w700,
                       ),
                 ),
@@ -374,24 +386,24 @@ class HomeQuickAccessCard extends StatelessWidget {
           Text(
             'Quadra 03 disponível',
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  color: const Color(0xFFD1D1D1),
-                  fontSize: 15,
+                  color: AppPalette.textCalendarLight,
+                  fontSize: AppFontSize.titleSm,
                 ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: AppSpacing.md),
           Text(
             'Hoje · 18:00–19:00',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
-                  fontSize: 18,
+                  fontSize: AppFontSize.headingSm,
                 ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.xl),
           const Wrap(
-            spacing: 8,
-            runSpacing: 8,
+            spacing: AppSpacing.md,
+            runSpacing: AppSpacing.md,
             children: [
               HomeSportChip(label: 'Tennis', highlighted: true),
               HomeSportChip(label: 'Padel'),
@@ -403,7 +415,7 @@ class HomeQuickAccessCard extends StatelessWidget {
           Text(
             item.subtitle,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: const Color(0xFFCECECE),
+                  color: AppPalette.textGlass,
                 ),
           ),
         ];

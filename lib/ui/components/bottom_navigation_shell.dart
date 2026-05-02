@@ -23,22 +23,27 @@ class BottomNavigationShell extends StatelessWidget {
     return SafeArea(
       top: false,
       child: Padding(
-        padding: EdgeInsets.fromLTRB(16, 0, 16, bottomInset > 0 ? 2 : 8),
+        padding: EdgeInsets.fromLTRB(
+          AppSpacing.screen,
+          AppOpacity.none,
+          AppSpacing.screen,
+          bottomInset > 0 ? AppSize.navBottomPaddingSafe : AppSize.navBottomPadding,
+        ),
         child: Stack(
           alignment: Alignment.center,
           children: [
             Positioned(
               child: IgnorePointer(
                 child: Container(
-                  width: 118,
-                  height: 118,
+                  width: AppSize.navGlow,
+                  height: AppSize.navGlow,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     gradient: RadialGradient(
                       colors: [
-                        AppPalette.primaryStrong.withValues(alpha: 0.58),
-                        AppPalette.primaryStrong.withValues(alpha: 0.18),
-                        AppPalette.primaryStrong.withValues(alpha: 0.0),
+                        AppPalette.primaryStrong.withValues(alpha: AppOpacity.heavy),
+                        AppPalette.primaryStrong.withValues(alpha: AppOpacity.strong),
+                        AppPalette.primaryStrong.withValues(alpha: AppOpacity.none),
                       ],
                       stops: const [0.0, 0.42, 1.0],
                     ),
@@ -47,24 +52,27 @@ class BottomNavigationShell extends StatelessWidget {
               ),
             ),
             ClipRRect(
-              borderRadius: BorderRadius.circular(999),
+              borderRadius: BorderRadius.circular(AppRadius.pill),
               child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 22, sigmaY: 22),
+                filter: ImageFilter.blur(
+                  sigmaX: AppBlur.navGlass,
+                  sigmaY: AppBlur.navGlass,
+                ),
                 child: Container(
-                  height: 82,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  height: AppSize.navBarHeight,
+                  padding: AppInsets.navBar,
                   decoration: BoxDecoration(
-                    color: const Color(0x6B2A2E34),
-                    borderRadius: BorderRadius.circular(999),
+                    color: AppPalette.glassDark,
+                    borderRadius: BorderRadius.circular(AppRadius.pill),
                     border: Border.all(
-                      color: Colors.white.withValues(alpha: 0.10),
-                      width: 1,
+                      color: AppPalette.white.withValues(alpha: AppOpacity.xl),
+                      width: AppStroke.hairline,
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.26),
-                        blurRadius: 28,
-                        offset: const Offset(0, 14),
+                        color: AppPalette.black.withValues(alpha: AppOpacity.stronger),
+                        blurRadius: AppShadow.navBlur,
+                        offset: const Offset(0, AppShadow.navOffsetY),
                       ),
                     ],
                   ),
@@ -86,7 +94,7 @@ class BottomNavigationShell extends StatelessWidget {
                           onTap: () => onSelect(1),
                         ),
                       ),
-                      const SizedBox(width: 72),
+                      const SizedBox(width: AppSize.navCenterGap),
                       Expanded(
                         child: _NavItem(
                           icon: Icons.shield_outlined,
@@ -109,19 +117,19 @@ class BottomNavigationShell extends StatelessWidget {
               ),
             ),
             InkWell(
-              borderRadius: BorderRadius.circular(999),
+              borderRadius: BorderRadius.circular(AppRadius.pill),
               onTap: onCreateTap,
               child: Container(
-                width: 44,
-                height: 44,
+                width: AppSize.navCenterButton,
+                height: AppSize.navCenterButton,
                 decoration: const BoxDecoration(
                   color: AppPalette.primaryStrong,
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(
                   Icons.add,
-                  color: Colors.black,
-                  size: 28,
+                  color: AppPalette.black,
+                  size: AppIconSize.giant,
                 ),
               ),
             ),
@@ -148,14 +156,17 @@ class _NavItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final foreground = selected
-        ? Colors.white
-        : Colors.white.withValues(alpha: 0.26);
+        ? AppPalette.white
+        : AppPalette.white.withValues(alpha: AppOpacity.stronger);
 
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(18),
+      borderRadius: BorderRadius.circular(AppRadius.xxxl),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSpacing.md,
+          horizontal: AppSpacing.xxs,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -163,7 +174,7 @@ class _NavItem extends StatelessWidget {
             Icon(
               icon,
               color: foreground,
-              size: 24,
+              size: AppIconSize.xxxl,
             ),
             const SizedBox(height: 3),
             Text(
@@ -171,7 +182,7 @@ class _NavItem extends StatelessWidget {
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                     color: foreground,
                     fontWeight: selected ? FontWeight.w700 : FontWeight.w500,
-                    fontSize: 10,
+                    fontSize: AppFontSize.label,
                   ),
             ),
           ],

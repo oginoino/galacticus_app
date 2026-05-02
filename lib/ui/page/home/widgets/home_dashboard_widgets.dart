@@ -18,26 +18,26 @@ class HomeLeaderboardCard extends StatelessWidget {
     return Column(
       children: [
         GlowCard(
-          padding: const EdgeInsets.all(14),
+          padding: const EdgeInsets.all(AppSpacing.xxl),
           child: Column(
             children: overview.leaderboard
                 .map(
                   (entry) => Container(
-                    margin: const EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: AppSpacing.lg),
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 12,
+                      horizontal: AppSpacing.xxl,
+                      vertical: AppSpacing.xl,
                     ),
                     decoration: BoxDecoration(
                       color: entry.isCurrentUser
-                          ? const Color(0xFF31401D)
-                          : const Color(0xFF171A1E),
-                      borderRadius: BorderRadius.circular(10),
+                          ? AppPalette.successHighlight
+                          : AppPalette.glassBorder,
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
                     ),
                     child: Row(
                       children: [
                         SizedBox(
-                          width: 28,
+                          width: AppIconSize.giant,
                           child: Text(
                             '#${entry.position}',
                             style: Theme.of(context)
@@ -45,22 +45,22 @@ class HomeLeaderboardCard extends StatelessWidget {
                                 .titleMedium
                                 ?.copyWith(
                                   color: entry.position == 1
-                                      ? const Color(0xFFF7C934)
+                                      ? AppPalette.gold
                                       : entry.position == 2
-                                          ? const Color(0xFFA7A7A7)
-                                          : const Color(0xFFEA8A00),
+                                          ? AppPalette.silver
+                                          : AppPalette.bronze,
                                   fontWeight: FontWeight.w800,
                                 ),
                           ),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: AppSpacing.lg),
                         CircleAvatar(
-                          radius: 20,
+                          radius: AppSpacing.giant,
                           backgroundImage: AssetImage(
                             HomePrototypeAssets.leaderboardAvatar(entry.name),
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: AppSpacing.xl),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,14 +74,14 @@ class HomeLeaderboardCard extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                     ),
                               ),
-                              const SizedBox(height: 2),
+                              const SizedBox(height: AppSpacing.xxs),
                               Text(
                                 entry.points,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
                                     ?.copyWith(
-                                      color: const Color(0xFFBBBBBB),
+                                      color: AppPalette.textSoft,
                                     ),
                               ),
                             ],
@@ -102,9 +102,9 @@ class HomeLeaderboardCard extends StatelessWidget {
                           Icon(
                             Icons.emoji_events_outlined,
                             color: entry.position == 1
-                                ? const Color(0xFFF7C934)
+                                ? AppPalette.gold
                                 : Colors.transparent,
-                            size: 18,
+                            size: AppIconSize.lg,
                           ),
                       ],
                     ),
@@ -113,20 +113,25 @@ class HomeLeaderboardCard extends StatelessWidget {
                 .toList(growable: false),
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.xl),
         GlowCard(
-          padding: const EdgeInsets.fromLTRB(18, 18, 18, 16),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.huge,
+            AppSpacing.huge,
+            AppSpacing.huge,
+            AppSpacing.xxxl,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 overview.weeklyHeadline.toUpperCase(),
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: const Color(0xFFB0B0B0),
-                      letterSpacing: 1.0,
+                      color: AppPalette.textStats,
+                      letterSpacing: AppLetterSpacing.wideSm,
                     ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: AppSpacing.md),
               Row(
                 children: [
                   Text(
@@ -138,12 +143,12 @@ class HomeLeaderboardCard extends StatelessWidget {
                   const Spacer(),
                   Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
+                      horizontal: AppSpacing.lg,
+                      vertical: AppSpacing.sm,
                     ),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF253413),
-                      borderRadius: BorderRadius.circular(10),
+                      color: AppPalette.successSoft,
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
                     ),
                     child: Text(
                       overview.weeklyVariation,
@@ -158,9 +163,9 @@ class HomeLeaderboardCard extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 18),
+              const SizedBox(height: AppSpacing.huge),
               const HomeBarChart(),
-              const SizedBox(height: 18),
+              const SizedBox(height: AppSpacing.huge),
               Row(
                 children: [
                   Expanded(
@@ -218,7 +223,12 @@ class HomeCalendarCard extends StatelessWidget {
       );
 
     return GlowCard(
-      padding: const EdgeInsets.fromLTRB(14, 14, 14, 16),
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.xxl,
+        AppSpacing.xxl,
+        AppSpacing.xxl,
+        AppSpacing.xxxl,
+      ),
       child: Column(
         children: [
           Row(
@@ -236,7 +246,7 @@ class HomeCalendarCard extends StatelessWidget {
               const HomeNavCircle(icon: Icons.chevron_right_rounded),
             ],
           ),
-          const SizedBox(height: 14),
+          const SizedBox(height: AppSpacing.xxl),
           Row(
             children: weekdays
                 .map(
@@ -245,7 +255,7 @@ class HomeCalendarCard extends StatelessWidget {
                       child: Text(
                         day,
                         style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                              color: const Color(0xFF696F76),
+                              color: AppPalette.textCalendar,
                             ),
                       ),
                     ),
@@ -253,15 +263,15 @@ class HomeCalendarCard extends StatelessWidget {
                 )
                 .toList(growable: false),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: AppSpacing.xl),
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemCount: cells.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 7,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
+              mainAxisSpacing: AppSpacing.lg,
+              crossAxisSpacing: AppSpacing.lg,
             ),
             itemBuilder: (context, index) {
               final cell = cells[index];
@@ -273,13 +283,13 @@ class HomeCalendarCard extends StatelessWidget {
                 return Container(
                   decoration: BoxDecoration(
                     color: AppPalette.primary,
-                    borderRadius: BorderRadius.circular(18),
+                    borderRadius: BorderRadius.circular(AppRadius.xxxl),
                   ),
                   alignment: Alignment.center,
                   child: Text(
                     cell.label,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          color: Colors.black,
+                          color: AppPalette.black,
                           fontWeight: FontWeight.w800,
                         ),
                   ),
@@ -298,7 +308,7 @@ class HomeCalendarCard extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                           border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.08),
+                            color: AppPalette.white.withValues(alpha: AppOpacity.lg),
                           ),
                         ),
                         alignment: Alignment.center,
@@ -313,10 +323,10 @@ class HomeCalendarCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 2),
+                    const SizedBox(height: AppSpacing.xxs),
                     Container(
-                      width: 5,
-                      height: 5,
+                      width: AppSize.ringSmall,
+                      height: AppSize.ringSmall,
                       decoration: const BoxDecoration(
                         color: AppPalette.primary,
                         shape: BoxShape.circle,
@@ -330,7 +340,7 @@ class HomeCalendarCard extends StatelessWidget {
                 child: Text(
                   cell.label,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: const Color(0xFF7D838B),
+                        color: AppPalette.textDim,
                       ),
                 ),
               );
@@ -364,8 +374,8 @@ class HomeBarChart extends StatelessWidget {
                   child: Container(
                     height: heights[index],
                     decoration: BoxDecoration(
-                      color: const Color(0xFF6B8D3B),
-                      borderRadius: BorderRadius.circular(1),
+                      color: AppPalette.chartBarA,
+                      borderRadius: BorderRadius.circular(AppStroke.hairline),
                     ),
                   ),
                 ),
@@ -373,7 +383,7 @@ class HomeBarChart extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: AppSpacing.lg),
         Row(
           children: labels
               .map(
@@ -382,7 +392,7 @@ class HomeBarChart extends StatelessWidget {
                     child: Text(
                       label,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: const Color(0xFF82888F),
+                                    color: AppPalette.textAxis,
                           ),
                     ),
                   ),
@@ -413,9 +423,7 @@ class HomeMiniBarChart extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 2),
               child: Container(
                 height: heights[index],
-                color: index.isEven
-                    ? const Color(0xFF6C8F3D)
-                    : const Color(0xFF89B84A),
+                color: index.isEven ? AppPalette.chartBarB : AppPalette.chartBarC,
               ),
             ),
           ),
@@ -453,7 +461,7 @@ class HomeStatMetric extends StatelessWidget {
         Text(
           label,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: const Color(0xFFB1B1B1),
+                        color: AppPalette.textStats,
               ),
         ),
       ],
@@ -476,12 +484,12 @@ class HomeNavCircle extends StatelessWidget {
       height: 28,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: const Color(0xFF1A1D21),
+        color: AppPalette.calendarDark,
         border: Border.all(
-          color: Colors.white.withValues(alpha: 0.04),
+          color: AppPalette.white.withValues(alpha: AppOpacity.xs),
         ),
       ),
-      child: Icon(icon, size: 18, color: const Color(0xFF9BA1A7)),
+      child: Icon(icon, size: AppIconSize.lg, color: const Color(0xFF9BA1A7)),
     );
   }
 }
@@ -514,16 +522,16 @@ class HomeSportChip extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: highlighted
-            ? const Color(0xFF233913)
-            : const Color(0xFF2B2B2B),
-        borderRadius: BorderRadius.circular(6),
+            ? AppPalette.successDark
+            : AppPalette.chipInactive,
+        borderRadius: BorderRadius.circular(AppRadius.sm),
       ),
       child: Text(
         label,
         style: TextStyle(
           color: highlighted
               ? AppPalette.primary
-              : const Color(0xFFCECECE),
+              : AppPalette.textGlass,
           fontWeight: FontWeight.w600,
         ),
       ),

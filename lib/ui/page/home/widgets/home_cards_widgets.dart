@@ -22,13 +22,14 @@ class HomeLessonCard extends StatelessWidget {
     final compact = isCompactWidth(context);
 
     return SizedBox(
-      width: compact ? 162 : 176,
+      width: compact ? AppSize.lessonCardWidthCompact : AppSize.lessonCardWidth,
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF111316),
-          borderRadius: BorderRadius.circular(12),
+          color: AppPalette.surfaceDeep,
+          borderRadius: BorderRadius.circular(AppRadius.xl),
           border: Border.all(
-            color: Colors.white.withValues(alpha: 0.05),
+            color: AppPalette.white.withValues(alpha: AppOpacity.sm),
+            width: AppStroke.hairline,
           ),
         ),
         child: Column(
@@ -37,7 +38,7 @@ class HomeLessonCard extends StatelessWidget {
             Expanded(
               child: ClipRRect(
                 borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(12),
+                  top: Radius.circular(AppRadius.xl),
                 ),
                 child: Stack(
                   fit: StackFit.expand,
@@ -49,15 +50,15 @@ class HomeLessonCard extends StatelessWidget {
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
                           colors: [
-                            Colors.black.withValues(alpha: 0.6),
-                            Colors.black.withValues(alpha: 0.08),
+                            AppPalette.black.withValues(alpha: 0.6),
+                            AppPalette.black.withValues(alpha: AppOpacity.lg),
                           ],
                         ),
                       ),
                     ),
                     Positioned(
-                      top: 8,
-                      left: 8,
+                      top: AppSpacing.md,
+                      left: AppSpacing.md,
                       child: lesson.isAi
                           ? const HomeMiniBadge(
                               label: 'IA',
@@ -76,14 +77,16 @@ class HomeLessonCard extends StatelessWidget {
                         ),
                         child: Icon(
                           Icons.play_arrow_rounded,
-                          color: Colors.black,
-                          size: compact ? 30 : 34,
+                          color: AppPalette.black,
+                          size: compact
+                              ? AppIconSize.giantPlus
+                              : AppIconSize.play,
                         ),
                       ),
                     ),
                     Positioned(
-                      right: 8,
-                      bottom: 8,
+                      right: AppSpacing.md,
+                      bottom: AppSpacing.md,
                       child: HomeDurationBadge(label: lesson.duration),
                     ),
                   ],
@@ -91,7 +94,12 @@ class HomeLessonCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(10, 10, 10, 12),
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.lg,
+                AppSpacing.lg,
+                AppSpacing.lg,
+                AppSpacing.xl,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -102,30 +110,31 @@ class HomeLessonCard extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w700,
                           height: 1.15,
-                          fontSize: compact ? 14 : 16,
+                          fontSize: compact ? AppFontSize.bodyLg : AppFontSize.title,
                         ),
                   ),
-                  const SizedBox(height: 6),
+                  const SizedBox(height: AppSpacing.sm),
                   Row(
                     children: [
                       Expanded(
                         child: Text(
                           lesson.coach,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                color: const Color(0xFFAAAAAA),
-                                fontSize: compact ? 12 : 13,
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                color: AppPalette.textTertiary,
+                                fontSize: compact
+                                    ? AppFontSize.bodySm
+                                    : AppFontSize.body,
                               ),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      const SizedBox(width: AppSpacing.md),
                       Text(
                         lesson.views,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: const Color(0xFFAAAAAA),
-                              fontSize: compact ? 11 : 12,
+                              color: AppPalette.textTertiary,
+                              fontSize: compact
+                                  ? AppFontSize.labelLg
+                                  : AppFontSize.bodySm,
                             ),
                       ),
                     ],
@@ -153,9 +162,9 @@ class HomeExploreCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 210,
+      width: AppSize.exploreCardWidth,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppRadius.xl),
         child: Stack(
           fit: StackFit.expand,
           children: [
@@ -166,14 +175,14 @@ class HomeExploreCard extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Colors.black.withValues(alpha: 0.08),
-                    Colors.black.withValues(alpha: 0.75),
+                    AppPalette.black.withValues(alpha: AppOpacity.lg),
+                    AppPalette.black.withValues(alpha: AppOpacity.overlayStrong),
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(AppSpacing.xl),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -182,14 +191,14 @@ class HomeExploreCard extends StatelessWidget {
                     event.title,
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w700,
-                          letterSpacing: -0.5,
+                          letterSpacing: AppLetterSpacing.tightMd,
                         ),
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: AppSpacing.xs),
                   Text(
                     event.subtitle,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: const Color(0xFFD5D5D5),
+                          color: AppPalette.textEvent,
                         ),
                   ),
                 ],
@@ -215,13 +224,13 @@ class HomeInviteCard extends StatelessWidget {
     final compact = isCompactWidth(context);
 
     return SizedBox(
-      width: compact ? 208 : 226,
+      width: compact ? AppSize.inviteCardWidthCompact : AppSize.inviteCardWidth,
       child: GlowCard(
         padding: EdgeInsets.fromLTRB(
-          compact ? 12 : 14,
-          compact ? 12 : 14,
-          compact ? 12 : 14,
-          compact ? 10 : 12,
+          compact ? AppSpacing.xl : AppSpacing.xxl,
+          compact ? AppSpacing.xl : AppSpacing.xxl,
+          compact ? AppSpacing.xl : AppSpacing.xxl,
+          compact ? AppSpacing.lg : AppSpacing.xl,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,7 +243,7 @@ class HomeInviteCard extends StatelessWidget {
                     HomePrototypeAssets.inviteAvatar(invite.hostName),
                   ),
                 ),
-                SizedBox(width: compact ? 10 : 12),
+                SizedBox(width: compact ? AppSpacing.lg : AppSpacing.xl),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -243,23 +252,21 @@ class HomeInviteCard extends StatelessWidget {
                         invite.hostName,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
+                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
                               fontWeight: FontWeight.w700,
-                              letterSpacing: -0.4,
-                              fontSize: compact ? 17 : 18,
+                              letterSpacing: AppLetterSpacing.tightSm,
+                              fontSize: compact
+                                  ? AppFontSize.titleLg
+                                  : AppFontSize.headingSm,
                             ),
                       ),
                       Text(
                         invite.sport,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(
-                              color: const Color(0xFFBDBDBD),
-                              fontSize: compact ? 12 : 14,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: AppPalette.textGlass,
+                              fontSize: compact
+                                  ? AppFontSize.bodySm
+                                  : AppFontSize.bodyLg,
                             ),
                       ),
                     ],
@@ -267,55 +274,56 @@ class HomeInviteCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: compact ? 12 : 16),
+            SizedBox(height: compact ? AppSpacing.xl : AppSpacing.xxxl),
             HomeMetaRow(
               icon: Icons.access_time_rounded,
               text: invite.schedule,
             ),
-            SizedBox(height: compact ? 8 : 10),
+            SizedBox(height: compact ? AppSpacing.md : AppSpacing.lg),
             HomeMetaRow(
               icon: Icons.location_on_outlined,
               text: invite.location,
             ),
-            SizedBox(height: compact ? 10 : 12),
+            SizedBox(height: compact ? AppSpacing.lg : AppSpacing.xl),
             Row(
               children: [
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
+                      horizontal: AppSpacing.lg,
+                      vertical: AppSpacing.sm,
                     ),
                     decoration: BoxDecoration(
                       color: invite.isLastSpot
-                          ? const Color(0xFF5F4410)
-                          : const Color(0xFF223913),
-                      borderRadius: BorderRadius.circular(10),
+                          ? AppPalette.warningDark
+                          : AppPalette.successDark,
+                      borderRadius: BorderRadius.circular(AppRadius.lg),
                     ),
                     child: Text(
                       invite.availability,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
                             color: invite.isLastSpot
-                                ? const Color(0xFFF8C55C)
+                                ? AppPalette.warning
                                 : AppPalette.primary,
                             fontWeight: FontWeight.w700,
-                            fontSize: compact ? 12 : 13,
+                            fontSize: compact
+                                ? AppFontSize.bodySm
+                                : AppFontSize.body,
                           ),
                     ),
                   ),
                 ),
-                SizedBox(width: compact ? 8 : 10),
+                SizedBox(width: compact ? AppSpacing.md : AppSpacing.lg),
                 Text(
                   'Entrar →',
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppPalette.primary,
                         fontWeight: FontWeight.w700,
-                        fontSize: compact ? 12 : 13,
+                        fontSize: compact
+                            ? AppFontSize.bodySm
+                            : AppFontSize.body,
                       ),
                 ),
               ],
@@ -342,21 +350,28 @@ class HomeMiniBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: 3,
+      ),
       decoration: BoxDecoration(
-        color: highlighted ? AppPalette.primary : const Color(0xFF171717),
-        borderRadius: BorderRadius.circular(4),
+        color: highlighted ? AppPalette.primary : AppPalette.glassBorder,
+        borderRadius: BorderRadius.circular(AppRadius.xs),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 12, color: Colors.black),
-          const SizedBox(width: 2),
+          Icon(
+            icon,
+            size: AppIconSize.xs,
+            color: AppPalette.black,
+          ),
+          const SizedBox(width: AppSpacing.xxs),
           Text(
             label,
             style: const TextStyle(
-              color: Colors.black,
-              fontSize: 10,
+              color: AppPalette.black,
+              fontSize: AppFontSize.label,
               fontWeight: FontWeight.w800,
             ),
           ),
@@ -377,16 +392,19 @@ class HomeDurationBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: AppSpacing.xs,
+      ),
       decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.82),
-        borderRadius: BorderRadius.circular(8),
+        color: AppPalette.black.withValues(alpha: AppOpacity.scrim),
+        borderRadius: BorderRadius.circular(AppRadius.md),
       ),
       child: Text(
         label,
         style: const TextStyle(
-          color: Colors.white,
-          fontSize: 11,
+          color: AppPalette.white,
+          fontSize: AppFontSize.labelLg,
           fontWeight: FontWeight.w700,
         ),
       ),
@@ -412,18 +430,18 @@ class HomeMetaRow extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: compact ? 14 : 16,
-          color: const Color(0xFF8E949A),
+          size: compact ? AppIconSize.sm : AppIconSize.md,
+          color: AppPalette.textMeta,
         ),
-        const SizedBox(width: 8),
+        const SizedBox(width: AppSpacing.md),
         Expanded(
           child: Text(
             text,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: const Color(0xFFB8B8B8),
-                  fontSize: compact ? 12 : 14,
+                  color: AppPalette.textQuaternary,
+                  fontSize: compact ? AppFontSize.bodySm : AppFontSize.bodyLg,
                 ),
           ),
         ),

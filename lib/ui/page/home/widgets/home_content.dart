@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../domain/dashboard_overview.dart';
 import '../../../components/section_header.dart';
+import '../../../theme/app_theme.dart';
 import 'home_assets.dart';
 import 'home_cards_widgets.dart';
 import 'home_dashboard_widgets.dart';
@@ -27,21 +28,26 @@ class HomeContent extends StatelessWidget {
       physics: const BouncingScrollPhysics(
         parent: AlwaysScrollableScrollPhysics(),
       ),
-      padding: EdgeInsets.fromLTRB(16, topInset + 10, 16, 124),
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.screen,
+        topInset + AppSpacing.lg,
+        AppSpacing.screen,
+        AppSpacing.bottomContent,
+      ),
       children: [
         HomeHeader(overview: overview),
-        const SizedBox(height: 18),
+        const SizedBox(height: AppSpacing.huge),
         HomeProgressBar(progress: overview.progress),
-        const SizedBox(height: 16),
+        const SizedBox(height: AppSpacing.xxxl),
         HomeBookingCard(
           overview: overview,
           onPressed: () => onMessage(
             'Fluxo de reserva conectado na próxima fase.',
           ),
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: AppSpacing.huge),
         HomeAssistantCard(overview: overview),
-        const SizedBox(height: 18),
+        const SizedBox(height: AppSpacing.huge),
         HomeHeroCard(
           overview: overview,
           onPrimaryTap: () => onMessage(
@@ -51,9 +57,9 @@ class HomeContent extends StatelessWidget {
             'Busca de partidas será habilitada na integração.',
           ),
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: AppSpacing.huge),
         const HomeWorkoutCard(),
-        const SizedBox(height: 22),
+        const SizedBox(height: AppSpacing.section),
         SectionHeader(
           title: 'Aulas',
           actionLabel: 'Ver todas',
@@ -61,20 +67,20 @@ class HomeContent extends StatelessWidget {
             'Lista completa de aulas em breve.',
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.xl),
         SizedBox(
           height: compact ? 170 : 176,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: overview.lessons.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
             itemBuilder: (context, index) => HomeLessonCard(
               lesson: overview.lessons[index],
               imagePath: HomePrototypeAssets.lessonByIndex(index),
             ),
           ),
         ),
-        const SizedBox(height: 26),
+        const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
           title: 'Leaderboard',
           actionLabel: 'Ver ranking',
@@ -82,9 +88,9 @@ class HomeContent extends StatelessWidget {
             'Ranking completo em breve.',
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.xl),
         HomeLeaderboardCard(overview: overview),
-        const SizedBox(height: 26),
+        const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
           title: 'Explorar Hoje',
           actionLabel: 'Ver todos',
@@ -92,20 +98,20 @@ class HomeContent extends StatelessWidget {
             'Agenda completa em breve.',
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.xl),
         SizedBox(
           height: compact ? 122 : 114,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: overview.exploreEvents.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
             itemBuilder: (context, index) => HomeExploreCard(
               event: overview.exploreEvents[index],
               imagePath: HomePrototypeAssets.exploreByIndex(index),
             ),
           ),
         ),
-        const SizedBox(height: 26),
+        const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
           title: 'Jogue com Amigos',
           actionLabel: 'Ver agenda',
@@ -113,19 +119,19 @@ class HomeContent extends StatelessWidget {
             'Agenda social em breve.',
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.xl),
         SizedBox(
           height: compact ? 164 : 152,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: overview.matchInvites.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 12),
+            separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
             itemBuilder: (context, index) => HomeInviteCard(
               invite: overview.matchInvites[index],
             ),
           ),
         ),
-        const SizedBox(height: 26),
+        const SizedBox(height: AppSpacing.sectionLg),
         SectionHeader(
           title: 'Calendário',
           actionLabel: 'Ver tudo',
@@ -133,17 +139,17 @@ class HomeContent extends StatelessWidget {
             'Calendário completo em breve.',
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.xl),
         HomeCalendarCard(overview: overview),
-        const SizedBox(height: 26),
+        const SizedBox(height: AppSpacing.sectionLg),
         const SectionHeader(title: 'Acesso Rápido'),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.xl),
         LayoutBuilder(
           builder: (context, constraints) {
-            final width = (constraints.maxWidth - 12) / 2;
+            final width = (constraints.maxWidth - AppSpacing.xl) / 2;
             return Wrap(
-              spacing: 12,
-              runSpacing: 12,
+              spacing: AppSpacing.xl,
+              runSpacing: AppSpacing.xl,
               children: overview.quickAccessItems
                   .map(
                     (item) => SizedBox(

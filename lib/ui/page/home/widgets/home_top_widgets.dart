@@ -18,12 +18,13 @@ class HomeHeader extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 54,
-          height: 54,
+          width: AppSize.avatar,
+          height: AppSize.avatar,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(
-              color: Colors.white.withValues(alpha: 0.1),
+              color: AppPalette.white.withValues(alpha: AppOpacity.xl),
+              width: AppStroke.hairline,
             ),
             image: const DecorationImage(
               image: AssetImage('${HomePrototypeAssets.basePath}/paulo.jpg'),
@@ -31,7 +32,7 @@ class HomeHeader extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 12),
+        const SizedBox(width: AppSpacing.xl),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,29 +40,30 @@ class HomeHeader extends StatelessWidget {
               Text(
                 '${overview.user.levelLabel} · ${overview.user.pointsLabel}',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: const Color(0xFFBFC3C8),
+                      color: AppPalette.textMuted,
                       fontWeight: FontWeight.w500,
                     ),
               ),
-              const SizedBox(height: 4),
+              const SizedBox(height: AppSpacing.xs),
               Text(
                 overview.user.name,
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.w800,
-                      letterSpacing: -0.8,
+                      letterSpacing: AppLetterSpacing.tightXl,
                     ),
               ),
             ],
           ),
         ),
         Container(
-          width: 58,
-          height: 58,
+          width: AppSize.avatarLg,
+          height: AppSize.avatarLg,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: const Color(0xFF0D1218),
+            color: AppPalette.glassIcon,
             border: Border.all(
-              color: Colors.white.withValues(alpha: 0.08),
+              color: AppPalette.white.withValues(alpha: AppOpacity.lg),
+              width: AppStroke.hairline,
             ),
           ),
           child: Stack(
@@ -69,15 +71,15 @@ class HomeHeader extends StatelessWidget {
             children: [
               const Icon(
                 Icons.notifications_none_rounded,
-                color: Colors.white,
-                size: 28,
+                color: AppPalette.white,
+                size: AppIconSize.giant,
               ),
               Positioned(
                 top: 13,
                 right: 14,
                 child: Container(
-                  width: 10,
-                  height: 10,
+                  width: AppSize.statusDot,
+                  height: AppSize.statusDot,
                   decoration: const BoxDecoration(
                     color: AppPalette.primary,
                     shape: BoxShape.circle,
@@ -103,10 +105,10 @@ class HomeProgressBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(999),
+      borderRadius: BorderRadius.circular(AppRadius.pill),
       child: LinearProgressIndicator(
         value: progress,
-        minHeight: 8,
+        minHeight: AppSize.progressHeight,
         backgroundColor: const Color(0xFF1A2128),
         valueColor: const AlwaysStoppedAnimation<Color>(AppPalette.primary),
       ),
@@ -130,25 +132,25 @@ class HomeBookingCard extends StatelessWidget {
 
     return GlowCard(
       padding: EdgeInsets.symmetric(
-        horizontal: compact ? 14 : 16,
-        vertical: compact ? 16 : 18,
+        horizontal: compact ? AppSpacing.xxl : AppSpacing.xxxl,
+        vertical: compact ? AppSpacing.xxxl : AppSpacing.huge,
       ),
       child: Row(
         children: [
           Container(
-            width: compact ? 40 : 42,
-            height: compact ? 40 : 42,
+            width: compact ? AppSize.bookingIconCompact : AppSize.bookingIcon,
+            height: compact ? AppSize.bookingIconCompact : AppSize.bookingIcon,
             decoration: BoxDecoration(
-              color: const Color(0xFF182715),
-              borderRadius: BorderRadius.circular(14),
+              color: AppPalette.badgeLocation,
+              borderRadius: BorderRadius.circular(AppRadius.xxl),
             ),
             child: Icon(
               Icons.navigation_outlined,
               color: AppPalette.primary,
-              size: compact ? 20 : 22,
+              size: compact ? AppIconSize.xl : AppIconSize.xxl,
             ),
           ),
-          SizedBox(width: compact ? 10 : 12),
+          SizedBox(width: compact ? AppSpacing.lg : AppSpacing.xl),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -161,34 +163,36 @@ class HomeBookingCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppPalette.primary,
                         fontWeight: FontWeight.w800,
-                        letterSpacing: 1.0,
-                        fontSize: compact ? 12 : 13,
+                        letterSpacing: AppLetterSpacing.wideSm,
+                        fontSize: compact ? AppFontSize.bodySm : AppFontSize.body,
                       ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AppSpacing.xs),
                 Text(
                   '${overview.bookingVenue} · ${overview.bookingTime}',
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         fontWeight: FontWeight.w700,
-                        letterSpacing: -0.4,
-                        fontSize: compact ? 15 : 17,
+                        letterSpacing: AppLetterSpacing.tightSm,
+                        fontSize: compact ? AppFontSize.titleSm : AppFontSize.titleLg,
                       ),
                 ),
               ],
             ),
           ),
-          SizedBox(width: compact ? 8 : 12),
+          SizedBox(width: compact ? AppSpacing.md : AppSpacing.xl),
           FilledButton(
             onPressed: onPressed,
             style: FilledButton.styleFrom(
               backgroundColor: AppPalette.primary,
-              foregroundColor: Colors.black,
+              foregroundColor: AppPalette.black,
               minimumSize: Size(compact ? 92 : 104, compact ? 46 : 52),
-              padding: EdgeInsets.symmetric(horizontal: compact ? 12 : 16),
+              padding: EdgeInsets.symmetric(
+                horizontal: compact ? AppSpacing.xl : AppSpacing.xxxl,
+              ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(AppRadius.button),
               ),
             ),
             child: FittedBox(
@@ -197,7 +201,7 @@ class HomeBookingCard extends StatelessWidget {
                 overview.bookingCta,
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: compact ? 14 : 16,
+                  fontSize: compact ? AppFontSize.bodyLg : AppFontSize.title,
                 ),
               ),
             ),
@@ -222,33 +226,33 @@ class HomeAssistantCard extends StatelessWidget {
 
     return GlowCard(
       padding: EdgeInsets.symmetric(
-        horizontal: compact ? 16 : 18,
-        vertical: compact ? 16 : 18,
+        horizontal: compact ? AppSpacing.xxxl : AppSpacing.huge,
+        vertical: compact ? AppSpacing.xxxl : AppSpacing.huge,
       ),
       gradient: const LinearGradient(
         begin: Alignment.centerLeft,
         end: Alignment.centerRight,
         colors: [
-          Color(0xFF022900),
-          Color(0xFF113500),
+          AppPalette.assistantStart,
+          AppPalette.assistantEnd,
         ],
       ),
       child: Row(
         children: [
           Container(
-            width: compact ? 46 : 50,
-            height: compact ? 46 : 50,
+            width: compact ? AppSize.assistantIconCompact : AppSize.assistantIcon,
+            height: compact ? AppSize.assistantIconCompact : AppSize.assistantIcon,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: Colors.white.withValues(alpha: 0.06),
+              color: AppPalette.white.withValues(alpha: AppOpacity.md),
             ),
-            padding: EdgeInsets.all(compact ? 8 : 9),
+            padding: EdgeInsets.all(compact ? AppSpacing.md : 9),
             child: Image.asset(
               '${HomePrototypeAssets.basePath}/ai-logo.png',
               fit: BoxFit.contain,
             ),
           ),
-          SizedBox(width: compact ? 12 : 14),
+          SizedBox(width: compact ? AppSpacing.xl : AppSpacing.xxl),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,27 +263,27 @@ class HomeAssistantCard extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppPalette.primary,
                         fontWeight: FontWeight.w800,
-                        letterSpacing: 1.6,
-                        fontSize: compact ? 12 : 13,
+                        letterSpacing: AppLetterSpacing.wideMd,
+                        fontSize: compact ? AppFontSize.bodySm : AppFontSize.body,
                       ),
                 ),
-                SizedBox(height: compact ? 6 : 8),
+                SizedBox(height: compact ? AppSpacing.sm : AppSpacing.md),
                 Text(
                   overview.assistantTitle,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w700,
-                        letterSpacing: -0.8,
-                        fontSize: compact ? 16 : 18,
+                        letterSpacing: AppLetterSpacing.tightXl,
+                        fontSize: compact ? AppFontSize.title : AppFontSize.headingSm,
                       ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AppSpacing.xs),
                 Text(
                   overview.assistantSubtitle,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: const Color(0xFFB8C0B4),
-                        fontSize: compact ? 13 : 14,
+                        color: AppPalette.textQuaternary,
+                        fontSize: compact ? AppFontSize.body : AppFontSize.bodyLg,
                       ),
                 ),
               ],
@@ -288,7 +292,7 @@ class HomeAssistantCard extends StatelessWidget {
           Icon(
             Icons.north_east_rounded,
             color: AppPalette.primary,
-            size: compact ? 26 : 30,
+            size: compact ? AppIconSize.huge : AppIconSize.giantPlus,
           ),
         ],
       ),
@@ -319,9 +323,9 @@ class HomeHeroCard extends StatelessWidget {
           final contentWidth = constraints.maxWidth;
 
           return SizedBox(
-            height: compact ? 204 : 224,
+            height: compact ? AppSize.heroHeightCompact : AppSize.heroHeight,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(28),
+              borderRadius: BorderRadius.circular(AppRadius.card),
               child: Stack(
                 fit: StackFit.expand,
                 children: [
@@ -335,9 +339,9 @@ class HomeHeroCard extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          const Color(0xFF7A3400).withValues(alpha: 0.38),
-                          const Color(0xFF101010).withValues(alpha: 0.25),
-                          Colors.black.withValues(alpha: 0.72),
+                          AppPalette.heroOverlayWarm.withValues(alpha: 0.38),
+                          AppPalette.heroOverlayDark.withValues(alpha: 0.25),
+                          AppPalette.black.withValues(alpha: AppOpacity.overlay),
                         ],
                       ),
                     ),
@@ -384,23 +388,27 @@ class HomeHeroCard extends StatelessWidget {
                                 ?.copyWith(
                                   fontWeight: FontWeight.w700,
                                   height: 0.95,
-                                  letterSpacing: -1.2,
-                                  fontSize: compact ? 30 : 38,
+                                  letterSpacing: AppLetterSpacing.display,
+                                  fontSize: compact
+                                      ? AppFontSize.displaySm
+                                      : AppFontSize.display,
                                 ),
                           ),
                         ),
-                        SizedBox(height: compact ? 4 : 8),
+                        SizedBox(height: compact ? AppSpacing.xs : AppSpacing.md),
                         Text(
                           overview.heroSubtitle,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                color: const Color(0xFFC8C8C8),
+                                color: AppPalette.textGlass,
                                 fontWeight: FontWeight.w400,
-                                fontSize: compact ? 12 : 14,
+                                fontSize: compact
+                                    ? AppFontSize.bodySm
+                                    : AppFontSize.bodyLg,
                               ),
                         ),
-                        SizedBox(height: compact ? 8 : 12),
+                        SizedBox(height: compact ? AppSpacing.md : AppSpacing.xl),
                         Row(
                           children: [
                             Expanded(
@@ -408,15 +416,15 @@ class HomeHeroCard extends StatelessWidget {
                                 onPressed: onPrimaryTap,
                                 style: FilledButton.styleFrom(
                                   backgroundColor: AppPalette.primary,
-                                  foregroundColor: Colors.black,
+                                  foregroundColor: AppPalette.black,
                                   minimumSize: Size.fromHeight(
                                     compact ? 46 : 52,
                                   ),
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: compact ? 8 : 12,
+                                    horizontal: compact ? AppSpacing.md : AppSpacing.xl,
                                   ),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(AppRadius.button),
                                   ),
                                 ),
                                 child: FittedBox(
@@ -425,31 +433,33 @@ class HomeHeroCard extends StatelessWidget {
                                     overview.primaryAction,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: compact ? 13 : 15,
+                                      fontSize: compact
+                                          ? AppFontSize.body
+                                          : AppFontSize.titleSm,
                                     ),
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(width: compact ? 6 : 10),
+                            SizedBox(width: compact ? AppSpacing.sm : AppSpacing.lg),
                             Expanded(
                               child: OutlinedButton(
                                 onPressed: onSecondaryTap,
                                 style: OutlinedButton.styleFrom(
-                                  foregroundColor: Colors.white,
+                                  foregroundColor: AppPalette.white,
                                   backgroundColor:
-                                      Colors.white.withValues(alpha: 0.13),
+                                      AppPalette.white.withValues(alpha: AppOpacity.xxxl),
                                   side: BorderSide(
-                                    color: Colors.white.withValues(alpha: 0.18),
+                                    color: AppPalette.white.withValues(alpha: AppOpacity.strong),
                                   ),
                                   minimumSize: Size.fromHeight(
                                     compact ? 46 : 52,
                                   ),
                                   padding: EdgeInsets.symmetric(
-                                    horizontal: compact ? 6 : 10,
+                                    horizontal: compact ? AppSpacing.sm : AppSpacing.lg,
                                   ),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
+                                    borderRadius: BorderRadius.circular(AppRadius.button),
                                   ),
                                 ),
                                 child: FittedBox(
@@ -458,7 +468,9 @@ class HomeHeroCard extends StatelessWidget {
                                     overview.secondaryAction,
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      fontSize: compact ? 12 : 14,
+                                      fontSize: compact
+                                          ? AppFontSize.bodySm
+                                          : AppFontSize.bodyLg,
                                     ),
                                   ),
                                 ),
@@ -488,35 +500,35 @@ class HomeWorkoutCard extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(
-        horizontal: compact ? 14 : 16,
-        vertical: compact ? 14 : 16,
+        horizontal: compact ? AppSpacing.xxl : AppSpacing.xxxl,
+        vertical: compact ? AppSpacing.xxl : AppSpacing.xxxl,
       ),
       decoration: BoxDecoration(
         color: AppPalette.primary,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(AppRadius.lg),
         boxShadow: [
           BoxShadow(
-            color: AppPalette.primary.withValues(alpha: 0.16),
-            blurRadius: 18,
-            offset: const Offset(0, 10),
+            color: AppPalette.primary.withValues(alpha: AppOpacity.medium),
+            blurRadius: AppSpacing.huge,
+            offset: const Offset(0, AppSpacing.lg),
           ),
         ],
       ),
       child: Row(
         children: [
           Container(
-            width: compact ? 44 : 48,
-            height: compact ? 44 : 48,
+            width: compact ? AppSize.navCenterButton : 48,
+            height: compact ? AppSize.navCenterButton : 48,
             decoration: BoxDecoration(
-              color: Colors.black.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(10),
+              color: AppPalette.black.withValues(alpha: AppOpacity.xl),
+              borderRadius: BorderRadius.circular(AppRadius.lg),
             ),
             child: const Icon(
               Icons.photo_camera_outlined,
               color: Colors.black54,
             ),
           ),
-          SizedBox(width: compact ? 12 : 16),
+          SizedBox(width: compact ? AppSpacing.xl : AppSpacing.xxxl),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -527,20 +539,22 @@ class HomeWorkoutCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Colors.black,
+                        color: AppPalette.black,
                         fontWeight: FontWeight.w800,
-                        letterSpacing: -0.6,
-                        fontSize: compact ? 18 : 20,
+                        letterSpacing: AppLetterSpacing.tightLg,
+                        fontSize: compact
+                            ? AppFontSize.headingSm
+                            : AppFontSize.heading,
                       ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AppSpacing.xs),
                 Text(
                   'Registre seu treino agora',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.black.withValues(alpha: 0.66),
-                        fontSize: compact ? 13 : 14,
+                        color: AppPalette.black.withValues(alpha: 0.66),
+                        fontSize: compact ? AppFontSize.body : AppFontSize.bodyLg,
                       ),
                 ),
               ],
@@ -548,8 +562,8 @@ class HomeWorkoutCard extends StatelessWidget {
           ),
           Icon(
             Icons.north_east_rounded,
-            color: Colors.black.withValues(alpha: 0.5),
-            size: compact ? 24 : 28,
+            color: AppPalette.black.withValues(alpha: 0.5),
+            size: compact ? AppIconSize.xxxl : AppIconSize.giant,
           ),
         ],
       ),
@@ -563,8 +577,8 @@ class HomeHeroCourtOverlayPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = Colors.white.withValues(alpha: 0.14)
-      ..strokeWidth = 1.2;
+      ..color = AppPalette.white.withValues(alpha: AppOpacity.soft)
+      ..strokeWidth = AppStroke.thin;
 
     canvas.drawLine(
       Offset(size.width * 0.48, size.height * 0.16),
