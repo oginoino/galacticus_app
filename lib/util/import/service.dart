@@ -3,6 +3,8 @@ export '../../service/assistant/assistant_mock_service.dart';
 export '../../service/assistant/assistant_service_interface.dart';
 export '../../service/booking/booking_mock_service.dart';
 export '../../service/booking/booking_service_interface.dart';
+export '../../service/checkin/checkin_mock_service.dart';
+export '../../service/checkin/checkin_service_interface.dart';
 export '../../service/communities/communities_mock_service.dart';
 export '../../service/communities/communities_service_interface.dart';
 export '../../service/feed/feed_mock_service.dart';

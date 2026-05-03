@@ -9,9 +9,11 @@ class HomeQuickAccessCard extends StatelessWidget {
   const HomeQuickAccessCard({
     super.key,
     required this.item,
+    required this.onTap,
   });
 
   final QuickAccessItem item;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -21,70 +23,74 @@ class HomeQuickAccessCard extends StatelessWidget {
       height: compact
           ? AppSize.quickAccessCardHeightCompact
           : AppSize.quickAccessCardHeight,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          border: Border.all(
-            color: AppPalette.white.withValues(alpha: AppOpacity.sm),
-            width: AppStroke.hairline,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(AppRadius.md),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+            border: Border.all(
+              color: AppPalette.white.withValues(alpha: AppOpacity.sm),
+              width: AppStroke.hairline,
+            ),
           ),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(AppRadius.md),
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              Image.asset(
-                item.backgroundAsset,
-                fit: BoxFit.cover,
-              ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      AppPalette.black.withValues(alpha: AppOpacity.stronger),
-                      AppPalette.black.withValues(alpha: AppOpacity.overlay),
-                    ],
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.md),
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.asset(
+                  item.backgroundAsset,
+                  fit: BoxFit.cover,
+                ),
+                DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [
+                        AppPalette.black.withValues(alpha: AppOpacity.stronger),
+                        AppPalette.black.withValues(alpha: AppOpacity.overlay),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.all(compact ? AppSpacing.xl : AppSpacing.xxl),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      item.title.toUpperCase(),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: AppLetterSpacing.tightXl,
-                            fontSize: compact
-                                ? AppFontSize.title
-                                : AppFontSize.headingSm,
-                          ),
-                    ),
-                    SizedBox(height: compact ? AppSpacing.md : AppSpacing.lg),
-                    Expanded(
-                      child: Align(
-                        alignment: Alignment.bottomLeft,
-                        child: SingleChildScrollView(
-                          physics: const NeverScrollableScrollPhysics(),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: _content(context),
+                Padding(
+                  padding: EdgeInsets.all(compact ? AppSpacing.xl : AppSpacing.xxl),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.title.toUpperCase(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: AppLetterSpacing.tightXl,
+                              fontSize: compact
+                                  ? AppFontSize.title
+                                  : AppFontSize.headingSm,
+                            ),
+                      ),
+                      SizedBox(height: compact ? AppSpacing.md : AppSpacing.lg),
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomLeft,
+                          child: SingleChildScrollView(
+                            physics: const NeverScrollableScrollPhysics(),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: _content(context),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

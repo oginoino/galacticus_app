@@ -1,0 +1,28 @@
+{
+  "loadingLabel": "Aguardando câmera...",
+  "captureHint": "Capture seu workout e registre o check-in.",
+  "closeSemantics": "Fechar câmera",
+  "flashSemantics": "Alternar flash",
+  "switchCameraSemantics": "Trocar câmera",
+  "gallerySemantics": "Atalho lateral",
+  "captureSemantics": "Capturar check-in",
+  "messages": {
+    "captureSuccess": "Check-in capturado com sucesso.",
+    "captureError": "Não foi possível capturar o check-in agora.",
+    "cameraUnavailable": "Câmera indisponível neste dispositivo ou simulador.",
+    "cameraPermissionDenied": "Permissão de câmera negada. Ative a câmera nas configurações do app.",
+    "filterAction": "Personalização do overlay entra na próxima etapa."
+  },
+  "filters": [
+    { "label": "Nenhum", "icon": "block", "isSelected": true },
+    { "label": "Resumo", "icon": "bar_chart", "isSelected": false },
+    { "label": "Rota", "icon": "location", "isSelected": false },
+    { "label": "Horas", "icon": "schedule", "isSelected": false },
+    { "label": "Esportes", "icon": "trophy", "isSelected": false },
+    { "label": "Placar", "icon": "score", "isSelected": false },
+    { "label": "Sessão", "icon": "session", "isSelected": false },
+    { "label": "Cardio", "icon": "pulse", "isSelected": false },
+    { "label": "Minimal", "icon": "minimal", "isSelected": false },
+    { "label": "Conquista", "icon": "favorite", "isSelected": false }
+  ]
+}

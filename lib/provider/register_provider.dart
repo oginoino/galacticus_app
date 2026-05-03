@@ -4,6 +4,7 @@ import 'package:provider/single_child_widget.dart';
 import '../di/di.dart';
 import '../repository/assistant_repository.dart';
 import '../repository/booking_repository.dart';
+import '../repository/checkin_repository.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
@@ -13,6 +14,7 @@ import '../service/localization/localization_service.dart';
 import '../service/persistence/persistence_service.dart';
 import 'assistant_provider.dart';
 import 'booking_provider.dart';
+import 'checkin_provider.dart';
 import 'communities_provider.dart';
 import 'feed_provider.dart';
 import 'home_provider.dart';
@@ -42,6 +44,11 @@ final List<SingleChildWidget> registerProviders = [
     create: (_) => AssistantProvider(
       sl<AssistantRepository>(),
     )..loadAssistant(),
+  ),
+  ChangeNotifierProvider<CheckinProvider>(
+    create: (_) => CheckinProvider(
+      sl<CheckinRepository>(),
+    )..loadCheckin(),
   ),
   ChangeNotifierProvider<BookingProvider>(
     create: (_) => BookingProvider(

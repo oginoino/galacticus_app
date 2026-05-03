@@ -1,6 +1,7 @@
 export '../../repository/base_repository.dart';
 export '../../repository/assistant_repository.dart';
 export '../../repository/booking_repository.dart';
+export '../../repository/checkin_repository.dart';
 export '../../repository/communities_repository.dart';
 export '../../repository/feed_repository.dart';
 export '../../repository/home_repository.dart';

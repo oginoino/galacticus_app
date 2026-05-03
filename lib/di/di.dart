@@ -6,11 +6,14 @@ import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
 import '../repository/booking_repository.dart';
 import '../repository/assistant_repository.dart';
+import '../repository/checkin_repository.dart';
 import '../repository/notifications_repository.dart';
 import '../repository/profile_repository.dart';
 import '../service/api/api_service_factory.dart';
 import '../service/assistant/assistant_mock_service.dart';
 import '../service/assistant/assistant_service_interface.dart';
+import '../service/checkin/checkin_mock_service.dart';
+import '../service/checkin/checkin_service_interface.dart';
 import '../service/booking/booking_mock_service.dart';
 import '../service/booking/booking_service_interface.dart';
 import '../service/communities/communities_mock_service.dart';
@@ -67,6 +70,12 @@ class DependencyInjection {
       )
       ..registerLazySingleton<AssistantRepository>(
         () => AssistantRepository(sl<AssistantServiceInterface>()),
+      )
+      ..registerLazySingleton<CheckinServiceInterface>(
+        CheckinMockService.new,
+      )
+      ..registerLazySingleton<CheckinRepository>(
+        () => CheckinRepository(sl<CheckinServiceInterface>()),
       )
       ..registerLazySingleton<BookingServiceInterface>(
         BookingMockService.new,

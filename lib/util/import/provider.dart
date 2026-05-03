@@ -1,5 +1,6 @@
 export '../../provider/assistant_provider.dart';
 export '../../provider/booking_provider.dart';
+export '../../provider/checkin_provider.dart';
 export '../../provider/communities_provider.dart';
 export '../../provider/feed_provider.dart';
 export '../../provider/home_provider.dart';

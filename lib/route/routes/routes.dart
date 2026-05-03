@@ -5,6 +5,7 @@ abstract final class Routes {
   static const notifications = '/notificacoes';
   static const booking = '/reservar';
   static const assistant = '/assistente';
+  static const checkin = '/check-in';
   static const profile = '/perfil';
 }
 
@@ -15,5 +16,6 @@ abstract final class RouteNames {
   static const notifications = 'notifications';
   static const booking = 'booking';
   static const assistant = 'assistant';
+  static const checkin = 'checkin';
   static const profile = 'profile';
 }

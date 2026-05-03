@@ -132,6 +132,7 @@ abstract final class AppMotion {
   static const assistantLogoPulseDurationMs = 2000;
   static const assistantLogoRotateDurationMs = 9000;
   static const assistantScreenGlowDurationMs = 3600;
+  static const checkinCapturePulseDurationMs = 1800;
 }
 
 abstract final class AppShadow {
@@ -321,6 +322,12 @@ abstract final class AppSize {
   static const assistantPromptHeight = 52.0;
   static const assistantInputHeight = 52.0;
   static const assistantSendButton = 36.0;
+  static const checkinTopAction = 40.0;
+  static const checkinFilterHeight = 44.0;
+  static const checkinFilterWidth = 44.0;
+  static const checkinCaptureOuter = 74.0;
+  static const checkinCaptureInner = 62.0;
+  static const checkinSecondaryAction = 54.0;
 }
 
 abstract final class AppChartHeights {
@@ -453,6 +460,12 @@ abstract final class AppInsets {
   );
   static const assistantInput = EdgeInsets.symmetric(
     horizontal: AppSpacing.giant,
+  );
+  static const checkinPage = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
   );
 }
 

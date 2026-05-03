@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
 import '../../../domain/dashboard_overview.dart';
+import '../../../domain/quick_access_item.dart';
 import '../../../provider/home_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../components/bottom_navigation_shell.dart';
@@ -50,6 +51,9 @@ class HomePage extends StatelessWidget {
                   onNotificationTap: () => context.push(Routes.notifications),
                   onBookingTap: () => context.push(Routes.booking),
                   onAssistantTap: () => context.push(Routes.assistant),
+                  onWorkoutTap: () => context.push(Routes.checkin),
+                  onQuickAccessTap: (item) =>
+                      _handleQuickAccessTap(context, item, overview),
                   onMessage: (message) => _showSnack(context, message),
                 ),
               ),
@@ -80,6 +84,19 @@ class HomePage extends StatelessWidget {
           overview?.messages.quickAction ?? sl<AppConstants>().navigationUnavailableMessage,
         );
     }
+  }
+
+  void _handleQuickAccessTap(
+    BuildContext context,
+    QuickAccessItem item,
+    DashboardOverview overview,
+  ) {
+    if (item.type == 'check') {
+      context.push(Routes.checkin);
+      return;
+    }
+
+    _showSnack(context, overview.messages.quickAction);
   }
 
   static void _showSnack(BuildContext context, String message) {

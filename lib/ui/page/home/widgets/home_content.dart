@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/dashboard_overview.dart';
+import '../../../../domain/quick_access_item.dart';
 import '../../../components/section_header.dart';
 import '../../../theme/app_theme.dart';
 import 'home_assets.dart';
@@ -16,6 +17,8 @@ class HomeContent extends StatelessWidget {
     required this.onNotificationTap,
     required this.onBookingTap,
     required this.onAssistantTap,
+    required this.onWorkoutTap,
+    required this.onQuickAccessTap,
     required this.onMessage,
   });
 
@@ -23,6 +26,8 @@ class HomeContent extends StatelessWidget {
   final VoidCallback onNotificationTap;
   final VoidCallback onBookingTap;
   final VoidCallback onAssistantTap;
+  final VoidCallback onWorkoutTap;
+  final ValueChanged<QuickAccessItem> onQuickAccessTap;
   final ValueChanged<String> onMessage;
 
   @override
@@ -64,7 +69,10 @@ class HomeContent extends StatelessWidget {
           onSecondaryTap: () => onMessage(overview.messages.heroSecondaryAction),
         ),
         const SizedBox(height: AppSpacing.huge),
-        HomeWorkoutCard(overview: overview),
+        HomeWorkoutCard(
+          overview: overview,
+          onTap: onWorkoutTap,
+        ),
         const SizedBox(height: AppSpacing.section),
         SectionHeader(
           title: overview.sections.lessonsTitle,
@@ -157,7 +165,10 @@ class HomeContent extends StatelessWidget {
                   .map(
                     (item) => SizedBox(
                       width: width,
-                      child: HomeQuickAccessCard(item: item),
+                      child: HomeQuickAccessCard(
+                        item: item,
+                        onTap: () => onQuickAccessTap(item),
+                      ),
                     ),
                   )
                   .toList(growable: false),
