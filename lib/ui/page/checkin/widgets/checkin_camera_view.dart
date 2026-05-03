@@ -247,9 +247,9 @@ class _CheckinCameraViewState extends State<CheckinCameraView>
         Positioned(
           left: 0,
           right: 0,
-          bottom: 132,
+          bottom: AppSize.checkinFilterBottomOffset,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.page),
+            padding: AppInsets.pageHorizontal,
             child: CheckinFilterBar(
               items: widget.overview.filters,
               selectedIndex: _selectedFilterIndex,

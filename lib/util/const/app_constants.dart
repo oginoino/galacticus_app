@@ -15,6 +15,9 @@ class AppConstants {
     required this.bookingLoadErrorMessage,
     required this.assistantLoadErrorMessage,
     required this.checkinLoadErrorMessage,
+    required this.lessonsLoadErrorMessage,
+    required this.agendaLoadErrorMessage,
+    required this.aiTrainingLoadErrorMessage,
     required this.profileLoadErrorMessage,
     required this.navigationUnavailableMessage,
     required this.retryLabel,
@@ -33,6 +36,9 @@ class AppConstants {
   final String bookingLoadErrorMessage;
   final String assistantLoadErrorMessage;
   final String checkinLoadErrorMessage;
+  final String lessonsLoadErrorMessage;
+  final String agendaLoadErrorMessage;
+  final String aiTrainingLoadErrorMessage;
   final String profileLoadErrorMessage;
   final String navigationUnavailableMessage;
   final String retryLabel;
@@ -51,6 +57,9 @@ class AppConstants {
     bookingLoadErrorMessage: 'Não foi possível carregar a reserva agora.',
     assistantLoadErrorMessage: 'Não foi possível carregar o assistente agora.',
     checkinLoadErrorMessage: 'Não foi possível carregar o check-in agora.',
+    lessonsLoadErrorMessage: 'Não foi possível carregar as aulas agora.',
+    agendaLoadErrorMessage: 'Não foi possível carregar as agendas agora.',
+    aiTrainingLoadErrorMessage: 'Não foi possível carregar o treino com IA agora.',
     profileLoadErrorMessage: 'Não foi possível carregar o perfil agora.',
     navigationUnavailableMessage: 'Área disponível na próxima etapa.',
     retryLabel: 'Tentar novamente',

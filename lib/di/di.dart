@@ -6,10 +6,17 @@ import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
 import '../repository/booking_repository.dart';
 import '../repository/assistant_repository.dart';
+import '../repository/agenda_repository.dart';
+import '../repository/ai_training_repository.dart';
 import '../repository/checkin_repository.dart';
 import '../repository/notifications_repository.dart';
+import '../repository/lessons_repository.dart';
 import '../repository/profile_repository.dart';
 import '../service/api/api_service_factory.dart';
+import '../service/agenda/agenda_mock_service.dart';
+import '../service/agenda/agenda_service_interface.dart';
+import '../service/ai_training/ai_training_mock_service.dart';
+import '../service/ai_training/ai_training_service_interface.dart';
 import '../service/assistant/assistant_mock_service.dart';
 import '../service/assistant/assistant_service_interface.dart';
 import '../service/checkin/checkin_mock_service.dart';
@@ -30,6 +37,8 @@ import '../service/notifications/notifications_service_interface.dart';
 import '../service/persistence/persistence_service.dart';
 import '../service/profile/profile_mock_service.dart';
 import '../service/profile/profile_service_interface.dart';
+import '../service/lessons/lessons_mock_service.dart';
+import '../service/lessons/lessons_service_interface.dart';
 import '../util/const/app_constants.dart';
 
 final GetIt sl = GetIt.instance;
@@ -71,6 +80,18 @@ class DependencyInjection {
       ..registerLazySingleton<AssistantRepository>(
         () => AssistantRepository(sl<AssistantServiceInterface>()),
       )
+      ..registerLazySingleton<AgendaServiceInterface>(
+        AgendaMockService.new,
+      )
+      ..registerLazySingleton<AgendaRepository>(
+        () => AgendaRepository(sl<AgendaServiceInterface>()),
+      )
+      ..registerLazySingleton<AiTrainingServiceInterface>(
+        AiTrainingMockService.new,
+      )
+      ..registerLazySingleton<AiTrainingRepository>(
+        () => AiTrainingRepository(sl<AiTrainingServiceInterface>()),
+      )
       ..registerLazySingleton<CheckinServiceInterface>(
         CheckinMockService.new,
       )
@@ -90,6 +111,12 @@ class DependencyInjection {
       ..registerLazySingleton<HomeServiceInterface>(HomeMockService.new)
       ..registerLazySingleton<HomeRepository>(
         () => HomeRepository(sl<HomeServiceInterface>()),
+      )
+      ..registerLazySingleton<LessonsServiceInterface>(
+        LessonsMockService.new,
+      )
+      ..registerLazySingleton<LessonsRepository>(
+        () => LessonsRepository(sl<LessonsServiceInterface>()),
       )
       ..registerLazySingleton<NotificationsServiceInterface>(
         NotificationsMockService.new,

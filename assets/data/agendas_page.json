@@ -1,0 +1,66 @@
+{
+  "title": "Agendas",
+  "eventsTitle": "PRÓXIMOS EVENTOS",
+  "matchesTitle": "PARTIDAS E AULAS",
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil",
+    "eventBadgeLabel": "Evento",
+    "matchBadgeLabel": "Agenda"
+  },
+  "messages": {
+    "eventAction": "Detalhe completo do evento entra na próxima integração.",
+    "matchAction": "Confirmação de presença entra na próxima integração."
+  },
+  "events": [
+    {
+      "title": "Torneio de Duplas",
+      "subtitle": "Sáb, 17 Mai · 14 vagas",
+      "tag": "Evento",
+      "imageAsset": "assets/images/prototype/social-tournament.jpg"
+    },
+    {
+      "title": "Aula com Marcos",
+      "subtitle": "Amanhã · 7:00 AM",
+      "tag": "Coach",
+      "imageAsset": "assets/images/prototype/coach-marcos.jpg"
+    },
+    {
+      "title": "Open Padel Night",
+      "subtitle": "Sex, 16 Mai · 8 vagas",
+      "tag": "Padel",
+      "imageAsset": "assets/images/prototype/hero-court.jpg"
+    }
+  ],
+  "matches": [
+    {
+      "hostName": "Sofia P.",
+      "sport": "Padel",
+      "schedule": "Sáb, 17 Mai · 10:00",
+      "location": "Quadra 04 · Itaim",
+      "availability": "2 vagas abertas",
+      "isLastSpot": false,
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg"
+    },
+    {
+      "hostName": "Gabriel T.",
+      "sport": "Tennis",
+      "schedule": "Dom, 18 Mai · 08:00",
+      "location": "Quadra 01 · Pinheiros",
+      "availability": "Última vaga!",
+      "isLastSpot": true,
+      "avatarAsset": "assets/images/prototype/avatar-gabe.jpg"
+    },
+    {
+      "hostName": "Leonardo R.",
+      "sport": "Padel",
+      "schedule": "Qui, 22 Mai · 17:00",
+      "location": "Quadra 01 · Moema",
+      "availability": "Última vaga!",
+      "isLastSpot": true,
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg"
+    }
+  ]
+}

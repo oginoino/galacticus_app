@@ -6,6 +6,9 @@ abstract final class Routes {
   static const booking = '/reservar';
   static const assistant = '/assistente';
   static const checkin = '/check-in';
+  static const lessons = '/aulas';
+  static const agendas = '/agendas';
+  static const aiTraining = '/treinar-com-ia';
   static const profile = '/perfil';
 }
 
@@ -17,5 +20,8 @@ abstract final class RouteNames {
   static const booking = 'booking';
   static const assistant = 'assistant';
   static const checkin = 'checkin';
+  static const lessons = 'lessons';
+  static const agendas = 'agendas';
+  static const aiTraining = 'aiTraining';
   static const profile = 'profile';
 }

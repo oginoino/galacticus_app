@@ -133,6 +133,7 @@ abstract final class AppMotion {
   static const assistantLogoRotateDurationMs = 9000;
   static const assistantScreenGlowDurationMs = 3600;
   static const checkinCapturePulseDurationMs = 1800;
+  static const aiTrainingPreviewPulseDurationMs = 1800;
 }
 
 abstract final class AppShadow {
@@ -328,6 +329,30 @@ abstract final class AppSize {
   static const checkinCaptureOuter = 74.0;
   static const checkinCaptureInner = 62.0;
   static const checkinSecondaryAction = 54.0;
+  static const checkinFilterBottomOffset = 132.0;
+  static const lessonsHeroHeight = 334.0;
+  static const lessonsTopAction = 40.0;
+  static const lessonsHeaderLeadingInset = 8.0;
+  static const lessonsFeaturedPlay = 82.0;
+  static const lessonsTrackCardWidth = 148.0;
+  static const lessonsTrackCardHeight = 220.0;
+  static const lessonsUpcomingThumbWidth = 94.0;
+  static const lessonsUpcomingThumbHeight = 84.0;
+  static const agendaTopAction = 40.0;
+  static const agendaEventCardHeight = 140.0;
+  static const agendaMatchAvatar = 42.0;
+  static const aiTrainingTopAction = 42.0;
+  static const aiTrainingPreviewWidth = 106.0;
+  static const aiTrainingPreviewHeight = 126.0;
+  static const aiTrainingReferenceCardWidth = 156.0;
+  static const aiTrainingReferenceCardHeight = 116.0;
+  static const aiTrainingProgressWidth = 184.0;
+  static const aiTrainingWatermarkWidth = 260.0;
+  static const aiTrainingStartedPanelRightInset = 132.0;
+  static const lessonsCoachAvatarRadius = 18.0;
+  static const lessonsUpcomingPlayButton = 34.0;
+  static const checkinFilterBarHeight = 78.0;
+  static const pageHeaderLeadingInset = 14.0;
 }
 
 abstract final class AppChartHeights {
@@ -347,6 +372,7 @@ abstract final class AppHeroLayout {
 abstract final class AppInsets {
   static const screen = EdgeInsets.symmetric(horizontal: AppSpacing.screen);
   static const glowCard = EdgeInsets.all(AppSpacing.giant);
+  static const pageHorizontal = EdgeInsets.symmetric(horizontal: AppSpacing.page);
   static const sectionAction = EdgeInsets.symmetric(
     horizontal: AppSpacing.xxs,
     vertical: AppSpacing.xs,
@@ -467,6 +493,60 @@ abstract final class AppInsets {
     AppSpacing.page,
     AppSpacing.page,
   );
+  static const lessonsPage = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    0,
+    AppSpacing.page,
+    AppSpacing.bottomContent,
+  );
+  static const agendaPage = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    0,
+    AppSpacing.page,
+    AppSpacing.bottomContent,
+  );
+  static const cardPaddingSm = EdgeInsets.all(AppSpacing.md);
+  static const cardPaddingMd = EdgeInsets.all(AppSpacing.lg);
+  static const cardPaddingLg = EdgeInsets.all(AppSpacing.xl);
+  static const pillPadding = EdgeInsets.symmetric(
+    horizontal: AppSpacing.sm,
+    vertical: AppSpacing.xs,
+  );
+  static const pillPaddingCompact = EdgeInsets.symmetric(
+    horizontal: AppSpacing.xs,
+    vertical: AppSpacing.xxs,
+  );
+  static const actionChipPadding = EdgeInsets.symmetric(
+    horizontal: AppSpacing.lg,
+    vertical: AppSpacing.sm,
+  );
+}
+
+abstract final class AppResponsiveInsets {
+  static EdgeInsets overlayTopBar(double topInset) => EdgeInsets.fromLTRB(
+        AppSpacing.page,
+        topInset + AppSpacing.page,
+        AppSpacing.page,
+        0,
+      );
+
+  static EdgeInsets pageHeader(double topInset) => EdgeInsets.fromLTRB(
+        AppSize.pageHeaderLeadingInset,
+        topInset + AppSpacing.page,
+        AppSpacing.page,
+        AppSpacing.lg,
+      );
+
+  static EdgeInsets overlayBottomBar(double bottomInset) => EdgeInsets.fromLTRB(
+        AppSpacing.page,
+        0,
+        AppSpacing.page,
+        bottomInset + AppSpacing.page,
+      );
+
+  static EdgeInsets listItemGap(bool isLast) => EdgeInsets.only(
+        bottom: isLast ? 0 : AppSpacing.xl,
+      );
 }
 
 class AppTheme {

@@ -1,4 +1,8 @@
 export '../../service/api/api_service_factory.dart';
+export '../../service/agenda/agenda_mock_service.dart';
+export '../../service/agenda/agenda_service_interface.dart';
+export '../../service/ai_training/ai_training_mock_service.dart';
+export '../../service/ai_training/ai_training_service_interface.dart';
 export '../../service/assistant/assistant_mock_service.dart';
 export '../../service/assistant/assistant_service_interface.dart';
 export '../../service/booking/booking_mock_service.dart';
@@ -17,6 +21,8 @@ export '../../service/http/http_service.dart';
 export '../../service/http/http_service_interface.dart';
 export '../../service/http/http_status.dart';
 export '../../service/localization/localization_service.dart';
+export '../../service/lessons/lessons_mock_service.dart';
+export '../../service/lessons/lessons_service_interface.dart';
 export '../../service/notifications/notifications_mock_service.dart';
 export '../../service/notifications/notifications_service_interface.dart';
 export '../../service/persistence/persistence_service.dart';

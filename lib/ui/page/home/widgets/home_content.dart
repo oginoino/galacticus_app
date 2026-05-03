@@ -18,6 +18,8 @@ class HomeContent extends StatelessWidget {
     required this.onBookingTap,
     required this.onAssistantTap,
     required this.onWorkoutTap,
+    required this.onLessonsTap,
+    required this.onAgendasTap,
     required this.onQuickAccessTap,
     required this.onMessage,
   });
@@ -27,6 +29,8 @@ class HomeContent extends StatelessWidget {
   final VoidCallback onBookingTap;
   final VoidCallback onAssistantTap;
   final VoidCallback onWorkoutTap;
+  final VoidCallback onLessonsTap;
+  final VoidCallback onAgendasTap;
   final ValueChanged<QuickAccessItem> onQuickAccessTap;
   final ValueChanged<String> onMessage;
 
@@ -77,7 +81,7 @@ class HomeContent extends StatelessWidget {
         SectionHeader(
           title: overview.sections.lessonsTitle,
           actionLabel: overview.sections.lessonsActionLabel,
-          onActionTap: () => onMessage(overview.sections.lessonsActionMessage),
+          onActionTap: onLessonsTap,
         ),
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
@@ -91,6 +95,7 @@ class HomeContent extends StatelessWidget {
             itemBuilder: (context, index) => HomeLessonCard(
               lesson: overview.lessons[index],
               aiBadgeLabel: overview.uiLabels.lessonAiBadge,
+              onTap: onLessonsTap,
             ),
           ),
         ),
@@ -107,7 +112,7 @@ class HomeContent extends StatelessWidget {
         SectionHeader(
           title: overview.sections.exploreTitle,
           actionLabel: overview.sections.exploreActionLabel,
-          onActionTap: () => onMessage(overview.sections.exploreActionMessage),
+          onActionTap: onAgendasTap,
         ),
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
@@ -127,7 +132,7 @@ class HomeContent extends StatelessWidget {
         SectionHeader(
           title: overview.sections.friendsTitle,
           actionLabel: overview.sections.friendsActionLabel,
-          onActionTap: () => onMessage(overview.sections.friendsActionMessage),
+          onActionTap: onAgendasTap,
         ),
         const SizedBox(height: AppSpacing.xl),
         SizedBox(
@@ -148,7 +153,7 @@ class HomeContent extends StatelessWidget {
         SectionHeader(
           title: overview.sections.calendarTitle,
           actionLabel: overview.sections.calendarActionLabel,
-          onActionTap: () => onMessage(overview.sections.calendarActionMessage),
+          onActionTap: onAgendasTap,
         ),
         const SizedBox(height: AppSpacing.xl),
         HomeCalendarCard(overview: overview),

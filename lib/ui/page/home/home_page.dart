@@ -52,6 +52,8 @@ class HomePage extends StatelessWidget {
                   onBookingTap: () => context.push(Routes.booking),
                   onAssistantTap: () => context.push(Routes.assistant),
                   onWorkoutTap: () => context.push(Routes.checkin),
+                  onLessonsTap: () => context.push(Routes.lessons),
+                  onAgendasTap: () => context.push(Routes.agendas),
                   onQuickAccessTap: (item) =>
                       _handleQuickAccessTap(context, item, overview),
                   onMessage: (message) => _showSnack(context, message),

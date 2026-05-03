@@ -3,21 +3,27 @@ import 'package:provider/single_child_widget.dart';
 
 import '../di/di.dart';
 import '../repository/assistant_repository.dart';
+import '../repository/agenda_repository.dart';
+import '../repository/ai_training_repository.dart';
 import '../repository/booking_repository.dart';
 import '../repository/checkin_repository.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
+import '../repository/lessons_repository.dart';
 import '../repository/notifications_repository.dart';
 import '../repository/profile_repository.dart';
 import '../service/localization/localization_service.dart';
 import '../service/persistence/persistence_service.dart';
+import 'agenda_provider.dart';
+import 'ai_training_provider.dart';
 import 'assistant_provider.dart';
 import 'booking_provider.dart';
 import 'checkin_provider.dart';
 import 'communities_provider.dart';
 import 'feed_provider.dart';
 import 'home_provider.dart';
+import 'lessons_provider.dart';
 import 'locale_provider.dart';
 import 'notifications_provider.dart';
 import 'profile_provider.dart';
@@ -45,6 +51,16 @@ final List<SingleChildWidget> registerProviders = [
       sl<AssistantRepository>(),
     )..loadAssistant(),
   ),
+  ChangeNotifierProvider<AgendaProvider>(
+    create: (_) => AgendaProvider(
+      sl<AgendaRepository>(),
+    )..loadAgenda(),
+  ),
+  ChangeNotifierProvider<AiTrainingProvider>(
+    create: (_) => AiTrainingProvider(
+      sl<AiTrainingRepository>(),
+    )..loadAiTraining(),
+  ),
   ChangeNotifierProvider<CheckinProvider>(
     create: (_) => CheckinProvider(
       sl<CheckinRepository>(),
@@ -59,6 +75,11 @@ final List<SingleChildWidget> registerProviders = [
     create: (_) => FeedProvider(
       sl<FeedRepository>(),
     )..loadFeed(),
+  ),
+  ChangeNotifierProvider<LessonsProvider>(
+    create: (_) => LessonsProvider(
+      sl<LessonsRepository>(),
+    )..loadLessons(),
   ),
   ChangeNotifierProvider<CommunitiesProvider>(
     create: (_) => CommunitiesProvider(

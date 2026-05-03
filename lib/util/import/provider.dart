@@ -1,9 +1,12 @@
+export '../../provider/agenda_provider.dart';
+export '../../provider/ai_training_provider.dart';
 export '../../provider/assistant_provider.dart';
 export '../../provider/booking_provider.dart';
 export '../../provider/checkin_provider.dart';
 export '../../provider/communities_provider.dart';
 export '../../provider/feed_provider.dart';
 export '../../provider/home_provider.dart';
+export '../../provider/lessons_provider.dart';
 export '../../provider/locale_provider.dart';
 export '../../provider/notifications_provider.dart';
 export '../../provider/profile_provider.dart';

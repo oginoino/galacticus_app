@@ -28,12 +28,7 @@ class CheckinTopBar extends StatelessWidget {
     final topInset = MediaQuery.viewPaddingOf(context).top;
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        AppSpacing.page,
-        topInset + AppSpacing.page,
-        AppSpacing.page,
-        0,
-      ),
+      padding: AppResponsiveInsets.overlayTopBar(topInset),
       child: Row(
         children: [
           _CheckinTopAction(
@@ -96,7 +91,7 @@ class CheckinFilterBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 78,
+      height: AppSize.checkinFilterBarHeight,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: items.length,
@@ -200,12 +195,7 @@ class CheckinCaptureBar extends StatelessWidget {
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        AppSpacing.page,
-        0,
-        AppSpacing.page,
-        bottomInset + AppSpacing.page,
-      ),
+      padding: AppResponsiveInsets.overlayBottomBar(bottomInset),
       child: Row(
         children: [
           Semantics(
