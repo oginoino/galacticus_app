@@ -218,16 +218,16 @@ class _FeedPostMedia extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: AppSpacing.giant,
-            left: AppSpacing.giant,
+            top: AppInsets.feedPostMediaOverlay.top,
+            left: AppInsets.feedPostMediaOverlay.left,
             child: _FeedSportBadge(
               label: post.sportLabel,
             ),
           ),
           if (post.floatingAvatarAsset != null)
             Positioned(
-              top: AppSpacing.giant,
-              right: AppSpacing.giant,
+              top: AppInsets.feedPostMediaOverlay.top,
+              right: AppInsets.feedPostMediaOverlay.right,
               child: Container(
                 width: AppSize.feedPostFloatingAvatar,
                 height: AppSize.feedPostFloatingAvatar,
@@ -246,9 +246,9 @@ class _FeedPostMedia extends StatelessWidget {
             ),
           if (post.layoutType == 'highlight')
             Positioned(
-              left: AppSpacing.giant,
-              right: AppSpacing.giant,
-              bottom: AppSpacing.giant,
+              left: AppInsets.feedPostMediaOverlay.left,
+              right: AppInsets.feedPostMediaOverlay.right,
+              bottom: AppInsets.feedPostMediaOverlay.bottom,
               child: _FeedPostHighlightOverlay(
                 post: post,
                 compact: compact,
@@ -952,6 +952,8 @@ class _WorkoutGlassMetricCard extends StatelessWidget {
       builder: (context, constraints) {
         final isCompactMetric =
             constraints.maxWidth < 72 || constraints.maxHeight < 64;
+        final isUltraCompactMetric =
+            constraints.maxWidth < 52 || constraints.maxHeight < 58;
 
         return Container(
           height: AppSize.feedWorkoutMetricCardHeight,
@@ -963,42 +965,53 @@ class _WorkoutGlassMetricCard extends StatelessWidget {
               width: AppStroke.hairline,
             ),
           ),
-          padding: isCompactMetric
-              ? AppInsets.feedWorkoutMetricCompact
-              : AppInsets.feedWorkoutMetric,
+          padding: isUltraCompactMetric
+              ? EdgeInsets.zero
+              : isCompactMetric
+                  ? AppInsets.feedWorkoutMetricCompact
+                  : AppInsets.feedWorkoutMetric,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: [
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  metric.value,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: metric.label.toLowerCase() == 'calorias'
-                            ? AppPalette.primary
-                            : AppPalette.white,
-                        fontWeight: FontWeight.w700,
-                        fontSize: isCompactMetric
-                            ? AppFontSize.titleLg
-                            : AppFontSize.headingSm,
-                      ),
+              Expanded(
+                child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      metric.value,
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                            color: metric.label.toLowerCase() == 'calorias'
+                                ? AppPalette.primary
+                                : AppPalette.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: isCompactMetric
+                                ? AppFontSize.titleLg
+                                : AppFontSize.headingSm,
+                          ),
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(height: AppSpacing.xxs),
-              FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  metric.label.toUpperCase(),
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppPalette.textDim,
-                        fontSize: isCompactMetric
-                            ? AppFontSize.labelLg
-                            : AppFontSize.bodySm,
-                        letterSpacing: AppLetterSpacing.tightMd,
-                      ),
+              if (!isUltraCompactMetric)
+                const SizedBox(height: AppSpacing.xxs),
+              Expanded(
+                child: Center(
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      metric.label.toUpperCase(),
+                      maxLines: 1,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            color: AppPalette.textDim,
+                            fontSize: isCompactMetric
+                                ? AppFontSize.labelLg
+                                : AppFontSize.bodySm,
+                            letterSpacing: AppLetterSpacing.tightMd,
+                          ),
+                    ),
+                  ),
                 ),
               ),
             ],

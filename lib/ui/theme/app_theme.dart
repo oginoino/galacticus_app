@@ -317,14 +317,13 @@ abstract final class AppInsets {
     horizontal: AppSpacing.xxl,
     vertical: AppSpacing.sm,
   );
-  static const feedWorkoutCardMargin = EdgeInsets.symmetric(
-    horizontal: AppSpacing.giant,
-  );
+  static const feedPostMediaOverlay = EdgeInsets.all(AppSpacing.page);
+  static const feedWorkoutCardMargin = EdgeInsets.zero;
   static const feedWorkoutCardContent = EdgeInsets.fromLTRB(
-    AppSpacing.xxxl,
-    AppSpacing.xxxl,
-    AppSpacing.xxxl,
-    AppSpacing.xxxl,
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
   );
   static const feedWorkoutMetric = EdgeInsets.symmetric(
     horizontal: AppSpacing.giant,
