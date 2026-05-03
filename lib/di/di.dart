@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
+import '../repository/profile_repository.dart';
 import '../service/api/api_service_factory.dart';
 import '../service/communities/communities_mock_service.dart';
 import '../service/communities/communities_service_interface.dart';
@@ -15,6 +16,8 @@ import '../service/http/http_service.dart';
 import '../service/http/http_service_interface.dart';
 import '../service/localization/localization_service.dart';
 import '../service/persistence/persistence_service.dart';
+import '../service/profile/profile_mock_service.dart';
+import '../service/profile/profile_service_interface.dart';
 import '../util/const/app_constants.dart';
 
 final GetIt sl = GetIt.instance;
@@ -57,6 +60,12 @@ class DependencyInjection {
       ..registerLazySingleton<HomeServiceInterface>(HomeMockService.new)
       ..registerLazySingleton<HomeRepository>(
         () => HomeRepository(sl<HomeServiceInterface>()),
+      )
+      ..registerLazySingleton<ProfileServiceInterface>(
+        ProfileMockService.new,
+      )
+      ..registerLazySingleton<ProfileRepository>(
+        () => ProfileRepository(sl<ProfileServiceInterface>()),
       );
   }
 

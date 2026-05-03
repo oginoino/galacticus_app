@@ -11,6 +11,7 @@ class AppConstants {
     required this.homeLoadErrorMessage,
     required this.feedLoadErrorMessage,
     required this.communitiesLoadErrorMessage,
+    required this.profileLoadErrorMessage,
     required this.navigationUnavailableMessage,
     required this.retryLabel,
   });
@@ -24,6 +25,7 @@ class AppConstants {
   final String homeLoadErrorMessage;
   final String feedLoadErrorMessage;
   final String communitiesLoadErrorMessage;
+  final String profileLoadErrorMessage;
   final String navigationUnavailableMessage;
   final String retryLabel;
 
@@ -37,6 +39,7 @@ class AppConstants {
     homeLoadErrorMessage: 'Não foi possível carregar o dashboard agora.',
     feedLoadErrorMessage: 'Não foi possível carregar o feed agora.',
     communitiesLoadErrorMessage: 'Não foi possível carregar os clubes agora.',
+    profileLoadErrorMessage: 'Não foi possível carregar o perfil agora.',
     navigationUnavailableMessage: 'Área disponível na próxima etapa.',
     retryLabel: 'Tentar novamente',
   );

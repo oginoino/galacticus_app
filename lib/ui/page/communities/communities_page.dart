@@ -70,6 +70,9 @@ class CommunitiesPage extends StatelessWidget {
         break;
       case 2:
         break;
+      case 3:
+        context.go(Routes.profile);
+        break;
       default:
         _showSnack(
           context,

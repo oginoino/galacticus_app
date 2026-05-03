@@ -67,6 +67,9 @@ class FeedPage extends StatelessWidget {
       case 2:
         context.go(Routes.communities);
         break;
+      case 3:
+        context.go(Routes.profile);
+        break;
       default:
         _showSnack(
           context,

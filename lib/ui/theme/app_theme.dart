@@ -288,6 +288,15 @@ abstract final class AppSize {
   static const communitiesDiscoverButtonHeightCompact = 36.0;
   static const communitiesSectionDivider = 2.0;
   static const communitiesDiscoverGridAspectRatio = 0.58;
+  static const profileHeroHeight = 388.0;
+  static const profileBackButton = 40.0;
+  static const profileAvatar = 84.0;
+  static const profileAvatarBorder = 88.0;
+  static const profileVerifiedIcon = 22.0;
+  static const profileSocialButton = 38.0;
+  static const profileTabHeight = 36.0;
+  static const profileGalleryRadius = 24.0;
+  static const profileGalleryAspectRatio = 0.82;
 }
 
 abstract final class AppChartHeights {
@@ -371,6 +380,21 @@ abstract final class AppInsets {
   static const communitiesDiscoverButton = EdgeInsets.symmetric(
     horizontal: AppSpacing.giant,
     vertical: AppSpacing.md,
+  );
+  static const profileHeroOverlay = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+  );
+  static const profileContent = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.bottomContent,
+  );
+  static const profileTab = EdgeInsets.symmetric(
+    horizontal: AppSpacing.page,
   );
 }
 
