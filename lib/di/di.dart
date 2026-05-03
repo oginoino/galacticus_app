@@ -4,9 +4,12 @@ import 'package:get_it/get_it.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
+import '../repository/booking_repository.dart';
 import '../repository/notifications_repository.dart';
 import '../repository/profile_repository.dart';
 import '../service/api/api_service_factory.dart';
+import '../service/booking/booking_mock_service.dart';
+import '../service/booking/booking_service_interface.dart';
 import '../service/communities/communities_mock_service.dart';
 import '../service/communities/communities_service_interface.dart';
 import '../service/feed/feed_mock_service.dart';
@@ -55,6 +58,12 @@ class DependencyInjection {
       )
       ..registerLazySingleton<CommunitiesRepository>(
         () => CommunitiesRepository(sl<CommunitiesServiceInterface>()),
+      )
+      ..registerLazySingleton<BookingServiceInterface>(
+        BookingMockService.new,
+      )
+      ..registerLazySingleton<BookingRepository>(
+        () => BookingRepository(sl<BookingServiceInterface>()),
       )
       ..registerLazySingleton<FeedServiceInterface>(FeedMockService.new)
       ..registerLazySingleton<FeedRepository>(

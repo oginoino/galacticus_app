@@ -308,6 +308,12 @@ abstract final class AppSize {
   static const notificationsLeading = 40.0;
   static const notificationsAvatar = 40.0;
   static const notificationsUnreadDot = 7.0;
+  static const bookingTopAction = 40.0;
+  static const bookingToggleHeight = 42.0;
+  static const bookingHeroHeight = 248.0;
+  static const bookingDateCardWidth = 72.0;
+  static const bookingDateCardHeight = 64.0;
+  static const bookingTimeChipHeight = 38.0;
 }
 
 abstract final class AppChartHeights {
@@ -415,6 +421,19 @@ abstract final class AppInsets {
   );
   static const notificationsItem = EdgeInsets.symmetric(
     vertical: AppSpacing.xl,
+  );
+  static const bookingPage = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.bottomContent,
+  );
+  static const bookingSection = EdgeInsets.only(top: AppSpacing.page);
+  static const bookingHeroOverlay = EdgeInsets.fromLTRB(
+    AppSpacing.giant,
+    AppSpacing.giant,
+    AppSpacing.giant,
+    AppSpacing.giant,
   );
 }
 

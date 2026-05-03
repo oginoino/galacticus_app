@@ -1,4 +1,11 @@
 export '../../domain/app_user.dart';
+export '../../domain/booking_amenity.dart';
+export '../../domain/booking_date_option.dart';
+export '../../domain/booking_messages.dart';
+export '../../domain/booking_overview.dart';
+export '../../domain/booking_space_option.dart';
+export '../../domain/booking_time_option.dart';
+export '../../domain/booking_ui_labels.dart';
 export '../../domain/calendar_day.dart';
 export '../../domain/communities_messages.dart';
 export '../../domain/communities_overview.dart';

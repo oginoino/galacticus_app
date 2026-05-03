@@ -1,4 +1,6 @@
 export '../../service/api/api_service_factory.dart';
+export '../../service/booking/booking_mock_service.dart';
+export '../../service/booking/booking_service_interface.dart';
 export '../../service/communities/communities_mock_service.dart';
 export '../../service/communities/communities_service_interface.dart';
 export '../../service/feed/feed_mock_service.dart';

@@ -1,0 +1,99 @@
+{
+  "title": "Reservar espaço",
+  "sectionDateTitle": "Selecione data",
+  "sectionTimeTitle": "Horários disponíveis",
+  "heroTitle": "Sala de Reunião 02",
+  "heroSubtitle": "Ideal para reuniões, workshops e encontros exclusivos.",
+  "capacityLabel": "8 pessoas",
+  "imageAsset": "assets/images/prototype/room-lounge.jpg",
+  "priceNote": "Gratuito para sócios",
+  "ctaLabel": "Reservar",
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil"
+  },
+  "messages": {
+    "quickAction": "Ação rápida de reserva entra na próxima etapa.",
+    "reserveAction": "Fluxo final de confirmação entra na próxima integração.",
+    "selectionAction": "Seleção dinâmica de data e horário entra na próxima etapa."
+  },
+  "spaceOptions": [
+    {
+      "label": "Quadra",
+      "isSelected": false
+    },
+    {
+      "label": "Sala",
+      "isSelected": true
+    }
+  ],
+  "dateOptions": [
+    {
+      "weekdayLabel": "QUI",
+      "dayLabel": "22",
+      "isSelected": false
+    },
+    {
+      "weekdayLabel": "SEX",
+      "dayLabel": "23",
+      "isSelected": false
+    },
+    {
+      "weekdayLabel": "SÁB",
+      "dayLabel": "24",
+      "isSelected": true
+    },
+    {
+      "weekdayLabel": "DOM",
+      "dayLabel": "25",
+      "isSelected": false
+    },
+    {
+      "weekdayLabel": "SEG",
+      "dayLabel": "26",
+      "isSelected": false
+    }
+  ],
+  "timeOptions": [
+    {
+      "label": "7:00",
+      "isSelected": false
+    },
+    {
+      "label": "8:30",
+      "isSelected": true
+    },
+    {
+      "label": "10:00",
+      "isSelected": false
+    },
+    {
+      "label": "14:00",
+      "isSelected": false
+    },
+    {
+      "label": "16:00",
+      "isSelected": false
+    }
+  ],
+  "amenities": [
+    {
+      "type": "people",
+      "label": "8 pessoas"
+    },
+    {
+      "type": "wifi",
+      "label": "Wi-Fi"
+    },
+    {
+      "type": "tv",
+      "label": "TV"
+    },
+    {
+      "type": "coffee",
+      "label": "Café"
+    }
+  ]
+}
