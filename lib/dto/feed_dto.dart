@@ -1,3 +1,6 @@
+import '../domain/feed_post_comment_preview.dart';
+import '../domain/feed_post_metric.dart';
+import '../domain/feed_workout_result_card.dart';
 import '../domain/feed_filter.dart';
 import '../domain/feed_messages.dart';
 import '../domain/feed_overview.dart';
@@ -44,16 +47,29 @@ class FeedDto {
       posts: _mapList(
         payload['posts'] as List<dynamic>,
         (item) => FeedPost(
+          layoutType: item['layoutType'] as String,
           authorHandle: item['authorHandle'] as String,
           clubLabel: item['clubLabel'] as String,
           timeAgoLabel: item['timeAgoLabel'] as String,
           avatarAsset: item['avatarAsset'] as String?,
           initials: item['initials'] as String?,
-          imageAsset: item['imageAsset'] as String,
+          imageAsset: item['imageAsset'] as String?,
           sportLabel: item['sportLabel'] as String,
           likesCountLabel: item['likesCountLabel'] as String,
           commentsCountLabel: item['commentsCountLabel'] as String,
           viewCommentsLabel: item['viewCommentsLabel'] as String,
+          headline: item['headline'] as String?,
+          subheadline: item['subheadline'] as String?,
+          locationLabel: item['locationLabel'] as String?,
+          weatherLabel: item['weatherLabel'] as String?,
+          floatingAvatarAsset: item['floatingAvatarAsset'] as String?,
+          metrics: _mapMetrics(item['metrics'] as List<dynamic>?),
+          commentPreview: _mapCommentPreview(
+            item['commentPreview'] as Map<String, dynamic>?,
+          ),
+          workoutResultCard: _mapWorkoutResultCard(
+            item['workoutResultCard'] as Map<String, dynamic>?,
+          ),
         ),
       ),
       uiLabels: FeedUiLabels(
@@ -81,5 +97,59 @@ class FeedDto {
         .cast<Map<String, dynamic>>()
         .map(mapper)
         .toList(growable: false);
+  }
+
+  List<FeedPostMetric> _mapMetrics(List<dynamic>? source) {
+    if (source == null) {
+      return const [];
+    }
+
+    return source
+        .cast<Map<String, dynamic>>()
+        .map(
+          (item) => FeedPostMetric(
+            value: item['value'] as String,
+            label: item['label'] as String,
+          ),
+        )
+        .toList(growable: false);
+  }
+
+  FeedPostCommentPreview? _mapCommentPreview(Map<String, dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+
+    return FeedPostCommentPreview(
+      initials: json['initials'] as String,
+      authorLabel: json['authorLabel'] as String,
+      message: json['message'] as String,
+    );
+  }
+
+  FeedWorkoutResultCard? _mapWorkoutResultCard(Map<String, dynamic>? json) {
+    if (json == null) {
+      return null;
+    }
+
+    return FeedWorkoutResultCard(
+      variant: json['variant'] as String,
+      eyebrowLabel: json['eyebrowLabel'] as String,
+      title: json['title'] as String,
+      accentTitle: json['accentTitle'] as String?,
+      subtitle: json['subtitle'] as String?,
+      dateLabel: json['dateLabel'] as String?,
+      startLabel: json['startLabel'] as String?,
+      finishLabel: json['finishLabel'] as String?,
+      badgeTitle: json['badgeTitle'] as String?,
+      badgeSubtitle: json['badgeSubtitle'] as String?,
+      locationLabel: json['locationLabel'] as String?,
+      contextLabel: json['contextLabel'] as String?,
+      footerDateLabel: json['footerDateLabel'] as String?,
+      footerTagLabel: json['footerTagLabel'] as String?,
+      trendLabel: json['trendLabel'] as String?,
+      primaryMetrics: _mapMetrics(json['primaryMetrics'] as List<dynamic>?),
+      secondaryMetrics: _mapMetrics(json['secondaryMetrics'] as List<dynamic>?),
+    );
   }
 }

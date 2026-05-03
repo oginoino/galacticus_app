@@ -77,6 +77,7 @@
   ],
   "posts": [
     {
+      "layoutType": "media",
       "authorHandle": "gabe.tennis",
       "clubLabel": "Galácticos Alphaville",
       "timeAgoLabel": "2h atrás",
@@ -86,9 +87,17 @@
       "sportLabel": "Tennis",
       "likesCountLabel": "24",
       "commentsCountLabel": "6",
-      "viewCommentsLabel": "Ver 5 comentários"
+      "viewCommentsLabel": "Ver 5 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null
     },
     {
+      "layoutType": "media",
       "authorHandle": "jackson",
       "clubLabel": "Galácticos Alphaville",
       "timeAgoLabel": "4h atrás",
@@ -98,19 +107,215 @@
       "sportLabel": "Clube",
       "likesCountLabel": "31",
       "commentsCountLabel": "8",
-      "viewCommentsLabel": "Ver 7 comentários"
+      "viewCommentsLabel": "Ver 7 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": "assets/images/prototype/paulo.jpg",
+      "metrics": [],
+      "commentPreview": null
     },
     {
-      "authorHandle": "sofia.padel",
-      "clubLabel": "Galácticos Cidade Jardim",
-      "timeAgoLabel": "6h atrás",
-      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg",
+      "layoutType": "workout_result",
+      "authorHandle": "carlos.m",
+      "clubLabel": "Galácticos Alphaville",
+      "timeAgoLabel": "16h atrás",
+      "avatarAsset": null,
+      "initials": "CM",
+      "imageAsset": null,
+      "sportLabel": "Tennis",
+      "likesCountLabel": "19",
+      "commentsCountLabel": "3",
+      "viewCommentsLabel": "Ver 2 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": {
+        "initials": "CM",
+        "authorLabel": "Carlos M.",
+        "message": "Backhand está evoluindo muito."
+      },
+      "workoutResultCard": {
+        "variant": "technical",
+        "eyebrowLabel": "Tennis",
+        "title": "Treino Técnico",
+        "subtitle": "Aperfeiçoando o backhand.",
+        "locationLabel": "Quadra 04 · Unidade Alpha",
+        "contextLabel": "23°C · São Paulo, BR",
+        "primaryMetrics": [
+          {
+            "value": "1h 30m",
+            "label": "Duração"
+          },
+          {
+            "value": "680",
+            "label": "Calorias"
+          },
+          {
+            "value": "5.6 km",
+            "label": "Distância"
+          }
+        ],
+        "secondaryMetrics": []
+      }
+    },
+    {
+      "layoutType": "media",
+      "authorHandle": "leo.tennis",
+      "clubLabel": "Galácticos Alphaville",
+      "timeAgoLabel": "8h atrás",
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg",
       "initials": null,
+      "imageAsset": "assets/images/prototype/feed-tennis-match.jpg",
+      "sportLabel": "Match Day",
+      "likesCountLabel": "56",
+      "commentsCountLabel": "12",
+      "viewCommentsLabel": "Ver 11 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null
+    },
+    {
+      "layoutType": "workout_result",
+      "authorHandle": "pedro.s",
+      "clubLabel": "Galácticos Alphaville",
+      "timeAgoLabel": "17h atrás",
+      "avatarAsset": null,
+      "initials": "PS",
+      "imageAsset": null,
+      "sportLabel": "Run",
+      "likesCountLabel": "44",
+      "commentsCountLabel": "9",
+      "viewCommentsLabel": "Ver 2 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": {
+        "initials": "GT",
+        "authorLabel": "Gabe T.",
+        "message": "Match rápido mas intenso."
+      },
+      "workoutResultCard": {
+        "variant": "run",
+        "eyebrowLabel": "RUN →",
+        "title": "EVENING RUN",
+        "dateLabel": "23 Mai 2025",
+        "startLabel": "START",
+        "finishLabel": "FINISH",
+        "locationLabel": "Pista Externa",
+        "contextLabel": null,
+        "primaryMetrics": [
+          {
+            "value": "8.2 km",
+            "label": "Distância"
+          },
+          {
+            "value": "0h 35m",
+            "label": "Tempo"
+          },
+          {
+            "value": "580 kcal",
+            "label": "Calorias"
+          },
+          {
+            "value": "ALTA",
+            "label": "Intensidade"
+          }
+        ],
+        "secondaryMetrics": []
+      }
+    },
+    {
+      "layoutType": "media",
+      "authorHandle": "ana.l",
+      "clubLabel": "Galácticos Cidade Jardim",
+      "timeAgoLabel": "12h atrás",
+      "avatarAsset": null,
+      "initials": "AL",
       "imageAsset": "assets/images/prototype/feed-padel-evening.jpg",
-      "sportLabel": "Padel",
-      "likesCountLabel": "18",
-      "commentsCountLabel": "4",
-      "viewCommentsLabel": "Ver 3 comentários"
+      "sportLabel": "Padel Night",
+      "likesCountLabel": "67",
+      "commentsCountLabel": "15",
+      "viewCommentsLabel": "Ver 14 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null
+    },
+    {
+      "layoutType": "workout_result",
+      "authorHandle": "leo.tennis",
+      "clubLabel": "Galácticos Alphaville",
+      "timeAgoLabel": "21h atrás",
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg",
+      "initials": null,
+      "imageAsset": null,
+      "sportLabel": "Tennis Session",
+      "likesCountLabel": "16",
+      "commentsCountLabel": "3",
+      "viewCommentsLabel": "Ver 2 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": {
+        "initials": "GT",
+        "authorLabel": "Gabe T.",
+        "message": "Match rápido mas intenso."
+      },
+      "workoutResultCard": {
+        "variant": "focus",
+        "eyebrowLabel": "● TENNIS SESSION",
+        "title": "Focus.\nEnergy.",
+        "accentTitle": "Evolution.",
+        "subtitle": "Great sessions aren't about luck.\nThey're about consistency.",
+        "badgeTitle": "Quadra 05",
+        "badgeSubtitle": "Galácticos Club",
+        "locationLabel": "Quadra 05 · Unidade Alpha",
+        "footerDateLabel": "22 Mai 2025",
+        "footerTagLabel": "#BUILTGREATNESS",
+        "trendLabel": "⚡ INTENSIDADE AO LONGO DO TEMPO",
+        "primaryMetrics": [
+          {
+            "value": "0:48m",
+            "label": "Duração"
+          },
+          {
+            "value": "410 KCAL",
+            "label": "Calorias"
+          }
+        ],
+        "secondaryMetrics": [
+          {
+            "value": "6.5/10",
+            "label": "Intensidade"
+          },
+          {
+            "value": "73%",
+            "label": "Pontos"
+          },
+          {
+            "value": "2 MATCHES",
+            "label": "Sequência"
+          }
+        ]
+      }
     }
   ]
 }

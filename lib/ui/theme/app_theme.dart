@@ -112,12 +112,14 @@ abstract final class AppRadius {
   static const xxxl = 18.0;
   static const button = 20.0;
   static const card = 28.0;
+  static const cardXl = 32.0;
   static const pill = 999.0;
 }
 
 abstract final class AppStroke {
   static const hairline = 1.0;
   static const thin = 1.2;
+  static const thick = 2.0;
 }
 
 abstract final class AppBlur {
@@ -161,6 +163,9 @@ abstract final class AppFontSize {
   static const metric = 28.0;
   static const displaySm = 30.0;
   static const display = 38.0;
+  static const displayMd = 42.0;
+  static const displayLg = 44.0;
+  static const metricLg = 36.0;
 }
 
 abstract final class AppLetterSpacing {
@@ -245,6 +250,30 @@ abstract final class AppSize {
   static const feedPostImageHeight = 286.0;
   static const feedPostImageHeightCompact = 254.0;
   static const feedPostActionIcon = 20.0;
+  static const feedPostFloatingAvatar = 44.0;
+  static const feedPostMetricBadgeHeight = 72.0;
+  static const feedPostMetricBadgeHeightCompact = 66.0;
+  static const feedPostCommentBadge = 34.0;
+  static const feedWorkoutCardHeight = 430.0;
+  static const feedWorkoutCardHeightCompact = 390.0;
+  static const feedWorkoutMetricCardHeight = 74.0;
+  static const feedWorkoutMetricCardHeightCompact = 68.0;
+  static const feedWorkoutMiniMetricHeight = 84.0;
+  static const feedWorkoutAvatarRing = 50.0;
+  static const feedWorkoutCommentAvatar = 28.0;
+  static const feedWorkoutBackdropInset = 42.0;
+  static const feedWorkoutBackdropTop = 20.0;
+  static const feedWorkoutBackdropBottom = 36.0;
+  static const feedWorkoutNeonInset = 72.0;
+  static const feedWorkoutNeonBottom = 134.0;
+  static const feedWorkoutOrbitTop = 128.0;
+  static const feedWorkoutOrbitRight = 54.0;
+  static const feedWorkoutOrbitLarge = 110.0;
+  static const feedWorkoutOrbitInnerTop = 148.0;
+  static const feedWorkoutOrbitInnerRight = 74.0;
+  static const feedWorkoutOrbitInnerSize = 70.0;
+  static const feedWorkoutGridSpacing = 18.0;
+  static const feedWorkoutGridDot = 0.8;
 }
 
 abstract final class AppChartHeights {
@@ -271,6 +300,44 @@ abstract final class AppInsets {
   static const navBar = EdgeInsets.symmetric(
     horizontal: AppSpacing.xxxl,
     vertical: AppSpacing.md,
+  );
+  static const feedPostHeader = EdgeInsets.fromLTRB(
+    AppSpacing.huge,
+    AppSpacing.huge,
+    AppSpacing.huge,
+    AppSpacing.xxxl,
+  );
+  static const feedPostBody = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    AppSpacing.xl,
+    AppSpacing.page,
+    AppSpacing.page,
+  );
+  static const feedPostBadge = EdgeInsets.symmetric(
+    horizontal: AppSpacing.xxl,
+    vertical: AppSpacing.sm,
+  );
+  static const feedWorkoutCardMargin = EdgeInsets.symmetric(
+    horizontal: AppSpacing.giant,
+  );
+  static const feedWorkoutCardContent = EdgeInsets.fromLTRB(
+    AppSpacing.xxxl,
+    AppSpacing.xxxl,
+    AppSpacing.xxxl,
+    AppSpacing.xxxl,
+  );
+  static const feedWorkoutMetric = EdgeInsets.symmetric(
+    horizontal: AppSpacing.giant,
+    vertical: AppSpacing.md,
+  );
+  static const feedWorkoutMetricCompact = EdgeInsets.symmetric(
+    horizontal: AppSpacing.md,
+    vertical: AppSpacing.xs,
+  );
+  static const feedWorkoutMetricBox = EdgeInsets.all(AppSpacing.xxl);
+  static const feedWorkoutBadge = EdgeInsets.symmetric(
+    horizontal: AppSpacing.xxl,
+    vertical: AppSpacing.giant,
   );
 }
 
