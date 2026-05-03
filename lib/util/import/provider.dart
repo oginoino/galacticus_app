@@ -1,3 +1,4 @@
+export '../../provider/communities_provider.dart';
 export '../../provider/feed_provider.dart';
 export '../../provider/home_provider.dart';
 export '../../provider/locale_provider.dart';

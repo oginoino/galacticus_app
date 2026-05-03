@@ -274,6 +274,20 @@ abstract final class AppSize {
   static const feedWorkoutOrbitInnerSize = 70.0;
   static const feedWorkoutGridSpacing = 18.0;
   static const feedWorkoutGridDot = 0.8;
+  static const communitiesHeaderAvatar = 44.0;
+  static const communitiesTopIcon = 40.0;
+  static const communitiesSearchHeight = 44.0;
+  static const communitiesOwnedCardWidth = 132.0;
+  static const communitiesOwnedCardHeight = 144.0;
+  static const communitiesOwnedListHeight = 156.0;
+  static const communitiesChipHeight = 36.0;
+  static const communitiesDiscoverImageHeight = 98.0;
+  static const communitiesDiscoverCardRadius = 22.0;
+  static const communitiesDiscoverAvatar = 22.0;
+  static const communitiesDiscoverButtonHeight = 40.0;
+  static const communitiesDiscoverButtonHeightCompact = 36.0;
+  static const communitiesSectionDivider = 2.0;
+  static const communitiesDiscoverGridAspectRatio = 0.58;
 }
 
 abstract final class AppChartHeights {
@@ -337,6 +351,26 @@ abstract final class AppInsets {
   static const feedWorkoutBadge = EdgeInsets.symmetric(
     horizontal: AppSpacing.xxl,
     vertical: AppSpacing.giant,
+  );
+  static const communitiesSearch = EdgeInsets.symmetric(
+    horizontal: AppSpacing.giant,
+  );
+  static const communitiesOwnedCardOverlay = EdgeInsets.all(AppSpacing.giant);
+  static const communitiesDiscoverCardBody = EdgeInsets.fromLTRB(
+    AppSpacing.giant,
+    AppSpacing.giant,
+    AppSpacing.giant,
+    AppSpacing.giant,
+  );
+  static const communitiesDiscoverCardBodyCompact = EdgeInsets.fromLTRB(
+    AppSpacing.xl,
+    AppSpacing.xl,
+    AppSpacing.xl,
+    AppSpacing.xl,
+  );
+  static const communitiesDiscoverButton = EdgeInsets.symmetric(
+    horizontal: AppSpacing.giant,
+    vertical: AppSpacing.md,
   );
 }
 

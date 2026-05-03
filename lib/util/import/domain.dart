@@ -1,7 +1,12 @@
 export '../../domain/app_user.dart';
 export '../../domain/calendar_day.dart';
+export '../../domain/communities_messages.dart';
+export '../../domain/communities_overview.dart';
+export '../../domain/communities_ui_labels.dart';
+export '../../domain/community_category.dart';
 export '../../domain/community_event.dart';
 export '../../domain/dashboard_overview.dart';
+export '../../domain/discover_club.dart';
 export '../../domain/feed_post_comment_preview.dart';
 export '../../domain/feed_filter.dart';
 export '../../domain/feed_messages.dart';
@@ -18,4 +23,5 @@ export '../../domain/leaderboard_entry.dart';
 export '../../domain/lesson.dart';
 export '../../domain/match_invite.dart';
 export '../../domain/quick_access_item.dart';
+export '../../domain/user_club.dart';
 export '../../domain/workout_promo.dart';

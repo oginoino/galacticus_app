@@ -3,27 +3,27 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
-import '../../../domain/feed_overview.dart';
-import '../../../provider/feed_provider.dart';
+import '../../../domain/communities_overview.dart';
+import '../../../provider/communities_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
 import '../../theme/app_theme.dart';
-import 'widgets/feed_content.dart';
+import 'widgets/communities_content.dart';
 
-class FeedPage extends StatelessWidget {
-  const FeedPage({super.key});
+class CommunitiesPage extends StatelessWidget {
+  const CommunitiesPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<FeedProvider>();
+    final provider = context.watch<CommunitiesProvider>();
     final overview = provider.overview;
 
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: BottomNavigationShell(
-        currentIndex: 1,
+        currentIndex: 2,
         onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
         homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
         feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
@@ -37,16 +37,19 @@ class FeedPage extends StatelessWidget {
         isLoading: provider.isLoading && overview == null,
         errorMessage:
             provider.errorMessage != null && overview == null ? provider.errorMessage : null,
-        onRetry: provider.loadFeed,
+        onRetry: provider.loadCommunities,
         retryLabel: sl<AppConstants>().retryLabel,
         child: overview == null
             ? const SizedBox.shrink()
             : RefreshIndicator(
-                onRefresh: provider.loadFeed,
+                onRefresh: provider.loadCommunities,
                 color: AppPalette.primary,
-                child: FeedContent(
+                child: CommunitiesContent(
                   overview: overview,
-                  onMessage: (message) => _showSnack(context, message),
+                  onSearchTap: () => _showSnack(context, overview.messages.searchAction),
+                  onViewAllTap: () => _showSnack(context, overview.messages.viewAllAction),
+                  onFilterTap: () => _showSnack(context, overview.messages.filterAction),
+                  onJoinTap: () => _showSnack(context, overview.messages.joinAction),
                 ),
               ),
       ),
@@ -56,16 +59,16 @@ class FeedPage extends StatelessWidget {
   void _handleBottomNavigationTap(
     BuildContext context,
     int index,
-    FeedOverview? overview,
+    CommunitiesOverview? overview,
   ) {
     switch (index) {
       case 0:
         context.go(Routes.home);
         break;
       case 1:
+        context.go(Routes.feed);
         break;
       case 2:
-        context.go(Routes.communities);
         break;
       default:
         _showSnack(

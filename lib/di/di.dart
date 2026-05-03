@@ -1,9 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
+import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
 import '../service/api/api_service_factory.dart';
+import '../service/communities/communities_mock_service.dart';
+import '../service/communities/communities_service_interface.dart';
 import '../service/feed/feed_mock_service.dart';
 import '../service/feed/feed_service_interface.dart';
 import '../service/home/home_mock_service.dart';
@@ -40,6 +43,12 @@ class DependencyInjection {
       ..registerLazySingleton<HttpServiceInterface>(HttpService.new)
       ..registerLazySingleton<ApiServiceFactory>(
         () => ApiServiceFactory(sl<HttpServiceInterface>()),
+      )
+      ..registerLazySingleton<CommunitiesServiceInterface>(
+        CommunitiesMockService.new,
+      )
+      ..registerLazySingleton<CommunitiesRepository>(
+        () => CommunitiesRepository(sl<CommunitiesServiceInterface>()),
       )
       ..registerLazySingleton<FeedServiceInterface>(FeedMockService.new)
       ..registerLazySingleton<FeedRepository>(

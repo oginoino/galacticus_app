@@ -2,10 +2,12 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 
 import '../di/di.dart';
+import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
 import '../service/localization/localization_service.dart';
 import '../service/persistence/persistence_service.dart';
+import 'communities_provider.dart';
 import 'feed_provider.dart';
 import 'home_provider.dart';
 import 'locale_provider.dart';
@@ -32,5 +34,10 @@ final List<SingleChildWidget> registerProviders = [
     create: (_) => FeedProvider(
       sl<FeedRepository>(),
     )..loadFeed(),
+  ),
+  ChangeNotifierProvider<CommunitiesProvider>(
+    create: (_) => CommunitiesProvider(
+      sl<CommunitiesRepository>(),
+    )..loadCommunities(),
   ),
 ];

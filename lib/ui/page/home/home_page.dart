@@ -65,6 +65,9 @@ class HomePage extends StatelessWidget {
       case 1:
         context.go(Routes.feed);
         break;
+      case 2:
+        context.go(Routes.communities);
+        break;
       default:
         _showSnack(
           context,
