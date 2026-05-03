@@ -3,27 +3,27 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
-import '../../../domain/dashboard_overview.dart';
-import '../../../provider/home_provider.dart';
+import '../../../domain/feed_overview.dart';
+import '../../../provider/feed_provider.dart';
 import '../../../route/routes/routes.dart';
+import '../../../util/const/app_constants.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
 import '../../theme/app_theme.dart';
-import '../../../util/const/app_constants.dart';
-import 'widgets/home_content.dart';
+import 'widgets/feed_content.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class FeedPage extends StatelessWidget {
+  const FeedPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.watch<HomeProvider>();
+    final provider = context.watch<FeedProvider>();
     final overview = provider.overview;
 
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: BottomNavigationShell(
-        currentIndex: 0,
+        currentIndex: 1,
         onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
         homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
         feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
@@ -35,17 +35,16 @@ class HomePage extends StatelessWidget {
       ),
       body: ContentStateView(
         isLoading: provider.isLoading && overview == null,
-        errorMessage: provider.errorMessage != null && overview == null
-            ? provider.errorMessage
-            : null,
-        onRetry: provider.loadDashboard,
+        errorMessage:
+            provider.errorMessage != null && overview == null ? provider.errorMessage : null,
+        onRetry: provider.loadFeed,
         retryLabel: sl<AppConstants>().retryLabel,
         child: overview == null
             ? const SizedBox.shrink()
             : RefreshIndicator(
-                onRefresh: provider.loadDashboard,
+                onRefresh: provider.loadFeed,
                 color: AppPalette.primary,
-                child: HomeContent(
+                child: FeedContent(
                   overview: overview,
                   onMessage: (message) => _showSnack(context, message),
                 ),
@@ -57,13 +56,13 @@ class HomePage extends StatelessWidget {
   void _handleBottomNavigationTap(
     BuildContext context,
     int index,
-    DashboardOverview? overview,
+    FeedOverview? overview,
   ) {
     switch (index) {
       case 0:
+        context.go(Routes.home);
         break;
       case 1:
-        context.go(Routes.feed);
         break;
       default:
         _showSnack(

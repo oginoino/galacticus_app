@@ -1,8 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
+import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
 import '../service/api/api_service_factory.dart';
+import '../service/feed/feed_mock_service.dart';
+import '../service/feed/feed_service_interface.dart';
 import '../service/home/home_mock_service.dart';
 import '../service/home/home_service_interface.dart';
 import '../service/http/http_service.dart';
@@ -37,6 +40,10 @@ class DependencyInjection {
       ..registerLazySingleton<HttpServiceInterface>(HttpService.new)
       ..registerLazySingleton<ApiServiceFactory>(
         () => ApiServiceFactory(sl<HttpServiceInterface>()),
+      )
+      ..registerLazySingleton<FeedServiceInterface>(FeedMockService.new)
+      ..registerLazySingleton<FeedRepository>(
+        () => FeedRepository(sl<FeedServiceInterface>()),
       )
       ..registerLazySingleton<HomeServiceInterface>(HomeMockService.new)
       ..registerLazySingleton<HomeRepository>(

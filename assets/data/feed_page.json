@@ -1,0 +1,116 @@
+{
+  "assets": {
+    "headerLogoAsset": "assets/images/prototype/logo-galacticos.png",
+    "currentUserAvatarAsset": "assets/images/prototype/paulo.jpg"
+  },
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil"
+  },
+  "messages": {
+    "quickAction": "Nova publicação conectada na próxima etapa.",
+    "filterAction": "Filtro avançado será conectado na próxima etapa.",
+    "likeAction": "Curtidas detalhadas entram na próxima integração.",
+    "commentAction": "Comentários completos entram na próxima integração.",
+    "shareAction": "Compartilhamento será habilitado em breve.",
+    "saveAction": "Favoritos serão habilitados em breve."
+  },
+  "stories": [
+    {
+      "label": "Seu story",
+      "avatarAsset": "assets/images/prototype/paulo.jpg",
+      "initials": null,
+      "ringColorHex": "#7EF7E7",
+      "hasAddBadge": true
+    },
+    {
+      "label": "gabe",
+      "avatarAsset": "assets/images/prototype/avatar-gabe.jpg",
+      "initials": null,
+      "ringColorHex": "#7EF7E7",
+      "hasAddBadge": false
+    },
+    {
+      "label": "maria",
+      "avatarAsset": null,
+      "initials": "MP",
+      "ringColorHex": "#FF6AA9",
+      "hasAddBadge": false
+    },
+    {
+      "label": "leo",
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg",
+      "initials": null,
+      "ringColorHex": "#A855F7",
+      "hasAddBadge": false
+    },
+    {
+      "label": "sofia",
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg",
+      "initials": null,
+      "ringColorHex": "#FFB04D",
+      "hasAddBadge": false
+    },
+    {
+      "label": "carlos",
+      "avatarAsset": null,
+      "initials": "CM",
+      "ringColorHex": "#4DB4FF",
+      "hasAddBadge": false
+    }
+  ],
+  "filters": [
+    {
+      "label": "Seguindo",
+      "isSelected": true
+    },
+    {
+      "label": "Clube",
+      "isSelected": false
+    },
+    {
+      "label": "Próximos",
+      "isSelected": false
+    }
+  ],
+  "posts": [
+    {
+      "authorHandle": "gabe.tennis",
+      "clubLabel": "Galácticos Alphaville",
+      "timeAgoLabel": "2h atrás",
+      "avatarAsset": "assets/images/prototype/avatar-gabe.jpg",
+      "initials": null,
+      "imageAsset": "assets/images/prototype/feed-tennis-match.jpg",
+      "sportLabel": "Tennis",
+      "likesCountLabel": "24",
+      "commentsCountLabel": "6",
+      "viewCommentsLabel": "Ver 5 comentários"
+    },
+    {
+      "authorHandle": "jackson",
+      "clubLabel": "Galácticos Alphaville",
+      "timeAgoLabel": "4h atrás",
+      "avatarAsset": null,
+      "initials": "J",
+      "imageAsset": "assets/images/prototype/feed-group.jpg",
+      "sportLabel": "Clube",
+      "likesCountLabel": "31",
+      "commentsCountLabel": "8",
+      "viewCommentsLabel": "Ver 7 comentários"
+    },
+    {
+      "authorHandle": "sofia.padel",
+      "clubLabel": "Galácticos Cidade Jardim",
+      "timeAgoLabel": "6h atrás",
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg",
+      "initials": null,
+      "imageAsset": "assets/images/prototype/feed-padel-evening.jpg",
+      "sportLabel": "Padel",
+      "likesCountLabel": "18",
+      "commentsCountLabel": "4",
+      "viewCommentsLabel": "Ver 3 comentários"
+    }
+  ]
+}

@@ -229,6 +229,22 @@ abstract final class AppSize {
   static const ringSmall = 5.0;
   static const badgeSquare = 28.0;
   static const chartBarWidthRadius = 1.0;
+  static const feedLogoSize = 24.0;
+  static const feedHeaderAvatar = 48.0;
+  static const feedStoryRingSize = 82.0;
+  static const feedStoryRingSizeCompact = 74.0;
+  static const feedStoryAvatarSize = 70.0;
+  static const feedStoryAvatarSizeCompact = 62.0;
+  static const feedStoryListHeight = 114.0;
+  static const feedStoryAddBadge = 24.0;
+  static const feedFilterHeight = 50.0;
+  static const feedFilterHeightCompact = 46.0;
+  static const feedFilterIconButton = 50.0;
+  static const feedTopActionButton = 40.0;
+  static const feedPostHeaderAvatar = 44.0;
+  static const feedPostImageHeight = 286.0;
+  static const feedPostImageHeightCompact = 254.0;
+  static const feedPostActionIcon = 20.0;
 }
 
 abstract final class AppChartHeights {

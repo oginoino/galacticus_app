@@ -9,6 +9,8 @@ class AppConstants {
     required this.authBaseUrl,
     required this.coreApiBaseUrl,
     required this.homeLoadErrorMessage,
+    required this.feedLoadErrorMessage,
+    required this.navigationUnavailableMessage,
     required this.retryLabel,
   });
 
@@ -19,6 +21,8 @@ class AppConstants {
   final String authBaseUrl;
   final String coreApiBaseUrl;
   final String homeLoadErrorMessage;
+  final String feedLoadErrorMessage;
+  final String navigationUnavailableMessage;
   final String retryLabel;
 
   static const instance = AppConstants(
@@ -29,6 +33,8 @@ class AppConstants {
     authBaseUrl: Environment.authBaseUrl,
     coreApiBaseUrl: Environment.coreApiBaseUrl,
     homeLoadErrorMessage: 'Não foi possível carregar o dashboard agora.',
+    feedLoadErrorMessage: 'Não foi possível carregar o feed agora.',
+    navigationUnavailableMessage: 'Área disponível na próxima etapa.',
     retryLabel: 'Tentar novamente',
   );
 }
