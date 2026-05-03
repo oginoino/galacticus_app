@@ -5,6 +5,7 @@ import '../di/di.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
+import '../repository/notifications_repository.dart';
 import '../repository/profile_repository.dart';
 import '../service/localization/localization_service.dart';
 import '../service/persistence/persistence_service.dart';
@@ -12,6 +13,7 @@ import 'communities_provider.dart';
 import 'feed_provider.dart';
 import 'home_provider.dart';
 import 'locale_provider.dart';
+import 'notifications_provider.dart';
 import 'profile_provider.dart';
 import 'theme_provider.dart';
 
@@ -41,6 +43,11 @@ final List<SingleChildWidget> registerProviders = [
     create: (_) => CommunitiesProvider(
       sl<CommunitiesRepository>(),
     )..loadCommunities(),
+  ),
+  ChangeNotifierProvider<NotificationsProvider>(
+    create: (_) => NotificationsProvider(
+      sl<NotificationsRepository>(),
+    )..loadNotifications(),
   ),
   ChangeNotifierProvider<ProfileProvider>(
     create: (_) => ProfileProvider(

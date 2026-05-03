@@ -12,9 +12,11 @@ class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
     required this.overview,
+    required this.onNotificationTap,
   });
 
   final DashboardOverview overview;
+  final VoidCallback onNotificationTap;
 
   @override
   Widget build(BuildContext context) {
@@ -58,38 +60,42 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          width: AppSize.avatarLg,
-          height: AppSize.avatarLg,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: AppPalette.glassIcon,
-            border: Border.all(
-              color: AppPalette.white.withValues(alpha: AppOpacity.lg),
-              width: AppStroke.hairline,
-            ),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              const Icon(
-                Icons.notifications_none_rounded,
-                color: AppPalette.white,
-                size: AppIconSize.giant,
+        InkWell(
+          onTap: onNotificationTap,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          child: Container(
+            width: AppSize.avatarLg,
+            height: AppSize.avatarLg,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppPalette.glassIcon,
+              border: Border.all(
+                color: AppPalette.white.withValues(alpha: AppOpacity.lg),
+                width: AppStroke.hairline,
               ),
-              Positioned(
-                top: AppSpacing.xxl,
-                right: AppSpacing.xxl,
-                child: Container(
-                  width: AppSize.statusDot,
-                  height: AppSize.statusDot,
-                  decoration: const BoxDecoration(
-                    color: AppPalette.primary,
-                    shape: BoxShape.circle,
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                const Icon(
+                  Icons.notifications_none_rounded,
+                  color: AppPalette.white,
+                  size: AppIconSize.giant,
+                ),
+                Positioned(
+                  top: AppSpacing.xxl,
+                  right: AppSpacing.xxl,
+                  child: Container(
+                    width: AppSize.statusDot,
+                    height: AppSize.statusDot,
+                    decoration: const BoxDecoration(
+                      color: AppPalette.primary,
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],

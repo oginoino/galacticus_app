@@ -13,10 +13,12 @@ class HomeContent extends StatelessWidget {
   const HomeContent({
     super.key,
     required this.overview,
+    required this.onNotificationTap,
     required this.onMessage,
   });
 
   final DashboardOverview overview;
+  final VoidCallback onNotificationTap;
   final ValueChanged<String> onMessage;
 
   @override
@@ -35,7 +37,10 @@ class HomeContent extends StatelessWidget {
         AppSpacing.bottomContent,
       ),
       children: [
-        HomeHeader(overview: overview),
+        HomeHeader(
+          overview: overview,
+          onNotificationTap: onNotificationTap,
+        ),
         const SizedBox(height: AppSpacing.huge),
         HomeProgressBar(progress: overview.progress),
         const SizedBox(height: AppSpacing.xxxl),

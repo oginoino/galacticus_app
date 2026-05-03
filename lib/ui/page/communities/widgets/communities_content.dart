@@ -9,6 +9,7 @@ class CommunitiesContent extends StatelessWidget {
   const CommunitiesContent({
     super.key,
     required this.overview,
+    required this.onNotificationTap,
     required this.onSearchTap,
     required this.onViewAllTap,
     required this.onFilterTap,
@@ -16,6 +17,7 @@ class CommunitiesContent extends StatelessWidget {
   });
 
   final CommunitiesOverview overview;
+  final VoidCallback onNotificationTap;
   final VoidCallback onSearchTap;
   final VoidCallback onViewAllTap;
   final VoidCallback onFilterTap;
@@ -36,7 +38,10 @@ class CommunitiesContent extends StatelessWidget {
         AppSpacing.bottomContent,
       ),
       children: [
-        CommunitiesHeader(overview: overview),
+        CommunitiesHeader(
+          overview: overview,
+          onNotificationTap: onNotificationTap,
+        ),
         const SizedBox(height: AppSpacing.page),
         CommunitiesSearchBar(
           placeholder: overview.searchPlaceholder,

@@ -7,9 +7,11 @@ class CommunitiesHeader extends StatelessWidget {
   const CommunitiesHeader({
     super.key,
     required this.overview,
+    required this.onNotificationTap,
   });
 
   final CommunitiesOverview overview;
+  final VoidCallback onNotificationTap;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class CommunitiesHeader extends StatelessWidget {
         ),
         _CommunitiesTopIconButton(
           icon: Icons.notifications_none_rounded,
+          onTap: onNotificationTap,
         ),
         const SizedBox(width: AppSpacing.xl),
         Container(
@@ -202,27 +205,33 @@ class CommunitiesCategoryChips extends StatelessWidget {
 class _CommunitiesTopIconButton extends StatelessWidget {
   const _CommunitiesTopIconButton({
     required this.icon,
+    required this.onTap,
   });
 
   final IconData icon;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: AppSize.communitiesTopIcon,
-      height: AppSize.communitiesTopIcon,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppPalette.glassIcon,
-        border: Border.all(
-          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-          width: AppStroke.hairline,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      child: Container(
+        width: AppSize.communitiesTopIcon,
+        height: AppSize.communitiesTopIcon,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppPalette.glassIcon,
+          border: Border.all(
+            color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            width: AppStroke.hairline,
+          ),
         ),
-      ),
-      child: Icon(
-        icon,
-        color: AppPalette.textMuted,
-        size: AppIconSize.xxl,
+        child: Icon(
+          icon,
+          color: AppPalette.textMuted,
+          size: AppIconSize.xxl,
+        ),
       ),
     );
   }

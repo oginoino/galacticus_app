@@ -10,9 +10,11 @@ class FeedTopBar extends StatelessWidget {
   const FeedTopBar({
     super.key,
     required this.overview,
+    required this.onNotificationTap,
   });
 
   final FeedOverview overview;
+  final VoidCallback onNotificationTap;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class FeedTopBar extends StatelessWidget {
         _FeedIconButton(
           icon: Icons.notifications_none_rounded,
           showDot: true,
+          onTap: onNotificationTap,
         ),
         const SizedBox(width: AppSpacing.xl),
         Container(
@@ -317,47 +320,53 @@ class _FeedAvatar extends StatelessWidget {
 class _FeedIconButton extends StatelessWidget {
   const _FeedIconButton({
     required this.icon,
+    required this.onTap,
     this.showDot = false,
   });
 
   final IconData icon;
+  final VoidCallback onTap;
   final bool showDot;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: AppSize.feedTopActionButton,
-      height: AppSize.feedTopActionButton,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppPalette.glassIcon,
-        border: Border.all(
-          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-          width: AppStroke.hairline,
-        ),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Icon(
-            icon,
-            color: AppPalette.textMuted,
-            size: AppIconSize.xxl,
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      child: Container(
+        width: AppSize.feedTopActionButton,
+        height: AppSize.feedTopActionButton,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppPalette.glassIcon,
+          border: Border.all(
+            color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            width: AppStroke.hairline,
           ),
-          if (showDot)
-            Positioned(
-              top: AppSpacing.sm,
-              right: AppSpacing.sm,
-              child: Container(
-                width: AppSize.statusDot,
-                height: AppSize.statusDot,
-                decoration: const BoxDecoration(
-                  color: AppPalette.primary,
-                  shape: BoxShape.circle,
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Icon(
+              icon,
+              color: AppPalette.textMuted,
+              size: AppIconSize.xxl,
+            ),
+            if (showDot)
+              Positioned(
+                top: AppSpacing.sm,
+                right: AppSpacing.sm,
+                child: Container(
+                  width: AppSize.statusDot,
+                  height: AppSize.statusDot,
+                  decoration: const BoxDecoration(
+                    color: AppPalette.primary,
+                    shape: BoxShape.circle,
+                  ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }

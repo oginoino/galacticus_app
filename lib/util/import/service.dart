@@ -11,6 +11,8 @@ export '../../service/http/http_service.dart';
 export '../../service/http/http_service_interface.dart';
 export '../../service/http/http_status.dart';
 export '../../service/localization/localization_service.dart';
+export '../../service/notifications/notifications_mock_service.dart';
+export '../../service/notifications/notifications_service_interface.dart';
 export '../../service/persistence/persistence_service.dart';
 export '../../service/profile/profile_mock_service.dart';
 export '../../service/profile/profile_service_interface.dart';

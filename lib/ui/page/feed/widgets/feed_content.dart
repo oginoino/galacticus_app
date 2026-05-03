@@ -9,10 +9,12 @@ class FeedContent extends StatelessWidget {
   const FeedContent({
     super.key,
     required this.overview,
+    required this.onNotificationTap,
     required this.onMessage,
   });
 
   final FeedOverview overview;
+  final VoidCallback onNotificationTap;
   final ValueChanged<String> onMessage;
 
   @override
@@ -30,7 +32,10 @@ class FeedContent extends StatelessWidget {
         AppSpacing.bottomContent,
       ),
       children: [
-        FeedTopBar(overview: overview),
+        FeedTopBar(
+          overview: overview,
+          onNotificationTap: onNotificationTap,
+        ),
         const SizedBox(height: AppSpacing.giant),
         FeedStoriesSection(stories: overview.stories),
         const SizedBox(height: AppSpacing.huge),

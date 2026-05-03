@@ -1,0 +1,77 @@
+{
+  "title": "Notificações",
+  "unreadSummary": "3 novas",
+  "markAllReadLabel": "Marcar lidas",
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil"
+  },
+  "messages": {
+    "quickAction": "Notificações avançadas entram na próxima etapa.",
+    "markAllReadAction": "Marcar como lidas entra na próxima integração.",
+    "notificationTapAction": "Detalhe da notificação entra na próxima etapa."
+  },
+  "items": [
+    {
+      "type": "photo",
+      "title": "Novas fotos disponíveis",
+      "subtitle": "2 fotos profissionais da sua sessão de ontem",
+      "timeLabel": "15 min",
+      "isUnread": true
+    },
+    {
+      "type": "like",
+      "title": "Gabriel curtiu seu post",
+      "subtitle": "Jogo da Manhã",
+      "timeLabel": "1h",
+      "isUnread": true,
+      "avatarAsset": "assets/images/prototype/avatar-gabe.jpg"
+    },
+    {
+      "type": "community",
+      "title": "Novo evento no RALLY CREW",
+      "subtitle": "Café & Investimentos · 24 Mai · 8:30",
+      "timeLabel": "2h",
+      "isUnread": true
+    },
+    {
+      "type": "trophy",
+      "title": "Resultado registrado",
+      "subtitle": "Vitória vs Carlos M. · 6-4, 7-5",
+      "timeLabel": "3h",
+      "isUnread": false
+    },
+    {
+      "type": "comment",
+      "title": "Sofia comentou",
+      "subtitle": "Essas calorias, tá voando!",
+      "timeLabel": "4h",
+      "isUnread": false,
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg"
+    },
+    {
+      "type": "member",
+      "title": "Leo entrou no RALLY CREW",
+      "subtitle": "Novo membro na comunidade",
+      "timeLabel": "5h",
+      "isUnread": false,
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg"
+    },
+    {
+      "type": "photo",
+      "title": "Foto pronta para desbloquear",
+      "subtitle": "Match Point · Court 02 · R$ 24,90",
+      "timeLabel": "6h",
+      "isUnread": false
+    },
+    {
+      "type": "trophy",
+      "title": "Treino registrado",
+      "subtitle": "1h 23m · 742 kcal · Tennis",
+      "timeLabel": "1d",
+      "isUnread": false
+    }
+  ]
+}

@@ -304,6 +304,10 @@ abstract final class AppSize {
   static const profileTabHeight = 36.0;
   static const profileGalleryRadius = 24.0;
   static const profileGalleryAspectRatio = 0.82;
+  static const notificationsTopAction = 40.0;
+  static const notificationsLeading = 40.0;
+  static const notificationsAvatar = 40.0;
+  static const notificationsUnreadDot = 7.0;
 }
 
 abstract final class AppChartHeights {
@@ -402,6 +406,15 @@ abstract final class AppInsets {
   );
   static const profileTab = EdgeInsets.symmetric(
     horizontal: AppSpacing.page,
+  );
+  static const notificationsPage = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    0,
+    AppSpacing.page,
+    AppSpacing.bottomContent,
+  );
+  static const notificationsItem = EdgeInsets.symmetric(
+    vertical: AppSpacing.xl,
   );
 }
 

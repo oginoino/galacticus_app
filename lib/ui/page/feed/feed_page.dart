@@ -46,6 +46,7 @@ class FeedPage extends StatelessWidget {
                 color: AppPalette.primary,
                 child: FeedContent(
                   overview: overview,
+                  onNotificationTap: () => context.push(Routes.notifications),
                   onMessage: (message) => _showSnack(context, message),
                 ),
               ),
