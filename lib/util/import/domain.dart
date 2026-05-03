@@ -1,4 +1,7 @@
 export '../../domain/app_user.dart';
+export '../../domain/assistant_messages.dart';
+export '../../domain/assistant_overview.dart';
+export '../../domain/assistant_prompt_option.dart';
 export '../../domain/booking_amenity.dart';
 export '../../domain/booking_date_option.dart';
 export '../../domain/booking_messages.dart';

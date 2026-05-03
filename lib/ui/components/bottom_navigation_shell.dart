@@ -27,122 +27,121 @@ class BottomNavigationShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+    final bottomOffset =
+        bottomInset > 0 ? AppSize.navBottomPaddingSafe : AppSize.navBottomPadding;
 
-    return SafeArea(
-      top: false,
-      child: Padding(
-        padding: EdgeInsets.fromLTRB(
-          AppSpacing.screen,
-          AppOpacity.none,
-          AppSpacing.screen,
-          bottomInset > 0 ? AppSize.navBottomPaddingSafe : AppSize.navBottomPadding,
-        ),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Positioned(
-              child: IgnorePointer(
-                child: Container(
-                  width: AppSize.navGlow,
-                  height: AppSize.navGlow,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient: RadialGradient(
-                      colors: [
-                        AppPalette.primaryStrong.withValues(alpha: AppOpacity.heavy),
-                        AppPalette.primaryStrong.withValues(alpha: AppOpacity.strong),
-                        AppPalette.primaryStrong.withValues(alpha: AppOpacity.none),
-                      ],
-                      stops: const [0.0, 0.42, 1.0],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-              child: BackdropFilter(
-                filter: ImageFilter.blur(
-                  sigmaX: AppBlur.navGlass,
-                  sigmaY: AppBlur.navGlass,
-                ),
-                child: Container(
-                  height: AppSize.navBarHeight,
-                  padding: AppInsets.navBar,
-                  decoration: BoxDecoration(
-                    color: AppPalette.glassDark,
-                    borderRadius: BorderRadius.circular(AppRadius.pill),
-                    border: Border.all(
-                      color: AppPalette.white.withValues(alpha: AppOpacity.xl),
-                      width: AppStroke.hairline,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppPalette.black.withValues(alpha: AppOpacity.stronger),
-                        blurRadius: AppShadow.navBlur,
-                        offset: const Offset(0, AppShadow.navOffsetY),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: _NavItem(
-                          icon: Icons.home_outlined,
-                          label: homeLabel,
-                          selected: currentIndex == 0,
-                          onTap: () => onSelect(0),
-                        ),
-                      ),
-                      Expanded(
-                        child: _NavItem(
-                          icon: Icons.rss_feed_outlined,
-                          label: feedLabel,
-                          selected: currentIndex == 1,
-                          onTap: () => onSelect(1),
-                        ),
-                      ),
-                      const SizedBox(width: AppSize.navCenterGap),
-                      Expanded(
-                        child: _NavItem(
-                          icon: Icons.shield_outlined,
-                          label: clubsLabel,
-                          selected: currentIndex == 2,
-                          onTap: () => onSelect(2),
-                        ),
-                      ),
-                      Expanded(
-                        child: _NavItem(
-                          icon: Icons.person_outline,
-                          label: profileLabel,
-                          selected: currentIndex == 3,
-                          onTap: () => onSelect(3),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            InkWell(
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-              onTap: onCreateTap,
+    return Padding(
+      padding: EdgeInsets.fromLTRB(
+        AppSpacing.screen,
+        0,
+        AppSpacing.screen,
+        bottomOffset,
+      ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Positioned(
+            child: IgnorePointer(
               child: Container(
-                width: AppSize.navCenterButton,
-                height: AppSize.navCenterButton,
-                decoration: const BoxDecoration(
-                  color: AppPalette.primaryStrong,
+                width: AppSize.navGlow,
+                height: AppSize.navGlow,
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.add,
-                  color: AppPalette.black,
-                  size: AppIconSize.giant,
+                  gradient: RadialGradient(
+                    colors: [
+                      AppPalette.primaryStrong.withValues(alpha: AppOpacity.heavy),
+                      AppPalette.primaryStrong.withValues(alpha: AppOpacity.strong),
+                      AppPalette.primaryStrong.withValues(alpha: AppOpacity.none),
+                    ],
+                    stops: const [0.0, 0.42, 1.0],
+                  ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(AppRadius.pill),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(
+                sigmaX: AppBlur.navGlass,
+                sigmaY: AppBlur.navGlass,
+              ),
+              child: Container(
+                height: AppSize.navBarHeight,
+                padding: AppInsets.navBar,
+                decoration: BoxDecoration(
+                  color: AppPalette.glassDark,
+                  borderRadius: BorderRadius.circular(AppRadius.pill),
+                  border: Border.all(
+                    color: AppPalette.white.withValues(alpha: AppOpacity.xl),
+                    width: AppStroke.hairline,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppPalette.black.withValues(alpha: AppOpacity.stronger),
+                      blurRadius: AppShadow.navBlur,
+                      offset: const Offset(0, AppShadow.navOffsetY),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: _NavItem(
+                        icon: Icons.home_outlined,
+                        label: homeLabel,
+                        selected: currentIndex == 0,
+                        onTap: () => onSelect(0),
+                      ),
+                    ),
+                    Expanded(
+                      child: _NavItem(
+                        icon: Icons.rss_feed_outlined,
+                        label: feedLabel,
+                        selected: currentIndex == 1,
+                        onTap: () => onSelect(1),
+                      ),
+                    ),
+                    const SizedBox(width: AppSize.navCenterGap),
+                    Expanded(
+                      child: _NavItem(
+                        icon: Icons.shield_outlined,
+                        label: clubsLabel,
+                        selected: currentIndex == 2,
+                        onTap: () => onSelect(2),
+                      ),
+                    ),
+                    Expanded(
+                      child: _NavItem(
+                        icon: Icons.person_outline,
+                        label: profileLabel,
+                        selected: currentIndex == 3,
+                        onTap: () => onSelect(3),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          InkWell(
+            borderRadius: BorderRadius.circular(AppRadius.pill),
+            onTap: onCreateTap,
+            child: Container(
+              width: AppSize.navCenterButton,
+              height: AppSize.navCenterButton,
+              decoration: const BoxDecoration(
+                color: AppPalette.primaryStrong,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.add,
+                color: AppPalette.black,
+                size: AppIconSize.giant,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

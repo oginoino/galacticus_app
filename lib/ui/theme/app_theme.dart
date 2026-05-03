@@ -131,6 +131,7 @@ abstract final class AppMotion {
   static const assistantLogoPulseMaxScale = 1.04;
   static const assistantLogoPulseDurationMs = 2000;
   static const assistantLogoRotateDurationMs = 9000;
+  static const assistantScreenGlowDurationMs = 3600;
 }
 
 abstract final class AppShadow {
@@ -191,8 +192,8 @@ abstract final class AppSize {
   static const navGlow = 118.0;
   static const navCenterButton = 44.0;
   static const navCenterGap = 72.0;
-  static const navBottomPadding = 8.0;
-  static const navBottomPaddingSafe = 2.0;
+  static const navBottomPadding = 4.0;
+  static const navBottomPaddingSafe = 8.0;
   static const avatar = 54.0;
   static const avatarLg = 58.0;
   static const statusDot = 10.0;
@@ -314,6 +315,12 @@ abstract final class AppSize {
   static const bookingDateCardWidth = 72.0;
   static const bookingDateCardHeight = 64.0;
   static const bookingTimeChipHeight = 38.0;
+  static const assistantTopAction = 40.0;
+  static const assistantStatusHeight = 28.0;
+  static const assistantHeroLogo = 84.0;
+  static const assistantPromptHeight = 52.0;
+  static const assistantInputHeight = 52.0;
+  static const assistantSendButton = 36.0;
 }
 
 abstract final class AppChartHeights {
@@ -434,6 +441,18 @@ abstract final class AppInsets {
     AppSpacing.giant,
     AppSpacing.giant,
     AppSpacing.giant,
+  );
+  static const assistantPage = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+    AppSpacing.page,
+  );
+  static const assistantPrompt = EdgeInsets.symmetric(
+    horizontal: AppSpacing.giant,
+  );
+  static const assistantInput = EdgeInsets.symmetric(
+    horizontal: AppSpacing.giant,
   );
 }
 

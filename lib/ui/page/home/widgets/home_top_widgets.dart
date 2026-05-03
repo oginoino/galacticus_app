@@ -231,9 +231,11 @@ class HomeAssistantCard extends StatelessWidget {
   const HomeAssistantCard({
     super.key,
     required this.overview,
+    required this.onTap,
   });
 
   final DashboardOverview overview;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -252,6 +254,7 @@ class HomeAssistantCard extends StatelessWidget {
           AppPalette.assistantEnd,
         ],
       ),
+      onTap: onTap,
       child: Row(
         children: [
           Container(

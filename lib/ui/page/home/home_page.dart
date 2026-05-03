@@ -49,6 +49,7 @@ class HomePage extends StatelessWidget {
                   overview: overview,
                   onNotificationTap: () => context.push(Routes.notifications),
                   onBookingTap: () => context.push(Routes.booking),
+                  onAssistantTap: () => context.push(Routes.assistant),
                   onMessage: (message) => _showSnack(context, message),
                 ),
               ),

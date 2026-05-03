@@ -13,6 +13,7 @@ class AppConstants {
     required this.communitiesLoadErrorMessage,
     required this.notificationsLoadErrorMessage,
     required this.bookingLoadErrorMessage,
+    required this.assistantLoadErrorMessage,
     required this.profileLoadErrorMessage,
     required this.navigationUnavailableMessage,
     required this.retryLabel,
@@ -29,6 +30,7 @@ class AppConstants {
   final String communitiesLoadErrorMessage;
   final String notificationsLoadErrorMessage;
   final String bookingLoadErrorMessage;
+  final String assistantLoadErrorMessage;
   final String profileLoadErrorMessage;
   final String navigationUnavailableMessage;
   final String retryLabel;
@@ -45,6 +47,7 @@ class AppConstants {
     communitiesLoadErrorMessage: 'Não foi possível carregar os clubes agora.',
     notificationsLoadErrorMessage: 'Não foi possível carregar as notificações agora.',
     bookingLoadErrorMessage: 'Não foi possível carregar a reserva agora.',
+    assistantLoadErrorMessage: 'Não foi possível carregar o assistente agora.',
     profileLoadErrorMessage: 'Não foi possível carregar o perfil agora.',
     navigationUnavailableMessage: 'Área disponível na próxima etapa.',
     retryLabel: 'Tentar novamente',

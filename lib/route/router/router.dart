@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 
+import '../../ui/page/assistant/assistant_page.dart';
 import '../../ui/page/booking/booking_page.dart';
 import '../../ui/page/communities/communities_page.dart';
 import '../../ui/page/feed/feed_page.dart';
@@ -23,6 +24,11 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.feed,
       path: Routes.feed,
       builder: (_, __) => const FeedPage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.assistant,
+      path: Routes.assistant,
+      builder: (_, __) => const AssistantPage(),
     ).toGoRoute(),
     AppRoute(
       name: RouteNames.booking,

@@ -15,12 +15,14 @@ class HomeContent extends StatelessWidget {
     required this.overview,
     required this.onNotificationTap,
     required this.onBookingTap,
+    required this.onAssistantTap,
     required this.onMessage,
   });
 
   final DashboardOverview overview;
   final VoidCallback onNotificationTap;
   final VoidCallback onBookingTap;
+  final VoidCallback onAssistantTap;
   final ValueChanged<String> onMessage;
 
   @override
@@ -51,7 +53,10 @@ class HomeContent extends StatelessWidget {
           onPressed: onBookingTap,
         ),
         const SizedBox(height: AppSpacing.huge),
-        HomeAssistantCard(overview: overview),
+        HomeAssistantCard(
+          overview: overview,
+          onTap: onAssistantTap,
+        ),
         const SizedBox(height: AppSpacing.huge),
         HomeHeroCard(
           overview: overview,

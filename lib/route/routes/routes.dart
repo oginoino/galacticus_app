@@ -4,6 +4,7 @@ abstract final class Routes {
   static const communities = '/comunidades';
   static const notifications = '/notificacoes';
   static const booking = '/reservar';
+  static const assistant = '/assistente';
   static const profile = '/perfil';
 }
 
@@ -13,5 +14,6 @@ abstract final class RouteNames {
   static const communities = 'communities';
   static const notifications = 'notifications';
   static const booking = 'booking';
+  static const assistant = 'assistant';
   static const profile = 'profile';
 }
