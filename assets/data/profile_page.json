@@ -1,0 +1,92 @@
+{
+  "name": "Paulo Henrique",
+  "clubLabel": "Galácticos Alphaville",
+  "levelLabel": "Nível 6",
+  "pointsLabel": "4.250 pts",
+  "bioLineOne": "Apaixonado por tênis, evolução e bons desafios.",
+  "bioLineTwo": "Sonhando grande, treinando sempre.",
+  "heroImageAsset": "assets/images/prototype/profile-paulo-hero.jpg",
+  "avatarAsset": "assets/images/prototype/paulo.jpg",
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil"
+  },
+  "messages": {
+    "quickAction": "Nova ação de perfil entra na próxima etapa.",
+    "socialAction": "Integração social entra na próxima etapa.",
+    "tabAction": "Troca real de abas entra na próxima integração.",
+    "galleryAction": "Detalhe da mídia entra na próxima etapa."
+  },
+  "stats": [
+    {
+      "value": "124",
+      "label": "Partidas"
+    },
+    {
+      "value": "68%",
+      "label": "Win Rate"
+    },
+    {
+      "value": "237",
+      "label": "Treinos"
+    },
+    {
+      "value": "12",
+      "label": "Sequência"
+    }
+  ],
+  "socialLinks": [
+    {
+      "platform": "instagram",
+      "icon": "instagram"
+    },
+    {
+      "platform": "linkedin",
+      "icon": "linkedin"
+    },
+    {
+      "platform": "x",
+      "icon": "x"
+    },
+    {
+      "platform": "whatsapp",
+      "icon": "whatsapp"
+    }
+  ],
+  "tabs": [
+    {
+      "label": "Posts",
+      "isSelected": true
+    },
+    {
+      "label": "Shots",
+      "isSelected": false
+    },
+    {
+      "label": "Atividade",
+      "isSelected": false
+    }
+  ],
+  "galleryItems": [
+    {
+      "imageAsset": "assets/images/prototype/profile-gallery-1.jpg"
+    },
+    {
+      "imageAsset": "assets/images/prototype/profile-gallery-2.jpg"
+    },
+    {
+      "imageAsset": "assets/images/prototype/profile-gallery-3.jpg"
+    },
+    {
+      "imageAsset": "assets/images/prototype/profile-gallery-4.jpg"
+    },
+    {
+      "imageAsset": "assets/images/prototype/profile-gallery-5.jpg"
+    },
+    {
+      "imageAsset": "assets/images/prototype/profile-gallery-6.jpg"
+    }
+  ]
+}

@@ -1,17 +1,35 @@
 # galacticus_app
 
-A new Flutter project.
+Base Flutter estruturada a partir do blueprint descrito em `docs/manual_estrutura_tecnica_flutter.md` para reproduzir o protótipo do Galácticos Club.
 
-## Getting Started
+## Arquitetura
 
-This project is a starting point for a Flutter application.
+Estrutura principal em `lib/`:
 
-A few resources to get you started if this is your first Flutter project:
+```text
+lib/
+├── app/
+├── di/
+├── domain/
+├── dto/
+├── l10n/
+├── provider/
+├── repository/
+├── route/
+├── service/
+├── ui/
+└── util/
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Como executar
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+flutter run
+```
+
+## Dart defines opcionais
+
+```bash
+flutter run --dart-define=APP_NAME="Galácticos Club" --dart-define=APP_TITLE="Galácticos Club"
+```

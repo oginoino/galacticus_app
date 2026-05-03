@@ -1,0 +1,111 @@
+{
+  "title": "Clubes",
+  "searchPlaceholder": "Buscar clubes",
+  "myClubsTitle": "Seus clubes",
+  "discoverTitle": "Descobrir clubes",
+  "viewAllLabel": "Ver todos ›",
+  "currentUserAvatarAsset": "assets/images/prototype/paulo.jpg",
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil"
+  },
+  "messages": {
+    "quickAction": "Nova comunidade entra na próxima etapa.",
+    "searchAction": "Busca completa entra na próxima integração.",
+    "viewAllAction": "Listagem completa entra na próxima etapa.",
+    "filterAction": "Filtro por categoria entra na próxima integração.",
+    "joinAction": "Entrada na comunidade será habilitada em breve."
+  },
+  "myClubs": [
+    {
+      "title": "RALLY CREW",
+      "membersLabel": "125 membros",
+      "imageAsset": "assets/images/prototype/club-rally.jpg"
+    },
+    {
+      "title": "MINDSET CLUB",
+      "membersLabel": "84 membros",
+      "imageAsset": "assets/images/prototype/club-mindset.jpg"
+    },
+    {
+      "title": "PADEL SOCIETY",
+      "membersLabel": "63 membros",
+      "imageAsset": "assets/images/prototype/club-padel.jpg"
+    }
+  ],
+  "categories": [
+    {
+      "label": "Todos",
+      "isSelected": true
+    },
+    {
+      "label": "Tênis",
+      "isSelected": false
+    },
+    {
+      "label": "Padel",
+      "isSelected": false
+    },
+    {
+      "label": "Fitness",
+      "isSelected": false
+    },
+    {
+      "label": "Negócios",
+      "isSelected": false
+    }
+  ],
+  "discoverClubs": [
+    {
+      "title": "INVEST & PLAY",
+      "tagsLabel": "Negócios · Networking · Tênis",
+      "subtitle": "Onde negócios se encontram.",
+      "membersLabel": "58 membros",
+      "joinLabel": "Entrar",
+      "imageAsset": "assets/images/prototype/club-mindset.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/avatar-gabe.jpg",
+        "assets/images/prototype/avatar-sofia.jpg",
+        "assets/images/prototype/avatar-leo.jpg"
+      ]
+    },
+    {
+      "title": "SINGLES SATURDAY",
+      "tagsLabel": "Social · Tênis · Amigos",
+      "subtitle": "Jogos, drinks, match.",
+      "membersLabel": "92 membros",
+      "joinLabel": "Entrar",
+      "imageAsset": "assets/images/prototype/club-rally.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/avatar-gabe.jpg",
+        "assets/images/prototype/avatar-sofia.jpg"
+      ]
+    },
+    {
+      "title": "EARLY BIRDS",
+      "tagsLabel": "Treino · 6AM · Disciplina",
+      "subtitle": "Acorde. Treine. Conquiste.",
+      "membersLabel": "45 membros",
+      "joinLabel": "Entrar",
+      "imageAsset": "assets/images/prototype/club-padel.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/avatar-leo.jpg",
+        "assets/images/prototype/avatar-gabe.jpg"
+      ]
+    },
+    {
+      "title": "NEXT GEN",
+      "tagsLabel": "Sub-25 · Performance · Futuro",
+      "subtitle": "A nova geração do clube.",
+      "membersLabel": "37 membros",
+      "joinLabel": "Entrar",
+      "imageAsset": "assets/images/prototype/club-rally.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/avatar-sofia.jpg",
+        "assets/images/prototype/avatar-leo.jpg"
+      ]
+    }
+  ]
+}
