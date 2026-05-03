@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -145,10 +147,13 @@ class HomeBookingCard extends StatelessWidget {
               color: AppPalette.badgeLocation,
               borderRadius: BorderRadius.circular(AppRadius.xxl),
             ),
-            child: Icon(
-              Icons.navigation_outlined,
-              color: AppPalette.primary,
-              size: compact ? AppIconSize.xl : AppIconSize.xxl,
+            child: Transform.rotate(
+              angle: math.pi / 4,
+              child: Icon(
+                Icons.navigation_outlined,
+                color: AppPalette.primary,
+                size: compact ? AppIconSize.xl : AppIconSize.xxl,
+              ),
             ),
           ),
           SizedBox(width: compact ? AppSpacing.lg : AppSpacing.xl),
