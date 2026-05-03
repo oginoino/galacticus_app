@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../domain/dashboard_overview.dart';
 import '../../../components/glow_card.dart';
@@ -253,9 +254,33 @@ class HomeAssistantCard extends StatelessWidget {
               compact ? AppSpacing.md : AppSize.assistantInnerPadding,
             ),
             child: Image.asset(
-                      overview.assistantLogoAsset,
+              overview.assistantLogoAsset,
               fit: BoxFit.contain,
-            ),
+            )
+                .animate(
+                  onPlay: (controller) => controller.repeat(reverse: true),
+                )
+                .scale(
+                  begin: const Offset(
+                    AppMotion.assistantLogoPulseMinScale,
+                    AppMotion.assistantLogoPulseMinScale,
+                  ),
+                  end: const Offset(
+                    AppMotion.assistantLogoPulseMaxScale,
+                    AppMotion.assistantLogoPulseMaxScale,
+                  ),
+                  duration: AppMotion.assistantLogoPulseDurationMs.ms,
+                  curve: Curves.linear,
+                )
+                .animate(
+                  onPlay: (controller) => controller.repeat(),
+                )
+                .rotate(
+                  begin: 0,
+                  end: 1,
+                  duration: AppMotion.assistantLogoRotateDurationMs.ms,
+                  curve: Curves.linear,
+                ),
           ),
           SizedBox(width: compact ? AppSpacing.xl : AppSpacing.xxl),
           Expanded(

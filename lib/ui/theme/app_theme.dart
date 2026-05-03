@@ -126,6 +126,13 @@ abstract final class AppBlur {
   static const navGlass = 22.0;
 }
 
+abstract final class AppMotion {
+  static const assistantLogoPulseMinScale = 0.98;
+  static const assistantLogoPulseMaxScale = 1.04;
+  static const assistantLogoPulseDurationMs = 2000;
+  static const assistantLogoRotateDurationMs = 9000;
+}
+
 abstract final class AppShadow {
   static const cardBlur = 24.0;
   static const cardOffsetY = 12.0;
