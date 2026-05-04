@@ -231,17 +231,33 @@ class ProgressScoreCard extends StatelessWidget {
             ),
           if (currentLevel != null || nextLevel != null)
             const SizedBox(height: AppSpacing.sm),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(AppRadius.pill),
-            child: LinearProgressIndicator(
-              value: progress.clamp(0, 1).toDouble(),
-              minHeight: 6,
-              backgroundColor: AppPalette.white.withValues(
-                alpha: AppOpacity.xxl,
-              ),
-              valueColor: const AlwaysStoppedAnimation<Color>(
-                AppPalette.primary,
-              ),
+          SizedBox(
+            height: 6,
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      color: AppPalette.white.withValues(alpha: AppOpacity.xxl),
+                      borderRadius: BorderRadius.circular(AppRadius.pill),
+                    ),
+                  ),
+                ),
+                Positioned.fill(
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: FractionallySizedBox(
+                      widthFactor: progress.clamp(0, 1).toDouble(),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppPalette.primary,
+                          borderRadius: BorderRadius.circular(AppRadius.pill),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: AppSpacing.sm),
@@ -1134,6 +1150,7 @@ class _ProgressRingMetricWidget extends StatelessWidget {
                       value: item.progress.clamp(0, 1).toDouble(),
                       color: ringColor,
                       radius: 10,
+                      cornerRadius: 10,
                       showTitle: false,
                       borderSide: BorderSide.none,
                     ),
@@ -1141,6 +1158,7 @@ class _ProgressRingMetricWidget extends StatelessWidget {
                       value: 1 - item.progress.clamp(0, 1).toDouble(),
                       color: AppPalette.white.withValues(alpha: AppOpacity.xxl),
                       radius: 10,
+                      cornerRadius: 10,
                       showTitle: false,
                       borderSide: BorderSide.none,
                     ),
