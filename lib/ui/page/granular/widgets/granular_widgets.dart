@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-import '../../../../route/routes/routes.dart';
+import '../../../components/app_sliver_scaffold.dart';
 import '../../../components/glow_card.dart';
 import '../../../theme/app_theme.dart';
 
@@ -21,58 +20,21 @@ class HubPageScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppPalette.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return AppSliverScaffold(
+      title: title,
+      subtitle: subtitle,
+      trailing: trailing,
+      slivers: [
+        SliverPadding(
           padding: const EdgeInsets.fromLTRB(
             AppSpacing.page,
+            AppSpacing.section,
             AppSpacing.page,
-            AppSpacing.page,
-            AppSpacing.bottomContent,
+            0,
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  _HeaderCircleButton(
-                    icon: Icons.chevron_left_rounded,
-                    onTap: () {
-                      if (context.canPop()) {
-                        context.pop();
-                        return;
-                      }
-                      context.go(Routes.home);
-                    },
-                  ),
-                  const Spacer(),
-                  if (trailing != null) trailing!,
-                ],
-              ),
-              const SizedBox(height: AppSpacing.section),
-              Text(
-                title,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: AppLetterSpacing.tightLg,
-                    ),
-              ),
-              if (subtitle != null) ...[
-                const SizedBox(height: AppSpacing.sm),
-                Text(
-                  subtitle!,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppPalette.textSecondary,
-                      ),
-                ),
-              ],
-              const SizedBox(height: AppSpacing.sectionLg),
-              child,
-            ],
-          ),
+          sliver: SliverToBoxAdapter(child: child),
         ),
-      ),
+      ],
     );
   }
 }
@@ -341,36 +303,3 @@ class HubTitleRow extends StatelessWidget {
   }
 }
 
-class _HeaderCircleButton extends StatelessWidget {
-  const _HeaderCircleButton({
-    required this.icon,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: Container(
-        width: 38,
-        height: 38,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppPalette.surfaceAlt,
-          border: Border.all(
-            color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-          ),
-        ),
-        child: Icon(
-          icon,
-          color: AppPalette.white,
-          size: AppIconSize.giant,
-        ),
-      ),
-    );
-  }
-}

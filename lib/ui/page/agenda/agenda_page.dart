@@ -7,6 +7,7 @@ import '../../../domain/agenda_overview.dart';
 import '../../../provider/agenda_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
+import '../../components/app_sliver_scaffold.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
 import 'widgets/agenda_content.dart';
@@ -19,41 +20,46 @@ class AgendaPage extends StatelessWidget {
     final provider = context.watch<AgendaProvider>();
     final overview = provider.overview;
 
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationShell(
-        currentIndex: 0,
-        onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
-        homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
-        feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
-        clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
-        profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
-        onCreateTap: overview == null
-            ? null
-            : () => _showSnack(context, overview.messages.matchAction),
-      ),
-      body: ContentStateView(
-        isLoading: provider.isLoading && overview == null,
-        errorMessage:
-            provider.errorMessage != null && overview == null ? provider.errorMessage : null,
-        onRetry: provider.loadAgenda,
-        retryLabel: sl<AppConstants>().retryLabel,
-        child: overview == null
-            ? const SizedBox.shrink()
-            : AgendaContent(
-                overview: overview,
-                onBackTap: () {
-                  if (context.canPop()) {
-                    context.pop();
-                    return;
-                  }
+    final bottomNav = BottomNavigationShell(
+      currentIndex: 0,
+      onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
+      homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
+      feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
+      clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
+      profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
+      onCreateTap: overview == null
+          ? null
+          : () => _showSnack(context, overview.messages.matchAction),
+    );
 
-                  context.go(Routes.home);
-                },
-                onEventTap: () => _showSnack(context, overview.messages.eventAction),
-                onMatchTap: () => _showSnack(context, overview.messages.matchAction),
-              ),
-      ),
+    if (overview == null) {
+      return Scaffold(
+        bottomNavigationBar: bottomNav,
+        body: ContentStateView(
+          isLoading: provider.isLoading,
+          errorMessage: provider.errorMessage,
+          onRetry: provider.loadAgenda,
+          retryLabel: sl<AppConstants>().retryLabel,
+          child: const SizedBox.shrink(),
+        ),
+      );
+    }
+
+    return AppSliverScaffold(
+      title: overview.title,
+      bottomNavigationBar: bottomNav,
+      onRefresh: provider.loadAgenda,
+      slivers: [
+        SliverToBoxAdapter(
+          child: AgendaContent(
+            overview: overview,
+            onEventTap: () =>
+                _showSnack(context, overview.messages.eventAction),
+            onMatchTap: () =>
+                _showSnack(context, overview.messages.matchAction),
+          ),
+        ),
+      ],
     );
   }
 
@@ -78,7 +84,8 @@ class AgendaPage extends StatelessWidget {
       default:
         _showSnack(
           context,
-          overview?.messages.matchAction ?? sl<AppConstants>().navigationUnavailableMessage,
+          overview?.messages.matchAction ??
+              sl<AppConstants>().navigationUnavailableMessage,
         );
     }
   }

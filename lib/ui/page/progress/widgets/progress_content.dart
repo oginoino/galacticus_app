@@ -10,8 +10,6 @@ class ProgressContent extends StatelessWidget {
     required this.overview,
     required this.selectedFilterId,
     required this.selectedTimeRangeId,
-    required this.onBackTap,
-    required this.onShareTap,
     required this.onFilterTap,
     required this.onTimeRangeTap,
     required this.onStatsTap,
@@ -21,8 +19,6 @@ class ProgressContent extends StatelessWidget {
   final ProgressOverview overview;
   final String? selectedFilterId;
   final String? selectedTimeRangeId;
-  final VoidCallback onBackTap;
-  final VoidCallback onShareTap;
   final ValueChanged<String> onFilterTap;
   final ValueChanged<String> onTimeRangeTap;
   final VoidCallback onStatsTap;
@@ -32,28 +28,18 @@ class ProgressContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ProgressHeader(
-          title: overview.title,
+        ProgressFilterTabs(
           filters: overview.filters,
           timeRanges: overview.timeRanges,
           selectedFilterId: selectedFilterId ?? overview.selectedFilterId,
-          selectedTimeRangeId: selectedTimeRangeId ?? overview.selectedTimeRangeId,
-          onBackTap: onBackTap,
-          onShareTap: onShareTap,
+          selectedTimeRangeId:
+              selectedTimeRangeId ?? overview.selectedTimeRangeId,
           onFilterTap: onFilterTap,
           onTimeRangeTap: onTimeRangeTap,
         ),
-        Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            padding: const EdgeInsets.fromLTRB(
-              AppSpacing.page,
-              0,
-              AppSpacing.page,
-              AppSpacing.bottomContent,
-            ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.page),
+          child: Column(
             children: [
               ProgressScoreCard(overview: overview),
               const SizedBox(height: AppSpacing.lg),

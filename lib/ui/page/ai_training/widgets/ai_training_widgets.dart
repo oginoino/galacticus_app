@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../domain/ai_training_metric.dart';
 import '../../../../domain/ai_training_reference.dart';
+import '../../../components/app_sliver_scaffold.dart';
 import '../../../theme/app_theme.dart';
 
 class AiTrainingHeader extends StatelessWidget {
@@ -66,22 +67,11 @@ class AiTrainingHeader extends StatelessWidget {
           Semantics(
             label: closeSemantics,
             button: true,
-            child: InkWell(
+            child: AppCircleIconButton(
+              icon: Icons.close_rounded,
               onTap: onCloseTap,
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-              child: Container(
-                width: AppSize.aiTrainingTopAction,
-                height: AppSize.aiTrainingTopAction,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                ),
-                child: const Icon(
-                  Icons.close_rounded,
-                  color: AppPalette.white,
-                  size: AppIconSize.huge,
-                ),
-              ),
+              backgroundColor:
+                  AppPalette.white.withValues(alpha: AppOpacity.xxs),
             ),
           ),
         ],

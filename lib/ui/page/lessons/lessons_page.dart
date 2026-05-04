@@ -7,6 +7,7 @@ import '../../../domain/lessons_overview.dart';
 import '../../../provider/lessons_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
+import '../../components/app_sliver_scaffold.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
 import 'widgets/lessons_content.dart';
@@ -19,42 +20,45 @@ class LessonsPage extends StatelessWidget {
     final provider = context.watch<LessonsProvider>();
     final overview = provider.overview;
 
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationShell(
-        currentIndex: 0,
-        onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
-        homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
-        feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
-        clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
-        profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
-        onCreateTap: overview == null
-            ? null
-            : () => _showSnack(context, overview.messages.trackAction),
-      ),
-      body: ContentStateView(
-        isLoading: provider.isLoading && overview == null,
-        errorMessage:
-            provider.errorMessage != null && overview == null ? provider.errorMessage : null,
-        onRetry: provider.loadLessons,
-        retryLabel: sl<AppConstants>().retryLabel,
-        child: overview == null
-            ? const SizedBox.shrink()
-            : LessonsContent(
-                overview: overview,
-                onBackTap: () {
-                  if (context.canPop()) {
-                    context.pop();
-                    return;
-                  }
+    final bottomNav = BottomNavigationShell(
+      currentIndex: 0,
+      onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
+      homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
+      feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
+      clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
+      profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
+      onCreateTap: overview == null
+          ? null
+          : () => _showSnack(context, overview.messages.trackAction),
+    );
 
-                  context.go(Routes.home);
-                },
-                onFeaturedTap: () => context.push(Routes.aiTraining),
-                onTrackTap: () => context.push(Routes.aiTraining),
-                onUpcomingTap: () => context.push(Routes.aiTraining),
-              ),
-      ),
+    if (overview == null) {
+      return Scaffold(
+        bottomNavigationBar: bottomNav,
+        body: ContentStateView(
+          isLoading: provider.isLoading,
+          errorMessage: provider.errorMessage,
+          onRetry: provider.loadLessons,
+          retryLabel: sl<AppConstants>().retryLabel,
+          child: const SizedBox.shrink(),
+        ),
+      );
+    }
+
+    return AppSliverScaffold(
+      title: overview.title,
+      bottomNavigationBar: bottomNav,
+      onRefresh: provider.loadLessons,
+      slivers: [
+        SliverToBoxAdapter(
+          child: LessonsContent(
+            overview: overview,
+            onFeaturedTap: () => context.push(Routes.aiTraining),
+            onTrackTap: () => context.push(Routes.aiTraining),
+            onUpcomingTap: () => context.push(Routes.aiTraining),
+          ),
+        ),
+      ],
     );
   }
 
@@ -79,7 +83,8 @@ class LessonsPage extends StatelessWidget {
       default:
         _showSnack(
           context,
-          overview?.messages.trackAction ?? sl<AppConstants>().navigationUnavailableMessage,
+          overview?.messages.trackAction ??
+              sl<AppConstants>().navigationUnavailableMessage,
         );
     }
   }

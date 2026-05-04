@@ -8,41 +8,25 @@ class NotificationsContent extends StatelessWidget {
   const NotificationsContent({
     super.key,
     required this.overview,
-    required this.onBackTap,
-    required this.onMarkAllReadTap,
     required this.onNotificationTap,
   });
 
   final NotificationsOverview overview;
-  final VoidCallback onBackTap;
-  final VoidCallback onMarkAllReadTap;
   final VoidCallback onNotificationTap;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        NotificationsHeader(
-          overview: overview,
-          onBackTap: onBackTap,
-          onMarkAllReadTap: onMarkAllReadTap,
-        ),
-        Expanded(
-          child: ListView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            padding: AppInsets.notificationsPage,
-            children: [
-              const SizedBox(height: AppSpacing.xl),
-              NotificationsList(
-                items: overview.items,
-                onTap: onNotificationTap,
-              ),
-            ],
+    return Padding(
+      padding: AppInsets.notificationsPage,
+      child: Column(
+        children: [
+          const SizedBox(height: AppSpacing.xl),
+          NotificationsList(
+            items: overview.items,
+            onTap: onNotificationTap,
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
