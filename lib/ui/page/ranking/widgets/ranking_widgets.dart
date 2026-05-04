@@ -229,7 +229,7 @@ class _RankingPodiumColumn extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: Text(
-            entry.initials as String,
+            entry.initials,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: winner ? AppPalette.black : AppPalette.white,
                   fontWeight: FontWeight.w700,
@@ -238,7 +238,7 @@ class _RankingPodiumColumn extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          entry.name as String,
+          entry.name,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
                 fontSize: AppFontSize.bodyLg,
@@ -259,7 +259,7 @@ class _RankingPodiumColumn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                entry.positionLabel as String,
+                entry.positionLabel,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: winner ? AppPalette.primary : AppPalette.white,
                       fontWeight: FontWeight.w700,

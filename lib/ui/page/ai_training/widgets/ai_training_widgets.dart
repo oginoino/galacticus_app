@@ -557,17 +557,15 @@ class _AiTrainingTag extends StatelessWidget {
   const _AiTrainingTag({
     required this.label,
     this.highlighted = false,
-    this.compact = false,
   });
 
   final String label;
   final bool highlighted;
-  final bool compact;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: compact ? AppInsets.pillPaddingCompact : AppInsets.pillPadding,
+      padding: AppInsets.pillPadding,
       decoration: BoxDecoration(
         color: highlighted
             ? AppPalette.primary
@@ -579,7 +577,7 @@ class _AiTrainingTag extends StatelessWidget {
         style: TextStyle(
           color: highlighted ? AppPalette.black : AppPalette.white,
           fontWeight: FontWeight.w700,
-          fontSize: compact ? AppFontSize.label : AppFontSize.labelLg,
+          fontSize: AppFontSize.labelLg,
         ),
       ),
     );

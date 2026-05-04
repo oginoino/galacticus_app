@@ -1390,8 +1390,8 @@ class _RadarChartWithTooltipState extends State<_RadarChartWithTooltip> {
                   });
                 },
               ),
-              swapAnimationDuration: Duration.zero,
-              swapAnimationCurve: Curves.linear,
+              duration: Duration.zero,
+              curve: Curves.linear,
             ),
             if (_touchedIndex != null && _touchedIndex! < widget.items.length)
               _RadarTooltip(

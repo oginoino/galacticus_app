@@ -9,7 +9,6 @@ import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
-import '../../theme/app_theme.dart';
 import 'widgets/lessons_content.dart';
 
 class LessonsPage extends StatelessWidget {
