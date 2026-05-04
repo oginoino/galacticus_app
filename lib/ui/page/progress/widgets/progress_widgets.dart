@@ -472,6 +472,9 @@ class ProgressConsistencyCard extends StatelessWidget {
       overview.consistencyHeatmap,
       overview.consistencyWeekdays.length,
     );
+    const rowGap = AppSpacing.xs;
+    const tileGapHorizontal = 2.0;
+    const tileRadius = 3.0;
 
     return _SurfaceCard(
       child: Column(
@@ -498,64 +501,87 @@ class ProgressConsistencyCard extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: AppSpacing.md),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 14,
-                child: Column(
-                  children: List.generate(
-                    heatmapRows.length,
-                    (index) => SizedBox(
-                      height: 22,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          overview.consistencyWeekdays[index],
-                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                color: AppPalette.textHint,
-                                fontSize: AppFontSize.caption,
-                                fontWeight: FontWeight.w500,
+          LayoutBuilder(
+            builder: (context, constraints) {
+              const axisWidth = 14.0;
+              final columnCount = heatmapRows.isEmpty ? 1 : heatmapRows.first.length;
+              final gridWidth = constraints.maxWidth - axisWidth - AppSpacing.sm;
+              final slotWidth = gridWidth / columnCount;
+              final tileSize = math.max(0.0, slotWidth - (tileGapHorizontal * 2));
+
+              return Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: axisWidth,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: List.generate(
+                        heatmapRows.length,
+                        (index) => Padding(
+                          padding: EdgeInsets.only(
+                            bottom: index == heatmapRows.length - 1 ? 0 : rowGap,
+                          ),
+                          child: SizedBox(
+                            height: tileSize,
+                            child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                overview.consistencyWeekdays[index],
+                                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                      color: AppPalette.textHint,
+                                      fontSize: AppFontSize.caption,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                               ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(width: AppSpacing.sm),
-              Expanded(
-                child: Column(
-                  children: heatmapRows
-                      .map(
-                        (row) => Padding(
-                          padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                          child: Row(
-                            children: row
-                                .map(
-                                  (value) => Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                                      child: AspectRatio(
-                                        aspectRatio: 1,
-                                        child: DecoratedBox(
-                                          decoration: BoxDecoration(
-                                            color: _heatmapColor(value),
-                                            borderRadius: BorderRadius.circular(3),
+                  const SizedBox(width: AppSpacing.sm),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: heatmapRows
+                          .asMap()
+                          .entries
+                          .map(
+                            (entry) => Padding(
+                              padding: EdgeInsets.only(
+                                bottom: entry.key == heatmapRows.length - 1 ? 0 : rowGap,
+                              ),
+                              child: Row(
+                                children: entry.value
+                                    .map(
+                                      (value) => Expanded(
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: tileGapHorizontal,
+                                          ),
+                                          child: AspectRatio(
+                                            aspectRatio: 1,
+                                            child: DecoratedBox(
+                                              decoration: BoxDecoration(
+                                                color: _heatmapColor(value),
+                                                borderRadius: BorderRadius.circular(tileRadius),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                )
-                                .toList(growable: false),
-                          ),
-                        ),
-                      )
-                      .toList(growable: false),
-                ),
-              ),
-            ],
+                                    )
+                                    .toList(growable: false),
+                              ),
+                            ),
+                          )
+                          .toList(growable: false),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
           const SizedBox(height: AppSpacing.md),
           Container(
