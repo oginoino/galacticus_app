@@ -5,14 +5,19 @@ import '../../ui/page/ai_training/ai_training_page.dart';
 import '../../ui/page/assistant/assistant_page.dart';
 import '../../ui/page/booking/booking_page.dart';
 import '../../ui/page/checkin/checkin_page.dart';
+import '../../ui/page/club_detail/club_detail_page.dart';
 import '../../ui/page/communities/communities_page.dart';
 import '../../ui/page/feed/feed_page.dart';
 import '../../ui/page/home/home_page.dart';
 import '../../ui/page/lessons/lessons_page.dart';
+import '../../ui/page/matches/matches_page.dart';
 import '../../ui/page/notifications/notifications_page.dart';
+import '../../ui/page/post_detail/post_detail_page.dart';
 import '../../ui/page/profile/profile_page.dart';
 import '../../ui/page/progress/progress_page.dart';
 import '../../ui/page/ranking/ranking_page.dart';
+import '../../ui/page/shooting/shooting_page.dart';
+import '../../ui/page/training_detail/training_detail_page.dart';
 import '../app_route.dart';
 import '../handle/handle_redirect.dart';
 import '../routes/routes.dart';
@@ -85,6 +90,35 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.progress,
       path: Routes.progress,
       builder: (_, __) => const ProgressPage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.matches,
+      path: Routes.matches,
+      builder: (_, __) => const MatchesPage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.trainingDetail,
+      path: Routes.trainingDetail,
+      builder: (_, state) => TrainingDetailPage(
+        trainingId: state.pathParameters['id'] ?? '14',
+      ),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.shooting,
+      path: Routes.shooting,
+      builder: (_, __) => const ShootingPage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.clubDetail,
+      path: Routes.clubDetail,
+      builder: (_, state) => ClubDetailPage(
+        slug: state.pathParameters['slug'] ?? 'rally',
+      ),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.postDetail,
+      path: Routes.postDetail,
+      builder: (_, __) => const PostDetailPage(),
     ).toGoRoute(),
   ],
 );

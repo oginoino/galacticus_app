@@ -12,6 +12,11 @@ abstract final class Routes {
   static const profile = '/perfil';
   static const ranking = '/ranking';
   static const progress = '/progresso';
+  static const matches = '/partidas';
+  static const trainingDetail = '/treino/:id';
+  static const shooting = '/shooting';
+  static const clubDetail = '/clubes/:slug';
+  static const postDetail = '/post-detail';
 }
 
 abstract final class RouteNames {
@@ -28,4 +33,9 @@ abstract final class RouteNames {
   static const profile = 'profile';
   static const ranking = 'ranking';
   static const progress = 'progress';
+  static const matches = 'matches';
+  static const trainingDetail = 'trainingDetail';
+  static const shooting = 'shooting';
+  static const clubDetail = 'clubDetail';
+  static const postDetail = 'postDetail';
 }

@@ -3,7 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
+import '../../../domain/community_event.dart';
 import '../../../domain/dashboard_overview.dart';
+import '../../../domain/match_invite.dart';
 import '../../../domain/quick_access_item.dart';
 import '../../../provider/home_provider.dart';
 import '../../../route/routes/routes.dart';
@@ -57,6 +59,8 @@ class HomePage extends StatelessWidget {
                   onRankingTap: () => context.push(Routes.ranking),
                   onQuickAccessTap: (item) =>
                       _handleQuickAccessTap(context, item, overview),
+                  onExploreTap: (event) => _handleExploreTap(context, event),
+                  onInviteTap: (invite) => _handleInviteTap(context, invite),
                   onMessage: (message) => _showSnack(context, message),
                 ),
               ),
@@ -109,7 +113,51 @@ class HomePage extends StatelessWidget {
       return;
     }
 
+    if (item.type == 'shooting') {
+      context.push(Routes.shooting);
+      return;
+    }
+
+    if (item.type == 'sports') {
+      context.push(Routes.matches);
+      return;
+    }
+
+    if (item.type == 'clubs') {
+      context.push(Routes.clubDetail.replaceFirst(':slug', 'rally'));
+      return;
+    }
+
+    if (item.type == 'event') {
+      context.push(Routes.trainingDetail.replaceFirst(':id', '14'));
+      return;
+    }
+
+    if (item.type == 'calendar') {
+      context.push(Routes.agendas);
+      return;
+    }
+
     _showSnack(context, overview.messages.quickAction);
+  }
+
+  void _handleExploreTap(BuildContext context, CommunityEvent event) {
+    final title = event.title.toLowerCase();
+    if (title.contains('aula') || title.contains('coach')) {
+      context.push(Routes.trainingDetail.replaceFirst(':id', '14'));
+      return;
+    }
+
+    if (title.contains('padel')) {
+      context.push(Routes.clubDetail.replaceFirst(':slug', 'rally'));
+      return;
+    }
+
+    context.push(Routes.matches);
+  }
+
+  void _handleInviteTap(BuildContext context, MatchInvite invite) {
+    context.push(Routes.matches);
   }
 
   static void _showSnack(BuildContext context, String message) {

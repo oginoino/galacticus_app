@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../domain/discover_club.dart';
 import '../../../../domain/communities_overview.dart';
+import '../../../../domain/user_club.dart';
 import '../../../theme/app_theme.dart';
 import 'communities_club_widgets.dart';
 import 'communities_top_widgets.dart';
@@ -14,6 +16,8 @@ class CommunitiesContent extends StatelessWidget {
     required this.onViewAllTap,
     required this.onFilterTap,
     required this.onJoinTap,
+    required this.onUserClubTap,
+    required this.onDiscoverClubTap,
   });
 
   final CommunitiesOverview overview;
@@ -22,6 +26,8 @@ class CommunitiesContent extends StatelessWidget {
   final VoidCallback onViewAllTap;
   final VoidCallback onFilterTap;
   final VoidCallback onJoinTap;
+  final ValueChanged<UserClub> onUserClubTap;
+  final ValueChanged<DiscoverClub> onDiscoverClubTap;
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +64,10 @@ class CommunitiesContent extends StatelessWidget {
                 onActionTap: onViewAllTap,
               ),
               const SizedBox(height: AppSpacing.giant),
-              UserClubsCarousel(clubs: overview.myClubs),
+              UserClubsCarousel(
+                clubs: overview.myClubs,
+                onClubTap: onUserClubTap,
+              ),
               const SizedBox(height: AppSpacing.page),
               Container(
                 height: AppSize.communitiesSectionDivider,
@@ -77,6 +86,7 @@ class CommunitiesContent extends StatelessWidget {
               DiscoverClubsGrid(
                 clubs: overview.discoverClubs,
                 onJoinTap: onJoinTap,
+                onClubTap: onDiscoverClubTap,
               ),
             ],
           ),

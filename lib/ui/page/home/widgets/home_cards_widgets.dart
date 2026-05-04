@@ -159,56 +159,62 @@ class HomeExploreCard extends StatelessWidget {
   const HomeExploreCard({
     super.key,
     required this.event,
+    required this.onTap,
   });
 
   final CommunityEvent event;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: AppSize.exploreCardWidth,
-      child: ClipRRect(
+      child: InkWell(
+        onTap: onTap,
         borderRadius: BorderRadius.circular(AppRadius.xl),
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Image.asset(event.imageAsset, fit: BoxFit.cover),
-            DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    AppPalette.black.withValues(alpha: AppOpacity.lg),
-                    AppPalette.black.withValues(alpha: AppOpacity.overlayStrong),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(AppRadius.xl),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(event.imageAsset, fit: BoxFit.cover),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppPalette.black.withValues(alpha: AppOpacity.lg),
+                      AppPalette.black.withValues(alpha: AppOpacity.overlayStrong),
+                    ],
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(AppSpacing.xl),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      event.title,
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: AppLetterSpacing.tightMd,
+                          ),
+                    ),
+                    const SizedBox(height: AppSpacing.xs),
+                    Text(
+                      event.subtitle,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: AppPalette.textEvent,
+                          ),
+                    ),
                   ],
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(AppSpacing.xl),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    event.title,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: AppLetterSpacing.tightMd,
-                        ),
-                  ),
-                  const SizedBox(height: AppSpacing.xs),
-                  Text(
-                    event.subtitle,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppPalette.textEvent,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -220,10 +226,12 @@ class HomeInviteCard extends StatelessWidget {
     super.key,
     required this.invite,
     required this.actionLabel,
+    required this.onTap,
   });
 
   final MatchInvite invite;
   final String actionLabel;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -232,6 +240,7 @@ class HomeInviteCard extends StatelessWidget {
     return SizedBox(
       width: compact ? AppSize.inviteCardWidthCompact : AppSize.inviteCardWidth,
       child: GlowCard(
+        onTap: onTap,
         padding: EdgeInsets.fromLTRB(
           compact ? AppSpacing.lg : AppSpacing.xl,
           compact ? AppSpacing.lg : AppSpacing.xl,
