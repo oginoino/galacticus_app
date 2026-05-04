@@ -78,7 +78,7 @@ class ProgressHeader extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
@@ -266,17 +266,24 @@ class ProgressStatsGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      itemCount: items.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        mainAxisSpacing: AppSpacing.md,
-        crossAxisSpacing: AppSpacing.md,
-        childAspectRatio: 0.93,
-      ),
-      itemBuilder: (context, index) => _ProgressMiniStatCard(item: items[index]),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cardWidth = (constraints.maxWidth - (AppSpacing.md * 3)) / 4;
+        final childAspectRatio = cardWidth / 86;
+
+        return GridView.builder(
+          itemCount: items.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 4,
+            mainAxisSpacing: AppSpacing.md,
+            crossAxisSpacing: AppSpacing.md,
+            childAspectRatio: childAspectRatio,
+          ),
+          itemBuilder: (context, index) => _ProgressMiniStatCard(item: items[index]),
+        );
+      },
     );
   }
 }
@@ -308,7 +315,7 @@ class ProgressPointsChartCard extends StatelessWidget {
                   color: AppPalette.textHint,
                 ),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           Row(
             children: [
               _LegendDot(
@@ -322,7 +329,7 @@ class ProgressPointsChartCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           SizedBox(
             height: 142,
             child: CustomPaint(
@@ -385,7 +392,7 @@ class ProgressActivityRingsCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.giant),
+          const SizedBox(height: AppSpacing.md),
           Row(
             children: overview.activityRings
                 .map(
@@ -446,7 +453,7 @@ class ProgressSkillMapCard extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           SizedBox(
             height: 178,
             child: CustomPaint(
@@ -495,7 +502,7 @@ class ProgressConsistencyCard extends StatelessWidget {
                   color: AppPalette.textHint,
                 ),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           Column(
             children: overview.consistencyHeatmap
                 .map(
@@ -525,7 +532,7 @@ class ProgressConsistencyCard extends StatelessWidget {
                 )
                 .toList(growable: false),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           Row(
             children: overview.consistencySummary
                 .map(
@@ -579,7 +586,7 @@ class ProgressTennisStatsCard extends StatelessWidget {
             actionLabel: overview.uiLabels.tennisStatsActionLabel,
             onActionTap: onTap,
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           GridView.builder(
             itemCount: overview.tennisStats.length,
             shrinkWrap: true,
@@ -729,7 +736,7 @@ class ProgressRecordsCard extends StatelessWidget {
                   ),
             ),
           ),
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: AppSpacing.md),
           Container(
             padding: AppInsets.cardPaddingLg,
             decoration: BoxDecoration(
@@ -879,6 +886,85 @@ class _ProgressMiniStatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final accentColor = AppPalette.primary;
+
+    return Container(
+      padding: AppInsets.cardPaddingMd,
+      decoration: BoxDecoration(
+        color: item.highlighted ? AppPalette.successDark : AppPalette.surfaceAlt,
+        borderRadius: BorderRadius.circular(AppRadius.lg),
+        border: Border.all(
+          color: item.highlighted
+              ? AppPalette.primary.withValues(alpha: AppOpacity.quarter)
+              : AppPalette.white.withValues(alpha: AppOpacity.xxs),
+          width: AppStroke.hairline,
+        ),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                _iconForMiniStat(item.title),
+                size: AppIconSize.sm,
+                color: item.highlighted ? AppPalette.primary : AppPalette.textHint,
+              ),
+              const Spacer(),
+              Text(
+                item.delta,
+                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                      color: accentColor,
+                      fontWeight: FontWeight.w700,
+                      fontSize: AppFontSize.caption,
+                      height: 1,
+                    ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                item.value,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      fontSize: AppFontSize.titleSm,
+                      height: 1,
+                    ),
+              ),
+              const SizedBox(height: 1),
+              Text(
+                item.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppPalette.textMuted,
+                      fontSize: AppFontSize.caption,
+                      height: 1,
+                    ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ProgressLargeStatCard extends StatelessWidget {
+  const _ProgressLargeStatCard({
+    required this.item,
+  });
+
+  final ProgressStatCard item;
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       padding: AppInsets.cardPaddingLg,
       decoration: BoxDecoration(
@@ -893,31 +979,48 @@ class _ProgressMiniStatCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              item.delta,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: item.highlighted ? AppPalette.primary : AppPalette.textHint,
-                    fontWeight: FontWeight.w700,
-                  ),
-            ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(
+                _iconForLargeStat(item.title),
+                size: AppIconSize.lg,
+                color: item.highlighted ? AppPalette.primary : AppPalette.textHint,
+              ),
+              const Spacer(),
+              Text(
+                item.delta,
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: AppPalette.primary,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+            ],
           ),
+          const Spacer(),
           Text(
             item.value,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.w800,
-                  fontSize: AppFontSize.title,
                 ),
           ),
+          const SizedBox(height: AppSpacing.xs),
           Text(
             item.title,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppPalette.textMuted,
                 ),
           ),
+          if (item.subtitle != null) ...[
+            const SizedBox(height: AppSpacing.xxs),
+            Text(
+              item.subtitle!,
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: AppPalette.textHint,
+                  ),
+            ),
+          ],
         ],
       ),
     );
@@ -982,68 +1085,6 @@ class _ProgressRingMetricWidget extends StatelessWidget {
   }
 }
 
-class _ProgressLargeStatCard extends StatelessWidget {
-  const _ProgressLargeStatCard({
-    required this.item,
-  });
-
-  final ProgressStatCard item;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: AppInsets.cardPaddingLg,
-      decoration: BoxDecoration(
-        color: item.highlighted ? AppPalette.successSoft : AppPalette.surfaceAlt,
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-        border: Border.all(
-          color: item.highlighted
-              ? AppPalette.primary.withValues(alpha: AppOpacity.quarter)
-              : AppPalette.white.withValues(alpha: AppOpacity.xxs),
-          width: AppStroke.hairline,
-        ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              item.delta,
-              style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: item.highlighted ? AppPalette.primary : AppPalette.textHint,
-                    fontWeight: FontWeight.w700,
-                  ),
-            ),
-          ),
-          const Spacer(),
-          Text(
-            item.value,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
-          ),
-          const SizedBox(height: AppSpacing.xs),
-          Text(
-            item.title,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppPalette.textMuted,
-                ),
-          ),
-          if (item.subtitle != null) ...[
-            const SizedBox(height: AppSpacing.xxs),
-            Text(
-              item.subtitle!,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppPalette.textHint,
-                  ),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-}
 
 class _MatchRow extends StatelessWidget {
   const _MatchRow({
@@ -1706,6 +1747,44 @@ int? _extractLevelNumber(String label) {
   }
 
   return int.tryParse(match.group(1)!);
+}
+
+IconData _iconForMiniStat(String title) {
+  final normalized = title.toLowerCase();
+
+  if (normalized.contains('treino')) {
+    return Icons.fitness_center_outlined;
+  }
+  if (normalized.contains('dura')) {
+    return Icons.timer_outlined;
+  }
+  if (normalized.contains('calor')) {
+    return Icons.local_fire_department_outlined;
+  }
+  if (normalized.contains('aula')) {
+    return Icons.assignment_outlined;
+  }
+
+  return Icons.circle_outlined;
+}
+
+IconData _iconForLargeStat(String title) {
+  final normalized = title.toLowerCase();
+
+  if (normalized.contains('vitória') || normalized.contains('vitoria')) {
+    return Icons.emoji_events_outlined;
+  }
+  if (normalized.contains('partida')) {
+    return Icons.sports_tennis_outlined;
+  }
+  if (normalized.contains('bpm')) {
+    return Icons.favorite_border_rounded;
+  }
+  if (normalized.contains('saque')) {
+    return Icons.speed_outlined;
+  }
+
+  return Icons.insights_outlined;
 }
 
 Color _heatmapColor(int value) {
