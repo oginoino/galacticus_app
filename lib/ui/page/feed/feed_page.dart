@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
 import '../../../domain/feed_overview.dart';
+import '../../../domain/feed_post.dart';
 import '../../../provider/feed_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
@@ -47,6 +48,7 @@ class FeedPage extends StatelessWidget {
                 child: FeedContent(
                   overview: overview,
                   onNotificationTap: () => context.push(Routes.notifications),
+                  onPostTap: (post) => _handlePostTap(context, post),
                   onMessage: (message) => _showSnack(context, message),
                 ),
               ),
@@ -85,5 +87,14 @@ class FeedPage extends StatelessWidget {
       ..showSnackBar(
         SnackBar(content: Text(message)),
       );
+  }
+
+  void _handlePostTap(BuildContext context, FeedPost post) {
+    if (post.layoutType == 'workout_result') {
+      context.push(Routes.trainingDetail.replaceFirst(':id', '14'));
+      return;
+    }
+
+    context.push(Routes.postDetail);
   }
 }

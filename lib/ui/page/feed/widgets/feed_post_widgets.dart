@@ -14,6 +14,7 @@ class FeedPostCard extends StatelessWidget {
   const FeedPostCard({
     super.key,
     required this.post,
+    required this.onPostTap,
     required this.onLikeTap,
     required this.onCommentTap,
     required this.onShareTap,
@@ -21,6 +22,7 @@ class FeedPostCard extends StatelessWidget {
   });
 
   final FeedPost post;
+  final VoidCallback onPostTap;
   final VoidCallback onLikeTap;
   final VoidCallback onCommentTap;
   final VoidCallback onShareTap;
@@ -30,146 +32,150 @@ class FeedPostCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final compact = isFeedCompactWidth(context);
 
-    return Container(
-      decoration: BoxDecoration(
-        color: AppPalette.surface,
-        borderRadius: BorderRadius.circular(AppRadius.card),
-        border: Border.all(
-          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-          width: AppStroke.hairline,
+    return InkWell(
+      onTap: onPostTap,
+      borderRadius: BorderRadius.circular(AppRadius.card),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppPalette.surface,
+          borderRadius: BorderRadius.circular(AppRadius.card),
+          border: Border.all(
+            color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            width: AppStroke.hairline,
+          ),
         ),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: AppInsets.feedPostHeader,
-            child: Row(
-              children: [
-                _FeedPostAvatar(
-                  avatarAsset: post.avatarAsset,
-                  initials: post.initials,
-                ),
-                const SizedBox(width: AppSpacing.xxl),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        post.authorHandle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: AppLetterSpacing.tightMd,
-                              fontSize: compact
-                                  ? AppFontSize.titleLg
-                                  : AppFontSize.headingSm,
-                            ),
-                      ),
-                      const SizedBox(height: AppSpacing.xs),
-                      Text(
-                        post.clubLabel,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: AppPalette.textMuted,
-                              fontSize: compact
-                                  ? AppFontSize.body
-                                  : AppFontSize.bodyLg,
-                            ),
-                      ),
-                    ],
+        clipBehavior: Clip.antiAlias,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: AppInsets.feedPostHeader,
+              child: Row(
+                children: [
+                  _FeedPostAvatar(
+                    avatarAsset: post.avatarAsset,
+                    initials: post.initials,
                   ),
-                ),
-                const SizedBox(width: AppSpacing.xl),
-                Text(
-                  post.timeAgoLabel,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppPalette.textNeutral,
-                        fontSize: compact
-                            ? AppFontSize.body
-                            : AppFontSize.bodyLg,
-                      ),
-                ),
-              ],
-            ),
-          ),
-          _FeedPostMedia(
-            post: post,
-            compact: compact,
-          ),
-          Padding(
-            padding: AppInsets.feedPostBody,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    _FeedActionButton(
-                      icon: Icons.favorite_border_rounded,
-                      label: post.likesCountLabel,
-                      onTap: onLikeTap,
+                  const SizedBox(width: AppSpacing.xxl),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          post.authorHandle,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: AppLetterSpacing.tightMd,
+                                fontSize: compact
+                                    ? AppFontSize.titleLg
+                                    : AppFontSize.headingSm,
+                              ),
+                        ),
+                        const SizedBox(height: AppSpacing.xs),
+                        Text(
+                          post.clubLabel,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                color: AppPalette.textMuted,
+                                fontSize: compact
+                                    ? AppFontSize.body
+                                    : AppFontSize.bodyLg,
+                              ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: AppSpacing.xl),
-                    _FeedActionButton(
-                      icon: Icons.mode_comment_outlined,
-                      label: post.commentsCountLabel,
-                      onTap: onCommentTap,
-                    ),
-                    const SizedBox(width: AppSpacing.xl),
-                    _FeedIconOnlyButton(
-                      icon: Icons.send_outlined,
-                      onTap: onShareTap,
-                    ),
-                    const Spacer(),
-                    _FeedIconOnlyButton(
-                      icon: Icons.bookmark_border_rounded,
-                      onTap: onSaveTap,
-                    ),
-                  ],
-                ),
-                if (post.commentPreview != null) ...[
-                  const SizedBox(height: AppSpacing.xl),
-                  _FeedCommentPreview(
-                    preview: post.commentPreview!,
+                  ),
+                  const SizedBox(width: AppSpacing.xl),
+                  Text(
+                    post.timeAgoLabel,
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          color: AppPalette.textNeutral,
+                          fontSize: compact
+                              ? AppFontSize.body
+                              : AppFontSize.bodyLg,
+                        ),
                   ),
                 ],
-                const SizedBox(height: AppSpacing.md),
-                TextButton(
-                  onPressed: onCommentTap,
-                  style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    foregroundColor: AppPalette.textNeutral,
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    minimumSize: Size.zero,
-                    alignment: Alignment.centerLeft,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
+              ),
+            ),
+            _FeedPostMedia(
+              post: post,
+              compact: compact,
+            ),
+            Padding(
+              padding: AppInsets.feedPostBody,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      Text(
-                        post.viewCommentsLabel,
-                        style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: AppPalette.textMuted,
-                              fontWeight: FontWeight.w500,
-                              fontSize: AppFontSize.body,
-                            ),
+                      _FeedActionButton(
+                        icon: Icons.favorite_border_rounded,
+                        label: post.likesCountLabel,
+                        onTap: onLikeTap,
                       ),
-                      const SizedBox(width: AppSpacing.sm),
-                      const Icon(
-                        Icons.chevron_right_rounded,
-                        color: AppPalette.textMuted,
-                        size: AppIconSize.xl,
+                      const SizedBox(width: AppSpacing.xl),
+                      _FeedActionButton(
+                        icon: Icons.mode_comment_outlined,
+                        label: post.commentsCountLabel,
+                        onTap: onCommentTap,
+                      ),
+                      const SizedBox(width: AppSpacing.xl),
+                      _FeedIconOnlyButton(
+                        icon: Icons.send_outlined,
+                        onTap: onShareTap,
+                      ),
+                      const Spacer(),
+                      _FeedIconOnlyButton(
+                        icon: Icons.bookmark_border_rounded,
+                        onTap: onSaveTap,
                       ),
                     ],
                   ),
-                ),
-              ],
+                  if (post.commentPreview != null) ...[
+                    const SizedBox(height: AppSpacing.xl),
+                    _FeedCommentPreview(
+                      preview: post.commentPreview!,
+                    ),
+                  ],
+                  const SizedBox(height: AppSpacing.md),
+                  TextButton(
+                    onPressed: onCommentTap,
+                    style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      foregroundColor: AppPalette.textNeutral,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      minimumSize: Size.zero,
+                      alignment: Alignment.centerLeft,
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          post.viewCommentsLabel,
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                color: AppPalette.textMuted,
+                                fontWeight: FontWeight.w500,
+                                fontSize: AppFontSize.body,
+                              ),
+                        ),
+                        const SizedBox(width: AppSpacing.sm),
+                        const Icon(
+                          Icons.chevron_right_rounded,
+                          color: AppPalette.textMuted,
+                          size: AppIconSize.xl,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../domain/community_event.dart';
 import '../../../../domain/dashboard_overview.dart';
+import '../../../../domain/match_invite.dart';
 import '../../../../domain/quick_access_item.dart';
 import '../../../components/section_header.dart';
 import '../../../theme/app_theme.dart';
@@ -22,6 +24,8 @@ class HomeContent extends StatelessWidget {
     required this.onRankingTap,
     required this.onAgendasTap,
     required this.onQuickAccessTap,
+    required this.onExploreTap,
+    required this.onInviteTap,
     required this.onMessage,
   });
 
@@ -34,6 +38,8 @@ class HomeContent extends StatelessWidget {
   final VoidCallback onRankingTap;
   final VoidCallback onAgendasTap;
   final ValueChanged<QuickAccessItem> onQuickAccessTap;
+  final ValueChanged<CommunityEvent> onExploreTap;
+  final ValueChanged<MatchInvite> onInviteTap;
   final ValueChanged<String> onMessage;
 
   @override
@@ -127,6 +133,7 @@ class HomeContent extends StatelessWidget {
                   separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xl),
                   itemBuilder: (context, index) => HomeExploreCard(
                     event: overview.exploreEvents[index],
+                    onTap: () => onExploreTap(overview.exploreEvents[index]),
                   ),
                 ),
               ),
@@ -148,6 +155,7 @@ class HomeContent extends StatelessWidget {
                   itemBuilder: (context, index) => HomeInviteCard(
                     invite: overview.matchInvites[index],
                     actionLabel: overview.uiLabels.inviteActionLabel,
+                    onTap: () => onInviteTap(overview.matchInvites[index]),
                   ),
                 ),
               ),

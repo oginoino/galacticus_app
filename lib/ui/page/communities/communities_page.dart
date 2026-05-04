@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
 import '../../../domain/communities_overview.dart';
+import '../../../domain/discover_club.dart';
+import '../../../domain/user_club.dart';
 import '../../../provider/communities_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
@@ -51,6 +53,8 @@ class CommunitiesPage extends StatelessWidget {
                   onViewAllTap: () => _showSnack(context, overview.messages.viewAllAction),
                   onFilterTap: () => _showSnack(context, overview.messages.filterAction),
                   onJoinTap: () => _showSnack(context, overview.messages.joinAction),
+                  onUserClubTap: (club) => _openUserClub(context, club),
+                  onDiscoverClubTap: (club) => _openDiscoverClub(context, club),
                 ),
               ),
       ),
@@ -88,5 +92,25 @@ class CommunitiesPage extends StatelessWidget {
       ..showSnackBar(
         SnackBar(content: Text(message)),
       );
+  }
+
+  void _openUserClub(BuildContext context, UserClub club) {
+    final title = club.title.toLowerCase();
+    if (title.contains('rally')) {
+      context.push(Routes.clubDetail.replaceFirst(':slug', 'rally'));
+      return;
+    }
+
+    context.push(Routes.clubDetail.replaceFirst(':slug', 'singles'));
+  }
+
+  void _openDiscoverClub(BuildContext context, DiscoverClub club) {
+    final title = club.title.toLowerCase();
+    if (title.contains('single')) {
+      context.push(Routes.clubDetail.replaceFirst(':slug', 'singles'));
+      return;
+    }
+
+    context.push(Routes.clubDetail.replaceFirst(':slug', 'rally'));
   }
 }
