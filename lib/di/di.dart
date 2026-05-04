@@ -12,6 +12,7 @@ import '../repository/checkin_repository.dart';
 import '../repository/notifications_repository.dart';
 import '../repository/lessons_repository.dart';
 import '../repository/profile_repository.dart';
+import '../repository/progress_repository.dart';
 import '../repository/ranking_repository.dart';
 import '../service/api/api_service_factory.dart';
 import '../service/agenda/agenda_mock_service.dart';
@@ -38,6 +39,8 @@ import '../service/notifications/notifications_service_interface.dart';
 import '../service/persistence/persistence_service.dart';
 import '../service/profile/profile_mock_service.dart';
 import '../service/profile/profile_service_interface.dart';
+import '../service/progress/progress_mock_service.dart';
+import '../service/progress/progress_service_interface.dart';
 import '../service/ranking/ranking_mock_service.dart';
 import '../service/ranking/ranking_service_interface.dart';
 import '../service/lessons/lessons_mock_service.dart';
@@ -138,6 +141,12 @@ class DependencyInjection {
       )
       ..registerLazySingleton<RankingRepository>(
         () => RankingRepository(sl<RankingServiceInterface>()),
+      )
+      ..registerLazySingleton<ProgressServiceInterface>(
+        ProgressMockService.new,
+      )
+      ..registerLazySingleton<ProgressRepository>(
+        () => ProgressRepository(sl<ProgressServiceInterface>()),
       );
   }
 

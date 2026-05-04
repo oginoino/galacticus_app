@@ -10,3 +10,4 @@ export '../../repository/home_repository.dart';
 export '../../repository/lessons_repository.dart';
 export '../../repository/notifications_repository.dart';
 export '../../repository/profile_repository.dart';
+export '../../repository/progress_repository.dart';

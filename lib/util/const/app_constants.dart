@@ -20,6 +20,7 @@ class AppConstants {
     required this.aiTrainingLoadErrorMessage,
     required this.profileLoadErrorMessage,
     required this.rankingLoadErrorMessage,
+    required this.progressLoadErrorMessage,
     required this.navigationUnavailableMessage,
     required this.retryLabel,
   });
@@ -42,6 +43,7 @@ class AppConstants {
   final String aiTrainingLoadErrorMessage;
   final String profileLoadErrorMessage;
   final String rankingLoadErrorMessage;
+  final String progressLoadErrorMessage;
   final String navigationUnavailableMessage;
   final String retryLabel;
 
@@ -64,6 +66,7 @@ class AppConstants {
     aiTrainingLoadErrorMessage: 'Não foi possível carregar o treino com IA agora.',
     profileLoadErrorMessage: 'Não foi possível carregar o perfil agora.',
     rankingLoadErrorMessage: 'Não foi possível carregar o ranking agora.',
+    progressLoadErrorMessage: 'Não foi possível carregar o progresso agora.',
     navigationUnavailableMessage: 'Área disponível na próxima etapa.',
     retryLabel: 'Tentar novamente',
   );

@@ -28,3 +28,5 @@ export '../../service/notifications/notifications_service_interface.dart';
 export '../../service/persistence/persistence_service.dart';
 export '../../service/profile/profile_mock_service.dart';
 export '../../service/profile/profile_service_interface.dart';
+export '../../service/progress/progress_mock_service.dart';
+export '../../service/progress/progress_service_interface.dart';

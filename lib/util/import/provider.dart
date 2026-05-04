@@ -10,4 +10,5 @@ export '../../provider/lessons_provider.dart';
 export '../../provider/locale_provider.dart';
 export '../../provider/notifications_provider.dart';
 export '../../provider/profile_provider.dart';
+export '../../provider/progress_provider.dart';
 export '../../provider/theme_provider.dart';
