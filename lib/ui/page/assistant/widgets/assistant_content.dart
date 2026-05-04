@@ -55,25 +55,36 @@ class AssistantContent extends StatelessWidget {
           ),
         ),
         Positioned.fill(
-          child: ListView(
-            physics: const BouncingScrollPhysics(
-              parent: AlwaysScrollableScrollPhysics(),
-            ),
-            padding: AppInsets.assistantPage,
+          child: Column(
             children: [
               AssistantHeader(
                 onlineLabel: overview.onlineLabel,
                 onBackTap: onBackTap,
               ),
-              const SizedBox(height: 76),
-              AssistantHero(overview: overview),
-              const SizedBox(height: 44),
-              AssistantPromptList(
-                items: overview.promptOptions,
-                logoAsset: overview.logoAsset,
-                onTap: onPromptTap,
+              Expanded(
+                child: ListView(
+                  physics: const BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics(),
+                  ),
+                  padding: const EdgeInsets.fromLTRB(
+                    AppSpacing.page,
+                    0,
+                    AppSpacing.page,
+                    AppSpacing.page,
+                  ),
+                  children: [
+                    const SizedBox(height: 76),
+                    AssistantHero(overview: overview),
+                    const SizedBox(height: 44),
+                    AssistantPromptList(
+                      items: overview.promptOptions,
+                      logoAsset: overview.logoAsset,
+                      onTap: onPromptTap,
+                    ),
+                    const SizedBox(height: 140),
+                  ],
+                ),
               ),
-              const SizedBox(height: 140),
             ],
           ),
         ),

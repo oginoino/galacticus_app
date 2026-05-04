@@ -20,21 +20,27 @@ class NotificationsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      padding: AppInsets.notificationsPage,
+    return Column(
       children: [
         NotificationsHeader(
           overview: overview,
           onBackTap: onBackTap,
           onMarkAllReadTap: onMarkAllReadTap,
         ),
-        const SizedBox(height: AppSpacing.xl),
-        NotificationsList(
-          items: overview.items,
-          onTap: onNotificationTap,
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            padding: AppInsets.notificationsPage,
+            children: [
+              const SizedBox(height: AppSpacing.xl),
+              NotificationsList(
+                items: overview.items,
+                onTap: onNotificationTap,
+              ),
+            ],
+          ),
         ),
       ],
     );

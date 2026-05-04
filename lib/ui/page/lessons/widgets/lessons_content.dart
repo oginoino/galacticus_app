@@ -22,36 +22,42 @@ class LessonsContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      padding: AppInsets.lessonsPage,
+    return Column(
       children: [
         LessonsHeader(
           title: overview.title,
           onBackTap: onBackTap,
         ),
-        LessonsFeaturedHero(
-          overview: overview,
-          aiBadgeLabel: overview.uiLabels.aiBadgeLabel,
-          onPrimaryTap: onFeaturedTap,
-        ),
-        const SizedBox(height: AppSpacing.sectionLg),
-        LessonsSectionTitle(title: overview.movementsTitle),
-        const SizedBox(height: AppSpacing.xl),
-        LessonsTrackList(
-          items: overview.tracks,
-          aiBadgeLabel: overview.uiLabels.aiBadgeLabel,
-          trainLabel: overview.uiLabels.trainLabel,
-          onTap: onTrackTap,
-        ),
-        const SizedBox(height: AppSpacing.sectionLg),
-        LessonsSectionTitle(title: overview.upcomingTitle),
-        const SizedBox(height: AppSpacing.xl),
-        LessonsUpcomingList(
-          items: overview.upcomingItems,
-          onTap: onUpcomingTap,
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            padding: AppInsets.lessonsPage,
+            children: [
+              LessonsFeaturedHero(
+                overview: overview,
+                aiBadgeLabel: overview.uiLabels.aiBadgeLabel,
+                onPrimaryTap: onFeaturedTap,
+              ),
+              const SizedBox(height: AppSpacing.sectionLg),
+              LessonsSectionTitle(title: overview.movementsTitle),
+              const SizedBox(height: AppSpacing.xl),
+              LessonsTrackList(
+                items: overview.tracks,
+                aiBadgeLabel: overview.uiLabels.aiBadgeLabel,
+                trainLabel: overview.uiLabels.trainLabel,
+                onTap: onTrackTap,
+              ),
+              const SizedBox(height: AppSpacing.sectionLg),
+              LessonsSectionTitle(title: overview.upcomingTitle),
+              const SizedBox(height: AppSpacing.xl),
+              LessonsUpcomingList(
+                items: overview.upcomingItems,
+                onTap: onUpcomingTap,
+              ),
+            ],
+          ),
         ),
       ],
     );

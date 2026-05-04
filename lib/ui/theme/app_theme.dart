@@ -332,7 +332,7 @@ abstract final class AppSize {
   static const checkinFilterBottomOffset = 132.0;
   static const lessonsHeroHeight = 334.0;
   static const lessonsTopAction = 40.0;
-  static const lessonsHeaderLeadingInset = 8.0;
+  static const lessonsHeaderLeadingInset = 2.0;
   static const lessonsFeaturedPlay = 82.0;
   static const lessonsTrackCardWidth = 148.0;
   static const lessonsTrackCardHeight = 220.0;

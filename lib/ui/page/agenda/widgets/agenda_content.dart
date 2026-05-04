@@ -20,28 +20,34 @@ class AgendaContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      padding: AppInsets.agendaPage,
+    return Column(
       children: [
         AgendaHeader(
           title: overview.title,
           onBackTap: onBackTap,
         ),
-        AgendaSectionTitle(title: overview.eventsTitle),
-        const SizedBox(height: AppSpacing.xl),
-        AgendaEventsList(
-          items: overview.events,
-          onTap: onEventTap,
-        ),
-        const SizedBox(height: AppSpacing.sectionLg),
-        AgendaSectionTitle(title: overview.matchesTitle),
-        const SizedBox(height: AppSpacing.xl),
-        AgendaMatchesList(
-          items: overview.matches,
-          onTap: onMatchTap,
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            padding: AppInsets.agendaPage,
+            children: [
+              AgendaSectionTitle(title: overview.eventsTitle),
+              const SizedBox(height: AppSpacing.xl),
+              AgendaEventsList(
+                items: overview.events,
+                onTap: onEventTap,
+              ),
+              const SizedBox(height: AppSpacing.sectionLg),
+              AgendaSectionTitle(title: overview.matchesTitle),
+              const SizedBox(height: AppSpacing.xl),
+              AgendaMatchesList(
+                items: overview.matches,
+                onTap: onMatchTap,
+              ),
+            ],
+          ),
         ),
       ],
     );
