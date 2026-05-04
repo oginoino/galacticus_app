@@ -176,23 +176,56 @@ class HomeLeaderboardCard extends StatelessWidget {
   }
 }
 
-class HomeCalendarCard extends StatelessWidget {
+class HomeCalendarCard extends StatefulWidget {
   const HomeCalendarCard({super.key, required this.overview});
 
   final DashboardOverview overview;
 
   @override
-  Widget build(BuildContext context) {
-    final cells = List<HomeCalendarCell?>.filled(4, null, growable: true)
-      ..addAll(
-        overview.calendarDays.map(
-          (day) => HomeCalendarCell(
-            label: day.label,
-            isSelected: day.isSelected,
+  State<HomeCalendarCard> createState() => _HomeCalendarCardState();
+}
+
+class _HomeCalendarCardState extends State<HomeCalendarCard> {
+  late final DateTime _baseMonth;
+  late DateTime _displayedMonth;
+  late DateTime _selectedDate;
+  late final Map<DateTime, _HomeCalendarEvent> _eventsByDate;
+
+  @override
+  void initState() {
+    super.initState();
+    final now = DateTime.now();
+    final month = _monthNumberFromLabel(widget.overview.calendarMonthLabel);
+    _baseMonth = DateTime(now.year, month, 1);
+    _displayedMonth = _baseMonth;
+
+    final selectedDay = widget.overview.calendarDays.firstWhere(
+      (day) => day.isSelected,
+      orElse: () => widget.overview.calendarDays.first,
+    );
+    _selectedDate = DateTime(
+      _baseMonth.year,
+      _baseMonth.month,
+      int.tryParse(selectedDay.label) ?? 1,
+    );
+
+    _eventsByDate = {
+      for (final day in widget.overview.calendarDays)
+        if (day.isActive)
+          DateTime(
+            _baseMonth.year,
+            _baseMonth.month,
+            int.tryParse(day.label) ?? 1,
+          ): _HomeCalendarEvent(
             imageAsset: day.imageAsset,
+            hasMarker: true,
           ),
-        ),
-      );
+    };
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final monthCells = _buildCalendarCells(_displayedMonth);
 
     return GlowCard(
       padding: const EdgeInsets.fromLTRB(
@@ -205,22 +238,27 @@ class HomeCalendarCard extends StatelessWidget {
         children: [
           Row(
             children: [
-              const HomeNavCircle(icon: Icons.chevron_left_rounded),
+              HomeNavCircle(
+                icon: Icons.chevron_left_rounded,
+                onTap: () => _changeMonth(-1),
+              ),
               const Spacer(),
               Text(
-                overview.calendarMonthLabel[0].toUpperCase() +
-                    overview.calendarMonthLabel.substring(1),
+                _monthLabel(_displayedMonth),
                 style: Theme.of(
                   context,
                 ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const Spacer(),
-              const HomeNavCircle(icon: Icons.chevron_right_rounded),
+              HomeNavCircle(
+                icon: Icons.chevron_right_rounded,
+                onTap: () => _changeMonth(1),
+              ),
             ],
           ),
           const SizedBox(height: AppSpacing.xxl),
           Row(
-            children: overview.calendarWeekdays
+            children: widget.overview.calendarWeekdays
                 .map(
                   (day) => Expanded(
                     child: Center(
@@ -239,15 +277,16 @@ class HomeCalendarCard extends StatelessWidget {
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: cells.length,
+            padding: EdgeInsets.zero,
+            itemCount: monthCells.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 7,
               mainAxisSpacing: AppSpacing.lg,
               crossAxisSpacing: AppSpacing.lg,
             ),
             itemBuilder: (context, index) {
-              final cell = cells[index];
-              if (cell == null) {
+              final cell = monthCells[index];
+              if (!cell.isCurrentMonth) {
                 return const SizedBox.shrink();
               }
 
@@ -268,15 +307,17 @@ class HomeCalendarCard extends StatelessWidget {
                 );
               }
 
-              if (cell.imageAsset != null) {
-                return Column(
+              if (cell.event?.imageAsset != null) {
+                return GestureDetector(
+                  onTap: () => _selectDate(cell.date),
+                  child: Column(
                   children: [
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           image: DecorationImage(
-                            image: AssetImage(cell.imageAsset!),
+                            image: AssetImage(cell.event!.imageAsset!),
                             fit: BoxFit.cover,
                           ),
                           border: Border.all(
@@ -304,15 +345,26 @@ class HomeCalendarCard extends StatelessWidget {
                       ),
                     ),
                   ],
+                  ),
                 );
               }
 
-              return Center(
-                child: Text(
-                  cell.label,
-                  style: Theme.of(
-                    context,
-                  ).textTheme.bodyMedium?.copyWith(color: AppPalette.textDim),
+              return GestureDetector(
+                onTap: () => _selectDate(cell.date),
+                child: Center(
+                  child: Text(
+                    cell.label,
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodyMedium?.copyWith(
+                      color: cell.event?.hasMarker == true
+                          ? AppPalette.white
+                          : AppPalette.textDim,
+                      fontWeight: cell.event?.hasMarker == true
+                          ? FontWeight.w600
+                          : FontWeight.w400,
+                    ),
+                  ),
                 ),
               );
             },
@@ -320,6 +372,50 @@ class HomeCalendarCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _changeMonth(int delta) {
+    setState(() {
+      _displayedMonth = DateTime(_displayedMonth.year, _displayedMonth.month + delta, 1);
+      final daysInMonth = DateTime(
+        _displayedMonth.year,
+        _displayedMonth.month + 1,
+        0,
+      ).day;
+      final nextDay = _selectedDate.day > daysInMonth ? daysInMonth : _selectedDate.day;
+      _selectedDate = DateTime(_displayedMonth.year, _displayedMonth.month, nextDay);
+    });
+  }
+
+  void _selectDate(DateTime date) {
+    setState(() {
+      _selectedDate = date;
+    });
+  }
+
+  List<_HomeCalendarGridCell> _buildCalendarCells(DateTime month) {
+    final firstDay = DateTime(month.year, month.month, 1);
+    final leadingEmpty = firstDay.weekday % 7;
+    final daysInMonth = DateTime(month.year, month.month + 1, 0).day;
+    final totalCells = ((leadingEmpty + daysInMonth) / 7).ceil() * 7;
+
+    return List.generate(totalCells, (index) {
+      if (index < leadingEmpty || index >= leadingEmpty + daysInMonth) {
+        return _HomeCalendarGridCell.empty();
+      }
+
+      final day = index - leadingEmpty + 1;
+      final date = DateTime(month.year, month.month, day);
+      final event = _eventsByDate[date];
+
+      return _HomeCalendarGridCell(
+        date: date,
+        label: '$day',
+        isCurrentMonth: true,
+        isSelected: _isSameDate(date, _selectedDate),
+        event: event,
+      );
+    });
   }
 }
 
@@ -442,37 +538,124 @@ class HomeStatMetric extends StatelessWidget {
 }
 
 class HomeNavCircle extends StatelessWidget {
-  const HomeNavCircle({super.key, required this.icon});
+  const HomeNavCircle({
+    super.key,
+    required this.icon,
+    this.onTap,
+  });
 
   final IconData icon;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: AppSize.navCircle,
-      height: AppSize.navCircle,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: AppPalette.calendarDark,
-        border: Border.all(
-          color: AppPalette.white.withValues(alpha: AppOpacity.xs),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      child: Container(
+        width: AppSize.navCircle,
+        height: AppSize.navCircle,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppPalette.calendarDark,
+          border: Border.all(
+            color: AppPalette.white.withValues(alpha: AppOpacity.xs),
+          ),
         ),
+        child: Icon(icon, size: AppIconSize.lg, color: AppPalette.iconSubtle),
       ),
-      child: Icon(icon, size: AppIconSize.lg, color: AppPalette.iconSubtle),
     );
   }
 }
 
-class HomeCalendarCell {
-  const HomeCalendarCell({
+class _HomeCalendarGridCell {
+  const _HomeCalendarGridCell({
+    required this.date,
     required this.label,
+    required this.isCurrentMonth,
     required this.isSelected,
-    required this.imageAsset,
+    this.event,
   });
 
+  factory _HomeCalendarGridCell.empty() {
+    return _HomeCalendarGridCell(
+      date: DateTime(1970),
+      label: '',
+      isCurrentMonth: false,
+      isSelected: false,
+    );
+  }
+
+  final DateTime date;
   final String label;
+  final bool isCurrentMonth;
   final bool isSelected;
+  final _HomeCalendarEvent? event;
+}
+
+class _HomeCalendarEvent {
+  const _HomeCalendarEvent({
+    this.imageAsset,
+    required this.hasMarker,
+  });
+
   final String? imageAsset;
+  final bool hasMarker;
+}
+
+int _monthNumberFromLabel(String label) {
+  switch (label.trim().toLowerCase()) {
+    case 'janeiro':
+      return 1;
+    case 'fevereiro':
+      return 2;
+    case 'março':
+    case 'marco':
+      return 3;
+    case 'abril':
+      return 4;
+    case 'maio':
+      return 5;
+    case 'junho':
+      return 6;
+    case 'julho':
+      return 7;
+    case 'agosto':
+      return 8;
+    case 'setembro':
+      return 9;
+    case 'outubro':
+      return 10;
+    case 'novembro':
+      return 11;
+    case 'dezembro':
+      return 12;
+    default:
+      return DateTime.now().month;
+  }
+}
+
+String _monthLabel(DateTime date) {
+  const monthLabels = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro',
+  ];
+
+  return monthLabels[date.month - 1];
+}
+
+bool _isSameDate(DateTime a, DateTime b) {
+  return a.year == b.year && a.month == b.month && a.day == b.day;
 }
 
 class HomeSportChip extends StatelessWidget {

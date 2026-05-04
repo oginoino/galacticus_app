@@ -46,6 +46,7 @@ class CommunitiesPage extends StatelessWidget {
                 color: AppPalette.primary,
                 child: CommunitiesContent(
                   overview: overview,
+                  onNotificationTap: () => context.push(Routes.notifications),
                   onSearchTap: () => _showSnack(context, overview.messages.searchAction),
                   onViewAllTap: () => _showSnack(context, overview.messages.viewAllAction),
                   onFilterTap: () => _showSnack(context, overview.messages.filterAction),

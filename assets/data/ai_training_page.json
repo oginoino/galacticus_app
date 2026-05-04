@@ -1,0 +1,73 @@
+{
+  "eyebrow": "TREINO COM IA",
+  "title": "Backhand de duas mãos",
+  "closeSemantics": "Fechar treino com IA",
+  "referenceModes": ["Vídeos curtos", "GIFs"],
+  "instructionTitle": "COMO FUNCIONA",
+  "instructionBody": "Faça o movimento seguindo exatamente o vídeo de referência. Repita 3 vezes e a IA vai analisar e dar uma nota.",
+  "startButtonLabel": "Estou pronto · Começar",
+  "nextButtonLabel": "Próxima repetição",
+  "progressTitle": "REPETIÇÃO",
+  "progressSubtitle": "Repita o movimento",
+  "previewLabel": "VOCÊ",
+  "referenceSectionTitle": "REFERÊNCIAS",
+  "modeSectionTitle": "FORMATOS",
+  "assistantLogoAsset": "assets/images/prototype/ai-logo.png",
+  "backgroundAsset": "assets/images/prototype/lesson-backhand-iniciante.jpg",
+  "watermarkAsset": "assets/images/prototype/logo-galacticos.png",
+  "previewAsset": "assets/images/prototype/paulo.jpg",
+  "messages": {
+    "startAction": "Treino com IA iniciado.",
+    "nextRepetitionAction": "Nova repetição preparada.",
+    "mediaAction": "Referência de treino atualizada.",
+    "modeAction": "Formato de treino atualizado.",
+    "cameraUnavailable": "Câmera indisponível neste dispositivo ou simulador.",
+    "cameraPermissionDenied": "Permissão de câmera negada. Ative a câmera nas configurações do app.",
+    "recordBadgeLabel": "REC",
+    "videoBadgeLabel": "VÍDEO",
+    "switchLayoutHint": "Toque para mudar layout",
+    "referenceThumbnailLabel": "Referência em miniatura",
+    "cameraReadyLabel": "Câmera pronta",
+    "cameraInitializingLabel": "Iniciando câmera",
+    "referencePaneLabel": "Referência"
+  },
+  "metrics": [
+    { "label": "Pegada" },
+    { "label": "Equilíbrio" },
+    { "label": "Timing" }
+  ],
+  "references": [
+    {
+      "title": "Backhand guiado em vídeo",
+      "subtitle": "Passos rápidos com posição e impacto",
+      "kind": "Vídeos curtos",
+      "durationLabel": "0:18",
+      "highlightLabel": "VÍDEO",
+      "imageAsset": "assets/images/prototype/lesson-backhand-iniciante.jpg"
+    },
+    {
+      "title": "Preparação do tronco",
+      "subtitle": "Loop curto para base e giro",
+      "kind": "GIFs",
+      "durationLabel": "LOOP",
+      "highlightLabel": "GIF",
+      "imageAsset": "assets/images/prototype/lesson-forehand-topspin.jpg"
+    },
+    {
+      "title": "Contato e finalização",
+      "subtitle": "Vídeo curto com foco no follow-through",
+      "kind": "Vídeos curtos",
+      "durationLabel": "0:12",
+      "highlightLabel": "VÍDEO",
+      "imageAsset": "assets/images/prototype/lesson-smash.jpg"
+    },
+    {
+      "title": "Base e ajuste fino",
+      "subtitle": "GIF de repetição para sincronizar pés",
+      "kind": "GIFs",
+      "durationLabel": "LOOP",
+      "highlightLabel": "GIF",
+      "imageAsset": "assets/images/prototype/lesson-voleio.jpg"
+    }
+  ]
+}

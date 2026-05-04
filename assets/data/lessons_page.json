@@ -1,0 +1,86 @@
+{
+  "title": "Aulas",
+  "featuredTagPrimary": "SAQUE",
+  "featuredTagSecondary": "INTERMEDIÁRIO",
+  "featuredTitle": "Saque slice perfeito em 4 passos",
+  "featuredMetricsLine": "12.4k views  •  892  •  6:52",
+  "featuredCoach": "Coach Marcos",
+  "featuredCoachAvatarAsset": "assets/images/prototype/coach-marcos.jpg",
+  "featuredCoachRole": "Saque",
+  "featuredDescription": "Aprenda a executar o saque slice com pegada continental e rotação de tronco. Ative a câmera e a IA vai conferir cada movimento.",
+  "featuredCtaLabel": "Treinar com IA",
+  "featuredImageAsset": "assets/images/prototype/lesson-saque-slice.jpg",
+  "featuredDuration": "6:52",
+  "movementsTitle": "MOVIMENTOS BÁSICOS · IA",
+  "upcomingTitle": "PRÓXIMAS AULAS",
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil",
+    "aiBadgeLabel": "IA",
+    "trainLabel": "Treinar"
+  },
+  "messages": {
+    "featuredAction": "Treino com IA entra na próxima integração.",
+    "trackAction": "Abrir detalhe do movimento entra na próxima integração.",
+    "upcomingAction": "Abrir agenda completa da aula entra na próxima integração."
+  },
+  "tracks": [
+    {
+      "title": "Forehand básico",
+      "subtitle": "Postura, carga e finalização",
+      "levelLabel": "FÁCIL",
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-forehand-topspin.jpg"
+    },
+    {
+      "title": "Backhand de duas mãos",
+      "subtitle": "Coordenação dos braços e base",
+      "levelLabel": "MÉDIO",
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-backhand-iniciante.jpg"
+    },
+    {
+      "title": "Saque com kick",
+      "subtitle": "Explosão, subida e contato",
+      "levelLabel": "AVANÇADO",
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-smash.jpg"
+    }
+  ],
+  "upcomingItems": [
+    {
+      "title": "Forehand topspin: técnica moderna",
+      "coach": "Gabriel T.",
+      "metaLine": "8.9k views  ·  Avançado",
+      "duration": "8:58",
+      "availabilityLabel": "IA DISPONÍVEL",
+      "imageAsset": "assets/images/prototype/lesson-forehand-topspin.jpg"
+    },
+    {
+      "title": "Backhand de duas mãos para iniciantes",
+      "coach": "Sofia P.",
+      "metaLine": "21.3k views  ·  Iniciante",
+      "duration": "6:07",
+      "availabilityLabel": "IA DISPONÍVEL",
+      "imageAsset": "assets/images/prototype/lesson-backhand-iniciante.jpg"
+    },
+    {
+      "title": "Volêio na rede: timing e bloqueio",
+      "coach": "Leonardo R.",
+      "metaLine": "5.4k views  ·  Intermediário",
+      "duration": "4:49",
+      "availabilityLabel": "IA DISPONÍVEL",
+      "imageAsset": "assets/images/prototype/lesson-voleio.jpg"
+    },
+    {
+      "title": "Smash potente: explosão e controle",
+      "coach": "Coach Marcos",
+      "metaLine": "9.9k views  ·  Avançado",
+      "duration": "7:58",
+      "availabilityLabel": "IA DISPONÍVEL",
+      "imageAsset": "assets/images/prototype/lesson-smash.jpg"
+    }
+  ]
+}

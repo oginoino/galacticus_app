@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -10,9 +12,11 @@ class HomeHeader extends StatelessWidget {
   const HomeHeader({
     super.key,
     required this.overview,
+    required this.onNotificationTap,
   });
 
   final DashboardOverview overview;
+  final VoidCallback onNotificationTap;
 
   @override
   Widget build(BuildContext context) {
@@ -56,38 +60,42 @@ class HomeHeader extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          width: AppSize.avatarLg,
-          height: AppSize.avatarLg,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: AppPalette.glassIcon,
-            border: Border.all(
-              color: AppPalette.white.withValues(alpha: AppOpacity.lg),
-              width: AppStroke.hairline,
-            ),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              const Icon(
-                Icons.notifications_none_rounded,
-                color: AppPalette.white,
-                size: AppIconSize.giant,
+        InkWell(
+          onTap: onNotificationTap,
+          borderRadius: BorderRadius.circular(AppRadius.pill),
+          child: Container(
+            width: AppSize.avatarLg,
+            height: AppSize.avatarLg,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: AppPalette.glassIcon,
+              border: Border.all(
+                color: AppPalette.white.withValues(alpha: AppOpacity.lg),
+                width: AppStroke.hairline,
               ),
-              Positioned(
-                top: AppSpacing.xxl,
-                right: AppSpacing.xxl,
-                child: Container(
-                  width: AppSize.statusDot,
-                  height: AppSize.statusDot,
-                  decoration: const BoxDecoration(
-                    color: AppPalette.primary,
-                    shape: BoxShape.circle,
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                const Icon(
+                  Icons.notifications_none_rounded,
+                  color: AppPalette.white,
+                  size: AppIconSize.giant,
+                ),
+                Positioned(
+                  top: AppSpacing.xxl,
+                  right: AppSpacing.xxl,
+                  child: Container(
+                    width: AppSize.statusDot,
+                    height: AppSize.statusDot,
+                    decoration: const BoxDecoration(
+                      color: AppPalette.primary,
+                      shape: BoxShape.circle,
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ],
@@ -145,10 +153,13 @@ class HomeBookingCard extends StatelessWidget {
               color: AppPalette.badgeLocation,
               borderRadius: BorderRadius.circular(AppRadius.xxl),
             ),
-            child: Icon(
-              Icons.navigation_outlined,
-              color: AppPalette.primary,
-              size: compact ? AppIconSize.xl : AppIconSize.xxl,
+            child: Transform.rotate(
+              angle: math.pi / 4,
+              child: Icon(
+                Icons.navigation_outlined,
+                color: AppPalette.primary,
+                size: compact ? AppIconSize.xl : AppIconSize.xxl,
+              ),
             ),
           ),
           SizedBox(width: compact ? AppSpacing.lg : AppSpacing.xl),
@@ -220,9 +231,11 @@ class HomeAssistantCard extends StatelessWidget {
   const HomeAssistantCard({
     super.key,
     required this.overview,
+    required this.onTap,
   });
 
   final DashboardOverview overview;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -241,6 +254,7 @@ class HomeAssistantCard extends StatelessWidget {
           AppPalette.assistantEnd,
         ],
       ),
+      onTap: onTap,
       child: Row(
         children: [
           Container(
@@ -542,82 +556,88 @@ class HomeWorkoutCard extends StatelessWidget {
   const HomeWorkoutCard({
     super.key,
     required this.overview,
+    required this.onTap,
   });
 
   final DashboardOverview overview;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     final compact = isCompactWidth(context);
 
-    return Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: compact ? AppSpacing.xxl : AppSpacing.xxxl,
-        vertical: compact ? AppSpacing.xxl : AppSpacing.xxxl,
-      ),
-      decoration: BoxDecoration(
-        color: AppPalette.primary,
-        borderRadius: BorderRadius.circular(AppRadius.lg),
-        boxShadow: [
-          BoxShadow(
-            color: AppPalette.primary.withValues(alpha: AppOpacity.medium),
-            blurRadius: AppSpacing.huge,
-            offset: const Offset(0, AppSpacing.lg),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: compact ? AppSize.navCenterButton : AppSize.workoutLeading,
-            height: compact ? AppSize.navCenterButton : AppSize.workoutLeading,
-            decoration: BoxDecoration(
-              color: AppPalette.black.withValues(alpha: AppOpacity.xl),
-              borderRadius: BorderRadius.circular(AppRadius.lg),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadius.lg),
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: compact ? AppSpacing.xxl : AppSpacing.xxxl,
+          vertical: compact ? AppSpacing.xxl : AppSpacing.xxxl,
+        ),
+        decoration: BoxDecoration(
+          color: AppPalette.primary,
+          borderRadius: BorderRadius.circular(AppRadius.lg),
+          boxShadow: [
+            BoxShadow(
+              color: AppPalette.primary.withValues(alpha: AppOpacity.medium),
+              blurRadius: AppSpacing.huge,
+              offset: const Offset(0, AppSpacing.lg),
             ),
-            child: const Icon(
-              Icons.photo_camera_outlined,
-              color: Colors.black54,
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: compact ? AppSize.navCenterButton : AppSize.workoutLeading,
+              height: compact ? AppSize.navCenterButton : AppSize.workoutLeading,
+              decoration: BoxDecoration(
+                color: AppPalette.black.withValues(alpha: AppOpacity.xl),
+                borderRadius: BorderRadius.circular(AppRadius.lg),
+              ),
+              child: const Icon(
+                Icons.photo_camera_outlined,
+                color: Colors.black54,
+              ),
             ),
-          ),
-          SizedBox(width: compact ? AppSpacing.xl : AppSpacing.xxxl),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  overview.workoutPromo.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppPalette.black,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: AppLetterSpacing.tightLg,
-                        fontSize: compact
-                            ? AppFontSize.headingSm
-                            : AppFontSize.heading,
-                      ),
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                Text(
-                  overview.workoutPromo.subtitle,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: AppPalette.black.withValues(alpha: AppOpacity.text),
-                        fontSize: compact ? AppFontSize.body : AppFontSize.bodyLg,
-                      ),
-                ),
-              ],
+            SizedBox(width: compact ? AppSpacing.xl : AppSpacing.xxxl),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    overview.workoutPromo.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: AppPalette.black,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: AppLetterSpacing.tightLg,
+                          fontSize: compact
+                              ? AppFontSize.headingSm
+                              : AppFontSize.heading,
+                        ),
+                  ),
+                  const SizedBox(height: AppSpacing.xs),
+                  Text(
+                    overview.workoutPromo.subtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: AppPalette.black.withValues(alpha: AppOpacity.text),
+                          fontSize: compact ? AppFontSize.body : AppFontSize.bodyLg,
+                        ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Icon(
-            Icons.north_east_rounded,
-            color: AppPalette.black.withValues(alpha: AppOpacity.half),
-            size: compact ? AppIconSize.xxxl : AppIconSize.giant,
-          ),
-        ],
+            Icon(
+              Icons.north_east_rounded,
+              color: AppPalette.black.withValues(alpha: AppOpacity.half),
+              size: compact ? AppIconSize.xxxl : AppIconSize.giant,
+            ),
+          ],
+        ),
       ),
     );
   }

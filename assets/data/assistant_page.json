@@ -1,0 +1,28 @@
+{
+  "greeting": "Olá, Paulo",
+  "subtitlePrefix": "Analisei seus ",
+  "highlightText": "120 dias",
+  "subtitleSuffix": " de dados. O que quer saber?",
+  "inputPlaceholder": "Pergunte alguma coisa...",
+  "onlineLabel": "ONLINE",
+  "logoAsset": "assets/images/prototype/ai-logo.png",
+  "messages": {
+    "quickAction": "Assistente avançado entra na próxima etapa.",
+    "promptAction": "Resposta do assistente entra na próxima integração.",
+    "sendAction": "Envio de mensagem entra na próxima integração."
+  },
+  "promptOptions": [
+    {
+      "label": "Como está minha evolução nos últimos 4 meses?"
+    },
+    {
+      "label": "Quais dias da semana eu treino melhor?"
+    },
+    {
+      "label": "Como anda minha alimentação e sono?"
+    },
+    {
+      "label": "Que ajustes melhorariam meu desempenho?"
+    }
+  ]
+}
