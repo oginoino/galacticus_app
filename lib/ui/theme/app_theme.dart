@@ -234,8 +234,8 @@ abstract final class AppSize {
   static const lessonListHeightCompact = 170.0;
   static const exploreListHeight = 114.0;
   static const exploreListHeightCompact = 122.0;
-  static const inviteListHeight = 152.0;
-  static const inviteListHeightCompact = 164.0;
+  static const inviteListHeight = 176.0;
+  static const inviteListHeightCompact = 184.0;
   static const leaderboardAvatarRadius = 20.0;
   static const quickAccessAvatarRadius = 14.0;
   static const navCircle = 28.0;

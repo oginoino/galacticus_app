@@ -233,10 +233,10 @@ class HomeInviteCard extends StatelessWidget {
       width: compact ? AppSize.inviteCardWidthCompact : AppSize.inviteCardWidth,
       child: GlowCard(
         padding: EdgeInsets.fromLTRB(
-          compact ? AppSpacing.xl : AppSpacing.xxl,
-          compact ? AppSpacing.xl : AppSpacing.xxl,
-          compact ? AppSpacing.xl : AppSpacing.xxl,
           compact ? AppSpacing.lg : AppSpacing.xl,
+          compact ? AppSpacing.lg : AppSpacing.xl,
+          compact ? AppSpacing.lg : AppSpacing.xl,
+          compact ? AppSpacing.md : AppSpacing.lg,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,10 +244,10 @@ class HomeInviteCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  radius: compact ? 20 : 24,
+                  radius: compact ? 18 : 22,
                   backgroundImage: AssetImage(invite.avatarAsset),
                 ),
-                SizedBox(width: compact ? AppSpacing.lg : AppSpacing.xl),
+                SizedBox(width: compact ? AppSpacing.md : AppSpacing.lg),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -260,8 +260,8 @@ class HomeInviteCard extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                               letterSpacing: AppLetterSpacing.tightSm,
                               fontSize: compact
-                                  ? AppFontSize.titleLg
-                                  : AppFontSize.headingSm,
+                                  ? AppFontSize.title
+                                  : AppFontSize.titleLg,
                             ),
                       ),
                       Text(
@@ -270,7 +270,7 @@ class HomeInviteCard extends StatelessWidget {
                               color: AppPalette.textGlass,
                               fontSize: compact
                                   ? AppFontSize.bodySm
-                                  : AppFontSize.bodyLg,
+                                  : AppFontSize.body,
                             ),
                       ),
                     ],
@@ -278,24 +278,24 @@ class HomeInviteCard extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: compact ? AppSpacing.xl : AppSpacing.xxxl),
+            SizedBox(height: compact ? AppSpacing.md : AppSpacing.lg),
             HomeMetaRow(
               icon: Icons.access_time_rounded,
               text: invite.schedule,
             ),
-            SizedBox(height: compact ? AppSpacing.md : AppSpacing.lg),
+            SizedBox(height: compact ? AppSpacing.sm : AppSpacing.md),
             HomeMetaRow(
               icon: Icons.location_on_outlined,
               text: invite.location,
             ),
-            SizedBox(height: compact ? AppSpacing.lg : AppSpacing.xl),
+            SizedBox(height: compact ? AppSpacing.md : AppSpacing.lg),
             Row(
               children: [
                 Expanded(
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.lg,
-                      vertical: AppSpacing.sm,
+                      horizontal: AppSpacing.md,
+                      vertical: AppSpacing.xs,
                     ),
                     decoration: BoxDecoration(
                       color: invite.isLastSpot
@@ -313,21 +313,21 @@ class HomeInviteCard extends StatelessWidget {
                                 : AppPalette.primary,
                             fontWeight: FontWeight.w700,
                             fontSize: compact
-                                ? AppFontSize.bodySm
-                                : AppFontSize.body,
+                                ? AppFontSize.caption
+                                : AppFontSize.bodySm,
                           ),
                     ),
                   ),
                 ),
-                SizedBox(width: compact ? AppSpacing.md : AppSpacing.lg),
+                SizedBox(width: compact ? AppSpacing.sm : AppSpacing.md),
                 Text(
                   actionLabel,
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: AppPalette.primary,
                         fontWeight: FontWeight.w700,
                         fontSize: compact
-                            ? AppFontSize.bodySm
-                            : AppFontSize.body,
+                            ? AppFontSize.caption
+                            : AppFontSize.bodySm,
                       ),
                 ),
               ],
