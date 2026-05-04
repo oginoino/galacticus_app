@@ -56,6 +56,7 @@ class ProgressPage extends StatelessWidget {
 
                     context.go(Routes.home);
                   },
+                  onShareTap: () => _showSnack(context, overview.messages.quickAction),
                   onFilterTap: (filterId) {
                     provider.selectFilter(filterId);
                     _showSnack(context, overview.messages.filterAction);

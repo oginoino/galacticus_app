@@ -22,6 +22,7 @@ class ProgressHeader extends StatelessWidget {
     required this.selectedFilterId,
     required this.selectedTimeRangeId,
     required this.onBackTap,
+    required this.onShareTap,
     required this.onFilterTap,
     required this.onTimeRangeTap,
   });
@@ -32,6 +33,7 @@ class ProgressHeader extends StatelessWidget {
   final String selectedFilterId;
   final String selectedTimeRangeId;
   final VoidCallback onBackTap;
+  final VoidCallback onShareTap;
   final ValueChanged<String> onFilterTap;
   final ValueChanged<String> onTimeRangeTap;
 
@@ -54,26 +56,9 @@ class ProgressHeader extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerLeft,
-                child: InkWell(
+                child: _HeaderActionButton(
+                  icon: Icons.chevron_left_rounded,
                   onTap: onBackTap,
-                  borderRadius: BorderRadius.circular(AppRadius.pill),
-                  child: Container(
-                    width: AppSize.rankingTopAction,
-                    height: AppSize.rankingTopAction,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppPalette.surfaceAlt,
-                      border: Border.all(
-                        color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                        width: AppStroke.hairline,
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.chevron_left_rounded,
-                      color: AppPalette.white,
-                      size: AppIconSize.huge,
-                    ),
-                  ),
                 ),
               ),
               Text(
@@ -84,35 +69,48 @@ class ProgressHeader extends StatelessWidget {
                       fontSize: AppFontSize.heading,
                     ),
               ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: _HeaderActionButton(
+                  icon: Icons.share_outlined,
+                  onTap: onShareTap,
+                ),
+              ),
             ],
           ),
           const SizedBox(height: AppSpacing.lg),
-          _FilterRow(
-            items: filters
-                .map(
-                  (item) => _ChipItem(
-                    id: item.id,
-                    label: item.label,
-                    selected: item.id == selectedFilterId,
-                  ),
-                )
-                .toList(growable: false),
-            compact: true,
-            onTap: onFilterTap,
-          ),
-          const SizedBox(height: AppSpacing.md),
-          Center(
-            child: _FilterRow(
-              items: timeRanges
-                  .map(
-                    (item) => _ChipItem(
-                      id: item.id,
-                      label: item.label,
-                      selected: item.id == selectedTimeRangeId,
-                    ),
-                  )
-                  .toList(growable: false),
-              onTap: onTimeRangeTap,
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                _SegmentedGroup(
+                  items: filters
+                      .map(
+                        (item) => _ChipItem(
+                          id: item.id,
+                          label: item.label,
+                          selected: item.id == selectedFilterId,
+                        ),
+                      )
+                      .toList(growable: false),
+                  compact: false,
+                  onTap: onFilterTap,
+                ),
+                const SizedBox(width: AppSpacing.xl),
+                _SegmentedGroup(
+                  items: timeRanges
+                      .map(
+                        (item) => _ChipItem(
+                          id: item.id,
+                          label: item.label,
+                          selected: item.id == selectedTimeRangeId,
+                        ),
+                      )
+                      .toList(growable: false),
+                  compact: true,
+                  onTap: onTimeRangeTap,
+                ),
+              ],
             ),
           ),
         ],
@@ -774,8 +772,8 @@ class ProgressRecordsCard extends StatelessWidget {
   }
 }
 
-class _FilterRow extends StatelessWidget {
-  const _FilterRow({
+class _SegmentedGroup extends StatelessWidget {
+  const _SegmentedGroup({
     required this.items,
     required this.onTap,
     this.compact = false,
@@ -787,8 +785,16 @@ class _FilterRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
+    return Container(
+      padding: const EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        color: AppPalette.surfaceAlt,
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        border: Border.all(
+          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+          width: AppStroke.hairline,
+        ),
+      ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: items
@@ -801,25 +807,19 @@ class _FilterRow extends StatelessWidget {
                   onTap: () => onTap(item.id),
                   borderRadius: BorderRadius.circular(AppRadius.pill),
                   child: Container(
-                    height: compact ? 22 : 24,
+                    height: compact ? 34 : 36,
                     padding: EdgeInsets.symmetric(
-                      horizontal: compact ? AppSpacing.md : AppSpacing.lg,
-                      vertical: AppSpacing.xxs,
+                      horizontal: compact ? AppSpacing.xl : AppSpacing.giant,
+                      vertical: AppSpacing.sm,
                     ),
                     decoration: BoxDecoration(
-                      color: item.selected ? AppPalette.white : AppPalette.surfaceAlt,
+                      color: item.selected ? AppPalette.white : Colors.transparent,
                       borderRadius: BorderRadius.circular(AppRadius.pill),
-                      border: Border.all(
-                        color: item.selected
-                            ? AppPalette.white
-                            : AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                        width: AppStroke.hairline,
-                      ),
                     ),
                     child: Center(
                       child: Text(
                         item.label,
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: item.selected ? AppPalette.black : AppPalette.white,
                               fontWeight: item.selected ? FontWeight.w700 : FontWeight.w500,
                             ),
@@ -830,6 +830,41 @@ class _FilterRow extends StatelessWidget {
               ),
             )
             .toList(growable: false),
+      ),
+    );
+  }
+}
+
+class _HeaderActionButton extends StatelessWidget {
+  const _HeaderActionButton({
+    required this.icon,
+    required this.onTap,
+  });
+
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(AppRadius.pill),
+      child: Container(
+        width: AppSize.rankingTopAction,
+        height: AppSize.rankingTopAction,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: AppPalette.surfaceAlt,
+          border: Border.all(
+            color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            width: AppStroke.hairline,
+          ),
+        ),
+        child: Icon(
+          icon,
+          color: AppPalette.white,
+          size: icon == Icons.share_outlined ? AppIconSize.xxl : AppIconSize.huge,
+        ),
       ),
     );
   }

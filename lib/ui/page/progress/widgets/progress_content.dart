@@ -11,6 +11,7 @@ class ProgressContent extends StatelessWidget {
     required this.selectedFilterId,
     required this.selectedTimeRangeId,
     required this.onBackTap,
+    required this.onShareTap,
     required this.onFilterTap,
     required this.onTimeRangeTap,
     required this.onStatsTap,
@@ -21,6 +22,7 @@ class ProgressContent extends StatelessWidget {
   final String? selectedFilterId;
   final String? selectedTimeRangeId;
   final VoidCallback onBackTap;
+  final VoidCallback onShareTap;
   final ValueChanged<String> onFilterTap;
   final ValueChanged<String> onTimeRangeTap;
   final VoidCallback onStatsTap;
@@ -37,6 +39,7 @@ class ProgressContent extends StatelessWidget {
           selectedFilterId: selectedFilterId ?? overview.selectedFilterId,
           selectedTimeRangeId: selectedTimeRangeId ?? overview.selectedTimeRangeId,
           onBackTap: onBackTap,
+          onShareTap: onShareTap,
           onFilterTap: onFilterTap,
           onTimeRangeTap: onTimeRangeTap,
         ),
