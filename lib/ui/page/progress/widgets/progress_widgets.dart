@@ -66,9 +66,9 @@ class ProgressHeader extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      fontSize: AppFontSize.heading,
-                    ),
+                  fontWeight: FontWeight.w700,
+                  fontSize: AppFontSize.heading,
+                ),
               ),
               Align(
                 alignment: Alignment.centerRight,
@@ -121,10 +121,7 @@ class ProgressHeader extends StatelessWidget {
 }
 
 class ProgressScoreCard extends StatelessWidget {
-  const ProgressScoreCard({
-    super.key,
-    required this.overview,
-  });
+  const ProgressScoreCard({super.key, required this.overview});
 
   final ProgressOverview overview;
 
@@ -150,10 +147,10 @@ class ProgressScoreCard extends StatelessWidget {
                     Text(
                       overview.scoreTitle.toUpperCase(),
                       style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppPalette.textHint,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: AppLetterSpacing.wideSm,
-                          ),
+                        color: AppPalette.textHint,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: AppLetterSpacing.wideSm,
+                      ),
                     ),
                     const SizedBox(height: AppSpacing.sm),
                     Row(
@@ -161,7 +158,8 @@ class ProgressScoreCard extends StatelessWidget {
                       children: [
                         Text(
                           overview.scoreValue,
-                          style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          style: Theme.of(context).textTheme.headlineLarge
+                              ?.copyWith(
                                 fontWeight: FontWeight.w800,
                                 letterSpacing: AppLetterSpacing.tightLg,
                                 fontSize: AppFontSize.metricLg,
@@ -172,7 +170,8 @@ class ProgressScoreCard extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: AppSpacing.md),
                           child: Text(
                             overview.scoreDelta,
-                            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                            style: Theme.of(context).textTheme.labelLarge
+                                ?.copyWith(
                                   color: AppPalette.primary,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -184,8 +183,8 @@ class ProgressScoreCard extends StatelessWidget {
                     Text(
                       overview.levelLabel,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppPalette.textMuted,
-                          ),
+                        color: AppPalette.textMuted,
+                      ),
                     ),
                   ],
                 ),
@@ -196,16 +195,16 @@ class ProgressScoreCard extends StatelessWidget {
                 children: [
                   Text(
                     overview.nextLevelLabel,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppPalette.textHint,
-                        ),
+                    style: Theme.of(
+                      context,
+                    ).textTheme.bodySmall?.copyWith(color: AppPalette.textHint),
                   ),
                   const SizedBox(height: AppSpacing.xs),
                   Text(
                     overview.nextLevelRemainingLabel,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
@@ -217,16 +216,16 @@ class ProgressScoreCard extends StatelessWidget {
               children: [
                 Text(
                   currentLevel == null ? '' : 'Nv. $currentLevel',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: AppPalette.textHint,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium?.copyWith(color: AppPalette.textHint),
                 ),
                 const Spacer(),
                 Text(
                   nextLevel == null ? '' : 'Nv. $nextLevel',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: AppPalette.textHint,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.labelMedium?.copyWith(color: AppPalette.textHint),
                 ),
               ],
             ),
@@ -237,8 +236,12 @@ class ProgressScoreCard extends StatelessWidget {
             child: LinearProgressIndicator(
               value: progress.clamp(0, 1).toDouble(),
               minHeight: 6,
-              backgroundColor: AppPalette.white.withValues(alpha: AppOpacity.xxl),
-              valueColor: const AlwaysStoppedAnimation<Color>(AppPalette.primary),
+              backgroundColor: AppPalette.white.withValues(
+                alpha: AppOpacity.xxl,
+              ),
+              valueColor: const AlwaysStoppedAnimation<Color>(
+                AppPalette.primary,
+              ),
             ),
           ),
           const SizedBox(height: AppSpacing.sm),
@@ -246,9 +249,9 @@ class ProgressScoreCard extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               '${overview.levelProgressValue} / ${overview.levelProgressTarget}',
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: AppPalette.textMuted,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.labelMedium?.copyWith(color: AppPalette.textMuted),
             ),
           ),
         ],
@@ -258,10 +261,7 @@ class ProgressScoreCard extends StatelessWidget {
 }
 
 class ProgressStatsGrid extends StatelessWidget {
-  const ProgressStatsGrid({
-    super.key,
-    required this.items,
-  });
+  const ProgressStatsGrid({super.key, required this.items});
 
   final List<ProgressStatCard> items;
 
@@ -270,9 +270,10 @@ class ProgressStatsGrid extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final cardWidth = (constraints.maxWidth - (AppSpacing.md * 3)) / 4;
-        final childAspectRatio = cardWidth / 86;
+        final childAspectRatio = cardWidth / 64;
 
         return GridView.builder(
+          padding: EdgeInsets.zero,
           itemCount: items.length,
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -282,7 +283,8 @@ class ProgressStatsGrid extends StatelessWidget {
             crossAxisSpacing: AppSpacing.md,
             childAspectRatio: childAspectRatio,
           ),
-          itemBuilder: (context, index) => _ProgressMiniStatCard(item: items[index]),
+          itemBuilder: (context, index) =>
+              _ProgressMiniStatCard(item: items[index]),
         );
       },
     );
@@ -290,10 +292,7 @@ class ProgressStatsGrid extends StatelessWidget {
 }
 
 class ProgressPointsChartCard extends StatelessWidget {
-  const ProgressPointsChartCard({
-    super.key,
-    required this.overview,
-  });
+  const ProgressPointsChartCard({super.key, required this.overview});
 
   final ProgressOverview overview;
 
@@ -305,16 +304,16 @@ class ProgressPointsChartCard extends StatelessWidget {
         children: [
           Text(
             overview.pointsSectionTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: AppSpacing.xxs),
           Text(
             overview.pointsSectionSubtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppPalette.textHint,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppPalette.textHint),
           ),
           const SizedBox(height: AppSpacing.md),
           Row(
@@ -333,9 +332,7 @@ class ProgressPointsChartCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.md),
           SizedBox(
             height: 142,
-            child: LineChart(
-              _buildProgressLineChartData(overview.pointsChart),
-            ),
+            child: LineChart(_buildProgressLineChartData(overview.pointsChart)),
           ),
         ],
       ),
@@ -344,10 +341,7 @@ class ProgressPointsChartCard extends StatelessWidget {
 }
 
 class ProgressActivityRingsCard extends StatelessWidget {
-  const ProgressActivityRingsCard({
-    super.key,
-    required this.overview,
-  });
+  const ProgressActivityRingsCard({super.key, required this.overview});
 
   final ProgressOverview overview;
 
@@ -363,15 +357,15 @@ class ProgressActivityRingsCard extends StatelessWidget {
                 child: Text(
                   overview.activitySectionTitle,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               Text(
                 overview.uiLabels.activityTodayLabel,
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: AppPalette.textHint,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.labelMedium?.copyWith(color: AppPalette.textHint),
               ),
             ],
           ),
@@ -382,7 +376,9 @@ class ProgressActivityRingsCard extends StatelessWidget {
                   (item) => Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(
-                        right: item == overview.activityRings.last ? 0 : AppSpacing.sm,
+                        right: item == overview.activityRings.last
+                            ? 0
+                            : AppSpacing.sm,
                       ),
                       child: _ProgressRingMetricWidget(item: item),
                     ),
@@ -397,10 +393,7 @@ class ProgressActivityRingsCard extends StatelessWidget {
 }
 
 class ProgressSkillMapCard extends StatelessWidget {
-  const ProgressSkillMapCard({
-    super.key,
-    required this.overview,
-  });
+  const ProgressSkillMapCard({super.key, required this.overview});
 
   final ProgressOverview overview;
 
@@ -412,9 +405,9 @@ class ProgressSkillMapCard extends StatelessWidget {
         children: [
           Text(
             overview.skillMapTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: AppSpacing.xxs),
           Row(
@@ -422,9 +415,9 @@ class ProgressSkillMapCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   overview.skillMapSportLabel,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppPalette.textHint,
-                      ),
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodySmall?.copyWith(color: AppPalette.textHint),
                 ),
               ),
               Row(
@@ -439,9 +432,9 @@ class ProgressSkillMapCard extends StatelessWidget {
                   Text(
                     overview.skillMapScoreLabel,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                          color: AppPalette.primary,
-                          fontWeight: FontWeight.w700,
-                        ),
+                      color: AppPalette.primary,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ],
               ),
@@ -459,10 +452,7 @@ class ProgressSkillMapCard extends StatelessWidget {
 }
 
 class ProgressConsistencyCard extends StatelessWidget {
-  const ProgressConsistencyCard({
-    super.key,
-    required this.overview,
-  });
+  const ProgressConsistencyCard({super.key, required this.overview});
 
   final ProgressOverview overview;
 
@@ -486,8 +476,8 @@ class ProgressConsistencyCard extends StatelessWidget {
                 child: Text(
                   overview.consistencyTitle,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               const _HeatLegend(),
@@ -496,18 +486,24 @@ class ProgressConsistencyCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.xxs),
           Text(
             overview.consistencySubtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppPalette.textHint,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppPalette.textHint),
           ),
           const SizedBox(height: AppSpacing.md),
           LayoutBuilder(
             builder: (context, constraints) {
               const axisWidth = 14.0;
-              final columnCount = heatmapRows.isEmpty ? 1 : heatmapRows.first.length;
-              final gridWidth = constraints.maxWidth - axisWidth - AppSpacing.sm;
+              final columnCount = heatmapRows.isEmpty
+                  ? 1
+                  : heatmapRows.first.length;
+              final gridWidth =
+                  constraints.maxWidth - axisWidth - AppSpacing.sm;
               final slotWidth = gridWidth / columnCount;
-              final tileSize = math.max(0.0, slotWidth - (tileGapHorizontal * 2));
+              final tileSize = math.max(
+                0.0,
+                slotWidth - (tileGapHorizontal * 2),
+              );
 
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -520,7 +516,9 @@ class ProgressConsistencyCard extends StatelessWidget {
                         heatmapRows.length,
                         (index) => Padding(
                           padding: EdgeInsets.only(
-                            bottom: index == heatmapRows.length - 1 ? 0 : rowGap,
+                            bottom: index == heatmapRows.length - 1
+                                ? 0
+                                : rowGap,
                           ),
                           child: SizedBox(
                             height: tileSize,
@@ -528,7 +526,8 @@ class ProgressConsistencyCard extends StatelessWidget {
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 overview.consistencyWeekdays[index],
-                                style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                style: Theme.of(context).textTheme.labelSmall
+                                    ?.copyWith(
                                       color: AppPalette.textHint,
                                       fontSize: AppFontSize.caption,
                                       fontWeight: FontWeight.w500,
@@ -550,7 +549,9 @@ class ProgressConsistencyCard extends StatelessWidget {
                           .map(
                             (entry) => Padding(
                               padding: EdgeInsets.only(
-                                bottom: entry.key == heatmapRows.length - 1 ? 0 : rowGap,
+                                bottom: entry.key == heatmapRows.length - 1
+                                    ? 0
+                                    : rowGap,
                               ),
                               child: Row(
                                 children: entry.value
@@ -565,7 +566,10 @@ class ProgressConsistencyCard extends StatelessWidget {
                                             child: DecoratedBox(
                                               decoration: BoxDecoration(
                                                 color: _heatmapColor(value),
-                                                borderRadius: BorderRadius.circular(tileRadius),
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                      tileRadius,
+                                                    ),
                                               ),
                                             ),
                                           ),
@@ -590,35 +594,37 @@ class ProgressConsistencyCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           Row(
-            children: List.generate(
-              overview.consistencySummary.length,
-              (index) {
-                final item = overview.consistencySummary[index];
-                final isHighlighted = index == 1;
+            children: List.generate(overview.consistencySummary.length, (
+              index,
+            ) {
+              final item = overview.consistencySummary[index];
+              final isHighlighted = index == 1;
 
-                return Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        item.value,
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                              color: isHighlighted ? AppPalette.primary : AppPalette.white,
-                              fontWeight: FontWeight.w800,
-                            ),
+              return Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      item.value,
+                      style: Theme.of(context).textTheme.headlineSmall
+                          ?.copyWith(
+                            color: isHighlighted
+                                ? AppPalette.primary
+                                : AppPalette.white,
+                            fontWeight: FontWeight.w800,
+                          ),
+                    ),
+                    const SizedBox(height: AppSpacing.xxs),
+                    Text(
+                      item.title,
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        color: AppPalette.textMuted,
                       ),
-                      const SizedBox(height: AppSpacing.xxs),
-                      Text(
-                        item.title,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: AppPalette.textMuted,
-                            ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
+                    ),
+                  ],
+                ),
+              );
+            }),
           ),
         ],
       ),
@@ -648,6 +654,7 @@ class ProgressTennisStatsCard extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.md),
           GridView.builder(
+            padding: EdgeInsets.zero,
             itemCount: overview.tennisStats.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
@@ -704,10 +711,7 @@ class ProgressMatchesCard extends StatelessWidget {
 }
 
 class ProgressLessonsCard extends StatelessWidget {
-  const ProgressLessonsCard({
-    super.key,
-    required this.overview,
-  });
+  const ProgressLessonsCard({super.key, required this.overview});
 
   final ProgressOverview overview;
 
@@ -715,7 +719,8 @@ class ProgressLessonsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final maxValue = overview.lessonsBars.fold<double>(
       0,
-      (current, item) => math.max(current, math.max(item.groupValue, item.privateValue)),
+      (current, item) =>
+          math.max(current, math.max(item.groupValue, item.privateValue)),
     );
 
     return _SurfaceCard(
@@ -724,16 +729,16 @@ class ProgressLessonsCard extends StatelessWidget {
         children: [
           Text(
             overview.lessonsTitle,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
           const SizedBox(height: AppSpacing.xxs),
           Text(
             overview.lessonsSubtitle,
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppPalette.textHint,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodySmall?.copyWith(color: AppPalette.textHint),
           ),
           const SizedBox(height: AppSpacing.md),
           Row(
@@ -767,10 +772,7 @@ class ProgressLessonsCard extends StatelessWidget {
 }
 
 class ProgressRecordsCard extends StatelessWidget {
-  const ProgressRecordsCard({
-    super.key,
-    required this.overview,
-  });
+  const ProgressRecordsCard({super.key, required this.overview});
 
   final ProgressOverview overview;
 
@@ -784,9 +786,9 @@ class ProgressRecordsCard extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: Text(
               overview.recordsTitle,
-              style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
             ),
           ),
           const SizedBox(height: AppSpacing.md),
@@ -810,7 +812,9 @@ class ProgressRecordsCard extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: AppSpacing.giant),
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppSpacing.giant,
+                  ),
                   child: Container(
                     height: AppStroke.hairline,
                     color: AppPalette.primary.withValues(alpha: AppOpacity.xxl),
@@ -873,15 +877,22 @@ class _SegmentedGroup extends StatelessWidget {
                       vertical: AppSpacing.sm,
                     ),
                     decoration: BoxDecoration(
-                      color: item.selected ? AppPalette.white : Colors.transparent,
+                      color: item.selected
+                          ? AppPalette.white
+                          : Colors.transparent,
                       borderRadius: BorderRadius.circular(AppRadius.pill),
                     ),
                     child: Center(
                       child: Text(
                         item.label,
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                              color: item.selected ? AppPalette.black : AppPalette.white,
-                              fontWeight: item.selected ? FontWeight.w700 : FontWeight.w500,
+                        style: Theme.of(context).textTheme.labelMedium
+                            ?.copyWith(
+                              color: item.selected
+                                  ? AppPalette.black
+                                  : AppPalette.white,
+                              fontWeight: item.selected
+                                  ? FontWeight.w700
+                                  : FontWeight.w500,
                             ),
                       ),
                     ),
@@ -896,10 +907,7 @@ class _SegmentedGroup extends StatelessWidget {
 }
 
 class _HeaderActionButton extends StatelessWidget {
-  const _HeaderActionButton({
-    required this.icon,
-    required this.onTap,
-  });
+  const _HeaderActionButton({required this.icon, required this.onTap});
 
   final IconData icon;
   final VoidCallback onTap;
@@ -923,7 +931,9 @@ class _HeaderActionButton extends StatelessWidget {
         child: Icon(
           icon,
           color: AppPalette.white,
-          size: icon == Icons.share_outlined ? AppIconSize.xxl : AppIconSize.huge,
+          size: icon == Icons.share_outlined
+              ? AppIconSize.xxl
+              : AppIconSize.huge,
         ),
       ),
     );
@@ -931,9 +941,7 @@ class _HeaderActionButton extends StatelessWidget {
 }
 
 class _ProgressMiniStatCard extends StatelessWidget {
-  const _ProgressMiniStatCard({
-    required this.item,
-  });
+  const _ProgressMiniStatCard({required this.item});
 
   final ProgressStatCard item;
 
@@ -947,7 +955,9 @@ class _ProgressMiniStatCard extends StatelessWidget {
         vertical: AppSpacing.sm,
       ),
       decoration: BoxDecoration(
-        color: item.highlighted ? AppPalette.successDark : AppPalette.surfaceAlt,
+        color: item.highlighted
+            ? AppPalette.successDark
+            : AppPalette.surfaceAlt,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(
           color: item.highlighted
@@ -966,17 +976,19 @@ class _ProgressMiniStatCard extends StatelessWidget {
               Icon(
                 _iconForMiniStat(item.title),
                 size: AppIconSize.sm,
-                color: item.highlighted ? AppPalette.primary : AppPalette.textHint,
+                color: item.highlighted
+                    ? AppPalette.primary
+                    : AppPalette.textHint,
               ),
               const Spacer(),
               Text(
                 item.delta,
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: accentColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 10,
-                      height: 1,
-                    ),
+                  color: accentColor,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 10,
+                  height: 1,
+                ),
               ),
             ],
           ),
@@ -993,10 +1005,10 @@ class _ProgressMiniStatCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.w800,
-                          fontSize: AppFontSize.body,
-                          height: 1,
-                        ),
+                      fontWeight: FontWeight.w800,
+                      fontSize: AppFontSize.body,
+                      height: 1,
+                    ),
                   ),
                   const SizedBox(height: 1),
                   Text(
@@ -1004,10 +1016,10 @@ class _ProgressMiniStatCard extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppPalette.textMuted,
-                          fontSize: 10,
-                          height: 1,
-                        ),
+                      color: AppPalette.textMuted,
+                      fontSize: 10,
+                      height: 1,
+                    ),
                   ),
                 ],
               ),
@@ -1020,9 +1032,7 @@ class _ProgressMiniStatCard extends StatelessWidget {
 }
 
 class _ProgressLargeStatCard extends StatelessWidget {
-  const _ProgressLargeStatCard({
-    required this.item,
-  });
+  const _ProgressLargeStatCard({required this.item});
 
   final ProgressStatCard item;
 
@@ -1031,7 +1041,9 @@ class _ProgressLargeStatCard extends StatelessWidget {
     return Container(
       padding: AppInsets.cardPaddingLg,
       decoration: BoxDecoration(
-        color: item.highlighted ? AppPalette.successSoft : AppPalette.surfaceAlt,
+        color: item.highlighted
+            ? AppPalette.successSoft
+            : AppPalette.surfaceAlt,
         borderRadius: BorderRadius.circular(AppRadius.lg),
         border: Border.all(
           color: item.highlighted
@@ -1049,39 +1061,41 @@ class _ProgressLargeStatCard extends StatelessWidget {
               Icon(
                 _iconForLargeStat(item.title),
                 size: AppIconSize.lg,
-                color: item.highlighted ? AppPalette.primary : AppPalette.textHint,
+                color: item.highlighted
+                    ? AppPalette.primary
+                    : AppPalette.textHint,
               ),
               const Spacer(),
               Text(
                 item.delta,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: AppPalette.primary,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  color: AppPalette.primary,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
           const Spacer(),
           Text(
             item.value,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
             item.title,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppPalette.textMuted,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.bodyMedium?.copyWith(color: AppPalette.textMuted),
           ),
           if (item.subtitle != null) ...[
             const SizedBox(height: AppSpacing.xxs),
             Text(
               item.subtitle!,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppPalette.textHint,
-                  ),
+              style: Theme.of(
+                context,
+              ).textTheme.bodySmall?.copyWith(color: AppPalette.textHint),
             ),
           ],
         ],
@@ -1091,9 +1105,7 @@ class _ProgressLargeStatCard extends StatelessWidget {
 }
 
 class _ProgressRingMetricWidget extends StatelessWidget {
-  const _ProgressRingMetricWidget({
-    required this.item,
-  });
+  const _ProgressRingMetricWidget({required this.item});
 
   final ProgressActivityRingMetric item;
 
@@ -1138,9 +1150,9 @@ class _ProgressRingMetricWidget extends StatelessWidget {
               Text(
                 item.value,
                 style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      fontSize: AppFontSize.bodySm,
-                    ),
+                  fontWeight: FontWeight.w700,
+                  fontSize: AppFontSize.bodySm,
+                ),
               ),
             ],
           ),
@@ -1149,17 +1161,17 @@ class _ProgressRingMetricWidget extends StatelessWidget {
         Text(
           item.title,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w600,
-                fontSize: AppFontSize.bodySm,
-              ),
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.bodySm,
+          ),
         ),
         const SizedBox(height: AppSpacing.xxs),
         Text(
           item.targetLabel,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppPalette.textHint,
-                fontSize: AppFontSize.caption,
-              ),
+            color: AppPalette.textHint,
+            fontSize: AppFontSize.caption,
+          ),
           textAlign: TextAlign.center,
         ),
       ],
@@ -1167,11 +1179,8 @@ class _ProgressRingMetricWidget extends StatelessWidget {
   }
 }
 
-
 class _MatchRow extends StatelessWidget {
-  const _MatchRow({
-    required this.item,
-  });
+  const _MatchRow({required this.item});
 
   final ProgressMatchResult item;
 
@@ -1203,10 +1212,10 @@ class _MatchRow extends StatelessWidget {
             child: Text(
               item.result,
               style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                    color: positive ? AppPalette.black : AppPalette.white,
-                    fontWeight: FontWeight.w800,
-                    fontSize: AppFontSize.caption,
-                  ),
+                color: positive ? AppPalette.black : AppPalette.white,
+                fontWeight: FontWeight.w800,
+                fontSize: AppFontSize.caption,
+              ),
             ),
           ),
           const SizedBox(width: AppSpacing.md),
@@ -1217,17 +1226,17 @@ class _MatchRow extends StatelessWidget {
                 Text(
                   item.opponent,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        fontWeight: FontWeight.w600,
-                        fontSize: AppFontSize.body,
-                      ),
+                    fontWeight: FontWeight.w600,
+                    fontSize: AppFontSize.body,
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.xxs),
                 Text(
                   item.dateLabel,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: AppPalette.textHint,
-                        fontSize: AppFontSize.caption,
-                      ),
+                    color: AppPalette.textHint,
+                    fontSize: AppFontSize.caption,
+                  ),
                 ),
               ],
             ),
@@ -1236,9 +1245,9 @@ class _MatchRow extends StatelessWidget {
           Text(
             item.score,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: AppFontSize.body,
-                ),
+              fontWeight: FontWeight.w700,
+              fontSize: AppFontSize.body,
+            ),
           ),
         ],
       ),
@@ -1247,9 +1256,7 @@ class _MatchRow extends StatelessWidget {
 }
 
 class _RecordsMetric extends StatelessWidget {
-  const _RecordsMetric({
-    required this.item,
-  });
+  const _RecordsMetric({required this.item});
 
   final ProgressStatCard item;
 
@@ -1261,24 +1268,24 @@ class _RecordsMetric extends StatelessWidget {
         Text(
           item.title.toUpperCase(),
           style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppPalette.textHint,
-                fontWeight: FontWeight.w700,
-                letterSpacing: AppLetterSpacing.wideSm,
-              ),
+            color: AppPalette.textHint,
+            fontWeight: FontWeight.w700,
+            letterSpacing: AppLetterSpacing.wideSm,
+          ),
         ),
         const SizedBox(height: AppSpacing.md),
         Text(
           item.value,
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.w800,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
         ),
         const SizedBox(height: AppSpacing.xs),
         Text(
           item.delta,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: AppPalette.textMuted,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.bodySmall?.copyWith(color: AppPalette.textMuted),
         ),
       ],
     );
@@ -1286,9 +1293,7 @@ class _RecordsMetric extends StatelessWidget {
 }
 
 class _SurfaceCard extends StatelessWidget {
-  const _SurfaceCard({
-    required this.child,
-  });
+  const _SurfaceCard({required this.child});
 
   final Widget child;
 
@@ -1310,10 +1315,7 @@ class _SurfaceCard extends StatelessWidget {
 }
 
 class _LegendDot extends StatelessWidget {
-  const _LegendDot({
-    required this.color,
-    required this.label,
-  });
+  const _LegendDot({required this.color, required this.label});
 
   final Color color;
   final String label;
@@ -1326,17 +1328,14 @@ class _LegendDot extends StatelessWidget {
         Container(
           width: 8,
           height: 8,
-          decoration: BoxDecoration(
-            color: color,
-            shape: BoxShape.circle,
-          ),
+          decoration: BoxDecoration(color: color, shape: BoxShape.circle),
         ),
         const SizedBox(width: AppSpacing.xs),
         Text(
           label,
-          style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: AppPalette.textMuted,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelMedium?.copyWith(color: AppPalette.textMuted),
         ),
       ],
     );
@@ -1344,9 +1343,7 @@ class _LegendDot extends StatelessWidget {
 }
 
 class _RadarChartWithTooltip extends StatefulWidget {
-  const _RadarChartWithTooltip({
-    required this.items,
-  });
+  const _RadarChartWithTooltip({required this.items});
 
   final List<ProgressSkillMetric> items;
 
@@ -1395,10 +1392,7 @@ class _RadarChartWithTooltipState extends State<_RadarChartWithTooltip> {
 }
 
 class _RadarTooltip extends StatelessWidget {
-  const _RadarTooltip({
-    required this.item,
-    required this.position,
-  });
+  const _RadarTooltip({required this.item, required this.position});
 
   final ProgressSkillMetric item;
   final Offset position;
@@ -1436,17 +1430,17 @@ class _RadarTooltip extends StatelessWidget {
               Text(
                 item.label,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppPalette.textHint,
-                      fontWeight: FontWeight.w500,
-                    ),
+                  color: AppPalette.textHint,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
               const SizedBox(height: AppSpacing.xxs),
               Text(
                 _formatRadarValue(item.value),
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                      color: AppPalette.primary,
-                      fontWeight: FontWeight.w700,
-                    ),
+                  color: AppPalette.primary,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -1474,9 +1468,9 @@ class _ProgressSectionHeader extends StatelessWidget {
         Expanded(
           child: Text(
             title,
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                  fontWeight: FontWeight.w700,
-                ),
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700),
           ),
         ),
         if (actionLabel != null)
@@ -1488,9 +1482,9 @@ class _ProgressSectionHeader extends StatelessWidget {
               child: Text(
                 actionLabel!,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: AppPalette.textHint,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  color: AppPalette.textHint,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
           ),
@@ -1508,9 +1502,9 @@ class _HeatLegend extends StatelessWidget {
       children: [
         Text(
           '-',
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppPalette.textHint,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: AppPalette.textHint),
         ),
         const SizedBox(width: AppSpacing.xs),
         ...List.generate(
@@ -1530,9 +1524,9 @@ class _HeatLegend extends StatelessWidget {
         const SizedBox(width: AppSpacing.xs),
         Text(
           '+',
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppPalette.textHint,
-              ),
+          style: Theme.of(
+            context,
+          ).textTheme.labelSmall?.copyWith(color: AppPalette.textHint),
         ),
       ],
     );
@@ -1553,9 +1547,7 @@ class _ChipItem {
 
 LineChartData _buildProgressLineChartData(List<ProgressChartPoint> items) {
   final safeItems = items.isEmpty
-      ? [
-          ProgressChartPoint(label: '', userValue: 0, averageValue: 0),
-        ]
+      ? [ProgressChartPoint(label: '', userValue: 0, averageValue: 0)]
       : items;
 
   final values = [
@@ -1748,9 +1740,7 @@ RadarChartData _buildRadarChartData(
   int? touchedIndex,
 }) {
   final safeItems = items.isEmpty
-      ? [
-          ProgressSkillMetric(label: '', value: 0),
-        ]
+      ? [ProgressSkillMetric(label: '', value: 0)]
       : items;
 
   return RadarChartData(
@@ -1758,10 +1748,7 @@ RadarChartData _buildRadarChartData(
     radarBackgroundColor: Colors.transparent,
     radarBorderData: BorderSide.none,
     tickCount: 5,
-    ticksTextStyle: const TextStyle(
-      fontSize: 0,
-      color: Colors.transparent,
-    ),
+    ticksTextStyle: const TextStyle(fontSize: 0, color: Colors.transparent),
     tickBorderData: BorderSide(
       color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
       width: AppStroke.hairline,
@@ -1784,7 +1771,9 @@ RadarChartData _buildRadarChartData(
     },
     dataSets: [
       RadarDataSet(
-        dataEntries: safeItems.map((item) => RadarEntry(value: item.value)).toList(),
+        dataEntries: safeItems
+            .map((item) => RadarEntry(value: item.value))
+            .toList(),
         borderColor: AppPalette.primary,
         fillColor: AppPalette.primary.withValues(alpha: AppOpacity.accent),
         borderWidth: 2,
@@ -1949,16 +1938,14 @@ String _shortRadarLabel(String label) {
 List<List<int>> _transposeHeatmap(List<List<int>> weeks, int weekdayCount) {
   return List.generate(
     weekdayCount,
-    (weekdayIndex) => List.generate(
-      weeks.length,
-      (weekIndex) {
-        if (weekIndex >= weeks.length || weekdayIndex >= weeks[weekIndex].length) {
-          return 0;
-        }
+    (weekdayIndex) => List.generate(weeks.length, (weekIndex) {
+      if (weekIndex >= weeks.length ||
+          weekdayIndex >= weeks[weekIndex].length) {
+        return 0;
+      }
 
-        return weeks[weekIndex][weekdayIndex];
-      },
-    ),
+      return weeks[weekIndex][weekdayIndex];
+    }),
   );
 }
 
@@ -1971,8 +1958,12 @@ Offset _radarTooltipOffset(Size size, int index, int axisCount) {
     center.dy + (radius + 18) * math.sin(angle),
   );
 
-  final dx = (point.dx - 44).clamp(8.0, math.max(8.0, size.width - 96)).toDouble();
-  final dy = (point.dy - 18).clamp(8.0, math.max(8.0, size.height - 52)).toDouble();
+  final dx = (point.dx - 44)
+      .clamp(8.0, math.max(8.0, size.width - 96))
+      .toDouble();
+  final dy = (point.dy - 18)
+      .clamp(8.0, math.max(8.0, size.height - 52))
+      .toDouble();
   return Offset(dx, dy);
 }
 
