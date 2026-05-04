@@ -62,3 +62,5 @@ app.*.map.json
 pubspec.lock
 .metadata
 .claude/launch.json
+.claude/scheduled_tasks.lock
+.claude/*
