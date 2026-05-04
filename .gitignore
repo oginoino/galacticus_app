@@ -61,3 +61,4 @@ app.*.map.json
 # Lock files (keep only root pubspec.lock for apps, ignore for packages)
 pubspec.lock
 .metadata
+.claude/launch.json
