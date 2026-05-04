@@ -95,41 +95,48 @@ class RankingCategoryTabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: AppSpacing.sm,
-      runSpacing: AppSpacing.sm,
-      children: items
-          .map(
-            (item) => InkWell(
-              onTap: () => onTap(item.id),
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-              child: Container(
-                height: AppSize.rankingCategoryHeight,
-                padding: AppInsets.actionChipPadding,
-                decoration: BoxDecoration(
-                  color: item.id == selectedCategoryId
-                      ? AppPalette.white
-                      : AppPalette.black,
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: items
+            .map(
+              (item) => Padding(
+                padding: EdgeInsets.only(
+                  right: item == items.last ? 0 : AppSpacing.sm,
+                ),
+                child: InkWell(
+                  onTap: () => onTap(item.id),
                   borderRadius: BorderRadius.circular(AppRadius.pill),
-                  border: Border.all(
-                    color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                    width: AppStroke.hairline,
+                  child: Container(
+                    height: AppSize.rankingCategoryHeight,
+                    padding: AppInsets.actionChipPadding,
+                    decoration: BoxDecoration(
+                      color: item.id == selectedCategoryId
+                          ? AppPalette.white
+                          : AppPalette.black,
+                      borderRadius: BorderRadius.circular(AppRadius.pill),
+                      border: Border.all(
+                        color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+                        width: AppStroke.hairline,
+                      ),
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      item.label,
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: item.id == selectedCategoryId
+                                ? AppPalette.black
+                                : AppPalette.white,
+                            fontWeight: FontWeight.w500,
+                          ),
+                    ),
                   ),
                 ),
-                alignment: Alignment.center,
-                child: Text(
-                  item.label,
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: item.id == selectedCategoryId
-                            ? AppPalette.black
-                            : AppPalette.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                ),
               ),
-            ),
-          )
-          .toList(growable: false),
+            )
+            .toList(growable: false),
+      ),
     );
   }
 }
