@@ -59,7 +59,7 @@ class _ShootingPageState extends State<ShootingPage> {
                     ),
                     Switch.adaptive(
                       value: _enabled,
-                      activeColor: AppPalette.primary,
+                      activeThumbColor: AppPalette.primary,
                       onChanged: (value) => setState(() => _enabled = value),
                     ),
                   ],

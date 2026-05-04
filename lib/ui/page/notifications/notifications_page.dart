@@ -7,6 +7,7 @@ import '../../../domain/notifications_overview.dart';
 import '../../../provider/notifications_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
+import '../../components/app_sliver_scaffold.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
 import '../../theme/app_theme.dart';
@@ -20,47 +21,64 @@ class NotificationsPage extends StatelessWidget {
     final provider = context.watch<NotificationsProvider>();
     final overview = provider.overview;
 
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationShell(
-        currentIndex: -1,
-        onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
-        homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
-        feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
-        clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
-        profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
-        onCreateTap: overview == null
-            ? null
-            : () => _showSnack(context, overview.messages.quickAction),
-      ),
-      body: ContentStateView(
-        isLoading: provider.isLoading && overview == null,
-        errorMessage:
-            provider.errorMessage != null && overview == null ? provider.errorMessage : null,
-        onRetry: provider.loadNotifications,
-        retryLabel: sl<AppConstants>().retryLabel,
-        child: overview == null
-            ? const SizedBox.shrink()
-            : RefreshIndicator(
-                onRefresh: provider.loadNotifications,
-                color: AppPalette.primary,
-                child: NotificationsContent(
-                  overview: overview,
-                  onBackTap: () {
-                    if (context.canPop()) {
-                      context.pop();
-                      return;
-                    }
+    final bottomNav = BottomNavigationShell(
+      currentIndex: -1,
+      onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
+      homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
+      feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
+      clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
+      profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
+      onCreateTap: overview == null
+          ? null
+          : () => _showSnack(context, overview.messages.quickAction),
+    );
 
-                    context.go(Routes.communities);
-                  },
-                  onMarkAllReadTap: () =>
-                      _showSnack(context, overview.messages.markAllReadAction),
-                  onNotificationTap: () =>
-                      _showSnack(context, overview.messages.notificationTapAction),
-                ),
+    if (overview == null) {
+      return Scaffold(
+        bottomNavigationBar: bottomNav,
+        body: ContentStateView(
+          isLoading: provider.isLoading,
+          errorMessage: provider.errorMessage,
+          onRetry: provider.loadNotifications,
+          retryLabel: sl<AppConstants>().retryLabel,
+          child: const SizedBox.shrink(),
+        ),
+      );
+    }
+
+    return AppSliverScaffold(
+      title: overview.title,
+      subtitle: overview.unreadSummary,
+      fallbackRoute: Routes.communities,
+      bottomNavigationBar: bottomNav,
+      onRefresh: provider.loadNotifications,
+      trailing: TextButton(
+        onPressed: () =>
+            _showSnack(context, overview.messages.markAllReadAction),
+        style: TextButton.styleFrom(
+          padding: EdgeInsets.zero,
+          minimumSize: Size.zero,
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+        child: Text(
+          overview.markAllReadLabel,
+          textAlign: TextAlign.right,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                color: AppPalette.primary,
+                fontWeight: FontWeight.w600,
+                fontSize: AppFontSize.bodyLg,
               ),
+        ),
       ),
+      slivers: [
+        SliverToBoxAdapter(
+          child: NotificationsContent(
+            overview: overview,
+            onNotificationTap: () =>
+                _showSnack(context, overview.messages.notificationTapAction),
+          ),
+        ),
+      ],
     );
   }
 
@@ -85,7 +103,8 @@ class NotificationsPage extends StatelessWidget {
       default:
         _showSnack(
           context,
-          overview?.messages.quickAction ?? sl<AppConstants>().navigationUnavailableMessage,
+          overview?.messages.quickAction ??
+              sl<AppConstants>().navigationUnavailableMessage,
         );
     }
   }

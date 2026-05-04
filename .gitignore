@@ -47,7 +47,6 @@ app.*.map.json
 /android/app/release
 
 # Web related
-lib/generated_plugin_registrant.dart
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
@@ -62,3 +61,6 @@ lib/generated_plugin_registrant.dart
 # Lock files (keep only root pubspec.lock for apps, ignore for packages)
 pubspec.lock
 .metadata
+.claude/launch.json
+.claude/scheduled_tasks.lock
+.claude/*

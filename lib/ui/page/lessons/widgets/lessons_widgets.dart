@@ -5,67 +5,6 @@ import '../../../../domain/lessons_track.dart';
 import '../../../../domain/lessons_upcoming_item.dart';
 import '../../../theme/app_theme.dart';
 
-class LessonsHeader extends StatelessWidget {
-  const LessonsHeader({
-    super.key,
-    required this.title,
-    required this.onBackTap,
-  });
-
-  final String title;
-  final VoidCallback onBackTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final topInset = MediaQuery.viewPaddingOf(context).top;
-
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-        AppSize.lessonsHeaderLeadingInset,
-        topInset + AppSpacing.page,
-        AppSpacing.page,
-        AppSpacing.lg,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: InkWell(
-              onTap: onBackTap,
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-              child: Container(
-                width: AppSize.lessonsTopAction,
-                height: AppSize.lessonsTopAction,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppPalette.surfaceAlt,
-                  border: Border.all(
-                    color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                    width: AppStroke.hairline,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.chevron_left_rounded,
-                  color: AppPalette.white,
-                  size: AppIconSize.huge,
-                ),
-              ),
-            ),
-          ),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: AppFontSize.heading,
-                ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class LessonsFeaturedHero extends StatelessWidget {
   const LessonsFeaturedHero({
     super.key,

@@ -36,7 +36,6 @@ class _AiTrainingContentState extends State<AiTrainingContent>
   int _currentStep = 1;
   _AiTrainingLayoutMode _layoutMode = _AiTrainingLayoutMode.referenceFocus;
   CameraController? _controller;
-  List<CameraDescription> _cameras = const [];
   int _cameraIndex = 0;
   bool _isInitializingCamera = true;
   String? _cameraError;
@@ -197,13 +196,6 @@ class _AiTrainingContentState extends State<AiTrainingContent>
     widget.onMessage(widget.overview.messages.startAction);
   }
 
-  void _nextRepetition() {
-    setState(() {
-      _currentStep = _currentStep == _totalSteps ? 1 : _currentStep + 1;
-    });
-    widget.onMessage(widget.overview.messages.nextRepetitionAction);
-  }
-
   Widget _buildTrainingInset(AiTrainingReference reference) {
     switch (_layoutMode) {
       case _AiTrainingLayoutMode.referenceFocus:
@@ -261,14 +253,12 @@ class _AiTrainingContentState extends State<AiTrainingContent>
       final cameras = await availableCameras();
       if (cameras.isEmpty) {
         setState(() {
-          _cameras = const [];
           _cameraError = widget.overview.messages.cameraUnavailable;
           _isInitializingCamera = false;
         });
         return;
       }
 
-      _cameras = cameras;
       final requestedIndex = preferredIndex ?? _preferredCameraIndex(cameras);
       _cameraIndex = requestedIndex < 0
           ? 0

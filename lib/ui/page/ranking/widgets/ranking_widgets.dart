@@ -6,81 +6,6 @@ import '../../../../domain/ranking_overview.dart';
 import '../../../../domain/ranking_podium_entry.dart';
 import '../../../theme/app_theme.dart';
 
-class RankingHeader extends StatelessWidget {
-  const RankingHeader({
-    super.key,
-    required this.overview,
-    required this.onBackTap,
-  });
-
-  final RankingOverview overview;
-  final VoidCallback onBackTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final topInset = MediaQuery.viewPaddingOf(context).top;
-
-    return Padding(
-      padding: EdgeInsets.fromLTRB(
-        AppSize.rankingHeaderLeadingInset,
-        topInset + AppSpacing.page,
-        AppSpacing.page,
-        AppSpacing.lg,
-      ),
-      child: Column(
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: InkWell(
-                  onTap: onBackTap,
-                  borderRadius: BorderRadius.circular(AppRadius.pill),
-                  child: Container(
-                    width: AppSize.rankingTopAction,
-                    height: AppSize.rankingTopAction,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppPalette.surfaceAlt,
-                      border: Border.all(
-                        color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                        width: AppStroke.hairline,
-                      ),
-                    ),
-                    child: const Icon(
-                      Icons.chevron_left_rounded,
-                      color: AppPalette.white,
-                      size: AppIconSize.huge,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                overview.title,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.w700,
-                      fontSize: AppFontSize.heading,
-                    ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.xs),
-          Text(
-            overview.subtitle,
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppPalette.textMuted,
-                  fontSize: AppFontSize.bodyLg,
-                ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class RankingCategoryTabs extends StatelessWidget {
   const RankingCategoryTabs({
     super.key,
@@ -229,7 +154,7 @@ class _RankingPodiumColumn extends StatelessWidget {
           ),
           alignment: Alignment.center,
           child: Text(
-            entry.initials as String,
+            entry.initials,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
                   color: winner ? AppPalette.black : AppPalette.white,
                   fontWeight: FontWeight.w700,
@@ -238,7 +163,7 @@ class _RankingPodiumColumn extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          entry.name as String,
+          entry.name,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 fontWeight: FontWeight.w500,
                 fontSize: AppFontSize.bodyLg,
@@ -259,7 +184,7 @@ class _RankingPodiumColumn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                entry.positionLabel as String,
+                entry.positionLabel,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: winner ? AppPalette.primary : AppPalette.white,
                       fontWeight: FontWeight.w700,

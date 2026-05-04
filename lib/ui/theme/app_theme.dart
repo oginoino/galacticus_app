@@ -190,6 +190,7 @@ abstract final class AppLetterSpacing {
 }
 
 abstract final class AppSize {
+  static const headerActionButton = 40.0;
   static const navBarHeight = 82.0;
   static const navGlow = 118.0;
   static const navCenterButton = 44.0;
@@ -298,8 +299,6 @@ abstract final class AppSize {
   static const communitiesDiscoverButtonHeightCompact = 36.0;
   static const communitiesSectionDivider = 2.0;
   static const communitiesDiscoverGridAspectRatio = 0.58;
-  static const rankingTopAction = 40.0;
-  static const rankingHeaderLeadingInset = 2.0;
   static const rankingCategoryHeight = 34.0;
   static const rankingPodiumAvatar = 42.0;
   static const rankingPodiumCardWidth = 82.0;
@@ -316,17 +315,14 @@ abstract final class AppSize {
   static const profileTabHeight = 36.0;
   static const profileGalleryRadius = 24.0;
   static const profileGalleryAspectRatio = 0.82;
-  static const notificationsTopAction = 40.0;
   static const notificationsLeading = 40.0;
   static const notificationsAvatar = 40.0;
   static const notificationsUnreadDot = 7.0;
-  static const bookingTopAction = 40.0;
   static const bookingToggleHeight = 42.0;
   static const bookingHeroHeight = 248.0;
   static const bookingDateCardWidth = 72.0;
   static const bookingDateCardHeight = 64.0;
   static const bookingTimeChipHeight = 38.0;
-  static const assistantTopAction = 40.0;
   static const assistantStatusHeight = 28.0;
   static const assistantHeroLogo = 84.0;
   static const assistantPromptHeight = 52.0;
@@ -344,17 +340,13 @@ abstract final class AppSize {
   static const checkinSecondaryAction = 54.0;
   static const checkinFilterBottomOffset = 132.0;
   static const lessonsHeroHeight = 334.0;
-  static const lessonsTopAction = 40.0;
-  static const lessonsHeaderLeadingInset = 2.0;
   static const lessonsFeaturedPlay = 82.0;
   static const lessonsTrackCardWidth = 148.0;
   static const lessonsTrackCardHeight = 220.0;
   static const lessonsUpcomingThumbWidth = 94.0;
   static const lessonsUpcomingThumbHeight = 84.0;
-  static const agendaTopAction = 40.0;
   static const agendaEventCardHeight = 140.0;
   static const agendaMatchAvatar = 42.0;
-  static const aiTrainingTopAction = 42.0;
   static const aiTrainingPreviewWidth = 106.0;
   static const aiTrainingPreviewHeight = 126.0;
   static const aiTrainingReferenceCardWidth = 156.0;
@@ -365,7 +357,6 @@ abstract final class AppSize {
   static const lessonsCoachAvatarRadius = 18.0;
   static const lessonsUpcomingPlayButton = 34.0;
   static const checkinFilterBarHeight = 78.0;
-  static const pageHeaderLeadingInset = 14.0;
 }
 
 abstract final class AppChartHeights {
@@ -569,13 +560,6 @@ abstract final class AppResponsiveInsets {
         topInset + AppSpacing.page,
         AppSpacing.page,
         0,
-      );
-
-  static EdgeInsets pageHeader(double topInset) => EdgeInsets.fromLTRB(
-        AppSize.pageHeaderLeadingInset,
-        topInset + AppSpacing.page,
-        AppSpacing.page,
-        AppSpacing.lg,
       );
 
   static EdgeInsets screenTopBar(

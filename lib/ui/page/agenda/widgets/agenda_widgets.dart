@@ -4,62 +4,6 @@ import '../../../../domain/community_event.dart';
 import '../../../../domain/match_invite.dart';
 import '../../../theme/app_theme.dart';
 
-class AgendaHeader extends StatelessWidget {
-  const AgendaHeader({
-    super.key,
-    required this.title,
-    required this.onBackTap,
-  });
-
-  final String title;
-  final VoidCallback onBackTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final topInset = MediaQuery.viewPaddingOf(context).top;
-
-    return Padding(
-      padding: AppResponsiveInsets.pageHeader(topInset),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: InkWell(
-              onTap: onBackTap,
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-              child: Container(
-                width: AppSize.agendaTopAction,
-                height: AppSize.agendaTopAction,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppPalette.surfaceAlt,
-                  border: Border.all(
-                    color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                    width: AppStroke.hairline,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.chevron_left_rounded,
-                  color: AppPalette.white,
-                  size: AppIconSize.huge,
-                ),
-              ),
-            ),
-          ),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: AppFontSize.heading,
-                ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class AgendaSectionTitle extends StatelessWidget {
   const AgendaSectionTitle({
     super.key,

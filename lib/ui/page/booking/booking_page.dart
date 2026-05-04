@@ -7,9 +7,9 @@ import '../../../domain/booking_overview.dart';
 import '../../../provider/booking_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
+import '../../components/app_sliver_scaffold.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
-import '../../theme/app_theme.dart';
 import 'widgets/booking_content.dart';
 
 class BookingPage extends StatelessWidget {
@@ -20,46 +20,46 @@ class BookingPage extends StatelessWidget {
     final provider = context.watch<BookingProvider>();
     final overview = provider.overview;
 
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationShell(
-        currentIndex: -1,
-        onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
-        homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
-        feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
-        clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
-        profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
-        onCreateTap: overview == null
-            ? null
-            : () => _showSnack(context, overview.messages.quickAction),
-      ),
-      body: ContentStateView(
-        isLoading: provider.isLoading && overview == null,
-        errorMessage:
-            provider.errorMessage != null && overview == null ? provider.errorMessage : null,
-        onRetry: provider.loadBooking,
-        retryLabel: sl<AppConstants>().retryLabel,
-        child: overview == null
-            ? const SizedBox.shrink()
-            : RefreshIndicator(
-                onRefresh: provider.loadBooking,
-                color: AppPalette.primary,
-                child: BookingContent(
-                  overview: overview,
-                  onBackTap: () {
-                    if (context.canPop()) {
-                      context.pop();
-                      return;
-                    }
+    final bottomNav = BottomNavigationShell(
+      currentIndex: -1,
+      onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
+      homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
+      feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
+      clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
+      profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
+      onCreateTap: overview == null
+          ? null
+          : () => _showSnack(context, overview.messages.quickAction),
+    );
 
-                    context.go(Routes.home);
-                  },
-                  onSelectionTap: () =>
-                      _showSnack(context, overview.messages.selectionAction),
-                  onReserveTap: () => _showSnack(context, overview.messages.reserveAction),
-                ),
-              ),
-      ),
+    if (overview == null) {
+      return Scaffold(
+        bottomNavigationBar: bottomNav,
+        body: ContentStateView(
+          isLoading: provider.isLoading,
+          errorMessage: provider.errorMessage,
+          onRetry: provider.loadBooking,
+          retryLabel: sl<AppConstants>().retryLabel,
+          child: const SizedBox.shrink(),
+        ),
+      );
+    }
+
+    return AppSliverScaffold(
+      title: overview.title,
+      bottomNavigationBar: bottomNav,
+      onRefresh: provider.loadBooking,
+      slivers: [
+        SliverToBoxAdapter(
+          child: BookingContent(
+            overview: overview,
+            onSelectionTap: () =>
+                _showSnack(context, overview.messages.selectionAction),
+            onReserveTap: () =>
+                _showSnack(context, overview.messages.reserveAction),
+          ),
+        ),
+      ],
     );
   }
 
@@ -84,7 +84,8 @@ class BookingPage extends StatelessWidget {
       default:
         _showSnack(
           context,
-          overview?.messages.quickAction ?? sl<AppConstants>().navigationUnavailableMessage,
+          overview?.messages.quickAction ??
+              sl<AppConstants>().navigationUnavailableMessage,
         );
     }
   }

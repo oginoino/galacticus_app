@@ -14,107 +14,66 @@ import '../../../../domain/progress_time_range_option.dart';
 import '../../../../domain/progress_weekly_lesson_bar.dart';
 import '../../../theme/app_theme.dart';
 
-class ProgressHeader extends StatelessWidget {
-  const ProgressHeader({
+class ProgressFilterTabs extends StatelessWidget {
+  const ProgressFilterTabs({
     super.key,
-    required this.title,
     required this.filters,
     required this.timeRanges,
     required this.selectedFilterId,
     required this.selectedTimeRangeId,
-    required this.onBackTap,
-    required this.onShareTap,
     required this.onFilterTap,
     required this.onTimeRangeTap,
   });
 
-  final String title;
   final List<ProgressFilterOption> filters;
   final List<ProgressTimeRangeOption> timeRanges;
   final String selectedFilterId;
   final String selectedTimeRangeId;
-  final VoidCallback onBackTap;
-  final VoidCallback onShareTap;
   final ValueChanged<String> onFilterTap;
   final ValueChanged<String> onTimeRangeTap;
 
   @override
   Widget build(BuildContext context) {
-    final topInset = MediaQuery.viewPaddingOf(context).top;
-
     return Padding(
-      padding: EdgeInsets.fromLTRB(
-        AppSize.rankingHeaderLeadingInset,
-        topInset + AppSpacing.page,
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.page,
+        AppSpacing.md,
         AppSpacing.page,
         AppSpacing.lg,
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: _HeaderActionButton(
-                  icon: Icons.chevron_left_rounded,
-                  onTap: onBackTap,
-                ),
-              ),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.w700,
-                  fontSize: AppFontSize.heading,
-                ),
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: _HeaderActionButton(
-                  icon: Icons.share_outlined,
-                  onTap: onShareTap,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.md),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                _SegmentedGroup(
-                  items: filters
-                      .map(
-                        (item) => _ChipItem(
-                          id: item.id,
-                          label: item.label,
-                          selected: item.id == selectedFilterId,
-                        ),
-                      )
-                      .toList(growable: false),
-                  compact: false,
-                  onTap: onFilterTap,
-                ),
-                const SizedBox(width: AppSpacing.xl),
-                _SegmentedGroup(
-                  items: timeRanges
-                      .map(
-                        (item) => _ChipItem(
-                          id: item.id,
-                          label: item.label,
-                          selected: item.id == selectedTimeRangeId,
-                        ),
-                      )
-                      .toList(growable: false),
-                  compact: true,
-                  onTap: onTimeRangeTap,
-                ),
-              ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            _SegmentedGroup(
+              items: filters
+                  .map(
+                    (item) => _ChipItem(
+                      id: item.id,
+                      label: item.label,
+                      selected: item.id == selectedFilterId,
+                    ),
+                  )
+                  .toList(growable: false),
+              compact: false,
+              onTap: onFilterTap,
             ),
-          ),
-        ],
+            const SizedBox(width: AppSpacing.xl),
+            _SegmentedGroup(
+              items: timeRanges
+                  .map(
+                    (item) => _ChipItem(
+                      id: item.id,
+                      label: item.label,
+                      selected: item.id == selectedTimeRangeId,
+                    ),
+                  )
+                  .toList(growable: false),
+              compact: true,
+              onTap: onTimeRangeTap,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -922,40 +881,6 @@ class _SegmentedGroup extends StatelessWidget {
   }
 }
 
-class _HeaderActionButton extends StatelessWidget {
-  const _HeaderActionButton({required this.icon, required this.onTap});
-
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(AppRadius.pill),
-      child: Container(
-        width: AppSize.rankingTopAction,
-        height: AppSize.rankingTopAction,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppPalette.surfaceAlt,
-          border: Border.all(
-            color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-            width: AppStroke.hairline,
-          ),
-        ),
-        child: Icon(
-          icon,
-          color: AppPalette.white,
-          size: icon == Icons.share_outlined
-              ? AppIconSize.xxl
-              : AppIconSize.huge,
-        ),
-      ),
-    );
-  }
-}
-
 class _ProgressMiniStatCard extends StatelessWidget {
   const _ProgressMiniStatCard({required this.item});
 
@@ -1390,8 +1315,8 @@ class _RadarChartWithTooltipState extends State<_RadarChartWithTooltip> {
                   });
                 },
               ),
-              swapAnimationDuration: Duration.zero,
-              swapAnimationCurve: Curves.linear,
+              duration: Duration.zero,
+              curve: Curves.linear,
             ),
             if (_touchedIndex != null && _touchedIndex! < widget.items.length)
               _RadarTooltip(

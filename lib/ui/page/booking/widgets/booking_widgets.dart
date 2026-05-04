@@ -7,67 +7,6 @@ import '../../../../domain/booking_space_option.dart';
 import '../../../../domain/booking_time_option.dart';
 import '../../../theme/app_theme.dart';
 
-class BookingHeader extends StatelessWidget {
-  const BookingHeader({
-    super.key,
-    required this.title,
-    required this.onBackTap,
-  });
-
-  final String title;
-  final VoidCallback onBackTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final topInset = MediaQuery.viewPaddingOf(context).top;
-
-    return Padding(
-      padding: EdgeInsets.only(top: topInset + AppSpacing.lg),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: InkWell(
-              onTap: onBackTap,
-              borderRadius: BorderRadius.circular(AppRadius.pill),
-              child: Container(
-                width: AppSize.bookingTopAction,
-                height: AppSize.bookingTopAction,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: AppPalette.surfaceAlt,
-                  border: Border.all(
-                    color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                    width: AppStroke.hairline,
-                  ),
-                ),
-                child: const Icon(
-                  Icons.chevron_left_rounded,
-                  color: AppPalette.white,
-                  size: AppIconSize.huge,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxxl),
-            child: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: AppFontSize.heading,
-                    letterSpacing: AppLetterSpacing.tightSm,
-                  ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class BookingSpaceToggleRow extends StatelessWidget {
   const BookingSpaceToggleRow({
     super.key,

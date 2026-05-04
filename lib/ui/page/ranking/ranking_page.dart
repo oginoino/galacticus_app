@@ -7,9 +7,9 @@ import '../../../domain/ranking_overview.dart';
 import '../../../provider/ranking_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
+import '../../components/app_sliver_scaffold.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
-import '../../theme/app_theme.dart';
 import 'widgets/ranking_content.dart';
 
 class RankingPage extends StatelessWidget {
@@ -20,49 +20,50 @@ class RankingPage extends StatelessWidget {
     final provider = context.watch<RankingProvider>();
     final overview = provider.overview;
 
-    return Scaffold(
-      extendBody: true,
-      bottomNavigationBar: BottomNavigationShell(
-        currentIndex: -1,
-        onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
-        homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
-        feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
-        clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
-        profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
-        onCreateTap: overview == null
-            ? null
-            : () => _showSnack(context, overview.messages.quickAction),
-      ),
-      body: ContentStateView(
-        isLoading: provider.isLoading && overview == null,
-        errorMessage:
-            provider.errorMessage != null && overview == null ? provider.errorMessage : null,
-        onRetry: provider.loadRanking,
-        retryLabel: sl<AppConstants>().retryLabel,
-        child: overview == null
-            ? const SizedBox.shrink()
-            : RefreshIndicator(
-                onRefresh: provider.loadRanking,
-                color: AppPalette.primary,
-                child: RankingContent(
-                  overview: overview,
-                  selectedCategoryId: provider.selectedCategoryId,
-                  onBackTap: () {
-                    if (context.canPop()) {
-                      context.pop();
-                      return;
-                    }
+    final bottomNav = BottomNavigationShell(
+      currentIndex: -1,
+      onSelect: (index) => _handleBottomNavigationTap(context, index, overview),
+      homeLabel: overview?.uiLabels.navigationHomeLabel ?? '',
+      feedLabel: overview?.uiLabels.navigationFeedLabel ?? '',
+      clubsLabel: overview?.uiLabels.navigationClubsLabel ?? '',
+      profileLabel: overview?.uiLabels.navigationProfileLabel ?? '',
+      onCreateTap: overview == null
+          ? null
+          : () => _showSnack(context, overview.messages.quickAction),
+    );
 
-                    context.go(Routes.home);
-                  },
-                  onCategoryTap: (categoryId) {
-                    provider.selectCategory(categoryId);
-                    _showSnack(context, overview.messages.categoryAction);
-                  },
-                  onEntryTap: () => _showSnack(context, overview.messages.entryAction),
-                ),
-              ),
-      ),
+    if (overview == null) {
+      return Scaffold(
+        bottomNavigationBar: bottomNav,
+        body: ContentStateView(
+          isLoading: provider.isLoading,
+          errorMessage: provider.errorMessage,
+          onRetry: provider.loadRanking,
+          retryLabel: sl<AppConstants>().retryLabel,
+          child: const SizedBox.shrink(),
+        ),
+      );
+    }
+
+    return AppSliverScaffold(
+      title: overview.title,
+      subtitle: overview.subtitle,
+      bottomNavigationBar: bottomNav,
+      onRefresh: provider.loadRanking,
+      slivers: [
+        SliverToBoxAdapter(
+          child: RankingContent(
+            overview: overview,
+            selectedCategoryId: provider.selectedCategoryId,
+            onCategoryTap: (categoryId) {
+              provider.selectCategory(categoryId);
+              _showSnack(context, overview.messages.categoryAction);
+            },
+            onEntryTap: () =>
+                _showSnack(context, overview.messages.entryAction),
+          ),
+        ),
+      ],
     );
   }
 
@@ -87,7 +88,8 @@ class RankingPage extends StatelessWidget {
       default:
         _showSnack(
           context,
-          overview?.messages.quickAction ?? sl<AppConstants>().navigationUnavailableMessage,
+          overview?.messages.quickAction ??
+              sl<AppConstants>().navigationUnavailableMessage,
         );
     }
   }

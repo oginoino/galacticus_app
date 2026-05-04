@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../../../domain/assistant_overview.dart';
 import '../../../../domain/assistant_prompt_option.dart';
+import '../../../components/app_sliver_scaffold.dart';
 import '../../../theme/app_theme.dart';
 
 class AssistantHeader extends StatelessWidget {
@@ -23,26 +24,10 @@ class AssistantHeader extends StatelessWidget {
       padding: EdgeInsets.only(top: topInset + AppSpacing.lg),
       child: Row(
         children: [
-          InkWell(
+          AppCircleIconButton(
+            icon: Icons.chevron_left_rounded,
             onTap: onBackTap,
-            borderRadius: BorderRadius.circular(AppRadius.pill),
-            child: Container(
-              width: AppSize.assistantTopAction,
-              height: AppSize.assistantTopAction,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.transparent,
-                border: Border.all(
-                  color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-                  width: AppStroke.hairline,
-                ),
-              ),
-              child: const Icon(
-                Icons.arrow_back_rounded,
-                color: AppPalette.white,
-                size: AppIconSize.huge,
-              ),
-            ),
+            backgroundColor: Colors.transparent,
           ),
           const Spacer(),
           Container(
