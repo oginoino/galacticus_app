@@ -10,6 +10,7 @@ abstract final class Routes {
   static const agendas = '/agendas';
   static const aiTraining = '/treinar-com-ia';
   static const profile = '/perfil';
+  static const ranking = '/ranking';
 }
 
 abstract final class RouteNames {
@@ -24,4 +25,5 @@ abstract final class RouteNames {
   static const agendas = 'agendas';
   static const aiTraining = 'aiTraining';
   static const profile = 'profile';
+  static const ranking = 'ranking';
 }

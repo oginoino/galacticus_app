@@ -19,6 +19,7 @@ class HomeContent extends StatelessWidget {
     required this.onAssistantTap,
     required this.onWorkoutTap,
     required this.onLessonsTap,
+    required this.onRankingTap,
     required this.onAgendasTap,
     required this.onQuickAccessTap,
     required this.onMessage,
@@ -30,6 +31,7 @@ class HomeContent extends StatelessWidget {
   final VoidCallback onAssistantTap;
   final VoidCallback onWorkoutTap;
   final VoidCallback onLessonsTap;
+  final VoidCallback onRankingTap;
   final VoidCallback onAgendasTap;
   final ValueChanged<QuickAccessItem> onQuickAccessTap;
   final ValueChanged<String> onMessage;
@@ -104,8 +106,7 @@ class HomeContent extends StatelessWidget {
               SectionHeader(
                 title: overview.sections.leaderboardTitle,
                 actionLabel: overview.sections.leaderboardActionLabel,
-                onActionTap: () =>
-                    onMessage(overview.sections.leaderboardActionMessage),
+                onActionTap: onRankingTap,
               ),
               const SizedBox(height: AppSpacing.xl),
               HomeLeaderboardCard(overview: overview),

@@ -1,0 +1,35 @@
+{
+  "title": "Ranking",
+  "subtitle": "Classificação do clube",
+  "categories": [
+    { "id": "geral", "label": "Geral" },
+    { "id": "tennis", "label": "Tennis" },
+    { "id": "padel", "label": "Padel" }
+  ],
+  "podiumEntries": [
+    { "name": "Ana", "initials": "AL", "positionLabel": "#2", "points": 2380, "highlighted": false },
+    { "name": "Marcos", "initials": "MV", "positionLabel": "#1", "points": 2450, "highlighted": true },
+    { "name": "Carlos", "initials": "CM", "positionLabel": "#3", "points": 2210, "highlighted": false }
+  ],
+  "entries": [
+    { "position": 1, "initials": "MV", "name": "Marcos V.", "levelLabel": "Avançado", "points": 2450 },
+    { "position": 2, "initials": "AL", "name": "Ana L.", "levelLabel": "Avançado", "points": 2380 },
+    { "position": 3, "initials": "CM", "name": "Carlos M.", "levelLabel": "Avançado", "points": 2210 },
+    { "position": 4, "initials": "PS", "name": "Pedro S.", "levelLabel": "Intermediário", "points": 1980 },
+    { "position": 5, "initials": "JR", "name": "Julia R.", "levelLabel": "Intermediário", "points": 1850 },
+    { "position": 6, "initials": "RB", "name": "Rafael B.", "levelLabel": "Avançado", "points": 1720 },
+    { "position": 7, "initials": "FC", "name": "Fernanda C.", "levelLabel": "Intermediário", "points": 1650 },
+    { "position": 8, "initials": "PH", "name": "Paulo H.", "levelLabel": "Avançado", "points": 1580 }
+  ],
+  "uiLabels": {
+    "navigationHomeLabel": "Início",
+    "navigationFeedLabel": "Feed",
+    "navigationClubsLabel": "Clubes",
+    "navigationProfileLabel": "Perfil"
+  },
+  "messages": {
+    "quickAction": "Ação rápida disponível na próxima iteração.",
+    "categoryAction": "Filtro de ranking atualizado.",
+    "entryAction": "Detalhe do atleta entra na próxima integração."
+  }
+}

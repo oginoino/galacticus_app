@@ -298,6 +298,15 @@ abstract final class AppSize {
   static const communitiesDiscoverButtonHeightCompact = 36.0;
   static const communitiesSectionDivider = 2.0;
   static const communitiesDiscoverGridAspectRatio = 0.58;
+  static const rankingTopAction = 40.0;
+  static const rankingHeaderLeadingInset = 2.0;
+  static const rankingCategoryHeight = 34.0;
+  static const rankingPodiumAvatar = 42.0;
+  static const rankingPodiumCardWidth = 82.0;
+  static const rankingPodiumCardHeight = 62.0;
+  static const rankingPodiumCardHeightWinner = 86.0;
+  static const rankingListAvatar = 36.0;
+  static const rankingPositionWidth = 28.0;
   static const profileHeroHeight = 388.0;
   static const profileBackButton = 40.0;
   static const profileAvatar = 84.0;
@@ -503,6 +512,12 @@ abstract final class AppInsets {
     AppSpacing.screen,
     AppSpacing.bottomContent,
   );
+  static const rankingPage = EdgeInsets.fromLTRB(
+    AppSpacing.page,
+    0,
+    AppSpacing.page,
+    AppSpacing.bottomContent,
+  );
   static const assistantPrompt = EdgeInsets.symmetric(
     horizontal: AppSpacing.giant,
   );
@@ -530,6 +545,10 @@ abstract final class AppInsets {
   static const cardPaddingSm = EdgeInsets.all(AppSpacing.md);
   static const cardPaddingMd = EdgeInsets.all(AppSpacing.lg);
   static const cardPaddingLg = EdgeInsets.all(AppSpacing.xl);
+  static const rankingPodiumCardPadding = EdgeInsets.symmetric(
+    horizontal: AppSpacing.sm,
+    vertical: AppSpacing.xs,
+  );
   static const pillPadding = EdgeInsets.symmetric(
     horizontal: AppSpacing.sm,
     vertical: AppSpacing.xs,

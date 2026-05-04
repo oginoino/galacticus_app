@@ -11,6 +11,7 @@ import '../../ui/page/home/home_page.dart';
 import '../../ui/page/lessons/lessons_page.dart';
 import '../../ui/page/notifications/notifications_page.dart';
 import '../../ui/page/profile/profile_page.dart';
+import '../../ui/page/ranking/ranking_page.dart';
 import '../app_route.dart';
 import '../handle/handle_redirect.dart';
 import '../routes/routes.dart';
@@ -73,6 +74,11 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.profile,
       path: Routes.profile,
       builder: (_, __) => const ProfilePage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.ranking,
+      path: Routes.ranking,
+      builder: (_, __) => const RankingPage(),
     ).toGoRoute(),
   ],
 );

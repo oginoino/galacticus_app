@@ -13,6 +13,7 @@ import '../repository/home_repository.dart';
 import '../repository/lessons_repository.dart';
 import '../repository/notifications_repository.dart';
 import '../repository/profile_repository.dart';
+import '../repository/ranking_repository.dart';
 import '../service/localization/localization_service.dart';
 import '../service/persistence/persistence_service.dart';
 import 'agenda_provider.dart';
@@ -27,6 +28,7 @@ import 'lessons_provider.dart';
 import 'locale_provider.dart';
 import 'notifications_provider.dart';
 import 'profile_provider.dart';
+import 'ranking_provider.dart';
 import 'theme_provider.dart';
 
 final List<SingleChildWidget> registerProviders = [
@@ -95,5 +97,10 @@ final List<SingleChildWidget> registerProviders = [
     create: (_) => ProfileProvider(
       sl<ProfileRepository>(),
     )..loadProfile(),
+  ),
+  ChangeNotifierProvider<RankingProvider>(
+    create: (_) => RankingProvider(
+      sl<RankingRepository>(),
+    )..loadRanking(),
   ),
 ];
