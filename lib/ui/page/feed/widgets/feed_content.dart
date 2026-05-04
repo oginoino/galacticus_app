@@ -21,40 +21,44 @@ class FeedContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final topInset = MediaQuery.viewPaddingOf(context).top;
 
-    return ListView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      padding: EdgeInsets.fromLTRB(
-        AppSpacing.screen,
-        topInset + AppSpacing.lg,
-        AppSpacing.screen,
-        AppSpacing.bottomContent,
-      ),
+    return Column(
       children: [
-        FeedTopBar(
-          overview: overview,
-          onNotificationTap: onNotificationTap,
+        Padding(
+          padding: AppResponsiveInsets.screenTopBar(topInset),
+          child: FeedTopBar(
+            overview: overview,
+            onNotificationTap: onNotificationTap,
+          ),
         ),
-        const SizedBox(height: AppSpacing.giant),
-        FeedStoriesSection(stories: overview.stories),
-        const SizedBox(height: AppSpacing.huge),
-        FeedFiltersRow(
-          filters: overview.filters,
-          onFilterAction: () => onMessage(overview.messages.filterAction),
-        ),
-        const SizedBox(height: AppSpacing.giant),
-        ...overview.posts.expand(
-          (post) => [
-            FeedPostCard(
-              post: post,
-              onLikeTap: () => onMessage(overview.messages.likeAction),
-              onCommentTap: () => onMessage(overview.messages.commentAction),
-              onShareTap: () => onMessage(overview.messages.shareAction),
-              onSaveTap: () => onMessage(overview.messages.saveAction),
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
             ),
-            const SizedBox(height: AppSpacing.huge),
-          ],
+            padding: AppInsets.feedPage,
+            children: [
+              const SizedBox(height: AppSpacing.giant),
+              FeedStoriesSection(stories: overview.stories),
+              const SizedBox(height: AppSpacing.huge),
+              FeedFiltersRow(
+                filters: overview.filters,
+                onFilterAction: () => onMessage(overview.messages.filterAction),
+              ),
+              const SizedBox(height: AppSpacing.giant),
+              ...overview.posts.expand(
+                (post) => [
+                  FeedPostCard(
+                    post: post,
+                    onLikeTap: () => onMessage(overview.messages.likeAction),
+                    onCommentTap: () => onMessage(overview.messages.commentAction),
+                    onShareTap: () => onMessage(overview.messages.shareAction),
+                    onSaveTap: () => onMessage(overview.messages.saveAction),
+                  ),
+                  const SizedBox(height: AppSpacing.huge),
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );

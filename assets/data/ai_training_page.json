@@ -22,7 +22,14 @@
     "mediaAction": "Referência de treino atualizada.",
     "modeAction": "Formato de treino atualizado.",
     "cameraUnavailable": "Câmera indisponível neste dispositivo ou simulador.",
-    "cameraPermissionDenied": "Permissão de câmera negada. Ative a câmera nas configurações do app."
+    "cameraPermissionDenied": "Permissão de câmera negada. Ative a câmera nas configurações do app.",
+    "recordBadgeLabel": "REC",
+    "videoBadgeLabel": "VÍDEO",
+    "switchLayoutHint": "Toque para mudar layout",
+    "referenceThumbnailLabel": "Referência em miniatura",
+    "cameraReadyLabel": "Câmera pronta",
+    "cameraInitializingLabel": "Iniciando câmera",
+    "referencePaneLabel": "Referência"
   },
   "metrics": [
     { "label": "Pegada" },

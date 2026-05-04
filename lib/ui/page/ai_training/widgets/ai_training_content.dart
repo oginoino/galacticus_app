@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../domain/ai_training_messages.dart';
 import '../../../../domain/ai_training_metric.dart';
 import '../../../../domain/ai_training_overview.dart';
 import '../../../../domain/ai_training_reference.dart';
@@ -96,6 +97,7 @@ class _AiTrainingContentState extends State<AiTrainingContent>
             ),
             previewMedia: _buildCameraMedia(),
             previewLabel: widget.overview.previewLabel,
+            overviewMessages: widget.overview.messages,
             onTap: _cycleLayoutMode,
           )
         else ...[
@@ -206,8 +208,8 @@ class _AiTrainingContentState extends State<AiTrainingContent>
     switch (_layoutMode) {
       case _AiTrainingLayoutMode.referenceFocus:
         return AiTrainingInsetMediaCard(
-          badgeLabel: 'REC',
-          statusLabel: 'Toque para mudar layout',
+          badgeLabel: widget.overview.messages.recordBadgeLabel,
+          statusLabel: widget.overview.messages.switchLayoutHint,
           media: _buildCameraMedia(),
           highlighted: true,
           pulsing: _cameraReady,
@@ -215,8 +217,8 @@ class _AiTrainingContentState extends State<AiTrainingContent>
         );
       case _AiTrainingLayoutMode.cameraFocus:
         return AiTrainingInsetMediaCard(
-          badgeLabel: 'VÍDEO',
-          statusLabel: 'Referência em miniatura',
+          badgeLabel: widget.overview.messages.videoBadgeLabel,
+          statusLabel: widget.overview.messages.referenceThumbnailLabel,
           media: Image.asset(
             reference.imageAsset,
             fit: BoxFit.cover,
@@ -330,11 +332,13 @@ class _AiTrainingContentState extends State<AiTrainingContent>
 
   String _cameraStatusLabel({bool initial = false}) {
     if (_cameraReady) {
-      return initial ? 'Câmera pronta' : 'Toque para mudar layout';
+      return initial
+          ? widget.overview.messages.cameraReadyLabel
+          : widget.overview.messages.switchLayoutHint;
     }
 
     if (_isInitializingCamera) {
-      return 'Iniciando câmera';
+      return widget.overview.messages.cameraInitializingLabel;
     }
 
     return _cameraError ?? widget.overview.messages.cameraUnavailable;
@@ -418,12 +422,14 @@ class _AiTrainingSplitLayout extends StatelessWidget {
     required this.referenceMedia,
     required this.previewMedia,
     required this.previewLabel,
+    required this.overviewMessages,
     required this.onTap,
   });
 
   final Widget referenceMedia;
   final Widget previewMedia;
   final String previewLabel;
+  final AiTrainingMessages overviewMessages;
   final VoidCallback onTap;
 
   @override
@@ -433,8 +439,8 @@ class _AiTrainingSplitLayout extends StatelessWidget {
         Expanded(
           child: _AiTrainingSplitPane(
             media: referenceMedia,
-            badgeLabel: 'VÍDEO',
-            caption: 'Referência',
+            badgeLabel: overviewMessages.videoBadgeLabel,
+            caption: overviewMessages.referencePaneLabel,
             onTap: onTap,
           ),
         ),
@@ -442,7 +448,7 @@ class _AiTrainingSplitLayout extends StatelessWidget {
         Expanded(
           child: _AiTrainingSplitPane(
             media: previewMedia,
-            badgeLabel: 'REC',
+            badgeLabel: overviewMessages.recordBadgeLabel,
             caption: previewLabel,
             onTap: onTap,
             highlighted: true,

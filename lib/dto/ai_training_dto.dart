@@ -65,6 +65,13 @@ class AiTrainingDto {
         modeAction: messages['modeAction'] as String,
         cameraUnavailable: messages['cameraUnavailable'] as String,
         cameraPermissionDenied: messages['cameraPermissionDenied'] as String,
+        recordBadgeLabel: messages['recordBadgeLabel'] as String,
+        videoBadgeLabel: messages['videoBadgeLabel'] as String,
+        switchLayoutHint: messages['switchLayoutHint'] as String,
+        referenceThumbnailLabel: messages['referenceThumbnailLabel'] as String,
+        cameraReadyLabel: messages['cameraReadyLabel'] as String,
+        cameraInitializingLabel: messages['cameraInitializingLabel'] as String,
+        referencePaneLabel: messages['referencePaneLabel'] as String,
       ),
     );
   }

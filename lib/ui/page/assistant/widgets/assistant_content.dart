@@ -27,7 +27,7 @@ class AssistantContent extends StatelessWidget {
           child: IgnorePointer(
             child: Center(
               child: Container(
-                width: 220,
+                width: AppSize.assistantGlowWidth,
                 height: double.infinity,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -73,15 +73,15 @@ class AssistantContent extends StatelessWidget {
                     AppSpacing.page,
                   ),
                   children: [
-                    const SizedBox(height: 76),
+                    const SizedBox(height: AppSize.assistantHeroTopGap),
                     AssistantHero(overview: overview),
-                    const SizedBox(height: 44),
+                    const SizedBox(height: AppSize.assistantPromptTopGap),
                     AssistantPromptList(
                       items: overview.promptOptions,
                       logoAsset: overview.logoAsset,
                       onTap: onPromptTap,
                     ),
-                    const SizedBox(height: 140),
+                    const SizedBox(height: AppSize.assistantBottomSpacer),
                   ],
                 ),
               ),

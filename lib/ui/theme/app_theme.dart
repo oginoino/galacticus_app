@@ -323,6 +323,10 @@ abstract final class AppSize {
   static const assistantPromptHeight = 52.0;
   static const assistantInputHeight = 52.0;
   static const assistantSendButton = 36.0;
+  static const assistantGlowWidth = 220.0;
+  static const assistantHeroTopGap = 76.0;
+  static const assistantPromptTopGap = 44.0;
+  static const assistantBottomSpacer = 140.0;
   static const checkinTopAction = 40.0;
   static const checkinFilterHeight = 44.0;
   static const checkinFilterWidth = 44.0;
@@ -481,6 +485,24 @@ abstract final class AppInsets {
     AppSpacing.page,
     AppSpacing.page,
   );
+  static const homePage = EdgeInsets.fromLTRB(
+    AppSpacing.screen,
+    0,
+    AppSpacing.screen,
+    AppSpacing.bottomContent,
+  );
+  static const feedPage = EdgeInsets.fromLTRB(
+    AppSpacing.screen,
+    0,
+    AppSpacing.screen,
+    AppSpacing.bottomContent,
+  );
+  static const communitiesPage = EdgeInsets.fromLTRB(
+    AppSpacing.screen,
+    0,
+    AppSpacing.screen,
+    AppSpacing.bottomContent,
+  );
   static const assistantPrompt = EdgeInsets.symmetric(
     horizontal: AppSpacing.giant,
   );
@@ -535,6 +557,19 @@ abstract final class AppResponsiveInsets {
         topInset + AppSpacing.page,
         AppSpacing.page,
         AppSpacing.lg,
+      );
+
+  static EdgeInsets screenTopBar(
+    double topInset, {
+    double horizontal = AppSpacing.screen,
+    double extraTop = AppSpacing.lg,
+    double bottom = 0,
+  }) =>
+      EdgeInsets.fromLTRB(
+        horizontal,
+        topInset + extraTop,
+        horizontal,
+        bottom,
       );
 
   static EdgeInsets overlayBottomBar(double bottomInset) => EdgeInsets.fromLTRB(

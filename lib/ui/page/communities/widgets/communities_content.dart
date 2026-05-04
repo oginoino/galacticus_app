@@ -27,52 +27,59 @@ class CommunitiesContent extends StatelessWidget {
   Widget build(BuildContext context) {
     final topInset = MediaQuery.viewPaddingOf(context).top;
 
-    return ListView(
-      physics: const BouncingScrollPhysics(
-        parent: AlwaysScrollableScrollPhysics(),
-      ),
-      padding: EdgeInsets.fromLTRB(
-        AppSpacing.screen,
-        topInset + AppSpacing.page,
-        AppSpacing.screen,
-        AppSpacing.bottomContent,
-      ),
+    return Column(
       children: [
-        CommunitiesHeader(
-          overview: overview,
-          onNotificationTap: onNotificationTap,
+        Padding(
+          padding: AppResponsiveInsets.screenTopBar(
+            topInset,
+            extraTop: AppSpacing.page,
+          ),
+          child: CommunitiesHeader(
+            overview: overview,
+            onNotificationTap: onNotificationTap,
+          ),
         ),
-        const SizedBox(height: AppSpacing.page),
-        CommunitiesSearchBar(
-          placeholder: overview.searchPlaceholder,
-          onTap: onSearchTap,
-        ),
-        const SizedBox(height: AppSpacing.page),
-        CommunitiesSectionHeader(
-          title: overview.myClubsTitle,
-          actionLabel: overview.viewAllLabel,
-          onActionTap: onViewAllTap,
-        ),
-        const SizedBox(height: AppSpacing.giant),
-        UserClubsCarousel(clubs: overview.myClubs),
-        const SizedBox(height: AppSpacing.page),
-        Container(
-          height: AppSize.communitiesSectionDivider,
-          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
-        ),
-        const SizedBox(height: AppSpacing.page),
-        CommunitiesSectionHeader(
-          title: overview.discoverTitle,
-        ),
-        const SizedBox(height: AppSpacing.page),
-        CommunitiesCategoryChips(
-          overview: overview,
-          onFilterTap: onFilterTap,
-        ),
-        const SizedBox(height: AppSpacing.page),
-        DiscoverClubsGrid(
-          clubs: overview.discoverClubs,
-          onJoinTap: onJoinTap,
+        Expanded(
+          child: ListView(
+            physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics(),
+            ),
+            padding: AppInsets.communitiesPage,
+            children: [
+              const SizedBox(height: AppSpacing.page),
+              CommunitiesSearchBar(
+                placeholder: overview.searchPlaceholder,
+                onTap: onSearchTap,
+              ),
+              const SizedBox(height: AppSpacing.page),
+              CommunitiesSectionHeader(
+                title: overview.myClubsTitle,
+                actionLabel: overview.viewAllLabel,
+                onActionTap: onViewAllTap,
+              ),
+              const SizedBox(height: AppSpacing.giant),
+              UserClubsCarousel(clubs: overview.myClubs),
+              const SizedBox(height: AppSpacing.page),
+              Container(
+                height: AppSize.communitiesSectionDivider,
+                color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+              ),
+              const SizedBox(height: AppSpacing.page),
+              CommunitiesSectionHeader(
+                title: overview.discoverTitle,
+              ),
+              const SizedBox(height: AppSpacing.page),
+              CommunitiesCategoryChips(
+                overview: overview,
+                onFilterTap: onFilterTap,
+              ),
+              const SizedBox(height: AppSpacing.page),
+              DiscoverClubsGrid(
+                clubs: overview.discoverClubs,
+                onJoinTap: onJoinTap,
+              ),
+            ],
+          ),
         ),
       ],
     );
