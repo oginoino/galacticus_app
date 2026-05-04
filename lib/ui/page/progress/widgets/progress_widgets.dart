@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../domain/progress_activity_ring_metric.dart';
@@ -332,27 +333,9 @@ class ProgressPointsChartCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.md),
           SizedBox(
             height: 142,
-            child: CustomPaint(
-              painter: _ProgressLineChartPainter(
-                items: overview.pointsChart,
-              ),
+            child: LineChart(
+              _buildProgressLineChartData(overview.pointsChart),
             ),
-          ),
-          const SizedBox(height: AppSpacing.sm),
-          Row(
-            children: overview.pointsChart
-                .map(
-                  (point) => Expanded(
-                    child: Text(
-                      point.label,
-                      textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                            color: AppPalette.textAxis,
-                          ),
-                    ),
-                  ),
-                )
-                .toList(growable: false),
           ),
         ],
       ),
@@ -444,23 +427,30 @@ class ProgressSkillMapCard extends StatelessWidget {
                       ),
                 ),
               ),
-              Text(
-                '↗ ${overview.skillMapScoreLabel}',
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: AppPalette.primary,
-                      fontWeight: FontWeight.w700,
-                    ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.gps_fixed_rounded,
+                    color: AppPalette.primary,
+                    size: AppIconSize.md,
+                  ),
+                  const SizedBox(width: AppSpacing.xs),
+                  Text(
+                    overview.skillMapScoreLabel,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: AppPalette.primary,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                ],
               ),
             ],
           ),
           const SizedBox(height: AppSpacing.md),
           SizedBox(
             height: 178,
-            child: CustomPaint(
-              painter: _SkillRadarPainter(
-                items: overview.skillMetrics,
-              ),
-            ),
+            child: _RadarChartWithTooltip(items: overview.skillMetrics),
           ),
         ],
       ),
@@ -478,6 +468,11 @@ class ProgressConsistencyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final heatmapRows = _transposeHeatmap(
+      overview.consistencyHeatmap,
+      overview.consistencyWeekdays.length,
+    );
+
     return _SurfaceCard(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -503,62 +498,101 @@ class ProgressConsistencyCard extends StatelessWidget {
                 ),
           ),
           const SizedBox(height: AppSpacing.md),
-          Column(
-            children: overview.consistencyHeatmap
-                .map(
-                  (week) => Padding(
-                    padding: const EdgeInsets.only(bottom: AppSpacing.xs),
-                    child: Row(
-                      children: week
-                          .map(
-                            (value) => Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 1.5),
-                                child: AspectRatio(
-                                  aspectRatio: 1,
-                                  child: DecoratedBox(
-                                    decoration: BoxDecoration(
-                                      color: _heatmapColor(value),
-                                      borderRadius: BorderRadius.circular(AppRadius.xs),
-                                    ),
-                                  ),
-                                ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 14,
+                child: Column(
+                  children: List.generate(
+                    heatmapRows.length,
+                    (index) => SizedBox(
+                      height: 22,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          overview.consistencyWeekdays[index],
+                          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                                color: AppPalette.textHint,
+                                fontSize: AppFontSize.caption,
+                                fontWeight: FontWeight.w500,
                               ),
-                            ),
-                          )
-                          .toList(growable: false),
+                        ),
+                      ),
                     ),
                   ),
-                )
-                .toList(growable: false),
+                ),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(
+                child: Column(
+                  children: heatmapRows
+                      .map(
+                        (row) => Padding(
+                          padding: const EdgeInsets.only(bottom: AppSpacing.xs),
+                          child: Row(
+                            children: row
+                                .map(
+                                  (value) => Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 2),
+                                      child: AspectRatio(
+                                        aspectRatio: 1,
+                                        child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                            color: _heatmapColor(value),
+                                            borderRadius: BorderRadius.circular(3),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(growable: false),
+                          ),
+                        ),
+                      )
+                      .toList(growable: false),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.md),
+          Container(
+            height: AppStroke.hairline,
+            color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
           ),
           const SizedBox(height: AppSpacing.md),
           Row(
-            children: overview.consistencySummary
-                .map(
-                  (item) => Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          item.value,
-                          style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                color: AppPalette.primary,
-                                fontWeight: FontWeight.w800,
-                              ),
-                        ),
-                        const SizedBox(height: AppSpacing.xxs),
-                        Text(
-                          item.title,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppPalette.textMuted,
-                              ),
-                        ),
-                      ],
-                    ),
+            children: List.generate(
+              overview.consistencySummary.length,
+              (index) {
+                final item = overview.consistencySummary[index];
+                final isHighlighted = index == 1;
+
+                return Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        item.value,
+                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                              color: isHighlighted ? AppPalette.primary : AppPalette.white,
+                              fontWeight: FontWeight.w800,
+                            ),
+                      ),
+                      const SizedBox(height: AppSpacing.xxs),
+                      Text(
+                        item.title,
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: AppPalette.textMuted,
+                            ),
+                      ),
+                    ],
                   ),
-                )
-                .toList(growable: false),
+                );
+              },
+            ),
           ),
         ],
       ),
@@ -693,18 +727,11 @@ class ProgressLessonsCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.md),
           SizedBox(
             height: 128,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: overview.lessonsBars
-                  .map(
-                    (item) => Expanded(
-                      child: _LessonsBarPair(
-                        item: item,
-                        maxValue: maxValue == 0 ? 1 : maxValue,
-                      ),
-                    ),
-                  )
-                  .toList(growable: false),
+            child: BarChart(
+              _buildLessonsBarChartData(
+                overview.lessonsBars,
+                maxValue == 0 ? 1 : maxValue,
+              ),
             ),
           ),
         ],
@@ -889,7 +916,10 @@ class _ProgressMiniStatCard extends StatelessWidget {
     final accentColor = AppPalette.primary;
 
     return Container(
-      padding: AppInsets.cardPaddingMd,
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.sm,
+        vertical: AppSpacing.sm,
+      ),
       decoration: BoxDecoration(
         color: item.highlighted ? AppPalette.successDark : AppPalette.surfaceAlt,
         borderRadius: BorderRadius.circular(AppRadius.lg),
@@ -918,37 +948,44 @@ class _ProgressMiniStatCard extends StatelessWidget {
                 style: Theme.of(context).textTheme.labelSmall?.copyWith(
                       color: accentColor,
                       fontWeight: FontWeight.w700,
-                      fontSize: AppFontSize.caption,
+                      fontSize: 10,
                       height: 1,
                     ),
               ),
             ],
           ),
-          const Spacer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(
-                item.value,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      fontSize: AppFontSize.titleSm,
-                      height: 1,
-                    ),
+          const SizedBox(height: AppSpacing.xxs),
+          Expanded(
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    item.value,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          fontSize: AppFontSize.body,
+                          height: 1,
+                        ),
+                  ),
+                  const SizedBox(height: 1),
+                  Text(
+                    item.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: AppPalette.textMuted,
+                          fontSize: 10,
+                          height: 1,
+                        ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 1),
-              Text(
-                item.title,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: AppPalette.textMuted,
-                      fontSize: AppFontSize.caption,
-                      height: 1,
-                    ),
-              ),
-            ],
+            ),
           ),
         ],
       ),
@@ -1046,11 +1083,30 @@ class _ProgressRingMetricWidget extends StatelessWidget {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              CustomPaint(
-                size: const Size.square(62),
-                painter: _RingPainter(
-                  progress: item.progress,
-                  color: ringColor,
+              PieChart(
+                PieChartData(
+                  startDegreeOffset: -90,
+                  sectionsSpace: 0,
+                  centerSpaceRadius: 20,
+                  centerSpaceColor: Colors.transparent,
+                  borderData: FlBorderData(show: false),
+                  pieTouchData: PieTouchData(enabled: false),
+                  sections: [
+                    PieChartSectionData(
+                      value: item.progress.clamp(0, 1).toDouble(),
+                      color: ringColor,
+                      radius: 10,
+                      showTitle: false,
+                      borderSide: BorderSide.none,
+                    ),
+                    PieChartSectionData(
+                      value: 1 - item.progress.clamp(0, 1).toDouble(),
+                      color: AppPalette.white.withValues(alpha: AppOpacity.xxl),
+                      radius: 10,
+                      showTitle: false,
+                      borderSide: BorderSide.none,
+                    ),
+                  ],
                 ),
               ),
               Text(
@@ -1164,74 +1220,6 @@ class _MatchRow extends StatelessWidget {
   }
 }
 
-class _LessonsBarPair extends StatelessWidget {
-  const _LessonsBarPair({
-    required this.item,
-    required this.maxValue,
-  });
-
-  final ProgressWeeklyLessonBar item;
-  final double maxValue;
-
-  @override
-  Widget build(BuildContext context) {
-    final groupHeight = (item.groupValue / maxValue) * 82;
-    final privateHeight = (item.privateValue / maxValue) * 82;
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Expanded(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              _LessonBar(
-                height: groupHeight.clamp(12, 82).toDouble(),
-                color: AppPalette.primary,
-              ),
-              const SizedBox(width: AppSpacing.xs),
-              _LessonBar(
-                height: privateHeight.clamp(12, 82).toDouble(),
-                color: AppPalette.textHint,
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: AppSpacing.sm),
-        Text(
-          item.label,
-          style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                color: AppPalette.textAxis,
-              ),
-        ),
-      ],
-    );
-  }
-}
-
-class _LessonBar extends StatelessWidget {
-  const _LessonBar({
-    required this.height,
-    required this.color,
-  });
-
-  final double height;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 10,
-      height: height,
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(AppRadius.sm),
-      ),
-    );
-  }
-}
-
 class _RecordsMetric extends StatelessWidget {
   const _RecordsMetric({
     required this.item,
@@ -1329,6 +1317,119 @@ class _LegendDot extends StatelessWidget {
   }
 }
 
+class _RadarChartWithTooltip extends StatefulWidget {
+  const _RadarChartWithTooltip({
+    required this.items,
+  });
+
+  final List<ProgressSkillMetric> items;
+
+  @override
+  State<_RadarChartWithTooltip> createState() => _RadarChartWithTooltipState();
+}
+
+class _RadarChartWithTooltipState extends State<_RadarChartWithTooltip> {
+  int? _touchedIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return Stack(
+          clipBehavior: Clip.none,
+          children: [
+            RadarChart(
+              _buildRadarChartData(
+                widget.items,
+                touchedIndex: _touchedIndex,
+                onTouch: (index) {
+                  if (!mounted) return;
+                  setState(() {
+                    _touchedIndex = index;
+                  });
+                },
+              ),
+              swapAnimationDuration: Duration.zero,
+              swapAnimationCurve: Curves.linear,
+            ),
+            if (_touchedIndex != null && _touchedIndex! < widget.items.length)
+              _RadarTooltip(
+                item: widget.items[_touchedIndex!],
+                position: _radarTooltipOffset(
+                  constraints.biggest,
+                  _touchedIndex!,
+                  widget.items.length,
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _RadarTooltip extends StatelessWidget {
+  const _RadarTooltip({
+    required this.item,
+    required this.position,
+  });
+
+  final ProgressSkillMetric item;
+  final Offset position;
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: position.dx,
+      top: position.dy,
+      child: IgnorePointer(
+        child: Container(
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md,
+            vertical: AppSpacing.sm,
+          ),
+          decoration: BoxDecoration(
+            color: AppPalette.surface,
+            borderRadius: BorderRadius.circular(AppRadius.lg),
+            border: Border.all(
+              color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+              width: AppStroke.hairline,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: AppPalette.black.withValues(alpha: AppOpacity.emphasis),
+                blurRadius: 12,
+                offset: const Offset(0, 6),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                item.label,
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: AppPalette.textHint,
+                      fontWeight: FontWeight.w500,
+                    ),
+              ),
+              const SizedBox(height: AppSpacing.xxs),
+              Text(
+                _formatRadarValue(item.value),
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: AppPalette.primary,
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _ProgressSectionHeader extends StatelessWidget {
   const _ProgressSectionHeader({
     required this.title,
@@ -1378,20 +1479,36 @@ class _HeatLegend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: List.generate(
-        5,
-        (index) => Padding(
-          padding: EdgeInsets.only(left: index == 0 ? 0 : AppSpacing.xs),
-          child: Container(
-            width: 6,
-            height: 6,
-            decoration: BoxDecoration(
-              color: _heatmapColor(index),
-              borderRadius: BorderRadius.circular(AppRadius.xs),
+      children: [
+        Text(
+          '-',
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: AppPalette.textHint,
+              ),
+        ),
+        const SizedBox(width: AppSpacing.xs),
+        ...List.generate(
+          5,
+          (index) => Padding(
+            padding: EdgeInsets.only(left: index == 0 ? 0 : AppSpacing.xs),
+            child: Container(
+              width: 10,
+              height: 10,
+              decoration: BoxDecoration(
+                color: _heatmapColor(index),
+                borderRadius: BorderRadius.circular(3),
+              ),
             ),
           ),
         ),
-      ),
+        const SizedBox(width: AppSpacing.xs),
+        Text(
+          '+',
+          style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: AppPalette.textHint,
+              ),
+        ),
+      ],
     );
   }
 }
@@ -1408,336 +1525,356 @@ class _ChipItem {
   final bool selected;
 }
 
-class _RingPainter extends CustomPainter {
-  const _RingPainter({
-    required this.progress,
-    required this.color,
-  });
+LineChartData _buildProgressLineChartData(List<ProgressChartPoint> items) {
+  final safeItems = items.isEmpty
+      ? [
+          ProgressChartPoint(label: '', userValue: 0, averageValue: 0),
+        ]
+      : items;
 
-  final double progress;
-  final Color color;
+  final values = [
+    ...safeItems.map((item) => item.userValue),
+    ...safeItems.map((item) => item.averageValue),
+  ];
+  final minValue = values.reduce(math.min);
+  final maxValue = values.reduce(math.max);
+  final padding = math.max(1.0, (maxValue - minValue) * 0.12);
 
-  @override
-  void paint(Canvas canvas, Size size) {
-    const strokeWidth = 5.0;
-    final center = size.center(Offset.zero);
-    final radius = (size.width - strokeWidth) / 2;
-    final rect = Rect.fromCircle(center: center, radius: radius);
+  final averageSpots = List<FlSpot>.generate(
+    safeItems.length,
+    (index) => FlSpot(index.toDouble(), safeItems[index].averageValue),
+  );
+  final userSpots = List<FlSpot>.generate(
+    safeItems.length,
+    (index) => FlSpot(index.toDouble(), safeItems[index].userValue),
+  );
 
-    final backgroundPaint = Paint()
-      ..color = AppPalette.white.withValues(alpha: AppOpacity.xxl)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round;
+  return LineChartData(
+    minX: 0,
+    maxX: (safeItems.length - 1).toDouble(),
+    minY: minValue - padding,
+    maxY: maxValue + padding,
+    clipData: const FlClipData.all(),
+    lineTouchData: LineTouchData(
+      enabled: true,
+      handleBuiltInTouches: true,
+      touchSpotThreshold: 24,
+      getTouchedSpotIndicator: (barData, spotIndexes) {
+        return spotIndexes.map((index) {
+          final isPrimary = barData.color == AppPalette.primary;
+          return TouchedSpotIndicatorData(
+            FlLine(
+              color: AppPalette.white.withValues(alpha: AppOpacity.quarter),
+              strokeWidth: 1,
+              dashArray: isPrimary ? null : const [4, 4],
+            ),
+            FlDotData(
+              show: true,
+              getDotPainter: (spot, percent, bar, index) => FlDotCirclePainter(
+                radius: isPrimary ? 5 : 4,
+                color: isPrimary ? AppPalette.primary : AppPalette.surface,
+                strokeWidth: 2,
+                strokeColor: AppPalette.white,
+              ),
+            ),
+          );
+        }).toList();
+      },
+      touchTooltipData: LineTouchTooltipData(
+        fitInsideHorizontally: true,
+        fitInsideVertically: true,
+        tooltipMargin: 12,
+        tooltipPadding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.lg,
+          vertical: AppSpacing.md,
+        ),
+        tooltipBorderRadius: BorderRadius.circular(AppRadius.xl),
+        tooltipBorder: BorderSide(
+          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+          width: AppStroke.hairline,
+        ),
+        getTooltipColor: (_) => AppPalette.surface,
+        getTooltipItems: (touchedSpots) {
+          return touchedSpots.map((spot) {
+            if (spot.barIndex != 1) {
+              return null;
+            }
 
-    final foregroundPaint = Paint()
-      ..color = color
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = strokeWidth
-      ..strokeCap = StrokeCap.round;
-
-    canvas.drawArc(rect, 0, math.pi * 2, false, backgroundPaint);
-    canvas.drawArc(
-      rect,
-      -math.pi / 2,
-      math.pi * 2 * progress.clamp(0, 1).toDouble(),
-      false,
-      foregroundPaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant _RingPainter oldDelegate) {
-    return oldDelegate.progress != progress || oldDelegate.color != color;
-  }
-}
-
-class _ProgressLineChartPainter extends CustomPainter {
-  const _ProgressLineChartPainter({
-    required this.items,
-  });
-
-  final List<ProgressChartPoint> items;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (items.length < 2) {
-      return;
-    }
-
-    const leftInset = 8.0;
-    const rightInset = 8.0;
-    const topInset = 8.0;
-    const bottomInset = 18.0;
-
-    final values = [
-      ...items.map((item) => item.userValue),
-      ...items.map((item) => item.averageValue),
-    ];
-    final minValue = values.reduce(math.min);
-    final maxValue = values.reduce(math.max);
-    final range = math.max(1.0, maxValue - minValue);
-
-    final usableWidth = size.width - leftInset - rightInset;
-    final usableHeight = size.height - topInset - bottomInset;
-
-    final gridPaint = Paint()
-      ..color = AppPalette.white.withValues(alpha: AppOpacity.xxs)
-      ..strokeWidth = AppStroke.hairline;
-
-    for (var index = 0; index < 4; index++) {
-      final y = topInset + usableHeight * index / 3;
-      canvas.drawLine(
-        Offset(leftInset, y),
-        Offset(size.width - rightInset, y),
-        gridPaint,
-      );
-    }
-
-    Offset pointFor(double value, int index) {
-      final dx = leftInset + (usableWidth / (items.length - 1)) * index;
-      final normalized = (value - minValue) / range;
-      final dy = topInset + usableHeight - (usableHeight * normalized);
-      return Offset(dx, dy);
-    }
-
-    final averagePoints = <Offset>[];
-    final userPoints = <Offset>[];
-
-    for (var index = 0; index < items.length; index++) {
-      final averagePoint = pointFor(items[index].averageValue, index);
-      final userPoint = pointFor(items[index].userValue, index);
-      averagePoints.add(averagePoint);
-      userPoints.add(userPoint);
-    }
-
-    final averagePath = _buildSmoothPath(averagePoints);
-    final userPath = _buildSmoothPath(userPoints);
-    final fillPath = Path.from(userPath);
-    final lastPoint = pointFor(items.last.userValue, items.length - 1);
-    final firstPoint = pointFor(items.first.userValue, 0);
-    fillPath
-      ..lineTo(lastPoint.dx, size.height - bottomInset)
-      ..lineTo(firstPoint.dx, size.height - bottomInset)
-      ..close();
-
-    final fillPaint = Paint()
-      ..shader = LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          AppPalette.primary.withValues(alpha: AppOpacity.emphasis),
-          AppPalette.primary.withValues(alpha: AppOpacity.none),
-        ],
-      ).createShader(
-        Rect.fromLTWH(0, topInset, size.width, usableHeight),
-      );
-
-    final averagePaint = Paint()
-      ..color = AppPalette.textHint
-      ..strokeWidth = 2
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    final userPaint = Paint()
-      ..color = AppPalette.primary
-      ..strokeWidth = 2.4
-      ..style = PaintingStyle.stroke
-      ..strokeCap = StrokeCap.round;
-
-    canvas.drawPath(fillPath, fillPaint);
-    _drawDashedPath(canvas, averagePath, averagePaint);
-    canvas.drawPath(userPath, userPaint);
-
-    for (var index = 0; index < items.length; index++) {
-      final userPoint = pointFor(items[index].userValue, index);
-      canvas.drawCircle(
-        userPoint,
-        2.5,
-        Paint()..color = AppPalette.primary,
-      );
-    }
-
-    final highlightPaint = Paint()..color = AppPalette.primary;
-    canvas.drawCircle(lastPoint, 4.5, highlightPaint);
-    canvas.drawCircle(
-      lastPoint,
-      7.5,
-      Paint()
-        ..color = AppPalette.primary.withValues(alpha: AppOpacity.quarter)
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 3,
-    );
-  }
-
-  @override
-  bool shouldRepaint(covariant _ProgressLineChartPainter oldDelegate) {
-    return oldDelegate.items != items;
-  }
-
-  Path _buildSmoothPath(List<Offset> points) {
-    final path = Path();
-    if (points.isEmpty) {
-      return path;
-    }
-
-    path.moveTo(points.first.dx, points.first.dy);
-    if (points.length == 1) {
-      return path;
-    }
-
-    for (var index = 0; index < points.length - 1; index++) {
-      final current = points[index];
-      final next = points[index + 1];
-      final control = Offset((current.dx + next.dx) / 2, current.dy);
-      final end = Offset((current.dx + next.dx) / 2, (current.dy + next.dy) / 2);
-      path.quadraticBezierTo(control.dx, control.dy, end.dx, end.dy);
-      path.quadraticBezierTo(next.dx, next.dy, next.dx, next.dy);
-    }
-
-    return path;
-  }
-
-  void _drawDashedPath(Canvas canvas, Path path, Paint paint) {
-    for (final metric in path.computeMetrics()) {
-      double distance = 0;
-      const dash = 7.0;
-      const gap = 4.0;
-
-      while (distance < metric.length) {
-        final next = math.min(distance + dash, metric.length);
-        final extract = metric.extractPath(distance, next);
-        canvas.drawPath(extract, paint);
-        distance += dash + gap;
-      }
-    }
-  }
-}
-
-class _SkillRadarPainter extends CustomPainter {
-  const _SkillRadarPainter({
-    required this.items,
-  });
-
-  final List<ProgressSkillMetric> items;
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    if (items.isEmpty) {
-      return;
-    }
-
-    final center = Offset(size.width / 2, size.height / 2 + 4);
-    final radius = math.min(size.width, size.height) * 0.34;
-    final axisCount = items.length;
-    final stepPaint = Paint()
-      ..color = AppPalette.white.withValues(alpha: AppOpacity.xxs)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = AppStroke.hairline;
-    final axisPaint = Paint()
-      ..color = AppPalette.white.withValues(alpha: AppOpacity.xxs)
-      ..strokeWidth = AppStroke.hairline;
-
-    for (var step = 1; step <= 5; step++) {
-      final polygon = Path();
-      final currentRadius = radius * step / 5;
-      for (var index = 0; index < axisCount; index++) {
-        final angle = (-math.pi / 2) + (2 * math.pi * index / axisCount);
-        final point = Offset(
-          center.dx + currentRadius * math.cos(angle),
-          center.dy + currentRadius * math.sin(angle),
-        );
-        if (index == 0) {
-          polygon.moveTo(point.dx, point.dy);
-        } else {
-          polygon.lineTo(point.dx, point.dy);
-        }
-      }
-      polygon.close();
-      canvas.drawPath(polygon, stepPaint);
-    }
-
-    for (var index = 0; index < axisCount; index++) {
-      final angle = (-math.pi / 2) + (2 * math.pi * index / axisCount);
-      final point = Offset(
-        center.dx + radius * math.cos(angle),
-        center.dy + radius * math.sin(angle),
-      );
-      canvas.drawLine(center, point, axisPaint);
-
-      final labelPoint = Offset(
-        center.dx + (radius + 18) * math.cos(angle),
-        center.dy + (radius + 18) * math.sin(angle),
-      );
-      _paintText(
-        canvas,
-        labelPoint,
-        items[index].label,
-      );
-    }
-
-    final dataPath = Path();
-    for (var index = 0; index < axisCount; index++) {
-      final angle = (-math.pi / 2) + (2 * math.pi * index / axisCount);
-      final currentRadius = radius * (items[index].value / 100);
-      final point = Offset(
-        center.dx + currentRadius * math.cos(angle),
-        center.dy + currentRadius * math.sin(angle),
-      );
-      if (index == 0) {
-        dataPath.moveTo(point.dx, point.dy);
-      } else {
-        dataPath.lineTo(point.dx, point.dy);
-      }
-    }
-    dataPath.close();
-
-    final fillPaint = Paint()
-      ..color = AppPalette.primary.withValues(alpha: AppOpacity.accent)
-      ..style = PaintingStyle.fill;
-    final strokePaint = Paint()
-      ..color = AppPalette.primary
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2;
-
-    canvas.drawPath(dataPath, fillPaint);
-    canvas.drawPath(dataPath, strokePaint);
-
-    for (var index = 0; index < axisCount; index++) {
-      final angle = (-math.pi / 2) + (2 * math.pi * index / axisCount);
-      final currentRadius = radius * (items[index].value / 100);
-      final point = Offset(
-        center.dx + currentRadius * math.cos(angle),
-        center.dy + currentRadius * math.sin(angle),
-      );
-      canvas.drawCircle(point, 2.5, Paint()..color = AppPalette.primary);
-    }
-  }
-
-  void _paintText(Canvas canvas, Offset center, String text) {
-    final textPainter = TextPainter(
-      text: TextSpan(
-        text: text,
-        style: const TextStyle(
-          color: AppPalette.textHint,
-          fontSize: AppFontSize.caption,
-          fontWeight: FontWeight.w500,
+            final item = safeItems[spot.x.toInt()];
+            return LineTooltipItem(
+              '${item.label}\n',
+              const TextStyle(
+                color: AppPalette.white,
+                fontSize: AppFontSize.body,
+                fontWeight: FontWeight.w600,
+              ),
+              children: [
+                TextSpan(
+                  text: 'avg : ${_formatChartValue(item.averageValue)}\n',
+                  style: const TextStyle(
+                    color: AppPalette.textHint,
+                    fontSize: AppFontSize.body,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                TextSpan(
+                  text: 'pts : ${_formatChartValue(item.userValue)}',
+                  style: const TextStyle(
+                    color: AppPalette.primary,
+                    fontSize: AppFontSize.body,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            );
+          }).toList();
+        },
+      ),
+    ),
+    borderData: FlBorderData(show: false),
+    gridData: FlGridData(
+      show: true,
+      drawVerticalLine: false,
+      horizontalInterval: ((maxValue + padding) - (minValue - padding)) / 3,
+      getDrawingHorizontalLine: (_) => FlLine(
+        color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+        strokeWidth: AppStroke.hairline,
+      ),
+    ),
+    titlesData: FlTitlesData(
+      leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      bottomTitles: AxisTitles(
+        sideTitles: SideTitles(
+          showTitles: true,
+          reservedSize: 22,
+          interval: 1,
+          getTitlesWidget: (value, meta) {
+            final index = value.round();
+            if (index < 0 || index >= safeItems.length) {
+              return const SizedBox.shrink();
+            }
+            return SideTitleWidget(
+              meta: meta,
+              child: Text(
+                safeItems[index].label,
+                style: const TextStyle(
+                  color: AppPalette.textAxis,
+                  fontSize: AppFontSize.caption,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            );
+          },
         ),
       ),
-      textDirection: TextDirection.ltr,
-    )..layout(maxWidth: 56);
+    ),
+    lineBarsData: [
+      LineChartBarData(
+        spots: averageSpots,
+        isCurved: true,
+        color: AppPalette.textHint,
+        barWidth: 2,
+        isStrokeCapRound: true,
+        dotData: FlDotData(show: false),
+        dashArray: const [7, 4],
+      ),
+      LineChartBarData(
+        spots: userSpots,
+        isCurved: true,
+        color: AppPalette.primary,
+        barWidth: 2.4,
+        isStrokeCapRound: true,
+        dotData: FlDotData(
+          show: true,
+          getDotPainter: (spot, percent, bar, index) {
+            final isLast = index == userSpots.length - 1;
+            return FlDotCirclePainter(
+              radius: isLast ? 3.6 : 2.2,
+              color: AppPalette.primary,
+              strokeWidth: isLast ? 2.8 : 0,
+              strokeColor: isLast
+                  ? AppPalette.primary.withValues(alpha: AppOpacity.quarter)
+                  : Colors.transparent,
+            );
+          },
+        ),
+        belowBarData: BarAreaData(
+          show: true,
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              AppPalette.primary.withValues(alpha: AppOpacity.emphasis),
+              AppPalette.primary.withValues(alpha: AppOpacity.none),
+            ],
+          ),
+        ),
+      ),
+    ],
+  );
+}
 
-    final offset = Offset(
-      center.dx - textPainter.width / 2,
-      center.dy - textPainter.height / 2,
-    );
-    textPainter.paint(canvas, offset);
-  }
+RadarChartData _buildRadarChartData(
+  List<ProgressSkillMetric> items, {
+  required ValueChanged<int?> onTouch,
+  int? touchedIndex,
+}) {
+  final safeItems = items.isEmpty
+      ? [
+          ProgressSkillMetric(label: '', value: 0),
+        ]
+      : items;
 
-  @override
-  bool shouldRepaint(covariant _SkillRadarPainter oldDelegate) {
-    return oldDelegate.items != items;
-  }
+  return RadarChartData(
+    radarShape: RadarShape.polygon,
+    radarBackgroundColor: Colors.transparent,
+    radarBorderData: BorderSide.none,
+    tickCount: 5,
+    ticksTextStyle: const TextStyle(
+      fontSize: 0,
+      color: Colors.transparent,
+    ),
+    tickBorderData: BorderSide(
+      color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+      width: AppStroke.hairline,
+    ),
+    gridBorderData: BorderSide(
+      color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+      width: AppStroke.hairline,
+    ),
+    titleTextStyle: const TextStyle(
+      color: AppPalette.textHint,
+      fontSize: AppFontSize.caption,
+      fontWeight: FontWeight.w500,
+    ),
+    titlePositionPercentageOffset: 0.18,
+    getTitle: (index, angle) {
+      return RadarChartTitle(
+        text: _shortRadarLabel(safeItems[index].label),
+        angle: 0,
+      );
+    },
+    dataSets: [
+      RadarDataSet(
+        dataEntries: safeItems.map((item) => RadarEntry(value: item.value)).toList(),
+        borderColor: AppPalette.primary,
+        fillColor: AppPalette.primary.withValues(alpha: AppOpacity.accent),
+        borderWidth: 2,
+        entryRadius: touchedIndex == null ? 2.5 : 3,
+      ),
+    ],
+    radarTouchData: RadarTouchData(
+      enabled: true,
+      touchCallback: (event, response) {
+        if (!event.isInterestedForInteractions) {
+          return;
+        }
+
+        onTouch(response?.touchedSpot?.touchedRadarEntryIndex);
+      },
+    ),
+  );
+}
+
+BarChartData _buildLessonsBarChartData(
+  List<ProgressWeeklyLessonBar> items,
+  double maxValue,
+) {
+  return BarChartData(
+    minY: 0,
+    maxY: maxValue * 1.12,
+    alignment: BarChartAlignment.spaceBetween,
+    groupsSpace: 8,
+    barTouchData: BarTouchData(
+      enabled: true,
+      handleBuiltInTouches: true,
+      touchTooltipData: BarTouchTooltipData(
+        fitInsideHorizontally: true,
+        fitInsideVertically: true,
+        tooltipMargin: 8,
+        tooltipPadding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.md,
+          vertical: AppSpacing.sm,
+        ),
+        tooltipBorderRadius: BorderRadius.circular(AppRadius.lg),
+        tooltipBorder: BorderSide(
+          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+          width: AppStroke.hairline,
+        ),
+        getTooltipColor: (_) => AppPalette.surface,
+      ),
+    ),
+    borderData: FlBorderData(show: false),
+    gridData: FlGridData(
+      show: true,
+      drawVerticalLine: false,
+      horizontalInterval: (maxValue * 1.12) / 3,
+      getDrawingHorizontalLine: (_) => FlLine(
+        color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+        strokeWidth: AppStroke.hairline,
+      ),
+    ),
+    titlesData: FlTitlesData(
+      leftTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      bottomTitles: AxisTitles(
+        sideTitles: SideTitles(
+          showTitles: true,
+          reservedSize: 20,
+          getTitlesWidget: (value, meta) {
+            final index = value.round();
+            if (index < 0 || index >= items.length) {
+              return const SizedBox.shrink();
+            }
+            return SideTitleWidget(
+              meta: meta,
+              child: Text(
+                items[index].label,
+                style: const TextStyle(
+                  color: AppPalette.textAxis,
+                  fontSize: AppFontSize.caption,
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    ),
+    barGroups: List.generate(items.length, (index) {
+      final item = items[index];
+      return BarChartGroupData(
+        x: index,
+        barsSpace: 4,
+        barRods: [
+          BarChartRodData(
+            toY: item.groupValue,
+            width: 10,
+            color: AppPalette.primary,
+            borderRadius: BorderRadius.circular(AppRadius.pill),
+            backDrawRodData: BackgroundBarChartRodData(
+              show: true,
+              toY: maxValue * 1.12,
+              color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            ),
+          ),
+          BarChartRodData(
+            toY: item.privateValue,
+            width: 10,
+            color: AppPalette.textHint,
+            borderRadius: BorderRadius.circular(AppRadius.pill),
+            backDrawRodData: BackgroundBarChartRodData(
+              show: true,
+              toY: maxValue * 1.12,
+              color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            ),
+          ),
+        ],
+      );
+    }),
+  );
 }
 
 int? _extractLevelNumber(String label) {
@@ -1747,6 +1884,70 @@ int? _extractLevelNumber(String label) {
   }
 
   return int.tryParse(match.group(1)!);
+}
+
+String _formatChartValue(double value) {
+  final rounded = value.roundToDouble();
+  if (value == rounded) {
+    return value.round().toString();
+  }
+
+  return value.toStringAsFixed(1).replaceAll('.', ',');
+}
+
+String _formatRadarValue(double value) {
+  final rounded = value.roundToDouble();
+  if (value == rounded) {
+    return value.round().toString();
+  }
+
+  return value.toStringAsFixed(1).replaceAll('.', ',');
+}
+
+String _shortRadarLabel(String label) {
+  final normalized = label.trim().toLowerCase();
+
+  switch (normalized) {
+    case 'resistencia':
+    case 'resistência':
+      return 'Resist.';
+    case 'backhand':
+      return 'Backhand';
+    case 'forehand':
+      return 'Forehand';
+    default:
+      return label;
+  }
+}
+
+List<List<int>> _transposeHeatmap(List<List<int>> weeks, int weekdayCount) {
+  return List.generate(
+    weekdayCount,
+    (weekdayIndex) => List.generate(
+      weeks.length,
+      (weekIndex) {
+        if (weekIndex >= weeks.length || weekdayIndex >= weeks[weekIndex].length) {
+          return 0;
+        }
+
+        return weeks[weekIndex][weekdayIndex];
+      },
+    ),
+  );
+}
+
+Offset _radarTooltipOffset(Size size, int index, int axisCount) {
+  final center = Offset(size.width / 2, size.height / 2);
+  final radius = math.min(size.width, size.height) * 0.28;
+  final angle = (-math.pi / 2) + (2 * math.pi * index / axisCount);
+  final point = Offset(
+    center.dx + (radius + 18) * math.cos(angle),
+    center.dy + (radius + 18) * math.sin(angle),
+  );
+
+  final dx = (point.dx - 44).clamp(8.0, math.max(8.0, size.width - 96)).toDouble();
+  final dy = (point.dy - 18).clamp(8.0, math.max(8.0, size.height - 52)).toDouble();
+  return Offset(dx, dy);
 }
 
 IconData _iconForMiniStat(String title) {
