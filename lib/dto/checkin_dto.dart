@@ -32,7 +32,10 @@ class CheckinDto {
               label: item['label'] as String,
               icon: item['icon'] as String,
               isSelected: item['isSelected'] as bool,
-              overlay: parseCheckinOverlay(item['overlay']),
+              overlays: (item['overlays'] as List<dynamic>? ?? const [])
+                  .map(parseCheckinOverlay)
+                  .whereType<CheckinOverlay>()
+                  .toList(growable: false),
             ),
           )
           .toList(growable: false),
@@ -52,6 +55,9 @@ CheckinOverlay? parseCheckinOverlay(Object? value) {
   final map = value.cast<String, dynamic>();
   return CheckinOverlay(
     type: map['type'] as String,
+    layout: (map['layout'] as String?) ?? 'default',
+    variantId: map['variantId'] as String?,
+    variantLabel: map['variantLabel'] as String?,
     headline: map['headline'] as String?,
     subheadline: map['subheadline'] as String?,
     sportLabel: map['sportLabel'] as String?,

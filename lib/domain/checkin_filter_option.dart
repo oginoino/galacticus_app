@@ -5,11 +5,11 @@ class CheckinFilterOption {
     required this.label,
     required this.icon,
     required this.isSelected,
-    this.overlay,
+    this.overlays = const [],
   });
 
   final String label;
   final String icon;
   final bool isSelected;
-  final CheckinOverlay? overlay;
+  final List<CheckinOverlay> overlays;
 }

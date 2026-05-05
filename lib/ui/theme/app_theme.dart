@@ -360,6 +360,9 @@ abstract final class AppSize {
   static const lessonsCoachAvatarRadius = 18.0;
   static const lessonsUpcomingPlayButton = 34.0;
   static const checkinFilterBarHeight = 78.0;
+  static const checkinVariantDotsHeight = 8.0;
+  static const checkinVariantDot = 6.0;
+  static const checkinVariantDotActive = 18.0;
 }
 
 abstract final class AppChartHeights {

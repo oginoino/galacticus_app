@@ -15,6 +15,32 @@ class CheckinOverlayView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    switch (overlay.layout) {
+      case 'compact':
+        return _CompactLayout(overlay: overlay);
+      case 'stats':
+        return _StatsLayout(overlay: overlay, compact: compact);
+      case 'minimal':
+        return _MinimalLayout(overlay: overlay);
+      case 'scoreboard':
+        return _ScoreboardLayout(overlay: overlay, compact: compact);
+      case 'achievement':
+        return _AchievementLayout(overlay: overlay, compact: compact);
+      case 'default':
+      default:
+        return _DefaultLayout(overlay: overlay, compact: compact);
+    }
+  }
+}
+
+class _DefaultLayout extends StatelessWidget {
+  const _DefaultLayout({required this.overlay, required this.compact});
+
+  final CheckinOverlay overlay;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
     final children = <Widget>[];
 
     if (overlay.sportLabel != null || overlay.timeLabel != null) {
@@ -23,54 +49,14 @@ class CheckinOverlayView extends StatelessWidget {
     }
 
     if (overlay.headline != null) {
-      children.add(
-        Text(
-          overlay.headline!,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                color: AppPalette.white,
-                fontWeight: FontWeight.w700,
-                fontSize:
-                    compact ? AppFontSize.headingSm : AppFontSize.heading,
-                height: 1,
-              ),
-        ),
-      );
+      children.add(_Headline(text: overlay.headline!, compact: compact));
     }
 
     if (overlay.subheadline != null) {
       if (children.isNotEmpty) {
         children.add(const SizedBox(height: AppSpacing.sm));
       }
-      children.add(
-        Text(
-          overlay.subheadline!,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppPalette.textMuted,
-                fontSize: compact ? AppFontSize.body : AppFontSize.bodyLg,
-                height: 1.2,
-              ),
-        ),
-      );
-    }
-
-    if (overlay.type == 'score' &&
-        overlay.scoreHome != null &&
-        overlay.scoreAway != null) {
-      if (children.isNotEmpty) {
-        children.add(const SizedBox(height: AppSpacing.giant));
-      }
-      children.add(_Scoreboard(overlay: overlay, compact: compact));
-    }
-
-    if (overlay.type == 'favorite' && overlay.achievementLabel != null) {
-      if (children.isNotEmpty) {
-        children.add(const SizedBox(height: AppSpacing.lg));
-      }
-      children.add(_AchievementChip(label: overlay.achievementLabel!));
+      children.add(_Subheadline(text: overlay.subheadline!, compact: compact));
     }
 
     if (overlay.metrics.isNotEmpty) {
@@ -91,6 +77,254 @@ class CheckinOverlayView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: children,
+    );
+  }
+}
+
+class _CompactLayout extends StatelessWidget {
+  const _CompactLayout({required this.overlay});
+
+  final CheckinOverlay overlay;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.giant,
+        vertical: AppSpacing.lg,
+      ),
+      decoration: BoxDecoration(
+        color: AppPalette.black.withValues(alpha: AppOpacity.overlay),
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        border: Border.all(
+          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+          width: AppStroke.hairline,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (overlay.sportLabel != null) ...[
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.lg,
+                vertical: AppSpacing.xxs,
+              ),
+              decoration: BoxDecoration(
+                color: AppPalette.primary,
+                borderRadius: BorderRadius.circular(AppRadius.pill),
+              ),
+              child: Text(
+                overlay.sportLabel!,
+                style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                      color: AppPalette.black,
+                      fontWeight: FontWeight.w700,
+                      fontSize: AppFontSize.bodySm,
+                      letterSpacing: AppLetterSpacing.wideSm,
+                    ),
+              ),
+            ),
+            const SizedBox(width: AppSpacing.lg),
+          ],
+          if (overlay.headline != null)
+            Flexible(
+              child: Text(
+                overlay.headline!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: AppPalette.white,
+                      fontWeight: FontWeight.w700,
+                      fontSize: AppFontSize.titleSm,
+                    ),
+              ),
+            ),
+          if (overlay.metrics.isNotEmpty) ...[
+            const SizedBox(width: AppSpacing.lg),
+            Text(
+              overlay.metrics.first.value,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    color: AppPalette.primary,
+                    fontWeight: FontWeight.w800,
+                    fontSize: AppFontSize.titleSm,
+                  ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _StatsLayout extends StatelessWidget {
+  const _StatsLayout({required this.overlay, required this.compact});
+
+  final CheckinOverlay overlay;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (overlay.headline != null) ...[
+          _Headline(text: overlay.headline!, compact: compact),
+          const SizedBox(height: AppSpacing.lg),
+        ],
+        if (overlay.metrics.isNotEmpty)
+          _MetricsGrid(metrics: overlay.metrics, compact: compact),
+      ],
+    );
+  }
+}
+
+class _MinimalLayout extends StatelessWidget {
+  const _MinimalLayout({required this.overlay});
+
+  final CheckinOverlay overlay;
+
+  @override
+  Widget build(BuildContext context) {
+    final parts = <String>[];
+    if (overlay.sportLabel != null) parts.add(overlay.sportLabel!);
+    if (overlay.timeLabel != null) parts.add(overlay.timeLabel!);
+    if (overlay.locationLabel != null) parts.add(overlay.locationLabel!);
+    if (overlay.headline != null && parts.isEmpty) parts.add(overlay.headline!);
+
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSpacing.giant,
+        vertical: AppSpacing.md,
+      ),
+      decoration: BoxDecoration(
+        color: AppPalette.black.withValues(alpha: AppOpacity.overlay),
+        borderRadius: BorderRadius.circular(AppRadius.pill),
+        border: Border.all(
+          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+          width: AppStroke.hairline,
+        ),
+      ),
+      child: Text(
+        parts.join(' · '),
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
+        style: Theme.of(context).textTheme.labelLarge?.copyWith(
+              color: AppPalette.white,
+              fontWeight: FontWeight.w600,
+              fontSize: AppFontSize.bodyLg,
+              letterSpacing: AppLetterSpacing.wideSm,
+            ),
+      ),
+    );
+  }
+}
+
+class _ScoreboardLayout extends StatelessWidget {
+  const _ScoreboardLayout({required this.overlay, required this.compact});
+
+  final CheckinOverlay overlay;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (overlay.sportLabel != null || overlay.timeLabel != null) ...[
+          _TopRow(overlay: overlay),
+          const SizedBox(height: AppSpacing.lg),
+        ],
+        if (overlay.headline != null) ...[
+          _Headline(text: overlay.headline!, compact: compact),
+          const SizedBox(height: AppSpacing.sm),
+        ],
+        if (overlay.subheadline != null) ...[
+          _Subheadline(text: overlay.subheadline!, compact: compact),
+          const SizedBox(height: AppSpacing.giant),
+        ] else
+          const SizedBox(height: AppSpacing.lg),
+        _Scoreboard(overlay: overlay, compact: compact),
+        if (overlay.metrics.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.lg),
+          _MetricsRow(metrics: overlay.metrics, compact: compact),
+        ],
+      ],
+    );
+  }
+}
+
+class _AchievementLayout extends StatelessWidget {
+  const _AchievementLayout({required this.overlay, required this.compact});
+
+  final CheckinOverlay overlay;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (overlay.achievementLabel != null) ...[
+          _AchievementChip(label: overlay.achievementLabel!),
+          const SizedBox(height: AppSpacing.lg),
+        ],
+        if (overlay.headline != null)
+          _Headline(text: overlay.headline!, compact: compact),
+        if (overlay.subheadline != null) ...[
+          const SizedBox(height: AppSpacing.sm),
+          _Subheadline(text: overlay.subheadline!, compact: compact),
+        ],
+        if (overlay.metrics.isNotEmpty) ...[
+          const SizedBox(height: AppSpacing.giant),
+          _MetricsRow(metrics: overlay.metrics, compact: compact),
+        ],
+      ],
+    );
+  }
+}
+
+class _Headline extends StatelessWidget {
+  const _Headline({required this.text, required this.compact});
+
+  final String text;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+            color: AppPalette.white,
+            fontWeight: FontWeight.w700,
+            fontSize: compact ? AppFontSize.headingSm : AppFontSize.heading,
+            height: 1,
+          ),
+    );
+  }
+}
+
+class _Subheadline extends StatelessWidget {
+  const _Subheadline({required this.text, required this.compact});
+
+  final String text;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+            color: AppPalette.textMuted,
+            fontSize: compact ? AppFontSize.body : AppFontSize.bodyLg,
+            height: 1.2,
+          ),
     );
   }
 }
@@ -183,6 +417,43 @@ class _MetricsRow extends StatelessWidget {
   }
 }
 
+class _MetricsGrid extends StatelessWidget {
+  const _MetricsGrid({required this.metrics, required this.compact});
+
+  final List<CheckinOverlayMetric> metrics;
+  final bool compact;
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = <Widget>[];
+    for (var i = 0; i < metrics.length; i += 2) {
+      final left = metrics[i];
+      final right = i + 1 < metrics.length ? metrics[i + 1] : null;
+      if (rows.isNotEmpty) {
+        rows.add(const SizedBox(height: AppSpacing.md));
+      }
+      rows.add(
+        Row(
+          children: [
+            Expanded(child: _MetricTile(metric: left, compact: compact)),
+            const SizedBox(width: AppSpacing.md),
+            Expanded(
+              child: right != null
+                  ? _MetricTile(metric: right, compact: compact)
+                  : const SizedBox.shrink(),
+            ),
+          ],
+        ),
+      );
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      mainAxisSize: MainAxisSize.min,
+      children: rows,
+    );
+  }
+}
+
 class _MetricTile extends StatelessWidget {
   const _MetricTile({required this.metric, required this.compact});
 
@@ -262,7 +533,7 @@ class _Scoreboard extends StatelessWidget {
           Expanded(
             child: _ScoreSide(
               team: overlay.teamHome,
-              score: overlay.scoreHome!,
+              score: overlay.scoreHome ?? '',
               compact: compact,
               align: TextAlign.left,
             ),
@@ -274,16 +545,15 @@ class _Scoreboard extends StatelessWidget {
               style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     color: AppPalette.textMuted,
                     fontWeight: FontWeight.w700,
-                    fontSize: compact
-                        ? AppFontSize.metric
-                        : AppFontSize.displaySm,
+                    fontSize:
+                        compact ? AppFontSize.metric : AppFontSize.displaySm,
                   ),
             ),
           ),
           Expanded(
             child: _ScoreSide(
               team: overlay.teamAway,
-              score: overlay.scoreAway!,
+              score: overlay.scoreAway ?? '',
               compact: compact,
               align: TextAlign.right,
             ),
@@ -333,8 +603,7 @@ class _ScoreSide extends StatelessWidget {
           style: Theme.of(context).textTheme.displaySmall?.copyWith(
                 color: AppPalette.white,
                 fontWeight: FontWeight.w800,
-                fontSize:
-                    compact ? AppFontSize.metric : AppFontSize.displaySm,
+                fontSize: compact ? AppFontSize.metric : AppFontSize.displaySm,
                 height: 1,
               ),
         ),

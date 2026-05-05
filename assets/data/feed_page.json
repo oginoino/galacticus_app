@@ -97,6 +97,7 @@
       "commentPreview": null,
       "checkinOverlay": {
         "type": "score",
+        "layout": "scoreboard",
         "headline": "Vitória no terceiro set",
         "subheadline": "Match disputado em casa",
         "sportLabel": "Tênis · Simples",
@@ -129,7 +130,18 @@
       "weatherLabel": null,
       "floatingAvatarAsset": "assets/images/prototype/paulo.jpg",
       "metrics": [],
-      "commentPreview": null
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "favorite",
+        "layout": "achievement",
+        "headline": "Conquista do clube",
+        "subheadline": "10 treinos juntos no mês",
+        "achievementLabel": "Time forte",
+        "metrics": [
+          { "value": "10", "label": "Sequência" },
+          { "value": "+50", "label": "XP" }
+        ]
+      }
     },
     {
       "layoutType": "workout_result",
@@ -199,17 +211,14 @@
       "commentPreview": null,
       "checkinOverlay": {
         "type": "bar_chart",
+        "layout": "stats",
         "headline": "Resumo do treino",
-        "subheadline": "Pegada técnica afiada",
-        "sportLabel": "Tênis · Sessão",
-        "timeLabel": "07:42 — 09:18",
         "metrics": [
           { "value": "1h36", "label": "Duração" },
           { "value": "412", "label": "Calorias" },
-          { "value": "148", "label": "BPM méd." }
-        ],
-        "locationLabel": "Galácticos Pinheiros",
-        "weatherLabel": "23° · ensolarado"
+          { "value": "148", "label": "BPM méd." },
+          { "value": "92%", "label": "Foco" }
+        ]
       }
     },
     {
@@ -285,15 +294,10 @@
       "metrics": [],
       "commentPreview": null,
       "checkinOverlay": {
-        "type": "session",
-        "headline": "Padel sob as luzes",
-        "subheadline": "Bloco técnico + jogo",
+        "type": "minimal",
+        "layout": "minimal",
         "sportLabel": "Padel",
         "timeLabel": "20:14",
-        "metrics": [
-          { "value": "1h30", "label": "Duração" },
-          { "value": "5", "label": "Sets" }
-        ],
         "locationLabel": "Galácticos Cidade Jardim"
       }
     },

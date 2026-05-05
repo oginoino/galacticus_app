@@ -1,6 +1,9 @@
 class CheckinOverlay {
   const CheckinOverlay({
     required this.type,
+    this.layout = 'default',
+    this.variantId,
+    this.variantLabel,
     this.headline,
     this.subheadline,
     this.sportLabel,
@@ -15,10 +18,21 @@ class CheckinOverlay {
     this.achievementLabel,
   });
 
-  /// Filter icon key. Matches CheckinFilterOption.icon and post overlay type.
+  /// Filter category key (matches CheckinFilterOption.icon).
   /// Examples: bar_chart, location, schedule, trophy, score, session, pulse,
-  /// minimal, favorite. The `block` key means no overlay.
+  /// minimal, favorite. Drives base styling decisions (e.g. score → scoreboard).
   final String type;
+
+  /// Visual layout template. One of:
+  /// - 'default': badges + headline + metrics + footer
+  /// - 'compact': single-row pill with sport + headline
+  /// - 'stats': headline + metrics grid only
+  /// - 'minimal': single line with sport + time/location
+  /// - 'scoreboard': home vs away score (paired with type=score)
+  /// - 'achievement': badge chip + headline (paired with type=favorite)
+  final String layout;
+  final String? variantId;
+  final String? variantLabel;
   final String? headline;
   final String? subheadline;
   final String? sportLabel;

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../domain/checkin_filter_option.dart';
+import '../../../../domain/checkin_overlay.dart';
+import '../../../components/checkin_overlay_view.dart';
 import '../../../theme/app_theme.dart';
 
 class CheckinTopBar extends StatelessWidget {
@@ -258,6 +260,84 @@ class CheckinCaptureBar extends StatelessWidget {
             height: AppSize.checkinSecondaryAction,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CheckinOverlayCard extends StatelessWidget {
+  const CheckinOverlayCard({
+    super.key,
+    required this.overlay,
+  });
+
+  final CheckinOverlay overlay;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.giant),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            AppPalette.black.withValues(alpha: AppOpacity.overlay),
+            AppPalette.black.withValues(alpha: AppOpacity.scrim),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(AppRadius.card),
+        border: Border.all(
+          color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+          width: AppStroke.hairline,
+        ),
+      ),
+      child: CheckinOverlayView(
+        overlay: overlay,
+        compact: true,
+      ),
+    );
+  }
+}
+
+class CheckinVariantDots extends StatelessWidget {
+  const CheckinVariantDots({
+    super.key,
+    required this.count,
+    required this.selectedIndex,
+  });
+
+  final int count;
+  final int selectedIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: AppSize.checkinVariantDotsHeight,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(count, (index) {
+          final selected = index == selectedIndex;
+          return Padding(
+            padding: EdgeInsets.only(
+              right: index == count - 1 ? 0 : AppSpacing.sm,
+            ),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 220),
+              curve: Curves.easeOut,
+              width: selected
+                  ? AppSize.checkinVariantDotActive
+                  : AppSize.checkinVariantDot,
+              height: AppSize.checkinVariantDot,
+              decoration: BoxDecoration(
+                color: selected
+                    ? AppPalette.primary
+                    : AppPalette.white.withValues(alpha: AppOpacity.emphasis),
+                borderRadius: BorderRadius.circular(AppRadius.pill),
+              ),
+            ),
+          );
+        }),
       ),
     );
   }
