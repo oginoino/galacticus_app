@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../route/routes/routes.dart';
 import '../granular/widgets/granular_widgets.dart';
 import '../../theme/app_theme.dart';
 
@@ -53,11 +55,17 @@ class MatchesPage extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.section),
-          ...matches.map(
-            (match) => Padding(
+          ...matches.asMap().entries.map((entry) {
+            final index = entry.key;
+            final match = entry.value;
+            return Padding(
               padding: const EdgeInsets.only(bottom: AppSpacing.lg),
               child: HubSectionCard(
                 padding: const EdgeInsets.all(AppSpacing.page),
+                onTap: () => context.push(
+                  Routes.trainingDetail
+                      .replaceFirst(':id', '${14 + index}'),
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -116,8 +124,8 @@ class MatchesPage extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ),
+            );
+          }),
         ],
       ),
     );

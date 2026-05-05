@@ -74,8 +74,7 @@ class NotificationsPage extends StatelessWidget {
         SliverToBoxAdapter(
           child: NotificationsContent(
             overview: overview,
-            onNotificationTap: () =>
-                _showSnack(context, overview.messages.notificationTapAction),
+            onNotificationTap: () => context.push(Routes.feed),
           ),
         ),
       ],

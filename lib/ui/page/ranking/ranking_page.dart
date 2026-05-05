@@ -59,8 +59,7 @@ class RankingPage extends StatelessWidget {
               provider.selectCategory(categoryId);
               _showSnack(context, overview.messages.categoryAction);
             },
-            onEntryTap: () =>
-                _showSnack(context, overview.messages.entryAction),
+            onEntryTap: () => context.push(Routes.profile),
           ),
         ),
       ],

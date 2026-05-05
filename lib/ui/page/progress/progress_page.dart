@@ -69,8 +69,7 @@ class ProgressPage extends StatelessWidget {
             },
             onStatsTap: () =>
                 _showSnack(context, overview.messages.statsAction),
-            onMatchHistoryTap: () =>
-                _showSnack(context, overview.messages.matchHistoryAction),
+            onMatchHistoryTap: () => context.push(Routes.matches),
           ),
         ),
       ],
