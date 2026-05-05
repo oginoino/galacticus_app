@@ -1,200 +1,123 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../di/di.dart';
+import '../../../domain/post_detail_overview.dart';
+import '../../../provider/post_detail_provider.dart';
+import '../../../util/const/app_constants.dart';
+import '../../components/app_sliver_scaffold.dart';
+import '../../components/content_state_view.dart';
 import '../../theme/app_theme.dart';
-import '../granular/widgets/granular_widgets.dart';
+import 'widgets/post_detail_widgets.dart';
 
 class PostDetailPage extends StatelessWidget {
   const PostDetailPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const comments = [
-      _CommentItem(author: 'paula.rally', time: '24 min', message: 'Muito forte. Essa sessão rendeu demais.'),
-      _CommentItem(author: 'coach.mateus', time: '18 min', message: 'Boa consistência de ritmo. Vamos repetir no próximo bloco.'),
-      _CommentItem(author: 'gui.tennis', time: '9 min', message: 'Essa quadra estava rápida hoje.'),
-    ];
+    final provider = context.watch<PostDetailProvider>();
+    final overview = provider.overview;
 
-    return HubPageScaffold(
-      title: 'Post',
-      subtitle: 'Detalhe da publicação',
-      trailing: const HubMetaChip(
-        label: 'Treino',
-        highlighted: true,
-      ),
+    return AppSliverScaffold(
+      title: overview?.headerTitle ?? '',
+      subtitle: overview?.headerSubtitle,
+      trailing: overview != null ? PostBadgeChip(badge: overview.badge) : null,
+      slivers: [
+        SliverToBoxAdapter(
+          child: ContentStateView(
+            isLoading: provider.isLoading && overview == null,
+            errorMessage: provider.errorMessage != null && overview == null
+                ? provider.errorMessage
+                : null,
+            onRetry: provider.loadPost,
+            retryLabel: sl<AppConstants>().retryLabel,
+            child: overview == null
+                ? const SizedBox.shrink()
+                : _buildContent(context, overview),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContent(BuildContext context, PostDetailOverview overview) {
+    return Padding(
+      padding: AppInsets.pageHorizontal,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          HubSectionCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const CircleAvatar(
-                      radius: 24,
-                      backgroundColor: AppPalette.surfaceAlt,
-                      child: Text('GT'),
-                    ),
-                    const SizedBox(width: AppSpacing.lg),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'gabriel.tennis',
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                ),
-                          ),
-                          const SizedBox(height: AppSpacing.xxs),
-                          Text(
-                            '2h atrás · Court 02',
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                  color: AppPalette.textHint,
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const Icon(Icons.more_horiz_rounded, color: AppPalette.textHint),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.giant),
-                Text(
-                  'Sessão intensa hoje',
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                Text(
-                  'Foco, consistência e evolução.',
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppPalette.textSecondary,
-                      ),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                Wrap(
-                  spacing: AppSpacing.md,
-                  runSpacing: AppSpacing.md,
-                  children: const [
-                    HubMetaChip(label: 'Treino', highlighted: true),
-                    HubMetaChip(label: 'Court 02'),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.giant),
-                Container(
-                  height: 220,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(AppRadius.xxxl),
-                    gradient: const LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [AppPalette.surfaceAlt, AppPalette.successDark],
-                    ),
-                  ),
-                  child: Stack(
-                    children: [
-                      const Positioned(
-                        top: 20,
-                        right: 20,
-                        child: HubMetaChip(
-                          label: 'Treino',
-                          highlighted: true,
-                        ),
-                      ),
-                      Center(
-                        child: Icon(
-                          Icons.sports_tennis_rounded,
-                          size: 72,
-                          color: AppPalette.primary.withValues(alpha: AppOpacity.half),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.giant),
-                Row(
-                  children: const [
-                    Expanded(
-                      child: HubMetricTile(label: 'Duração', value: '1h 32m'),
-                    ),
-                    SizedBox(width: AppSpacing.lg),
-                    Expanded(
-                      child: HubMetricTile(label: 'kcal', value: '642'),
-                    ),
-                    SizedBox(width: AppSpacing.lg),
-                    Expanded(
-                      child: HubMetricTile(label: 'Distância', value: '6.1 km'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: AppSpacing.section),
-          Row(
-            children: const [
-              HubMetaChip(label: '245 curtidas', icon: Icons.favorite_border_rounded),
-              SizedBox(width: AppSpacing.md),
-              HubMetaChip(label: '18 comentários', icon: Icons.chat_bubble_outline_rounded),
-            ],
-          ),
-          const SizedBox(height: AppSpacing.section),
-          const HubTitleRow(title: 'Comentários'),
           const SizedBox(height: AppSpacing.lg),
-          ...comments.map(
-            (comment) => Padding(
-              padding: const EdgeInsets.only(bottom: AppSpacing.lg),
-              child: HubSectionCard(
-                padding: const EdgeInsets.all(AppSpacing.lg),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            comment.author,
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                ),
-                          ),
-                        ),
-                        Text(
-                          comment.time,
-                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: AppPalette.textHint,
-                              ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: AppSpacing.sm),
-                    Text(
-                      comment.message,
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppPalette.textSecondary,
-                          ),
-                    ),
-                  ],
+          PostAuthorRow(author: overview.author),
+          const SizedBox(height: AppSpacing.section),
+          Text(
+            overview.title,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  fontSize: AppFontSize.headingSm,
                 ),
-              ),
-            ),
           ),
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            overview.subtitle,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: AppPalette.textSecondary,
+                  fontSize: AppFontSize.bodyLg,
+                  height: 1.4,
+                ),
+          ),
+          if (overview.tags.isNotEmpty) ...[
+            const SizedBox(height: AppSpacing.lg),
+            Wrap(
+              spacing: AppSpacing.md,
+              runSpacing: AppSpacing.md,
+              children: overview.tags
+                  .map(
+                    (tag) => Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.lg,
+                        vertical: AppSpacing.xs,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppPalette.surfaceAlt,
+                        borderRadius: BorderRadius.circular(AppRadius.pill),
+                        border: Border.all(
+                          color: AppPalette.white
+                              .withValues(alpha: AppOpacity.xxs),
+                          width: AppStroke.hairline,
+                        ),
+                      ),
+                      child: Text(
+                        tag,
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                              color: AppPalette.textSecondary,
+                              fontSize: AppFontSize.bodySm,
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                    ),
+                  )
+                  .toList(growable: false),
+            ),
+          ],
+          if (overview.mediaImageAsset != null) ...[
+            const SizedBox(height: AppSpacing.section),
+            PostMediaCard(
+              imageAsset: overview.mediaImageAsset!,
+              checkinOverlay: overview.checkinOverlay,
+            ),
+          ],
+          const SizedBox(height: AppSpacing.section),
+          PostCountersRow(counters: overview.counters),
+          const SizedBox(height: AppSpacing.section),
+          PostCommentsList(
+            title: overview.commentsTitle,
+            comments: overview.comments,
+          ),
+          const SizedBox(height: AppSpacing.section),
+          PostReplyComposer(placeholder: overview.replyPlaceholder),
+          const SizedBox(height: AppSpacing.section),
         ],
       ),
     );
   }
-}
-
-class _CommentItem {
-  const _CommentItem({
-    required this.author,
-    required this.time,
-    required this.message,
-  });
-
-  final String author;
-  final String time;
-  final String message;
 }

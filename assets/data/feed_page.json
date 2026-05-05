@@ -361,6 +361,231 @@
           }
         ]
       }
+    },
+    {
+      "layoutType": "workout_result",
+      "authorHandle": "rafa.run",
+      "clubLabel": "Galácticos Trail",
+      "timeAgoLabel": "1d atrás",
+      "avatarAsset": null,
+      "initials": "RR",
+      "imageAsset": null,
+      "sportLabel": "Run",
+      "likesCountLabel": "73",
+      "commentsCountLabel": "12",
+      "viewCommentsLabel": "Ver 11 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null,
+      "workoutResultCard": {
+        "variant": "run",
+        "eyebrowLabel": "TRAIL →",
+        "title": "MORNING TRAIL",
+        "dateLabel": "20 Mai 2026",
+        "startLabel": "START",
+        "finishLabel": "FINISH",
+        "locationLabel": "Vila Olímpia",
+        "contextLabel": null,
+        "primaryMetrics": [
+          { "value": "8.4 km", "label": "Distância" },
+          { "value": "0h 43m", "label": "Tempo" },
+          { "value": "642 kcal", "label": "Calorias" },
+          { "value": "MÉDIA", "label": "Intensidade" }
+        ],
+        "secondaryMetrics": []
+      }
+    },
+    {
+      "layoutType": "media",
+      "authorHandle": "paulo",
+      "clubLabel": "Galácticos Club",
+      "timeAgoLabel": "1d atrás",
+      "avatarAsset": "assets/images/prototype/paulo.jpg",
+      "initials": null,
+      "imageAsset": "assets/images/prototype/feed-tennis-match.jpg",
+      "sportLabel": "Conquista",
+      "likesCountLabel": "182",
+      "commentsCountLabel": "24",
+      "viewCommentsLabel": "Ver 22 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": {
+        "initials": "SP",
+        "authorLabel": "Sofia P.",
+        "message": "Parabéns! Sequência impressionante."
+      },
+      "checkinOverlay": {
+        "type": "favorite",
+        "layout": "achievement",
+        "headline": "100 dias na plataforma",
+        "subheadline": "Sequência de check-ins consecutivos",
+        "achievementLabel": "Centurião",
+        "metrics": [
+          { "value": "100", "label": "Dias" },
+          { "value": "+200", "label": "XP" }
+        ]
+      }
+    },
+    {
+      "layoutType": "media",
+      "authorHandle": "sofia.p",
+      "clubLabel": "Galácticos Padel",
+      "timeAgoLabel": "1d atrás",
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg",
+      "initials": null,
+      "imageAsset": "assets/images/prototype/feed-padel-evening.jpg",
+      "sportLabel": "Match Day",
+      "likesCountLabel": "94",
+      "commentsCountLabel": "16",
+      "viewCommentsLabel": "Ver 14 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "score",
+        "layout": "scoreboard",
+        "headline": "Vitória no tie-break",
+        "subheadline": "Set decidido na bola final",
+        "sportLabel": "Padel · Duplas",
+        "scoreHome": "7",
+        "scoreAway": "6",
+        "teamHome": "Sofia/Leo",
+        "teamAway": "Adv."
+      }
+    },
+    {
+      "layoutType": "media",
+      "authorHandle": "carlos.m",
+      "clubLabel": "Galácticos Alphaville",
+      "timeAgoLabel": "2d atrás",
+      "avatarAsset": null,
+      "initials": "CM",
+      "imageAsset": "assets/images/prototype/hero-court.jpg",
+      "sportLabel": "Tennis",
+      "likesCountLabel": "37",
+      "commentsCountLabel": "5",
+      "viewCommentsLabel": "Ver 4 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "bar_chart",
+        "layout": "stats",
+        "headline": "Bloco técnico",
+        "metrics": [
+          { "value": "1h12", "label": "Duração" },
+          { "value": "284", "label": "Calorias" },
+          { "value": "92%", "label": "Foco" }
+        ]
+      }
+    },
+    {
+      "layoutType": "media",
+      "authorHandle": "club.galacticos",
+      "clubLabel": "Galácticos Club",
+      "timeAgoLabel": "2d atrás",
+      "avatarAsset": null,
+      "initials": "GC",
+      "imageAsset": "assets/images/prototype/feed-group.jpg",
+      "sportLabel": "Comunidade",
+      "likesCountLabel": "128",
+      "commentsCountLabel": "21",
+      "viewCommentsLabel": "Ver 19 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "minimal",
+        "layout": "minimal",
+        "sportLabel": "Encontro mensal",
+        "timeLabel": "19:00",
+        "locationLabel": "Galácticos Pinheiros"
+      }
+    },
+    {
+      "layoutType": "workout_result",
+      "authorHandle": "ana.l",
+      "clubLabel": "Galácticos Cidade Jardim",
+      "timeAgoLabel": "3d atrás",
+      "avatarAsset": null,
+      "initials": "AL",
+      "imageAsset": null,
+      "sportLabel": "Tennis",
+      "likesCountLabel": "62",
+      "commentsCountLabel": "9",
+      "viewCommentsLabel": "Ver 8 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null,
+      "workoutResultCard": {
+        "variant": "technical",
+        "eyebrowLabel": "Tennis",
+        "title": "Drill de Voleio",
+        "subtitle": "Sequência de 18 voleios consecutivos.",
+        "locationLabel": "Quadra 03 · Cidade Jardim",
+        "contextLabel": "21°C · São Paulo",
+        "primaryMetrics": [
+          { "value": "1h 18m", "label": "Duração" },
+          { "value": "428", "label": "Calorias" },
+          { "value": "4.2 km", "label": "Distância" }
+        ],
+        "secondaryMetrics": []
+      }
+    },
+    {
+      "layoutType": "media",
+      "authorHandle": "leo.tennis",
+      "clubLabel": "Galácticos Rally",
+      "timeAgoLabel": "3d atrás",
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg",
+      "initials": null,
+      "imageAsset": "assets/images/prototype/cal-workout-2.jpg",
+      "sportLabel": "Cardio",
+      "likesCountLabel": "58",
+      "commentsCountLabel": "7",
+      "viewCommentsLabel": "Ver 6 comentários",
+      "headline": null,
+      "subheadline": null,
+      "locationLabel": null,
+      "weatherLabel": null,
+      "floatingAvatarAsset": null,
+      "metrics": [],
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "pulse",
+        "layout": "stats",
+        "headline": "Zonas cardíacas",
+        "metrics": [
+          { "value": "08'", "label": "Z2" },
+          { "value": "22'", "label": "Z3" },
+          { "value": "14'", "label": "Z4" },
+          { "value": "06'", "label": "Z5" }
+        ]
+      }
     }
   ]
 }

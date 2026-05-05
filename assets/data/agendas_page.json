@@ -32,6 +32,24 @@
       "subtitle": "Sex, 16 Mai · 8 vagas",
       "tag": "Padel",
       "imageAsset": "assets/images/prototype/hero-court.jpg"
+    },
+    {
+      "title": "Clínica de Saque",
+      "subtitle": "Qua, 21 Mai · 6 vagas",
+      "tag": "Coach",
+      "imageAsset": "assets/images/prototype/coach-marcos.jpg"
+    },
+    {
+      "title": "Beach Tennis Day",
+      "subtitle": "Dom, 25 Mai · 16 vagas",
+      "tag": "Beach",
+      "imageAsset": "assets/images/prototype/feed-padel-evening.jpg"
+    },
+    {
+      "title": "Match Play Avançado",
+      "subtitle": "Sáb, 31 Mai · Convite",
+      "tag": "Tennis",
+      "imageAsset": "assets/images/prototype/feed-tennis-match.jpg"
     }
   ],
   "matches": [
@@ -61,6 +79,33 @@
       "availability": "Última vaga!",
       "isLastSpot": true,
       "avatarAsset": "assets/images/prototype/avatar-leo.jpg"
+    },
+    {
+      "hostName": "Carlos M.",
+      "sport": "Tennis",
+      "schedule": "Seg, 19 Mai · 19:00",
+      "location": "Quadra Central",
+      "availability": "3 vagas abertas",
+      "isLastSpot": false,
+      "avatarAsset": null
+    },
+    {
+      "hostName": "Ana L.",
+      "sport": "Padel",
+      "schedule": "Ter, 20 Mai · 18:30",
+      "location": "Quadra 03 · Cidade Jardim",
+      "availability": "1 vaga aberta",
+      "isLastSpot": true,
+      "avatarAsset": null
+    },
+    {
+      "hostName": "Paulo H.",
+      "sport": "Beach Tennis",
+      "schedule": "Qua, 21 Mai · 16:00",
+      "location": "Arena Beach",
+      "availability": "2 vagas abertas",
+      "isLastSpot": false,
+      "avatarAsset": "assets/images/prototype/paulo.jpg"
     }
   ]
 }

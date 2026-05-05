@@ -1,0 +1,28 @@
+{
+  "title": "Shooting",
+  "subtitle": "GALÁCTICOS CLUB",
+  "modeLabel": "Modo Shooting",
+  "modeEnabledByDefault": true,
+  "helpTitle": "Capturas das suas partidas",
+  "helpText": "Cada captura é processada para gerar overlays automáticos. Toque em uma para ver detalhes ou compartilhar.",
+  "galleryTitle": "Capturas recentes",
+  "messages": {
+    "toggleAction": "Modo shooting alternado.",
+    "itemAction": "Abrindo captura.",
+    "loadErrorMessage": "Não foi possível carregar o shooting agora."
+  },
+  "items": [
+    { "id": "s-01", "dateLabel": "8 Mai", "sportIcon": "tennis", "sportLabel": "Tennis", "courtLabel": "Quadra 02", "imageAsset": "assets/images/prototype/feed-tennis-match.jpg", "durationLabel": "1h 36" },
+    { "id": "s-02", "dateLabel": "8 Mai", "sportIcon": "padel", "sportLabel": "Padel", "courtLabel": "Quadra 05", "imageAsset": "assets/images/prototype/feed-padel-evening.jpg", "durationLabel": "1h 22" },
+    { "id": "s-03", "dateLabel": "7 Mai", "sportIcon": "tennis", "sportLabel": "Tennis", "courtLabel": "Quadra 01", "imageAsset": "assets/images/prototype/hero-court.jpg", "durationLabel": "2h 14" },
+    { "id": "s-04", "dateLabel": "7 Mai", "sportIcon": "padel", "sportLabel": "Padel", "courtLabel": "Quadra 03", "imageAsset": "assets/images/prototype/cal-workout-1.jpg", "durationLabel": "1h 08" },
+    { "id": "s-05", "dateLabel": "6 Mai", "sportIcon": "tennis", "sportLabel": "Tennis", "courtLabel": "Quadra 02", "imageAsset": "assets/images/prototype/cal-workout-2.jpg", "durationLabel": "1h 48" },
+    { "id": "s-06", "dateLabel": "5 Mai", "sportIcon": "padel", "sportLabel": "Padel", "courtLabel": "Quadra 04", "imageAsset": "assets/images/prototype/cal-workout-3.jpg", "durationLabel": "55 min" },
+    { "id": "s-07", "dateLabel": "5 Mai", "sportIcon": "tennis", "sportLabel": "Tennis", "courtLabel": "Quadra Central", "imageAsset": "assets/images/prototype/feed-tennis-match.jpg", "durationLabel": "2h 02" },
+    { "id": "s-08", "dateLabel": "4 Mai", "sportIcon": "beach", "sportLabel": "Beach Tennis", "courtLabel": "Arena Beach", "imageAsset": "assets/images/prototype/feed-padel-evening.jpg", "durationLabel": "1h 14" },
+    { "id": "s-09", "dateLabel": "3 Mai", "sportIcon": "tennis", "sportLabel": "Tennis", "courtLabel": "Quadra 01", "imageAsset": "assets/images/prototype/hero-court.jpg", "durationLabel": "1h 30" },
+    { "id": "s-10", "dateLabel": "3 Mai", "sportIcon": "padel", "sportLabel": "Padel", "courtLabel": "Quadra 02", "imageAsset": "assets/images/prototype/cal-workout-1.jpg", "durationLabel": "1h 12" },
+    { "id": "s-11", "dateLabel": "2 Mai", "sportIcon": "tennis", "sportLabel": "Tennis", "courtLabel": "Quadra 03", "imageAsset": "assets/images/prototype/cal-workout-2.jpg", "durationLabel": "1h 54" },
+    { "id": "s-12", "dateLabel": "1 Mai", "sportIcon": "padel", "sportLabel": "Padel", "courtLabel": "Quadra 04", "imageAsset": "assets/images/prototype/cal-workout-3.jpg", "durationLabel": "1h 06" }
+  ]
+}

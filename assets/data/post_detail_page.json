@@ -1,0 +1,50 @@
+{
+  "id": "post-001",
+  "headerTitle": "Post",
+  "headerSubtitle": "Detalhe da publicação",
+  "badge": { "label": "Treino", "highlighted": true },
+  "author": {
+    "authorHandle": "gabriel.tennis",
+    "contextLabel": "2h atrás · Quadra 02",
+    "avatarAsset": "assets/images/prototype/avatar-gabe.jpg",
+    "initials": null
+  },
+  "title": "Sessão intensa hoje",
+  "subtitle": "Foco, consistência e evolução. Match play disputado e técnica bem afiada nesse bloco.",
+  "mediaImageAsset": "assets/images/prototype/feed-tennis-match.jpg",
+  "checkinOverlay": {
+    "type": "bar_chart",
+    "layout": "stats",
+    "headline": "Resumo do treino",
+    "metrics": [
+      { "value": "1h32", "label": "Duração" },
+      { "value": "642", "label": "Calorias" },
+      { "value": "6.1km", "label": "Distância" },
+      { "value": "152", "label": "BPM méd." }
+    ]
+  },
+  "tags": ["Treino", "Court 02", "Backhand"],
+  "metrics": [
+    { "label": "Duração", "value": "1h 32m", "delta": "+02:00", "trend": "up" },
+    { "label": "Calorias", "value": "642", "delta": "+34", "trend": "up" },
+    { "label": "Distância", "value": "6.1 km", "delta": "+0.3 km", "trend": "up" },
+    { "label": "BPM méd.", "value": "152", "delta": "0", "trend": "flat" }
+  ],
+  "counters": {
+    "likesLabel": "245 curtidas",
+    "commentsLabel": "18 comentários",
+    "sharesLabel": "12 compartilhamentos",
+    "savedLabel": "Salvar"
+  },
+  "commentsTitle": "Comentários",
+  "comments": [
+    { "author": "paula.rally", "timeLabel": "24 min", "message": "Muito forte. Essa sessão rendeu demais.", "likesLabel": "12", "avatarAsset": null, "initials": "PR" },
+    { "author": "coach.mateus", "timeLabel": "18 min", "message": "Boa consistência de ritmo. Vamos repetir no próximo bloco.", "likesLabel": "8", "avatarAsset": null, "initials": "CM" },
+    { "author": "gui.tennis", "timeLabel": "9 min", "message": "Essa quadra estava rápida hoje.", "likesLabel": "4", "avatarAsset": null, "initials": "GT" },
+    { "author": "leo.tennis", "timeLabel": "5 min", "message": "Posso pedir esse drill na próxima?", "likesLabel": "2", "avatarAsset": "assets/images/prototype/avatar-leo.jpg", "initials": null },
+    { "author": "sofia.p", "timeLabel": "3 min", "message": "Linda evolução no backhand. Top!", "likesLabel": "6", "avatarAsset": "assets/images/prototype/avatar-sofia.jpg", "initials": null },
+    { "author": "carlos.m", "timeLabel": "1 min", "message": "Bora marcar uma na semana que vem.", "likesLabel": "1", "avatarAsset": null, "initials": "CM" }
+  ],
+  "replyPlaceholder": "Escreva um comentário...",
+  "loadErrorMessage": "Não foi possível carregar este post agora."
+}

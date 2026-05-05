@@ -22,6 +22,11 @@ class AppConstants {
     required this.rankingLoadErrorMessage,
     required this.progressLoadErrorMessage,
     required this.authLoadErrorMessage,
+    required this.matchesLoadErrorMessage,
+    required this.shootingLoadErrorMessage,
+    required this.trainingDetailLoadErrorMessage,
+    required this.clubDetailLoadErrorMessage,
+    required this.postDetailLoadErrorMessage,
     required this.navigationUnavailableMessage,
     required this.retryLabel,
   });
@@ -46,6 +51,11 @@ class AppConstants {
   final String rankingLoadErrorMessage;
   final String progressLoadErrorMessage;
   final String authLoadErrorMessage;
+  final String matchesLoadErrorMessage;
+  final String shootingLoadErrorMessage;
+  final String trainingDetailLoadErrorMessage;
+  final String clubDetailLoadErrorMessage;
+  final String postDetailLoadErrorMessage;
   final String navigationUnavailableMessage;
   final String retryLabel;
 
@@ -70,6 +80,11 @@ class AppConstants {
     rankingLoadErrorMessage: 'Não foi possível carregar o ranking agora.',
     progressLoadErrorMessage: 'Não foi possível carregar o progresso agora.',
     authLoadErrorMessage: 'Não foi possível carregar a tela de autenticação agora.',
+    matchesLoadErrorMessage: 'Não foi possível carregar suas partidas agora.',
+    shootingLoadErrorMessage: 'Não foi possível carregar o shooting agora.',
+    trainingDetailLoadErrorMessage: 'Não foi possível carregar este treino agora.',
+    clubDetailLoadErrorMessage: 'Não foi possível carregar o clube agora.',
+    postDetailLoadErrorMessage: 'Não foi possível carregar este post agora.',
     navigationUnavailableMessage: 'Área disponível na próxima etapa.',
     retryLabel: 'Tentar novamente',
   );

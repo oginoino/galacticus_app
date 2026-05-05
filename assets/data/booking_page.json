@@ -30,70 +30,33 @@
     }
   ],
   "dateOptions": [
-    {
-      "weekdayLabel": "QUI",
-      "dayLabel": "22",
-      "isSelected": false
-    },
-    {
-      "weekdayLabel": "SEX",
-      "dayLabel": "23",
-      "isSelected": false
-    },
-    {
-      "weekdayLabel": "SÁB",
-      "dayLabel": "24",
-      "isSelected": true
-    },
-    {
-      "weekdayLabel": "DOM",
-      "dayLabel": "25",
-      "isSelected": false
-    },
-    {
-      "weekdayLabel": "SEG",
-      "dayLabel": "26",
-      "isSelected": false
-    }
+    { "weekdayLabel": "QUI", "dayLabel": "22", "isSelected": false },
+    { "weekdayLabel": "SEX", "dayLabel": "23", "isSelected": false },
+    { "weekdayLabel": "SÁB", "dayLabel": "24", "isSelected": true },
+    { "weekdayLabel": "DOM", "dayLabel": "25", "isSelected": false },
+    { "weekdayLabel": "SEG", "dayLabel": "26", "isSelected": false },
+    { "weekdayLabel": "TER", "dayLabel": "27", "isSelected": false },
+    { "weekdayLabel": "QUA", "dayLabel": "28", "isSelected": false },
+    { "weekdayLabel": "QUI", "dayLabel": "29", "isSelected": false }
   ],
   "timeOptions": [
-    {
-      "label": "7:00",
-      "isSelected": false
-    },
-    {
-      "label": "8:30",
-      "isSelected": true
-    },
-    {
-      "label": "10:00",
-      "isSelected": false
-    },
-    {
-      "label": "14:00",
-      "isSelected": false
-    },
-    {
-      "label": "16:00",
-      "isSelected": false
-    }
+    { "label": "7:00", "isSelected": false },
+    { "label": "8:30", "isSelected": true },
+    { "label": "10:00", "isSelected": false },
+    { "label": "11:30", "isSelected": false },
+    { "label": "14:00", "isSelected": false },
+    { "label": "15:30", "isSelected": false },
+    { "label": "16:00", "isSelected": false },
+    { "label": "17:30", "isSelected": false },
+    { "label": "19:00", "isSelected": false },
+    { "label": "20:30", "isSelected": false }
   ],
   "amenities": [
-    {
-      "type": "people",
-      "label": "8 pessoas"
-    },
-    {
-      "type": "wifi",
-      "label": "Wi-Fi"
-    },
-    {
-      "type": "tv",
-      "label": "TV"
-    },
-    {
-      "type": "coffee",
-      "label": "Café"
-    }
+    { "type": "people", "label": "8 pessoas" },
+    { "type": "wifi", "label": "Wi-Fi" },
+    { "type": "tv", "label": "TV" },
+    { "type": "coffee", "label": "Café" },
+    { "type": "screen", "label": "Projetor" },
+    { "type": "ac", "label": "Ar condicionado" }
   ]
 }

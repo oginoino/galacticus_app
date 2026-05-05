@@ -47,6 +47,27 @@
       "levelLabel": "AVANÇADO",
       "isAi": true,
       "imageAsset": "assets/images/prototype/lesson-smash.jpg"
+    },
+    {
+      "title": "Volêio de bloqueio",
+      "subtitle": "Timing e leitura na rede",
+      "levelLabel": "MÉDIO",
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-voleio.jpg"
+    },
+    {
+      "title": "Slice defensivo",
+      "subtitle": "Pegada, ângulo e passada",
+      "levelLabel": "MÉDIO",
+      "isAi": false,
+      "imageAsset": "assets/images/prototype/lesson-saque-slice.jpg"
+    },
+    {
+      "title": "Footwork avançado",
+      "subtitle": "Passos cruzados e recuperação",
+      "levelLabel": "AVANÇADO",
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-smash.jpg"
     }
   ],
   "upcomingItems": [
@@ -81,6 +102,38 @@
       "duration": "7:58",
       "availabilityLabel": "IA DISPONÍVEL",
       "imageAsset": "assets/images/prototype/lesson-smash.jpg"
+    },
+    {
+      "title": "Saque slice: precisão sobre potência",
+      "coach": "Sofia P.",
+      "metaLine": "6.2k views  ·  Intermediário",
+      "duration": "5:32",
+      "availabilityLabel": "IA DISPONÍVEL",
+      "imageAsset": "assets/images/prototype/lesson-saque-slice.jpg"
+    },
+    {
+      "title": "Drop shot: surpresa e timing",
+      "coach": "Gabriel T.",
+      "metaLine": "3.8k views  ·  Avançado",
+      "duration": "4:18",
+      "availabilityLabel": "EM BREVE",
+      "imageAsset": "assets/images/prototype/lesson-voleio.jpg"
+    },
+    {
+      "title": "Drive de fundo: profundidade e ritmo",
+      "coach": "Leonardo R.",
+      "metaLine": "11.2k views  ·  Intermediário",
+      "duration": "6:42",
+      "availabilityLabel": "IA DISPONÍVEL",
+      "imageAsset": "assets/images/prototype/lesson-forehand-topspin.jpg"
+    },
+    {
+      "title": "Footwork: deslocamento eficiente",
+      "coach": "Coach Marcos",
+      "metaLine": "7.5k views  ·  Avançado",
+      "duration": "9:14",
+      "availabilityLabel": "IA DISPONÍVEL",
+      "imageAsset": "assets/images/prototype/lesson-backhand-iniciante.jpg"
     }
   ]
 }

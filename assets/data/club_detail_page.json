@@ -1,0 +1,97 @@
+{
+  "loadErrorMessage": "Não foi possível carregar o clube agora.",
+  "clubs": [
+    {
+      "slug": "galacticos-padel",
+      "name": "Galácticos Padel",
+      "headline": "Comunidade de padel premium",
+      "heroImageAsset": "assets/images/prototype/club-padel.jpg",
+      "membersLabel": "248 membros",
+      "privacyLabel": "Público",
+      "headerCounterLabel": "+34",
+      "tags": ["Padel", "Iniciantes", "Avançado", "Torneios", "Eventos sociais"],
+      "descriptionTitle": "Sobre",
+      "description": "O Galácticos Padel reúne entusiastas de todos os níveis para treinos semanais, torneios mensais e clínicas com coaches certificados. Foco em técnica, jogo de duplas e ambiente colaborativo.",
+      "membersTitle": "Membros em destaque",
+      "members": [
+        { "name": "Paulo Henrique", "roleLabel": "Capitão", "avatarAsset": "assets/images/prototype/paulo.jpg", "initials": null },
+        { "name": "Sofia Pereira", "roleLabel": "Coach principal", "avatarAsset": "assets/images/prototype/avatar-sofia.jpg", "initials": null },
+        { "name": "Leo Marques", "roleLabel": "Avançado", "avatarAsset": "assets/images/prototype/avatar-leo.jpg", "initials": null },
+        { "name": "Gabriel Tavares", "roleLabel": "Iniciante", "avatarAsset": "assets/images/prototype/avatar-gabe.jpg", "initials": null },
+        { "name": "Carlos Mendes", "roleLabel": "Intermediário", "avatarAsset": null, "initials": "CM" },
+        { "name": "Ana Lima", "roleLabel": "Intermediário", "avatarAsset": null, "initials": "AL" }
+      ],
+      "sessionsTitle": "Sessões da semana",
+      "sessions": [
+        { "title": "Treino livre", "dayLabel": "Segunda", "timeLabel": "07:00 — 09:00", "locationLabel": "Quadra 02", "capacityLabel": "8/12 vagas" },
+        { "title": "Clínica de saque", "dayLabel": "Quarta", "timeLabel": "19:00 — 20:30", "locationLabel": "Quadra 04", "capacityLabel": "6/8 vagas" },
+        { "title": "Match play feminino", "dayLabel": "Sexta", "timeLabel": "18:00 — 20:00", "locationLabel": "Quadra Central", "capacityLabel": "4/8 vagas" },
+        { "title": "Torneio mensal", "dayLabel": "Sábado", "timeLabel": "08:00 — 14:00", "locationLabel": "Galácticos Pinheiros", "capacityLabel": "32/64 vagas" }
+      ],
+      "photosTitle": "Galeria",
+      "photos": [
+        { "imageAsset": "assets/images/prototype/feed-padel-evening.jpg", "captionLabel": "Padel sob as luzes" },
+        { "imageAsset": "assets/images/prototype/club-padel.jpg", "captionLabel": "Domingo de torneio" },
+        { "imageAsset": "assets/images/prototype/cal-workout-1.jpg", "captionLabel": "Treino técnico" },
+        { "imageAsset": "assets/images/prototype/feed-group.jpg", "captionLabel": "Pós-jogo" },
+        { "imageAsset": "assets/images/prototype/cal-workout-3.jpg", "captionLabel": "Aquecimento" },
+        { "imageAsset": "assets/images/prototype/room-lounge.jpg", "captionLabel": "Lounge" }
+      ],
+      "rulesTitle": "Regras",
+      "rules": [
+        "Confirmar presença até 24h antes da sessão.",
+        "Trazer próprio equipamento ou alugar na recepção.",
+        "Respeitar nivelamento por convite do coach.",
+        "Eventos sociais são para todos os níveis."
+      ],
+      "joinLabel": "Entrar no clube",
+      "shareLabel": "Compartilhar"
+    },
+    {
+      "slug": "galacticos-rally",
+      "name": "Galácticos Rally",
+      "headline": "Tennis competitivo no nível avançado",
+      "heroImageAsset": "assets/images/prototype/club-rally.jpg",
+      "membersLabel": "112 membros",
+      "privacyLabel": "Convite",
+      "headerCounterLabel": "+12",
+      "tags": ["Tennis", "Avançado", "Match", "Coaching"],
+      "descriptionTitle": "Sobre",
+      "description": "Rally é a comunidade de tennis competitivo do Galácticos. Match play semanal, ranking interno e ciclos trimestrais de avaliação técnica.",
+      "membersTitle": "Membros em destaque",
+      "members": [
+        { "name": "Gabriel Tavares", "roleLabel": "Capitão", "avatarAsset": "assets/images/prototype/avatar-gabe.jpg", "initials": null },
+        { "name": "Sofia Pereira", "roleLabel": "Coach", "avatarAsset": "assets/images/prototype/avatar-sofia.jpg", "initials": null },
+        { "name": "Leo Marques", "roleLabel": "Top 5", "avatarAsset": "assets/images/prototype/avatar-leo.jpg", "initials": null },
+        { "name": "Paulo Henrique", "roleLabel": "Avançado", "avatarAsset": "assets/images/prototype/paulo.jpg", "initials": null },
+        { "name": "Rafa B.", "roleLabel": "Avançado", "avatarAsset": null, "initials": "RB" },
+        { "name": "Pedro S.", "roleLabel": "Avançado", "avatarAsset": null, "initials": "PS" }
+      ],
+      "sessionsTitle": "Sessões da semana",
+      "sessions": [
+        { "title": "Match play A", "dayLabel": "Terça", "timeLabel": "06:30 — 08:30", "locationLabel": "Quadra Central", "capacityLabel": "6/8 vagas" },
+        { "title": "Drill técnico", "dayLabel": "Quinta", "timeLabel": "19:00 — 20:30", "locationLabel": "Quadra 01", "capacityLabel": "4/8 vagas" },
+        { "title": "Clínica de saque", "dayLabel": "Sábado", "timeLabel": "07:00 — 09:00", "locationLabel": "Quadra 02", "capacityLabel": "5/6 vagas" },
+        { "title": "Match play B", "dayLabel": "Domingo", "timeLabel": "08:00 — 10:00", "locationLabel": "Quadra Central", "capacityLabel": "3/8 vagas" }
+      ],
+      "photosTitle": "Galeria",
+      "photos": [
+        { "imageAsset": "assets/images/prototype/feed-tennis-match.jpg", "captionLabel": "Match Day" },
+        { "imageAsset": "assets/images/prototype/club-rally.jpg", "captionLabel": "Capitão Gabe" },
+        { "imageAsset": "assets/images/prototype/hero-court.jpg", "captionLabel": "Quadra Central" },
+        { "imageAsset": "assets/images/prototype/cal-workout-2.jpg", "captionLabel": "Aquecimento" },
+        { "imageAsset": "assets/images/prototype/feed-group.jpg", "captionLabel": "Time completo" },
+        { "imageAsset": "assets/images/prototype/cal-workout-1.jpg", "captionLabel": "Drill técnico" }
+      ],
+      "rulesTitle": "Regras",
+      "rules": [
+        "Avaliação técnica obrigatória antes de entrar.",
+        "Confirmação de match até 12h antes.",
+        "Respeitar ranking interno e convites.",
+        "Faltas reduzem prioridade no agendamento."
+      ],
+      "joinLabel": "Solicitar convite",
+      "shareLabel": "Compartilhar"
+    }
+  ]
+}

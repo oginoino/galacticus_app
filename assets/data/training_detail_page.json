@@ -1,0 +1,48 @@
+{
+  "id": "14",
+  "title": "Sessão de tênis técnica",
+  "subtitle": "GALÁCTICOS CLUB",
+  "sportLabel": "Tennis",
+  "dateLabel": "12 Mai 2026 · 09:18",
+  "hero": {
+    "iconKey": "tennis",
+    "primaryLabel": "Treino #14",
+    "secondaryLabel": "Maio 2026",
+    "tertiaryLabel": "Quadra 02"
+  },
+  "chips": [
+    "Tennis",
+    "Backhand",
+    "Saque",
+    "Volleys",
+    "Drills",
+    "Match play"
+  ],
+  "summary": "Bloco focado em consistência de fundo de quadra e finalização na rede. Aquecimento dinâmico, 18 séries de drills e 3 sets curtos de match play.",
+  "metricsTitle": "Métricas da sessão",
+  "metrics": [
+    { "label": "Duração", "value": "1h 36", "delta": "+04:00", "trend": "up" },
+    { "label": "Calorias", "value": "412", "delta": "+24", "trend": "up" },
+    { "label": "Distância", "value": "5.6 km", "delta": "+0.4 km", "trend": "up" },
+    { "label": "BPM méd.", "value": "148", "delta": "+3", "trend": "up" },
+    { "label": "BPM máx.", "value": "186", "delta": "-2", "trend": "down" },
+    { "label": "Pace", "value": "5'12\"", "delta": "+0:08", "trend": "up" },
+    { "label": "Pico técnico", "value": "92%", "delta": "+5%", "trend": "up" },
+    { "label": "Foco", "value": "88%", "delta": "+1%", "trend": "flat" }
+  ],
+  "notesTitle": "Notas do coach",
+  "notes": [
+    "Aquecimento e mobilização foram bem executados. Pegada com mais firmeza no backhand de duas mãos.",
+    "Bloco técnico evoluiu bem — 12 sequências limpas de cross-court e 4 voleios decisivos consecutivos no drill de transição.",
+    "No match play o ritmo caiu no terceiro game; trabalhar respiração e cadência no próximo bloco."
+  ],
+  "commentsTitle": "Comentários",
+  "comments": [
+    { "author": "coach.mateus", "timeLabel": "18 min", "message": "Boa consistência de ritmo. Vamos repetir no próximo bloco.", "avatarAsset": null, "initials": "CM" },
+    { "author": "paula.rally", "timeLabel": "24 min", "message": "Muito forte. Essa sessão rendeu demais.", "avatarAsset": null, "initials": "PR" },
+    { "author": "gui.tennis", "timeLabel": "9 min", "message": "Essa quadra estava rápida hoje.", "avatarAsset": null, "initials": "GT" },
+    { "author": "leo.tennis", "timeLabel": "5 min", "message": "Posso pedir esse drill na próxima?", "avatarAsset": "assets/images/prototype/avatar-leo.jpg", "initials": null },
+    { "author": "sofia.p", "timeLabel": "1 min", "message": "Linda evolução no backhand.", "avatarAsset": "assets/images/prototype/avatar-sofia.jpg", "initials": null }
+  ],
+  "loadErrorMessage": "Não foi possível carregar este treino agora."
+}

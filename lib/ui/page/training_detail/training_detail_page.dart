@@ -1,160 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../../di/di.dart';
+import '../../../domain/training_detail_overview.dart';
+import '../../../provider/training_detail_provider.dart';
+import '../../../util/const/app_constants.dart';
+import '../../components/app_sliver_scaffold.dart';
+import '../../components/content_state_view.dart';
 import '../../theme/app_theme.dart';
-import '../granular/widgets/granular_widgets.dart';
+import 'widgets/training_detail_widgets.dart';
 
-class TrainingDetailPage extends StatelessWidget {
+class TrainingDetailPage extends StatefulWidget {
   const TrainingDetailPage({super.key, required this.trainingId});
 
   final String trainingId;
 
   @override
+  State<TrainingDetailPage> createState() => _TrainingDetailPageState();
+}
+
+class _TrainingDetailPageState extends State<TrainingDetailPage> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context
+          .read<TrainingDetailProvider>()
+          .loadTraining(id: widget.trainingId);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return HubPageScaffold(
-      title: 'Match Training',
-      subtitle: 'GALÁCTICOS CLUB',
-      trailing: const HubMetaChip(label: 'Tennis', highlighted: true),
+    final provider = context.watch<TrainingDetailProvider>();
+    final overview = provider.overview;
+
+    return AppSliverScaffold(
+      title: overview?.title ?? '',
+      subtitle: overview?.dateLabel,
+      slivers: [
+        SliverToBoxAdapter(
+          child: ContentStateView(
+            isLoading: provider.isLoading && overview == null,
+            errorMessage: provider.errorMessage != null && overview == null
+                ? provider.errorMessage
+                : null,
+            onRetry: () => provider.loadTraining(id: widget.trainingId),
+            retryLabel: sl<AppConstants>().retryLabel,
+            child: overview == null
+                ? const SizedBox.shrink()
+                : _buildContent(context, overview),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContent(BuildContext context, TrainingDetailOverview overview) {
+    return Padding(
+      padding: AppInsets.pageHorizontal,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          HubSectionCard(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [AppPalette.successSoft, AppPalette.surface],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Wrap(
-                  spacing: AppSpacing.md,
-                  runSpacing: AppSpacing.md,
-                  children: [
-                    HubMetaChip(
-                      label: 'Treino #$trainingId',
-                      icon: Icons.sports_tennis_rounded,
-                    ),
-                    const HubMetaChip(label: 'Maio 2025'),
-                  ],
+          const SizedBox(height: AppSpacing.lg),
+          TrainingHeroCard(hero: overview.hero),
+          const SizedBox(height: AppSpacing.section),
+          TrainingChipsRow(chips: overview.chips),
+          const SizedBox(height: AppSpacing.section),
+          Text(
+            overview.summary,
+            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                  color: AppPalette.textSecondary,
+                  fontSize: AppFontSize.bodyLg,
+                  height: 1.4,
                 ),
-                const SizedBox(height: AppSpacing.giant),
-                Text(
-                  '1h 40m',
-                  style: Theme.of(context).textTheme.displayMedium?.copyWith(
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: AppLetterSpacing.tightXl,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                Text(
-                  'Duração',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppPalette.textSecondary,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.giant),
-                Row(
-                  children: const [
-                    Expanded(
-                      child: HubMetricTile(
-                        label: 'Duração',
-                        value: '1h 40m',
-                        icon: Icons.timer_outlined,
-                        highlighted: true,
-                      ),
-                    ),
-                    SizedBox(width: AppSpacing.lg),
-                    Expanded(
-                      child: HubMetricTile(
-                        label: 'Cal',
-                        value: '830',
-                        icon: Icons.local_fire_department_outlined,
-                      ),
-                    ),
-                    SizedBox(width: AppSpacing.lg),
-                    Expanded(
-                      child: HubMetricTile(
-                        label: 'Dist',
-                        value: '7.1 km',
-                        icon: Icons.route_outlined,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.giant),
-                Text(
-                  'Quadra 03 · Unidade Alpha',
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xs),
-                Text(
-                  '25°C · São Paulo, BR',
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppPalette.textSecondary,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.md),
-                Text(
-                  'Frequência Cardíaca',
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    color: AppPalette.textHint,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-              ],
-            ),
           ),
           const SizedBox(height: AppSpacing.section),
-          Row(
-            children: const [
-              Expanded(
-                child: HubMetricTile(
-                  label: 'Média',
-                  value: '155 bpm',
-                  icon: Icons.favorite_border_rounded,
+          Text(
+            overview.metricsTitle,
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  fontSize: AppFontSize.titleLg,
                 ),
-              ),
-              SizedBox(width: AppSpacing.lg),
-              Expanded(
-                child: HubMetricTile(
-                  label: 'Máx',
-                  value: '189 bpm',
-                  icon: Icons.monitor_heart_outlined,
-                ),
-              ),
-            ],
+          ),
+          const SizedBox(height: AppSpacing.lg),
+          TrainingMetricsGrid(metrics: overview.metrics),
+          const SizedBox(height: AppSpacing.section),
+          TrainingNotesSection(
+            title: overview.notesTitle,
+            notes: overview.notes,
           ),
           const SizedBox(height: AppSpacing.section),
-          HubSectionCard(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const HubTitleRow(title: 'Intensidade'),
-                const SizedBox(height: AppSpacing.giant),
-                Row(
-                  children: const [
-                    Expanded(
-                      child: HubMetricTile(
-                        label: 'Tempo ativo',
-                        value: '1h 40m',
-                        icon: Icons.bolt_rounded,
-                      ),
-                    ),
-                    SizedBox(width: AppSpacing.lg),
-                    Expanded(
-                      child: HubMetricTile(
-                        label: 'Distância',
-                        value: '7.1 km',
-                        icon: Icons.straighten_rounded,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          TrainingCommentsList(
+            title: overview.commentsTitle,
+            comments: overview.comments,
           ),
+          const SizedBox(height: AppSpacing.section),
         ],
       ),
     );

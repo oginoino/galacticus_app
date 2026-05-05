@@ -1,6 +1,6 @@
 {
   "title": "Notificações",
-  "unreadSummary": "3 novas",
+  "unreadSummary": "6 novas",
   "markAllReadLabel": "Marcar lidas",
   "uiLabels": {
     "navigationHomeLabel": "Início",
@@ -72,6 +72,65 @@
       "subtitle": "1h 23m · 742 kcal · Tennis",
       "timeLabel": "1d",
       "isUnread": false
+    },
+    {
+      "type": "like",
+      "title": "Paulo curtiu seu post",
+      "subtitle": "Sessão intensa hoje",
+      "timeLabel": "1d",
+      "isUnread": true,
+      "avatarAsset": "assets/images/prototype/paulo.jpg"
+    },
+    {
+      "type": "community",
+      "title": "Convite para Galácticos Padel",
+      "subtitle": "Ana convidou você para entrar no clube",
+      "timeLabel": "1d",
+      "isUnread": true
+    },
+    {
+      "type": "comment",
+      "title": "Carlos comentou no seu treino",
+      "subtitle": "Bora marcar o próximo bloco?",
+      "timeLabel": "2d",
+      "isUnread": false
+    },
+    {
+      "type": "photo",
+      "title": "3 fotos prontas",
+      "subtitle": "Da sessão da última terça · Quadra 02",
+      "timeLabel": "2d",
+      "isUnread": false
+    },
+    {
+      "type": "trophy",
+      "title": "Conquista desbloqueada",
+      "subtitle": "Mestre do saque · 50 saques consecutivos",
+      "timeLabel": "3d",
+      "isUnread": true
+    },
+    {
+      "type": "community",
+      "title": "Nova aula em Galácticos Rally",
+      "subtitle": "Match play A · Terça 06:30",
+      "timeLabel": "3d",
+      "isUnread": false
+    },
+    {
+      "type": "like",
+      "title": "Leo curtiu seu treino",
+      "subtitle": "Drill de voleio",
+      "timeLabel": "4d",
+      "isUnread": false,
+      "avatarAsset": "assets/images/prototype/avatar-leo.jpg"
+    },
+    {
+      "type": "comment",
+      "title": "Sofia respondeu",
+      "subtitle": "Posso entrar no próximo torneio?",
+      "timeLabel": "5d",
+      "isUnread": false,
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg"
     }
   ]
 }
