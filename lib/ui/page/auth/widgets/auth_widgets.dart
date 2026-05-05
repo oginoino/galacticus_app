@@ -37,10 +37,9 @@ class AuthBrandHeader extends StatelessWidget {
               ),
             ],
           ),
-          child: const Icon(
-            Icons.sports_tennis_rounded,
-            color: AppPalette.black,
-            size: AppIconSize.giantPlus,
+          child: const Image.asset(
+            'assets/images/prototype/logo-galacticos.png',
+            height: AppSize.authBrandLogo,
           ),
         ),
         const SizedBox(height: AppSpacing.giant),
@@ -48,18 +47,18 @@ class AuthBrandHeader extends StatelessWidget {
           brandName,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.w800,
-                letterSpacing: AppLetterSpacing.tightLg,
-              ),
+            fontWeight: FontWeight.w800,
+            letterSpacing: AppLetterSpacing.tightLg,
+          ),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
           tagline,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppPalette.textSecondary,
-                fontSize: AppFontSize.bodyLg,
-              ),
+            color: AppPalette.textSecondary,
+            fontSize: AppFontSize.bodyLg,
+          ),
         ),
       ],
     );
@@ -121,11 +120,11 @@ class _AuthTextFieldState extends State<AuthTextField> {
         Text(
           widget.label,
           style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: AppPalette.textSecondary,
-                fontWeight: FontWeight.w600,
-                fontSize: AppFontSize.labelLg,
-                letterSpacing: AppLetterSpacing.wideSm,
-              ),
+            color: AppPalette.textSecondary,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.labelLg,
+            letterSpacing: AppLetterSpacing.wideSm,
+          ),
         ),
         const SizedBox(height: AppSpacing.sm),
         TextFormField(
@@ -140,16 +139,16 @@ class _AuthTextFieldState extends State<AuthTextField> {
           inputFormatters: widget.inputFormatters,
           onFieldSubmitted: widget.onSubmitted,
           style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppPalette.white,
-                fontSize: AppFontSize.titleSm,
-              ),
+            color: AppPalette.white,
+            fontSize: AppFontSize.titleSm,
+          ),
           cursorColor: AppPalette.primary,
           decoration: InputDecoration(
             hintText: widget.hint,
             hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppPalette.textHint,
-                  fontSize: AppFontSize.titleSm,
-                ),
+              color: AppPalette.textHint,
+              fontSize: AppFontSize.titleSm,
+            ),
             filled: true,
             fillColor: AppPalette.surfaceAlt,
             isDense: false,
@@ -176,8 +175,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
             ),
             suffixIcon: widget.allowVisibilityToggle
                 ? IconButton(
-                    onPressed: () =>
-                        setState(() => _obscured = !_obscured),
+                    onPressed: () => setState(() => _obscured = !_obscured),
                     icon: Icon(
                       _obscured
                           ? Icons.visibility_outlined
@@ -189,16 +187,19 @@ class _AuthTextFieldState extends State<AuthTextField> {
                   )
                 : null,
             border: _border(AppPalette.white.withValues(alpha: AppOpacity.xxs)),
-            enabledBorder:
-                _border(AppPalette.white.withValues(alpha: AppOpacity.xxs)),
+            enabledBorder: _border(
+              AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            ),
             focusedBorder: _border(AppPalette.primary, width: AppStroke.thick),
             errorBorder: _border(AppPalette.danger),
-            focusedErrorBorder:
-                _border(AppPalette.danger, width: AppStroke.thick),
+            focusedErrorBorder: _border(
+              AppPalette.danger,
+              width: AppStroke.thick,
+            ),
             errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppPalette.danger,
-                  fontSize: AppFontSize.labelLg,
-                ),
+              color: AppPalette.danger,
+              fontSize: AppFontSize.labelLg,
+            ),
           ),
         ),
       ],
@@ -236,8 +237,9 @@ class AuthPrimaryButton extends StatelessWidget {
         onPressed: disabled ? null : onPressed,
         style: ElevatedButton.styleFrom(
           backgroundColor: AppPalette.primary,
-          disabledBackgroundColor:
-              AppPalette.primary.withValues(alpha: AppOpacity.half),
+          disabledBackgroundColor: AppPalette.primary.withValues(
+            alpha: AppOpacity.half,
+          ),
           foregroundColor: AppPalette.black,
           elevation: 0,
           shape: RoundedRectangleBorder(
@@ -256,10 +258,10 @@ class AuthPrimaryButton extends StatelessWidget {
             : Text(
                 label,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppPalette.black,
-                      fontWeight: FontWeight.w700,
-                      fontSize: AppFontSize.titleLg,
-                    ),
+                  color: AppPalette.black,
+                  fontWeight: FontWeight.w700,
+                  fontSize: AppFontSize.titleLg,
+                ),
               ),
       ),
     );
@@ -277,20 +279,23 @@ class AuthDivider extends StatelessWidget {
 
     return Row(
       children: [
-        Expanded(child: Divider(color: lineColor, height: AppStroke.hairline)),
+        Expanded(
+          child: Divider(color: lineColor, height: AppStroke.hairline),
+        ),
         Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
           child: Text(
             label,
             style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppPalette.textHint,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: AppLetterSpacing.wideSm,
-                ),
+              color: AppPalette.textHint,
+              fontWeight: FontWeight.w500,
+              letterSpacing: AppLetterSpacing.wideSm,
+            ),
           ),
         ),
-        Expanded(child: Divider(color: lineColor, height: AppStroke.hairline)),
+        Expanded(
+          child: Divider(color: lineColor, height: AppStroke.hairline),
+        ),
       ],
     );
   }
@@ -321,10 +326,10 @@ class AuthSocialButton extends StatelessWidget {
         label: Text(
           provider.label,
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppPalette.white,
-                fontWeight: FontWeight.w600,
-                fontSize: AppFontSize.titleSm,
-              ),
+            color: AppPalette.white,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.titleSm,
+          ),
         ),
         style: OutlinedButton.styleFrom(
           backgroundColor: AppPalette.surfaceAlt,
@@ -376,9 +381,9 @@ class AuthFooterPrompt extends StatelessWidget {
           Text(
             prompt,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppPalette.textSecondary,
-                  fontSize: AppFontSize.bodyLg,
-                ),
+              color: AppPalette.textSecondary,
+              fontSize: AppFontSize.bodyLg,
+            ),
           ),
           GestureDetector(
             onTap: onActionTap,
@@ -386,10 +391,10 @@ class AuthFooterPrompt extends StatelessWidget {
             child: Text(
               actionLabel,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppPalette.primary,
-                    fontWeight: FontWeight.w700,
-                    fontSize: AppFontSize.bodyLg,
-                  ),
+                color: AppPalette.primary,
+                fontWeight: FontWeight.w700,
+                fontSize: AppFontSize.bodyLg,
+              ),
             ),
           ),
         ],
@@ -432,15 +437,12 @@ class AuthTermsCheckbox extends StatelessWidget {
                   height: AppIconSize.xxxl,
                   margin: const EdgeInsets.only(top: AppSpacing.xxs),
                   decoration: BoxDecoration(
-                    color: value
-                        ? AppPalette.primary
-                        : AppPalette.surfaceAlt,
+                    color: value ? AppPalette.primary : AppPalette.surfaceAlt,
                     borderRadius: BorderRadius.circular(AppRadius.sm),
                     border: Border.all(
                       color: value
                           ? AppPalette.primary
-                          : AppPalette.white
-                              .withValues(alpha: AppOpacity.xxs),
+                          : AppPalette.white.withValues(alpha: AppOpacity.xxs),
                       width: AppStroke.hairline,
                     ),
                   ),
@@ -457,9 +459,9 @@ class AuthTermsCheckbox extends StatelessWidget {
                   child: Text(
                     label,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppPalette.textSecondary,
-                          fontSize: AppFontSize.bodyLg,
-                        ),
+                      color: AppPalette.textSecondary,
+                      fontSize: AppFontSize.bodyLg,
+                    ),
                   ),
                 ),
               ],
@@ -473,9 +475,9 @@ class AuthTermsCheckbox extends StatelessWidget {
             child: Text(
               error,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppPalette.danger,
-                    fontSize: AppFontSize.labelLg,
-                  ),
+                color: AppPalette.danger,
+                fontSize: AppFontSize.labelLg,
+              ),
             ),
           ),
         ],
