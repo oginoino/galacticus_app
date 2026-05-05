@@ -38,7 +38,7 @@ class AuthBrandHeader extends StatelessWidget {
             ],
           ),
           child: const Image.asset(
-            'assets/images/prototype/logo-galacticos.png',
+            AppAssets.logoGalacticos,
             height: AppSize.authBrandLogo,
           ),
         ),
