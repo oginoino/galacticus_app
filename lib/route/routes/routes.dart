@@ -17,6 +17,9 @@ abstract final class Routes {
   static const shooting = '/shooting';
   static const clubDetail = '/clubes/:slug';
   static const postDetail = '/post-detail';
+  static const login = '/login';
+  static const register = '/cadastro';
+  static const passwordRecovery = '/recuperar-senha';
 }
 
 abstract final class RouteNames {
@@ -38,4 +41,7 @@ abstract final class RouteNames {
   static const shooting = 'shooting';
   static const clubDetail = 'clubDetail';
   static const postDetail = 'postDetail';
+  static const login = 'login';
+  static const register = 'register';
+  static const passwordRecovery = 'passwordRecovery';
 }

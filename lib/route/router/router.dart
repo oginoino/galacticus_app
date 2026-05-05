@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 import '../../ui/page/agenda/agenda_page.dart';
 import '../../ui/page/ai_training/ai_training_page.dart';
 import '../../ui/page/assistant/assistant_page.dart';
+import '../../ui/page/auth/login_page.dart';
+import '../../ui/page/auth/password_recovery_page.dart';
+import '../../ui/page/auth/register_page.dart';
 import '../../ui/page/booking/booking_page.dart';
 import '../../ui/page/checkin/checkin_page.dart';
 import '../../ui/page/club_detail/club_detail_page.dart';
@@ -119,6 +122,21 @@ final GoRouter appRouter = GoRouter(
       name: RouteNames.postDetail,
       path: Routes.postDetail,
       builder: (_, __) => const PostDetailPage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.login,
+      path: Routes.login,
+      builder: (_, __) => const LoginPage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.register,
+      path: Routes.register,
+      builder: (_, __) => const RegisterPage(),
+    ).toGoRoute(),
+    AppRoute(
+      name: RouteNames.passwordRecovery,
+      path: Routes.passwordRecovery,
+      builder: (_, __) => const PasswordRecoveryPage(),
     ).toGoRoute(),
   ],
 );

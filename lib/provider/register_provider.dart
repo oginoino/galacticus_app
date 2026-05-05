@@ -5,6 +5,7 @@ import '../di/di.dart';
 import '../repository/assistant_repository.dart';
 import '../repository/agenda_repository.dart';
 import '../repository/ai_training_repository.dart';
+import '../repository/auth_repository.dart';
 import '../repository/booking_repository.dart';
 import '../repository/checkin_repository.dart';
 import '../repository/communities_repository.dart';
@@ -20,6 +21,7 @@ import '../service/persistence/persistence_service.dart';
 import 'agenda_provider.dart';
 import 'ai_training_provider.dart';
 import 'assistant_provider.dart';
+import 'auth_provider.dart';
 import 'booking_provider.dart';
 import 'checkin_provider.dart';
 import 'communities_provider.dart';
@@ -109,5 +111,10 @@ final List<SingleChildWidget> registerProviders = [
     create: (_) => ProgressProvider(
       sl<ProgressRepository>(),
     )..loadProgress(),
+  ),
+  ChangeNotifierProvider<AuthProvider>(
+    create: (_) => AuthProvider(
+      sl<AuthRepository>(),
+    )..loadOverview(),
   ),
 ];
