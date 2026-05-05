@@ -53,10 +53,10 @@ class AgendaPage extends StatelessWidget {
         SliverToBoxAdapter(
           child: AgendaContent(
             overview: overview,
-            onEventTap: () =>
-                _showSnack(context, overview.messages.eventAction),
-            onMatchTap: () =>
-                _showSnack(context, overview.messages.matchAction),
+            onEventTap: () => context.push(
+              Routes.trainingDetail.replaceFirst(':id', '14'),
+            ),
+            onMatchTap: () => context.push(Routes.matches),
           ),
         ),
       ],

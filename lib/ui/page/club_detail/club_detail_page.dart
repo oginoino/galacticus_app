@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../route/routes/routes.dart';
 import '../../theme/app_theme.dart';
 import '../granular/widgets/granular_widgets.dart';
 
@@ -85,11 +87,16 @@ class ClubDetailPage extends StatelessWidget {
           const SizedBox(height: AppSpacing.section),
           const HubTitleRow(title: 'Próximos eventos'),
           const SizedBox(height: AppSpacing.lg),
-          ...club.events.map(
-            (event) => Padding(
+          ...club.events.asMap().entries.map((entry) {
+            final index = entry.key;
+            final event = entry.value;
+            return Padding(
               padding: const EdgeInsets.only(bottom: AppSpacing.lg),
               child: HubSectionCard(
                 padding: const EdgeInsets.all(AppSpacing.lg),
+                onTap: () => context.push(
+                  Routes.trainingDetail.replaceFirst(':id', '${20 + index}'),
+                ),
                 child: Row(
                   children: [
                     Container(
@@ -128,8 +135,8 @@ class ClubDetailPage extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ),
+            );
+          }),
           const SizedBox(height: AppSpacing.md),
           Wrap(
             spacing: AppSpacing.md,
@@ -144,6 +151,7 @@ class ClubDetailPage extends StatelessWidget {
           ),
           const SizedBox(height: AppSpacing.section),
           HubSectionCard(
+            onTap: () => context.push(Routes.postDetail),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
