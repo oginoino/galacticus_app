@@ -637,7 +637,7 @@ class ProgressTennisStatsCard extends StatelessWidget {
               crossAxisCount: 2,
               mainAxisSpacing: AppSpacing.md,
               crossAxisSpacing: AppSpacing.md,
-              childAspectRatio: 1.26,
+              childAspectRatio: 1.18,
             ),
             itemBuilder: (context, index) {
               final item = overview.tennisStats[index];
@@ -1017,15 +1017,23 @@ class _ProgressLargeStatCard extends StatelessWidget {
             ],
           ),
           const Spacer(),
-          Text(
-            item.value,
-            style: Theme.of(
-              context,
-            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              item.value,
+              maxLines: 1,
+              softWrap: false,
+              style: Theme.of(
+                context,
+              ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w800),
+            ),
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
             item.title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(
               context,
             ).textTheme.bodyMedium?.copyWith(color: AppPalette.textMuted),
@@ -1034,6 +1042,8 @@ class _ProgressLargeStatCard extends StatelessWidget {
             const SizedBox(height: AppSpacing.xxs),
             Text(
               item.subtitle!,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(
                 context,
               ).textTheme.bodySmall?.copyWith(color: AppPalette.textHint),
