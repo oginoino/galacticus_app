@@ -94,7 +94,22 @@
       "weatherLabel": null,
       "floatingAvatarAsset": null,
       "metrics": [],
-      "commentPreview": null
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "score",
+        "headline": "Vitória no terceiro set",
+        "subheadline": "Match disputado em casa",
+        "sportLabel": "Tênis · Simples",
+        "scoreHome": "6",
+        "scoreAway": "4",
+        "teamHome": "Gabe",
+        "teamAway": "Adv.",
+        "metrics": [
+          { "value": "6-4", "label": "Set 1" },
+          { "value": "3-6", "label": "Set 2" },
+          { "value": "7-5", "label": "Set 3" }
+        ]
+      }
     },
     {
       "layoutType": "media",
@@ -181,7 +196,21 @@
       "weatherLabel": null,
       "floatingAvatarAsset": null,
       "metrics": [],
-      "commentPreview": null
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "bar_chart",
+        "headline": "Resumo do treino",
+        "subheadline": "Pegada técnica afiada",
+        "sportLabel": "Tênis · Sessão",
+        "timeLabel": "07:42 — 09:18",
+        "metrics": [
+          { "value": "1h36", "label": "Duração" },
+          { "value": "412", "label": "Calorias" },
+          { "value": "148", "label": "BPM méd." }
+        ],
+        "locationLabel": "Galácticos Pinheiros",
+        "weatherLabel": "23° · ensolarado"
+      }
     },
     {
       "layoutType": "workout_result",
@@ -254,7 +283,19 @@
       "weatherLabel": null,
       "floatingAvatarAsset": null,
       "metrics": [],
-      "commentPreview": null
+      "commentPreview": null,
+      "checkinOverlay": {
+        "type": "session",
+        "headline": "Padel sob as luzes",
+        "subheadline": "Bloco técnico + jogo",
+        "sportLabel": "Padel",
+        "timeLabel": "20:14",
+        "metrics": [
+          { "value": "1h30", "label": "Duração" },
+          { "value": "5", "label": "Sets" }
+        ],
+        "locationLabel": "Galácticos Cidade Jardim"
+      }
     },
     {
       "layoutType": "workout_result",

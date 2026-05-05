@@ -11,18 +11,159 @@
     "captureError": "Não foi possível capturar o check-in agora.",
     "cameraUnavailable": "Câmera indisponível neste dispositivo ou simulador.",
     "cameraPermissionDenied": "Permissão de câmera negada. Ative a câmera nas configurações do app.",
-    "filterAction": "Personalização do overlay entra na próxima etapa."
+    "filterAction": "Overlay aplicado ao check-in."
   },
   "filters": [
     { "label": "Nenhum", "icon": "block", "isSelected": true },
-    { "label": "Resumo", "icon": "bar_chart", "isSelected": false },
-    { "label": "Rota", "icon": "location", "isSelected": false },
-    { "label": "Horas", "icon": "schedule", "isSelected": false },
-    { "label": "Esportes", "icon": "trophy", "isSelected": false },
-    { "label": "Placar", "icon": "score", "isSelected": false },
-    { "label": "Sessão", "icon": "session", "isSelected": false },
-    { "label": "Cardio", "icon": "pulse", "isSelected": false },
-    { "label": "Minimal", "icon": "minimal", "isSelected": false },
-    { "label": "Conquista", "icon": "favorite", "isSelected": false }
+    {
+      "label": "Resumo",
+      "icon": "bar_chart",
+      "isSelected": false,
+      "overlay": {
+        "type": "bar_chart",
+        "headline": "Treino completo",
+        "subheadline": "Mantendo o ritmo da semana",
+        "sportLabel": "Tênis · Outdoor",
+        "timeLabel": "07:42 — 09:18",
+        "metrics": [
+          { "value": "1h36", "label": "Duração" },
+          { "value": "412", "label": "Calorias" },
+          { "value": "148", "label": "BPM méd." }
+        ],
+        "locationLabel": "Galácticos Pinheiros",
+        "weatherLabel": "23° · ensolarado"
+      }
+    },
+    {
+      "label": "Rota",
+      "icon": "location",
+      "isSelected": false,
+      "overlay": {
+        "type": "location",
+        "headline": "Trilha matinal",
+        "subheadline": "Galácticos Trail · Vila Olímpia",
+        "sportLabel": "Corrida",
+        "metrics": [
+          { "value": "8.4 km", "label": "Distância" },
+          { "value": "5'12\"", "label": "Pace méd." },
+          { "value": "+128 m", "label": "Elevação" }
+        ],
+        "locationLabel": "Vila Olímpia, SP",
+        "weatherLabel": "21° · parcialmente nublado"
+      }
+    },
+    {
+      "label": "Horas",
+      "icon": "schedule",
+      "isSelected": false,
+      "overlay": {
+        "type": "schedule",
+        "headline": "Sessão registrada",
+        "subheadline": "Você bateu sua meta diária",
+        "sportLabel": "Mobilidade",
+        "timeLabel": "06:30 — 07:45",
+        "metrics": [
+          { "value": "1h15", "label": "Duração" },
+          { "value": "92%", "label": "Foco" }
+        ]
+      }
+    },
+    {
+      "label": "Esportes",
+      "icon": "trophy",
+      "isSelected": false,
+      "overlay": {
+        "type": "trophy",
+        "headline": "Treino com a equipe",
+        "subheadline": "Sets disputados em alto nível",
+        "sportLabel": "Tênis · Duplas",
+        "metrics": [
+          { "value": "3", "label": "Sets" },
+          { "value": "92", "label": "Pontos" },
+          { "value": "78%", "label": "Aproveit." }
+        ],
+        "locationLabel": "Quadra Central"
+      }
+    },
+    {
+      "label": "Placar",
+      "icon": "score",
+      "isSelected": false,
+      "overlay": {
+        "type": "score",
+        "headline": "Vitória em casa",
+        "subheadline": "Match point no tie-break",
+        "sportLabel": "Tênis · Simples",
+        "scoreHome": "6",
+        "scoreAway": "4",
+        "teamHome": "Paulo",
+        "teamAway": "Adversário",
+        "metrics": [
+          { "value": "6-4", "label": "Set 1" },
+          { "value": "7-6", "label": "Set 2" }
+        ]
+      }
+    },
+    {
+      "label": "Sessão",
+      "icon": "session",
+      "isSelected": false,
+      "overlay": {
+        "type": "session",
+        "headline": "Treino funcional",
+        "subheadline": "Bloco de força + técnica",
+        "sportLabel": "Funcional",
+        "timeLabel": "18:00 — 19:30",
+        "metrics": [
+          { "value": "12", "label": "Exercícios" },
+          { "value": "5", "label": "Séries" },
+          { "value": "1h30", "label": "Tempo" }
+        ],
+        "locationLabel": "Studio Galácticos"
+      }
+    },
+    {
+      "label": "Cardio",
+      "icon": "pulse",
+      "isSelected": false,
+      "overlay": {
+        "type": "pulse",
+        "headline": "Sessão de cardio",
+        "subheadline": "Intervalado de alta intensidade",
+        "sportLabel": "HIIT",
+        "metrics": [
+          { "value": "162", "label": "BPM méd." },
+          { "value": "186", "label": "BPM máx." },
+          { "value": "528", "label": "Calorias" }
+        ]
+      }
+    },
+    {
+      "label": "Minimal",
+      "icon": "minimal",
+      "isSelected": false,
+      "overlay": {
+        "type": "minimal",
+        "headline": "Check-in",
+        "sportLabel": "Padel",
+        "timeLabel": "20:14"
+      }
+    },
+    {
+      "label": "Conquista",
+      "icon": "favorite",
+      "isSelected": false,
+      "overlay": {
+        "type": "favorite",
+        "headline": "Nova conquista",
+        "subheadline": "10 treinos consecutivos",
+        "achievementLabel": "Sequência de fogo",
+        "sportLabel": "Galácticos",
+        "metrics": [
+          { "value": "10", "label": "Sequência" },
+          { "value": "+25", "label": "XP" }
+        ]
+      }
+    }
   ]
 }

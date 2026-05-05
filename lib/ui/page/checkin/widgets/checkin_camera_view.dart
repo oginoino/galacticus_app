@@ -2,7 +2,9 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../domain/checkin_overlay.dart';
 import '../../../../domain/checkin_overview.dart';
+import '../../../components/checkin_overlay_view.dart';
 import '../../../theme/app_theme.dart';
 import 'checkin_widgets.dart';
 
@@ -172,6 +174,14 @@ class _CheckinCameraViewState extends State<CheckinCameraView>
     await _initializeCamera(preferredIndex: nextIndex);
   }
 
+  CheckinOverlay? get _activeOverlay {
+    if (_selectedFilterIndex < 0 ||
+        _selectedFilterIndex >= widget.overview.filters.length) {
+      return null;
+    }
+    return widget.overview.filters[_selectedFilterIndex].overlay;
+  }
+
   Future<void> _capture() async {
     final controller = _controller;
     if (controller == null || !controller.value.isInitialized) {
@@ -244,6 +254,39 @@ class _CheckinCameraViewState extends State<CheckinCameraView>
             onSwitchCameraTap: _switchCamera,
           ),
         ),
+        if (_activeOverlay != null)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: AppSize.checkinFilterBottomOffset +
+                AppSize.checkinFilterBarHeight +
+                AppSpacing.giant,
+            child: Padding(
+              padding: AppInsets.pageHorizontal,
+              child: Container(
+                padding: const EdgeInsets.all(AppSpacing.giant),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      AppPalette.black.withValues(alpha: AppOpacity.overlay),
+                      AppPalette.black.withValues(alpha: AppOpacity.scrim),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(AppRadius.card),
+                  border: Border.all(
+                    color: AppPalette.white.withValues(alpha: AppOpacity.xxs),
+                    width: AppStroke.hairline,
+                  ),
+                ),
+                child: CheckinOverlayView(
+                  overlay: _activeOverlay!,
+                  compact: true,
+                ),
+              ),
+            ),
+          ),
         Positioned(
           left: 0,
           right: 0,

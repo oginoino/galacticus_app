@@ -1,5 +1,6 @@
 import '../domain/checkin_filter_option.dart';
 import '../domain/checkin_messages.dart';
+import '../domain/checkin_overlay.dart';
 import '../domain/checkin_overview.dart';
 
 class CheckinDto {
@@ -31,6 +32,7 @@ class CheckinDto {
               label: item['label'] as String,
               icon: item['icon'] as String,
               isSelected: item['isSelected'] as bool,
+              overlay: parseCheckinOverlay(item['overlay']),
             ),
           )
           .toList(growable: false),
@@ -43,4 +45,32 @@ class CheckinDto {
       ),
     );
   }
+}
+
+CheckinOverlay? parseCheckinOverlay(Object? value) {
+  if (value is! Map) return null;
+  final map = value.cast<String, dynamic>();
+  return CheckinOverlay(
+    type: map['type'] as String,
+    headline: map['headline'] as String?,
+    subheadline: map['subheadline'] as String?,
+    sportLabel: map['sportLabel'] as String?,
+    locationLabel: map['locationLabel'] as String?,
+    weatherLabel: map['weatherLabel'] as String?,
+    timeLabel: map['timeLabel'] as String?,
+    metrics: (map['metrics'] as List<dynamic>? ?? const [])
+        .cast<Map<String, dynamic>>()
+        .map(
+          (item) => CheckinOverlayMetric(
+            value: item['value'] as String,
+            label: item['label'] as String,
+          ),
+        )
+        .toList(growable: false),
+    scoreHome: map['scoreHome'] as String?,
+    scoreAway: map['scoreAway'] as String?,
+    teamHome: map['teamHome'] as String?,
+    teamAway: map['teamAway'] as String?,
+    achievementLabel: map['achievementLabel'] as String?,
+  );
 }
