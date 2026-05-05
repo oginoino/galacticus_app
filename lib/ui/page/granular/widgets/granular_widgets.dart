@@ -145,6 +145,7 @@ class HubMetricTile extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           if (icon != null)
             Icon(
@@ -153,15 +154,23 @@ class HubMetricTile extends StatelessWidget {
               color: highlighted ? AppPalette.primary : AppPalette.textHint,
             ),
           if (icon != null) const SizedBox(height: AppSpacing.md),
-          Text(
-            value,
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                  fontWeight: FontWeight.w800,
-                ),
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              value,
+              maxLines: 1,
+              softWrap: false,
+              style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.w800,
+                  ),
+            ),
           ),
           const SizedBox(height: AppSpacing.xs),
           Text(
             label,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppPalette.textSecondary,
                 ),
