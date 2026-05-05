@@ -20,28 +20,10 @@ class AuthBrandHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
+        Image.asset(
+          AppAssets.logoGalacticos,
           width: AppSize.authBrandLogo,
           height: AppSize.authBrandLogo,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [AppPalette.primary, AppPalette.primaryStrong],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: AppPalette.primary.withValues(alpha: AppOpacity.quarter),
-                blurRadius: AppShadow.cardBlur,
-                offset: const Offset(0, AppShadow.cardOffsetY),
-              ),
-            ],
-          ),
-          child: Image.asset(
-            AppAssets.logoGalacticos,
-            height: AppSize.authBrandLogo,
-          ),
         ),
         const SizedBox(height: AppSpacing.giant),
         Text(
