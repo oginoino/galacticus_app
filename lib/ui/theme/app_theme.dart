@@ -332,7 +332,6 @@ abstract final class AppSize {
   static const assistantPromptHeight = 52.0;
   static const assistantInputHeight = 52.0;
   static const assistantSendButton = 36.0;
-  static const assistantGlowWidth = 220.0;
   static const assistantHeroTopGap = 76.0;
   static const assistantPromptTopGap = 44.0;
   static const assistantBottomSpacer = 140.0;
