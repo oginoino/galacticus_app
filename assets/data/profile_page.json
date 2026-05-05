@@ -17,8 +17,43 @@
     "quickAction": "Nova ação de perfil entra na próxima etapa.",
     "socialAction": "Integração social entra na próxima etapa.",
     "tabAction": "Troca real de abas entra na próxima integração.",
-    "galleryAction": "Detalhe da mídia entra na próxima etapa."
+    "galleryAction": "Detalhe da mídia entra na próxima etapa.",
+    "menuTapAction": "Tela detalhada entra na próxima etapa.",
+    "logoutAction": "Logout entra na próxima etapa."
   },
+  "menuItems": [
+    {
+      "id": "edit_profile",
+      "label": "Editar perfil",
+      "icon": "edit"
+    },
+    {
+      "id": "achievements",
+      "label": "Conquistas",
+      "icon": "achievement"
+    },
+    {
+      "id": "connections",
+      "label": "Conexões",
+      "icon": "connections"
+    },
+    {
+      "id": "devices",
+      "label": "Dispositivos",
+      "icon": "devices"
+    },
+    {
+      "id": "settings",
+      "label": "Configurações",
+      "icon": "settings"
+    },
+    {
+      "id": "logout",
+      "label": "Sair",
+      "icon": "logout",
+      "isDestructive": true
+    }
+  ],
   "stats": [
     {
       "value": "124",

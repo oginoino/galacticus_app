@@ -1,4 +1,5 @@
 import 'profile_gallery_item.dart';
+import 'profile_menu_item.dart';
 import 'profile_messages.dart';
 import 'profile_social_link.dart';
 import 'profile_stat.dart';
@@ -19,6 +20,7 @@ class ProfileOverview {
     required this.socialLinks,
     required this.tabs,
     required this.galleryItems,
+    required this.menuItems,
     required this.uiLabels,
     required this.messages,
   });
@@ -35,6 +37,7 @@ class ProfileOverview {
   final List<ProfileSocialLink> socialLinks;
   final List<ProfileTab> tabs;
   final List<ProfileGalleryItem> galleryItems;
+  final List<ProfileMenuItem> menuItems;
   final ProfileUiLabels uiLabels;
   final ProfileMessages messages;
 }

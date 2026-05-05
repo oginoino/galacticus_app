@@ -3,12 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
+import '../../../domain/profile_menu_item.dart';
 import '../../../domain/profile_overview.dart';
 import '../../../provider/profile_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
 import '../../components/bottom_navigation_shell.dart';
 import '../../components/content_state_view.dart';
+import '../../components/profile_menu_bottom_sheet.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/profile_content.dart';
 
@@ -47,7 +49,7 @@ class ProfilePage extends StatelessWidget {
                 child: ProfileContent(
                   overview: overview,
                   onBackTap: () => context.go(Routes.home),
-                  onMoreTap: () => _showSnack(context, overview.messages.quickAction),
+                  onMoreTap: () => _openMenu(context, overview),
                   onSocialTap: () => _showSnack(context, overview.messages.socialAction),
                   onTabTap: () => _showSnack(context, overview.messages.tabAction),
                   onGalleryTap: () => _showSnack(context, overview.messages.galleryAction),
@@ -80,6 +82,30 @@ class ProfilePage extends StatelessWidget {
           overview?.messages.quickAction ?? sl<AppConstants>().navigationUnavailableMessage,
         );
     }
+  }
+
+  void _openMenu(BuildContext context, ProfileOverview overview) {
+    ProfileMenuBottomSheet.show(
+      context,
+      items: overview.menuItems,
+      onItemTap: (item) => _handleMenuTap(context, item, overview),
+    );
+  }
+
+  void _handleMenuTap(
+    BuildContext context,
+    ProfileMenuItem item,
+    ProfileOverview overview,
+  ) {
+    if (item.isDestructive) {
+      _showSnack(context, overview.messages.logoutAction);
+      return;
+    }
+
+    _showSnack(
+      context,
+      '${item.label} · ${overview.messages.menuTapAction}',
+    );
   }
 
   static void _showSnack(BuildContext context, String message) {
