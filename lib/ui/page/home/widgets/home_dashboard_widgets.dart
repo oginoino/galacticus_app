@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../domain/dashboard_overview.dart';
+import '../../../../route/routes/routes.dart';
 import '../../../components/glow_card.dart';
 import '../../../theme/app_theme.dart';
 
@@ -103,6 +105,7 @@ class HomeLeaderboardCard extends StatelessWidget {
             AppSpacing.huge,
             AppSpacing.xxxl,
           ),
+          onTap: () => context.push(Routes.progress),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
