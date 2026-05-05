@@ -1,4 +1,5 @@
 import '../domain/profile_gallery_item.dart';
+import '../domain/profile_menu_item.dart';
 import '../domain/profile_messages.dart';
 import '../domain/profile_overview.dart';
 import '../domain/profile_social_link.dart';
@@ -57,6 +58,15 @@ class ProfileDto {
           imageAsset: item['imageAsset'] as String,
         ),
       ),
+      menuItems: _mapList(
+        (payload['menuItems'] as List<dynamic>?) ?? const <dynamic>[],
+        (item) => ProfileMenuItem(
+          id: item['id'] as String,
+          label: item['label'] as String,
+          icon: item['icon'] as String,
+          isDestructive: (item['isDestructive'] as bool?) ?? false,
+        ),
+      ),
       uiLabels: ProfileUiLabels(
         navigationHomeLabel: uiLabels['navigationHomeLabel'] as String,
         navigationFeedLabel: uiLabels['navigationFeedLabel'] as String,
@@ -68,6 +78,8 @@ class ProfileDto {
         socialAction: messages['socialAction'] as String,
         tabAction: messages['tabAction'] as String,
         galleryAction: messages['galleryAction'] as String,
+        menuTapAction: messages['menuTapAction'] as String,
+        logoutAction: messages['logoutAction'] as String,
       ),
     );
   }

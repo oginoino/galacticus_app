@@ -50,6 +50,7 @@ abstract final class AppPalette {
   static const gold = Color(0xFFF7C934);
   static const warning = Color(0xFFF8C55C);
   static const warningDark = Color(0xFF5F4410);
+  static const danger = Color(0xFFE6604E);
   static const inactiveDot = Color(0xFF3A3F45);
   static const chipInactive = Color(0xFF2B2B2B);
   static const chartBarA = Color(0xFF6B8D3B);
@@ -191,6 +192,8 @@ abstract final class AppLetterSpacing {
 
 abstract final class AppSize {
   static const headerActionButton = 40.0;
+  static const bottomSheetHandleWidth = 40.0;
+  static const bottomSheetHandleHeight = 4.0;
   static const navBarHeight = 82.0;
   static const navGlow = 118.0;
   static const navCenterButton = 44.0;
