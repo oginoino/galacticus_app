@@ -194,6 +194,7 @@ abstract final class AppSize {
   static const headerActionButton = 40.0;
   static const bottomSheetHandleWidth = 40.0;
   static const bottomSheetHandleHeight = 4.0;
+  static const authBrandLogo = 84.0;
   static const navBarHeight = 82.0;
   static const navGlow = 118.0;
   static const navCenterButton = 44.0;

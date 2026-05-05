@@ -99,6 +99,7 @@ class ProfilePage extends StatelessWidget {
   ) {
     if (item.isDestructive) {
       _showSnack(context, overview.messages.logoutAction);
+      context.go(Routes.login);
       return;
     }
 

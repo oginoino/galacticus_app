@@ -1,0 +1,71 @@
+{
+  "brandName": "Galácticos Club",
+  "brandTagline": "Sua jornada esportiva começa aqui.",
+  "messages": {
+    "loadErrorMessage": "Não conseguimos carregar a tela. Tente novamente.",
+    "submitErrorMessage": "Não conseguimos processar agora. Tente novamente em instantes.",
+    "loginSuccessMessage": "Bem-vindo de volta.",
+    "registerSuccessMessage": "Conta criada. Vamos começar.",
+    "recoverySuccessMessage": "Enviamos um e-mail com as instruções de recuperação.",
+    "socialAction": "Login social entra na próxima etapa."
+  },
+  "validation": {
+    "emailRequired": "Informe seu e-mail.",
+    "emailInvalid": "Use um formato de e-mail válido.",
+    "passwordRequired": "Informe sua senha.",
+    "passwordTooShort": "A senha precisa ter ao menos 8 caracteres.",
+    "passwordsDontMatch": "As senhas não coincidem.",
+    "nameRequired": "Informe seu nome.",
+    "termsRequired": "Aceite os termos para continuar."
+  },
+  "socialProviders": [
+    {
+      "id": "google",
+      "label": "Continuar com Google",
+      "icon": "google"
+    },
+    {
+      "id": "apple",
+      "label": "Continuar com Apple",
+      "icon": "apple"
+    }
+  ],
+  "login": {
+    "title": "Bem-vindo de volta",
+    "subtitle": "Entre na sua conta para continuar treinando.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "voce@email.com",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "Sua senha",
+    "submitLabel": "Entrar",
+    "forgotLabel": "Esqueci minha senha",
+    "socialDividerLabel": "ou continue com",
+    "registerPromptLabel": "Não tem conta?",
+    "registerActionLabel": "Cadastre-se"
+  },
+  "register": {
+    "title": "Criar conta",
+    "subtitle": "Comece sua jornada nos Galácticos Club.",
+    "nameLabel": "Nome completo",
+    "namePlaceholder": "Como devemos te chamar?",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "voce@email.com",
+    "passwordLabel": "Senha",
+    "passwordPlaceholder": "Mínimo de 8 caracteres",
+    "confirmPasswordLabel": "Confirmar senha",
+    "confirmPasswordPlaceholder": "Repita a senha",
+    "termsLabel": "Aceito os termos de uso e a política de privacidade",
+    "submitLabel": "Criar conta",
+    "loginPromptLabel": "Já tem conta?",
+    "loginActionLabel": "Entrar"
+  },
+  "passwordRecovery": {
+    "title": "Recuperar senha",
+    "subtitle": "Enviaremos um e-mail com instruções para você redefinir sua senha.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "voce@email.com",
+    "submitLabel": "Enviar instruções",
+    "loginPromptLabel": "Lembrou a senha?",
+    "loginActionLabel": "Entrar"
+  }
+}

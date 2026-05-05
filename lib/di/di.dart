@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
+import '../repository/auth_repository.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
@@ -15,6 +16,8 @@ import '../repository/profile_repository.dart';
 import '../repository/progress_repository.dart';
 import '../repository/ranking_repository.dart';
 import '../service/api/api_service_factory.dart';
+import '../service/auth/auth_mock_service.dart';
+import '../service/auth/auth_service_interface.dart';
 import '../service/agenda/agenda_mock_service.dart';
 import '../service/agenda/agenda_service_interface.dart';
 import '../service/ai_training/ai_training_mock_service.dart';
@@ -147,6 +150,12 @@ class DependencyInjection {
       )
       ..registerLazySingleton<ProgressRepository>(
         () => ProgressRepository(sl<ProgressServiceInterface>()),
+      )
+      ..registerLazySingleton<AuthServiceInterface>(
+        AuthMockService.new,
+      )
+      ..registerLazySingleton<AuthRepository>(
+        () => AuthRepository(sl<AuthServiceInterface>()),
       );
   }
 
