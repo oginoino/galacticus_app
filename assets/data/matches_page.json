@@ -1,0 +1,160 @@
+{
+  "title": "Partidas",
+  "subtitle": "Histórico e registro",
+  "filterChipsTitle": "Filtros",
+  "emptyLabel": "Nenhuma partida com este filtro.",
+  "messages": {
+    "filterAction": "Filtrando partidas.",
+    "openDetailAction": "Abrindo detalhe da partida.",
+    "loadErrorMessage": "Não foi possível carregar suas partidas agora."
+  },
+  "filters": [
+    { "label": "Todos", "value": "all", "isSelected": true },
+    { "label": "Tennis", "value": "tennis", "isSelected": false },
+    { "label": "Padel", "value": "padel", "isSelected": false },
+    { "label": "Beach", "value": "beach", "isSelected": false },
+    { "label": "Confirmadas", "value": "confirmed", "isSelected": false }
+  ],
+  "items": [
+    {
+      "id": "14",
+      "sportLabel": "Tennis",
+      "sportKey": "tennis",
+      "dateLabel": "12 Mai 2026",
+      "relativeTime": "Hoje",
+      "statusLabel": "Confirmada",
+      "statusHighlighted": true,
+      "scoreLabel": "6-4, 7-5",
+      "locationLabel": "Quadra 02 · Galácticos Pinheiros",
+      "durationLabel": "1h 36",
+      "resultBadge": "Vitória",
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Carlos M.", "initials": "CM", "avatarAsset": null }
+      ]
+    },
+    {
+      "id": "15",
+      "sportLabel": "Padel",
+      "sportKey": "padel",
+      "dateLabel": "11 Mai 2026",
+      "relativeTime": "Ontem",
+      "statusLabel": "Confirmada",
+      "statusHighlighted": true,
+      "scoreLabel": "6-3, 6-4",
+      "locationLabel": "Quadra 05 · Galácticos Cidade Jardim",
+      "durationLabel": "1h 22",
+      "resultBadge": "Vitória",
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Ana L.", "initials": "AL", "avatarAsset": null },
+        { "name": "Pedro S.", "initials": "PS", "avatarAsset": null },
+        { "name": "Julio R.", "initials": "JR", "avatarAsset": null }
+      ]
+    },
+    {
+      "id": "16",
+      "sportLabel": "Tennis",
+      "sportKey": "tennis",
+      "dateLabel": "9 Mai 2026",
+      "relativeTime": "3 dias atrás",
+      "statusLabel": "Pendente",
+      "statusHighlighted": false,
+      "scoreLabel": "3-6, 7-6, 6-4",
+      "locationLabel": "Quadra Central",
+      "durationLabel": "2h 14",
+      "resultBadge": "Vitória",
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Rafa B.", "initials": "RB", "avatarAsset": null }
+      ]
+    },
+    {
+      "id": "17",
+      "sportLabel": "Padel",
+      "sportKey": "padel",
+      "dateLabel": "7 Mai 2026",
+      "relativeTime": "5 dias atrás",
+      "statusLabel": "Concluída",
+      "statusHighlighted": false,
+      "scoreLabel": "4-6, 3-6",
+      "locationLabel": "Quadra 03",
+      "durationLabel": "1h 08",
+      "resultBadge": "Derrota",
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Gabe T.", "initials": "GT", "avatarAsset": "assets/images/prototype/avatar-gabe.jpg" },
+        { "name": "Leo M.", "initials": "LM", "avatarAsset": "assets/images/prototype/avatar-leo.jpg" },
+        { "name": "Sofia P.", "initials": "SP", "avatarAsset": "assets/images/prototype/avatar-sofia.jpg" }
+      ]
+    },
+    {
+      "id": "18",
+      "sportLabel": "Tennis",
+      "sportKey": "tennis",
+      "dateLabel": "5 Mai 2026",
+      "relativeTime": "1 semana atrás",
+      "statusLabel": "Concluída",
+      "statusHighlighted": false,
+      "scoreLabel": "7-6, 6-4",
+      "locationLabel": "Galácticos Alphaville",
+      "durationLabel": "1h 48",
+      "resultBadge": "Vitória",
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Sofia P.", "initials": "SP", "avatarAsset": "assets/images/prototype/avatar-sofia.jpg" }
+      ]
+    },
+    {
+      "id": "19",
+      "sportLabel": "Beach Tennis",
+      "sportKey": "beach",
+      "dateLabel": "3 Mai 2026",
+      "relativeTime": "9 dias atrás",
+      "statusLabel": "Concluída",
+      "statusHighlighted": false,
+      "scoreLabel": "6-2, 6-3",
+      "locationLabel": "Arena Beach",
+      "durationLabel": "55 min",
+      "resultBadge": "Vitória",
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Gabe T.", "initials": "GT", "avatarAsset": "assets/images/prototype/avatar-gabe.jpg" }
+      ]
+    },
+    {
+      "id": "20",
+      "sportLabel": "Padel",
+      "sportKey": "padel",
+      "dateLabel": "1 Mai 2026",
+      "relativeTime": "11 dias atrás",
+      "statusLabel": "Cancelada",
+      "statusHighlighted": false,
+      "scoreLabel": "—",
+      "locationLabel": "Quadra 04",
+      "durationLabel": null,
+      "resultBadge": null,
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Carlos M.", "initials": "CM", "avatarAsset": null }
+      ]
+    },
+    {
+      "id": "21",
+      "sportLabel": "Tennis",
+      "sportKey": "tennis",
+      "dateLabel": "28 Abr 2026",
+      "relativeTime": "2 semanas atrás",
+      "statusLabel": "Concluída",
+      "statusHighlighted": false,
+      "scoreLabel": "6-7, 6-4, 7-6",
+      "locationLabel": "Quadra Central",
+      "durationLabel": "2h 42",
+      "resultBadge": "Vitória",
+      "players": [
+        { "name": "Paulo H.", "initials": "PH", "avatarAsset": "assets/images/prototype/paulo.jpg" },
+        { "name": "Leo M.", "initials": "LM", "avatarAsset": "assets/images/prototype/avatar-leo.jpg" }
+      ]
+    }
+  ]
+}

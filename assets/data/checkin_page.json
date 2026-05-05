@@ -11,18 +11,384 @@
     "captureError": "Não foi possível capturar o check-in agora.",
     "cameraUnavailable": "Câmera indisponível neste dispositivo ou simulador.",
     "cameraPermissionDenied": "Permissão de câmera negada. Ative a câmera nas configurações do app.",
-    "filterAction": "Personalização do overlay entra na próxima etapa."
+    "filterAction": "Overlay aplicado ao check-in."
   },
   "filters": [
-    { "label": "Nenhum", "icon": "block", "isSelected": true },
-    { "label": "Resumo", "icon": "bar_chart", "isSelected": false },
-    { "label": "Rota", "icon": "location", "isSelected": false },
-    { "label": "Horas", "icon": "schedule", "isSelected": false },
-    { "label": "Esportes", "icon": "trophy", "isSelected": false },
-    { "label": "Placar", "icon": "score", "isSelected": false },
-    { "label": "Sessão", "icon": "session", "isSelected": false },
-    { "label": "Cardio", "icon": "pulse", "isSelected": false },
-    { "label": "Minimal", "icon": "minimal", "isSelected": false },
-    { "label": "Conquista", "icon": "favorite", "isSelected": false }
+    { "label": "Nenhum", "icon": "block", "isSelected": true, "overlays": [] },
+    {
+      "label": "Resumo",
+      "icon": "bar_chart",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "completo",
+          "variantLabel": "Completo",
+          "layout": "default",
+          "type": "bar_chart",
+          "headline": "Treino completo",
+          "subheadline": "Mantendo o ritmo da semana",
+          "sportLabel": "Tênis · Outdoor",
+          "timeLabel": "07:42 — 09:18",
+          "metrics": [
+            { "value": "1h36", "label": "Duração" },
+            { "value": "412", "label": "Calorias" },
+            { "value": "148", "label": "BPM méd." }
+          ],
+          "locationLabel": "Galácticos Pinheiros",
+          "weatherLabel": "23° · ensolarado"
+        },
+        {
+          "variantId": "stats",
+          "variantLabel": "Stats",
+          "layout": "stats",
+          "type": "bar_chart",
+          "headline": "Resumo do treino",
+          "metrics": [
+            { "value": "1h36", "label": "Duração" },
+            { "value": "412", "label": "Calorias" },
+            { "value": "148", "label": "BPM méd." },
+            { "value": "92%", "label": "Foco" }
+          ]
+        },
+        {
+          "variantId": "compacto",
+          "variantLabel": "Compacto",
+          "layout": "compact",
+          "type": "bar_chart",
+          "headline": "Treino registrado",
+          "sportLabel": "Tênis",
+          "metrics": [
+            { "value": "1h36", "label": "Duração" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Rota",
+      "icon": "location",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "trail",
+          "variantLabel": "Trail",
+          "layout": "default",
+          "type": "location",
+          "headline": "Trilha matinal",
+          "subheadline": "Galácticos Trail · Vila Olímpia",
+          "sportLabel": "Corrida",
+          "metrics": [
+            { "value": "8.4 km", "label": "Distância" },
+            { "value": "5'12\"", "label": "Pace méd." },
+            { "value": "+128 m", "label": "Elevação" }
+          ],
+          "locationLabel": "Vila Olímpia, SP",
+          "weatherLabel": "21° · parcialmente nublado"
+        },
+        {
+          "variantId": "distancia",
+          "variantLabel": "Distância",
+          "layout": "stats",
+          "type": "location",
+          "headline": "Run completed",
+          "metrics": [
+            { "value": "8.4", "label": "km" },
+            { "value": "5'12\"", "label": "Pace" }
+          ]
+        },
+        {
+          "variantId": "local",
+          "variantLabel": "Local",
+          "layout": "minimal",
+          "type": "location",
+          "sportLabel": "Corrida",
+          "locationLabel": "Vila Olímpia, SP"
+        }
+      ]
+    },
+    {
+      "label": "Horas",
+      "icon": "schedule",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "sessao",
+          "variantLabel": "Sessão",
+          "layout": "default",
+          "type": "schedule",
+          "headline": "Sessão registrada",
+          "subheadline": "Você bateu sua meta diária",
+          "sportLabel": "Mobilidade",
+          "timeLabel": "06:30 — 07:45",
+          "metrics": [
+            { "value": "1h15", "label": "Duração" },
+            { "value": "92%", "label": "Foco" }
+          ]
+        },
+        {
+          "variantId": "cronograma",
+          "variantLabel": "Cronograma",
+          "layout": "stats",
+          "type": "schedule",
+          "headline": "Cronograma do dia",
+          "metrics": [
+            { "value": "06:30", "label": "Início" },
+            { "value": "07:45", "label": "Fim" },
+            { "value": "1h15", "label": "Total" }
+          ]
+        },
+        {
+          "variantId": "marca",
+          "variantLabel": "Marca",
+          "layout": "minimal",
+          "type": "schedule",
+          "sportLabel": "Mobilidade",
+          "timeLabel": "07:45"
+        }
+      ]
+    },
+    {
+      "label": "Esportes",
+      "icon": "trophy",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "duplas",
+          "variantLabel": "Duplas",
+          "layout": "default",
+          "type": "trophy",
+          "headline": "Treino com a equipe",
+          "subheadline": "Sets disputados em alto nível",
+          "sportLabel": "Tênis · Duplas",
+          "metrics": [
+            { "value": "3", "label": "Sets" },
+            { "value": "92", "label": "Pontos" },
+            { "value": "78%", "label": "Aproveit." }
+          ],
+          "locationLabel": "Quadra Central"
+        },
+        {
+          "variantId": "aproveitamento",
+          "variantLabel": "Aproveitamento",
+          "layout": "stats",
+          "type": "trophy",
+          "headline": "Performance",
+          "metrics": [
+            { "value": "78%", "label": "1º saque" },
+            { "value": "62%", "label": "2º saque" },
+            { "value": "44%", "label": "Break point" }
+          ]
+        },
+        {
+          "variantId": "compacto",
+          "variantLabel": "Compacto",
+          "layout": "compact",
+          "type": "trophy",
+          "headline": "Vitória",
+          "sportLabel": "Tênis",
+          "metrics": [
+            { "value": "3-1", "label": "Sets" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Placar",
+      "icon": "score",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "match",
+          "variantLabel": "Match",
+          "layout": "scoreboard",
+          "type": "score",
+          "headline": "Vitória em casa",
+          "subheadline": "Match point no tie-break",
+          "sportLabel": "Tênis · Simples",
+          "scoreHome": "6",
+          "scoreAway": "4",
+          "teamHome": "Paulo",
+          "teamAway": "Adversário",
+          "metrics": [
+            { "value": "6-4", "label": "Set 1" },
+            { "value": "7-6", "label": "Set 2" }
+          ]
+        },
+        {
+          "variantId": "set",
+          "variantLabel": "Set",
+          "layout": "scoreboard",
+          "type": "score",
+          "sportLabel": "Tênis",
+          "scoreHome": "7",
+          "scoreAway": "6",
+          "teamHome": "Você",
+          "teamAway": "Adv."
+        },
+        {
+          "variantId": "resultado",
+          "variantLabel": "Resultado",
+          "layout": "minimal",
+          "type": "score",
+          "sportLabel": "Tênis",
+          "headline": "Vitória 2-0"
+        }
+      ]
+    },
+    {
+      "label": "Sessão",
+      "icon": "session",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "funcional",
+          "variantLabel": "Funcional",
+          "layout": "default",
+          "type": "session",
+          "headline": "Treino funcional",
+          "subheadline": "Bloco de força + técnica",
+          "sportLabel": "Funcional",
+          "timeLabel": "18:00 — 19:30",
+          "metrics": [
+            { "value": "12", "label": "Exercícios" },
+            { "value": "5", "label": "Séries" },
+            { "value": "1h30", "label": "Tempo" }
+          ],
+          "locationLabel": "Studio Galácticos"
+        },
+        {
+          "variantId": "musculacao",
+          "variantLabel": "Musculação",
+          "layout": "stats",
+          "type": "session",
+          "headline": "Força",
+          "metrics": [
+            { "value": "8", "label": "Exercícios" },
+            { "value": "4", "label": "Séries" },
+            { "value": "12", "label": "Reps" },
+            { "value": "85kg", "label": "Carga máx" }
+          ]
+        },
+        {
+          "variantId": "rapida",
+          "variantLabel": "Rápida",
+          "layout": "compact",
+          "type": "session",
+          "headline": "Sessão fechada",
+          "sportLabel": "Funcional"
+        }
+      ]
+    },
+    {
+      "label": "Cardio",
+      "icon": "pulse",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "hiit",
+          "variantLabel": "HIIT",
+          "layout": "default",
+          "type": "pulse",
+          "headline": "Sessão de cardio",
+          "subheadline": "Intervalado de alta intensidade",
+          "sportLabel": "HIIT",
+          "metrics": [
+            { "value": "162", "label": "BPM méd." },
+            { "value": "186", "label": "BPM máx." },
+            { "value": "528", "label": "Calorias" }
+          ]
+        },
+        {
+          "variantId": "zonas",
+          "variantLabel": "Zonas",
+          "layout": "stats",
+          "type": "pulse",
+          "headline": "Zonas cardíacas",
+          "metrics": [
+            { "value": "08'", "label": "Z2" },
+            { "value": "22'", "label": "Z3" },
+            { "value": "14'", "label": "Z4" },
+            { "value": "06'", "label": "Z5" }
+          ]
+        },
+        {
+          "variantId": "bpm",
+          "variantLabel": "BPM",
+          "layout": "compact",
+          "type": "pulse",
+          "headline": "162 BPM",
+          "sportLabel": "Cardio"
+        }
+      ]
+    },
+    {
+      "label": "Minimal",
+      "icon": "minimal",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "horario",
+          "variantLabel": "Horário",
+          "layout": "minimal",
+          "type": "minimal",
+          "sportLabel": "Padel",
+          "timeLabel": "20:14"
+        },
+        {
+          "variantId": "local-horario",
+          "variantLabel": "Local + hora",
+          "layout": "minimal",
+          "type": "minimal",
+          "sportLabel": "Padel",
+          "timeLabel": "20:14",
+          "locationLabel": "Galácticos Cidade Jardim"
+        },
+        {
+          "variantId": "marca",
+          "variantLabel": "Marca",
+          "layout": "compact",
+          "type": "minimal",
+          "headline": "Galácticos",
+          "sportLabel": "Check-in"
+        }
+      ]
+    },
+    {
+      "label": "Conquista",
+      "icon": "favorite",
+      "isSelected": false,
+      "overlays": [
+        {
+          "variantId": "sequencia",
+          "variantLabel": "Sequência",
+          "layout": "achievement",
+          "type": "favorite",
+          "headline": "Nova conquista",
+          "subheadline": "10 treinos consecutivos",
+          "achievementLabel": "Sequência de fogo",
+          "sportLabel": "Galácticos",
+          "metrics": [
+            { "value": "10", "label": "Sequência" },
+            { "value": "+25", "label": "XP" }
+          ]
+        },
+        {
+          "variantId": "badge",
+          "variantLabel": "Badge",
+          "layout": "achievement",
+          "type": "favorite",
+          "headline": "Conquista desbloqueada",
+          "achievementLabel": "Mestre do saque",
+          "sportLabel": "Tênis"
+        },
+        {
+          "variantId": "xp",
+          "variantLabel": "XP",
+          "layout": "minimal",
+          "type": "favorite",
+          "headline": "+25 XP",
+          "sportLabel": "Galácticos"
+        }
+      ]
+    }
   ]
 }

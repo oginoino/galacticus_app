@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 
 import '../repository/auth_repository.dart';
+import '../repository/club_detail_repository.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
@@ -10,11 +11,15 @@ import '../repository/assistant_repository.dart';
 import '../repository/agenda_repository.dart';
 import '../repository/ai_training_repository.dart';
 import '../repository/checkin_repository.dart';
+import '../repository/matches_repository.dart';
 import '../repository/notifications_repository.dart';
 import '../repository/lessons_repository.dart';
+import '../repository/post_detail_repository.dart';
 import '../repository/profile_repository.dart';
 import '../repository/progress_repository.dart';
 import '../repository/ranking_repository.dart';
+import '../repository/shooting_repository.dart';
+import '../repository/training_detail_repository.dart';
 import '../service/api/api_service_factory.dart';
 import '../service/auth/auth_mock_service.dart';
 import '../service/auth/auth_service_interface.dart';
@@ -26,6 +31,16 @@ import '../service/assistant/assistant_mock_service.dart';
 import '../service/assistant/assistant_service_interface.dart';
 import '../service/checkin/checkin_mock_service.dart';
 import '../service/checkin/checkin_service_interface.dart';
+import '../service/club_detail/club_detail_mock_service.dart';
+import '../service/club_detail/club_detail_service_interface.dart';
+import '../service/matches/matches_mock_service.dart';
+import '../service/matches/matches_service_interface.dart';
+import '../service/post_detail/post_detail_mock_service.dart';
+import '../service/post_detail/post_detail_service_interface.dart';
+import '../service/shooting/shooting_mock_service.dart';
+import '../service/shooting/shooting_service_interface.dart';
+import '../service/training_detail/training_detail_mock_service.dart';
+import '../service/training_detail/training_detail_service_interface.dart';
 import '../service/booking/booking_mock_service.dart';
 import '../service/booking/booking_service_interface.dart';
 import '../service/communities/communities_mock_service.dart';
@@ -156,6 +171,36 @@ class DependencyInjection {
       )
       ..registerLazySingleton<AuthRepository>(
         () => AuthRepository(sl<AuthServiceInterface>()),
+      )
+      ..registerLazySingleton<MatchesServiceInterface>(
+        MatchesMockService.new,
+      )
+      ..registerLazySingleton<MatchesRepository>(
+        () => MatchesRepository(sl<MatchesServiceInterface>()),
+      )
+      ..registerLazySingleton<ShootingServiceInterface>(
+        ShootingMockService.new,
+      )
+      ..registerLazySingleton<ShootingRepository>(
+        () => ShootingRepository(sl<ShootingServiceInterface>()),
+      )
+      ..registerLazySingleton<TrainingDetailServiceInterface>(
+        TrainingDetailMockService.new,
+      )
+      ..registerLazySingleton<TrainingDetailRepository>(
+        () => TrainingDetailRepository(sl<TrainingDetailServiceInterface>()),
+      )
+      ..registerLazySingleton<ClubDetailServiceInterface>(
+        ClubDetailMockService.new,
+      )
+      ..registerLazySingleton<ClubDetailRepository>(
+        () => ClubDetailRepository(sl<ClubDetailServiceInterface>()),
+      )
+      ..registerLazySingleton<PostDetailServiceInterface>(
+        PostDetailMockService.new,
+      )
+      ..registerLazySingleton<PostDetailRepository>(
+        () => PostDetailRepository(sl<PostDetailServiceInterface>()),
       );
   }
 

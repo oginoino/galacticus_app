@@ -68,6 +68,30 @@
       "durationLabel": "LOOP",
       "highlightLabel": "GIF",
       "imageAsset": "assets/images/prototype/lesson-voleio.jpg"
+    },
+    {
+      "title": "Saque com kick",
+      "subtitle": "Vídeo guiado passo a passo",
+      "kind": "Vídeos curtos",
+      "durationLabel": "0:24",
+      "highlightLabel": "VÍDEO",
+      "imageAsset": "assets/images/prototype/lesson-smash.jpg"
+    },
+    {
+      "title": "Slice defensivo",
+      "subtitle": "Loop curto com pegada e ângulo",
+      "kind": "GIFs",
+      "durationLabel": "LOOP",
+      "highlightLabel": "GIF",
+      "imageAsset": "assets/images/prototype/lesson-saque-slice.jpg"
+    },
+    {
+      "title": "Footwork avançado",
+      "subtitle": "Cruzados, recuperação e leitura",
+      "kind": "Vídeos curtos",
+      "durationLabel": "0:32",
+      "highlightLabel": "VÍDEO",
+      "imageAsset": "assets/images/prototype/lesson-forehand-topspin.jpg"
     }
   ]
 }

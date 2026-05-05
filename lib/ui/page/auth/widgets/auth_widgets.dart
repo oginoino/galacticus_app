@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../../domain/auth_social_provider.dart';
+import '../../../../util/const/app_assets.dart';
 import '../../../theme/app_theme.dart';
 
 class AuthBrandHeader extends StatelessWidget {
@@ -19,47 +20,22 @@ class AuthBrandHeader extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
+        Image.asset(
+          AppAssets.logoGalacticos,
           width: AppSize.authBrandLogo,
           height: AppSize.authBrandLogo,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [AppPalette.primary, AppPalette.primaryStrong],
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: AppPalette.primary.withValues(alpha: AppOpacity.quarter),
-                blurRadius: AppShadow.cardBlur,
-                offset: const Offset(0, AppShadow.cardOffsetY),
-              ),
-            ],
-          ),
-          child: const Icon(
-            Icons.sports_tennis_rounded,
-            color: AppPalette.black,
-            size: AppIconSize.giantPlus,
-          ),
         ),
         const SizedBox(height: AppSpacing.giant),
         Text(
           brandName,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontWeight: FontWeight.w800,
-                letterSpacing: AppLetterSpacing.tightLg,
-              ),
+          style: AppTextStyles.brandTitle(context),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
           tagline,
           textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: AppPalette.textSecondary,
-                fontSize: AppFontSize.bodyLg,
-              ),
+          style: AppTextStyles.bodyMediumSecondary(context),
         ),
       ],
     );
@@ -120,12 +96,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
       children: [
         Text(
           widget.label,
-          style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                color: AppPalette.textSecondary,
-                fontWeight: FontWeight.w600,
-                fontSize: AppFontSize.labelLg,
-                letterSpacing: AppLetterSpacing.wideSm,
-              ),
+          style: AppTextStyles.formLabel(context),
         ),
         const SizedBox(height: AppSpacing.sm),
         TextFormField(
@@ -139,17 +110,11 @@ class _AuthTextFieldState extends State<AuthTextField> {
           autovalidateMode: widget.autovalidateMode,
           inputFormatters: widget.inputFormatters,
           onFieldSubmitted: widget.onSubmitted,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                color: AppPalette.white,
-                fontSize: AppFontSize.titleSm,
-              ),
+          style: AppTextStyles.inputText(context),
           cursorColor: AppPalette.primary,
           decoration: InputDecoration(
             hintText: widget.hint,
-            hintStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppPalette.textHint,
-                  fontSize: AppFontSize.titleSm,
-                ),
+            hintStyle: AppTextStyles.inputHint(context),
             filled: true,
             fillColor: AppPalette.surfaceAlt,
             isDense: false,
@@ -176,8 +141,7 @@ class _AuthTextFieldState extends State<AuthTextField> {
             ),
             suffixIcon: widget.allowVisibilityToggle
                 ? IconButton(
-                    onPressed: () =>
-                        setState(() => _obscured = !_obscured),
+                    onPressed: () => setState(() => _obscured = !_obscured),
                     icon: Icon(
                       _obscured
                           ? Icons.visibility_outlined
@@ -189,16 +153,16 @@ class _AuthTextFieldState extends State<AuthTextField> {
                   )
                 : null,
             border: _border(AppPalette.white.withValues(alpha: AppOpacity.xxs)),
-            enabledBorder:
-                _border(AppPalette.white.withValues(alpha: AppOpacity.xxs)),
+            enabledBorder: _border(
+              AppPalette.white.withValues(alpha: AppOpacity.xxs),
+            ),
             focusedBorder: _border(AppPalette.primary, width: AppStroke.thick),
             errorBorder: _border(AppPalette.danger),
-            focusedErrorBorder:
-                _border(AppPalette.danger, width: AppStroke.thick),
-            errorStyle: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: AppPalette.danger,
-                  fontSize: AppFontSize.labelLg,
-                ),
+            focusedErrorBorder: _border(
+              AppPalette.danger,
+              width: AppStroke.thick,
+            ),
+            errorStyle: AppTextStyles.errorText(context),
           ),
         ),
       ],
@@ -209,89 +173,6 @@ class _AuthTextFieldState extends State<AuthTextField> {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(AppRadius.lg),
       borderSide: BorderSide(color: color, width: width),
-    );
-  }
-}
-
-class AuthPrimaryButton extends StatelessWidget {
-  const AuthPrimaryButton({
-    super.key,
-    required this.label,
-    required this.onPressed,
-    this.isLoading = false,
-  });
-
-  final String label;
-  final VoidCallback? onPressed;
-  final bool isLoading;
-
-  @override
-  Widget build(BuildContext context) {
-    final disabled = isLoading || onPressed == null;
-
-    return SizedBox(
-      height: AppSize.buttonHeight,
-      width: double.infinity,
-      child: ElevatedButton(
-        onPressed: disabled ? null : onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: AppPalette.primary,
-          disabledBackgroundColor:
-              AppPalette.primary.withValues(alpha: AppOpacity.half),
-          foregroundColor: AppPalette.black,
-          elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppRadius.button),
-          ),
-        ),
-        child: isLoading
-            ? const SizedBox(
-                width: AppIconSize.lg,
-                height: AppIconSize.lg,
-                child: CircularProgressIndicator(
-                  strokeWidth: AppStroke.thick,
-                  color: AppPalette.black,
-                ),
-              )
-            : Text(
-                label,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      color: AppPalette.black,
-                      fontWeight: FontWeight.w700,
-                      fontSize: AppFontSize.titleLg,
-                    ),
-              ),
-      ),
-    );
-  }
-}
-
-class AuthDivider extends StatelessWidget {
-  const AuthDivider({super.key, required this.label});
-
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    final lineColor = AppPalette.white.withValues(alpha: AppOpacity.xxs);
-
-    return Row(
-      children: [
-        Expanded(child: Divider(color: lineColor, height: AppStroke.hairline)),
-        Padding(
-          padding:
-              const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-          child: Text(
-            label,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: AppPalette.textHint,
-                  fontWeight: FontWeight.w500,
-                  letterSpacing: AppLetterSpacing.wideSm,
-                ),
-          ),
-        ),
-        Expanded(child: Divider(color: lineColor, height: AppStroke.hairline)),
-      ],
     );
   }
 }
@@ -320,11 +201,7 @@ class AuthSocialButton extends StatelessWidget {
         ),
         label: Text(
           provider.label,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: AppPalette.white,
-                fontWeight: FontWeight.w600,
-                fontSize: AppFontSize.titleSm,
-              ),
+          style: AppTextStyles.buttonSocial(context),
         ),
         style: OutlinedButton.styleFrom(
           backgroundColor: AppPalette.surfaceAlt,
@@ -351,50 +228,6 @@ class AuthSocialButton extends StatelessWidget {
       default:
         return Icons.login_rounded;
     }
-  }
-}
-
-class AuthFooterPrompt extends StatelessWidget {
-  const AuthFooterPrompt({
-    super.key,
-    required this.prompt,
-    required this.actionLabel,
-    required this.onActionTap,
-  });
-
-  final String prompt;
-  final String actionLabel;
-  final VoidCallback onActionTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Wrap(
-        crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: AppSpacing.xs,
-        children: [
-          Text(
-            prompt,
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  color: AppPalette.textSecondary,
-                  fontSize: AppFontSize.bodyLg,
-                ),
-          ),
-          GestureDetector(
-            onTap: onActionTap,
-            behavior: HitTestBehavior.opaque,
-            child: Text(
-              actionLabel,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppPalette.primary,
-                    fontWeight: FontWeight.w700,
-                    fontSize: AppFontSize.bodyLg,
-                  ),
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }
 
@@ -432,15 +265,12 @@ class AuthTermsCheckbox extends StatelessWidget {
                   height: AppIconSize.xxxl,
                   margin: const EdgeInsets.only(top: AppSpacing.xxs),
                   decoration: BoxDecoration(
-                    color: value
-                        ? AppPalette.primary
-                        : AppPalette.surfaceAlt,
+                    color: value ? AppPalette.primary : AppPalette.surfaceAlt,
                     borderRadius: BorderRadius.circular(AppRadius.sm),
                     border: Border.all(
                       color: value
                           ? AppPalette.primary
-                          : AppPalette.white
-                              .withValues(alpha: AppOpacity.xxs),
+                          : AppPalette.white.withValues(alpha: AppOpacity.xxs),
                       width: AppStroke.hairline,
                     ),
                   ),
@@ -456,10 +286,7 @@ class AuthTermsCheckbox extends StatelessWidget {
                 Expanded(
                   child: Text(
                     label,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: AppPalette.textSecondary,
-                          fontSize: AppFontSize.bodyLg,
-                        ),
+                    style: AppTextStyles.bodyMediumSecondary(context),
                   ),
                 ),
               ],
@@ -472,10 +299,7 @@ class AuthTermsCheckbox extends StatelessWidget {
             padding: const EdgeInsets.only(left: AppSpacing.giant),
             child: Text(
               error,
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppPalette.danger,
-                    fontSize: AppFontSize.labelLg,
-                  ),
+              style: AppTextStyles.errorText(context),
             ),
           ),
         ],

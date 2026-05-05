@@ -4,6 +4,7 @@ import '../../../../domain/feed_post.dart';
 import '../../../../domain/feed_post_comment_preview.dart';
 import '../../../../domain/feed_post_metric.dart';
 import '../../../../domain/feed_workout_result_card.dart';
+import '../../../components/checkin_overlay_view.dart';
 import '../../../theme/app_theme.dart';
 import 'feed_assets.dart';
 
@@ -253,7 +254,17 @@ class _FeedPostMedia extends StatelessWidget {
                 ),
               ),
             ),
-          if (post.layoutType == 'highlight')
+          if (post.checkinOverlay != null)
+            Positioned(
+              left: AppInsets.feedPostMediaOverlay.left,
+              right: AppInsets.feedPostMediaOverlay.right,
+              bottom: AppInsets.feedPostMediaOverlay.bottom,
+              child: CheckinOverlayView(
+                overlay: post.checkinOverlay!,
+                compact: compact,
+              ),
+            )
+          else if (post.layoutType == 'highlight')
             Positioned(
               left: AppInsets.feedPostMediaOverlay.left,
               right: AppInsets.feedPostMediaOverlay.right,

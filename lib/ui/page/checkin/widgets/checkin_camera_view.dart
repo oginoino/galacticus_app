@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+import '../../../../domain/checkin_overlay.dart';
 import '../../../../domain/checkin_overview.dart';
 import '../../../theme/app_theme.dart';
 import 'checkin_widgets.dart';
@@ -27,11 +28,13 @@ class _CheckinCameraViewState extends State<CheckinCameraView>
   CameraController? _controller;
   List<CameraDescription> _cameras = const [];
   int _selectedFilterIndex = 0;
+  final Map<int, int> _variantByFilter = {};
   int _cameraIndex = 0;
   bool _flashEnabled = false;
   bool _isInitializingCamera = true;
   bool _isCapturing = false;
   String? _cameraError;
+  double _lastDragDirection = 0;
 
   @override
   void initState() {
@@ -172,6 +175,50 @@ class _CheckinCameraViewState extends State<CheckinCameraView>
     await _initializeCamera(preferredIndex: nextIndex);
   }
 
+  List<CheckinOverlay> get _activeVariants {
+    if (_selectedFilterIndex < 0 ||
+        _selectedFilterIndex >= widget.overview.filters.length) {
+      return const [];
+    }
+    return widget.overview.filters[_selectedFilterIndex].overlays;
+  }
+
+  int get _activeVariantIndex {
+    final variants = _activeVariants;
+    if (variants.isEmpty) return 0;
+    final stored = _variantByFilter[_selectedFilterIndex] ?? 0;
+    if (stored < 0 || stored >= variants.length) return 0;
+    return stored;
+  }
+
+  CheckinOverlay? get _activeOverlay {
+    final variants = _activeVariants;
+    if (variants.isEmpty) return null;
+    return variants[_activeVariantIndex];
+  }
+
+  void _onFilterTap(int index) {
+    setState(() => _selectedFilterIndex = index);
+    widget.onMessage(widget.overview.messages.filterAction);
+  }
+
+  void _onOverlayDragEnd(DragEndDetails details) {
+    final variants = _activeVariants;
+    if (variants.length < 2) return;
+
+    final velocity = details.primaryVelocity ?? 0;
+    if (velocity.abs() < 120) return;
+
+    final delta = velocity < 0 ? 1 : -1;
+    final next = (_activeVariantIndex + delta) % variants.length;
+    final normalized = next < 0 ? next + variants.length : next;
+
+    setState(() {
+      _lastDragDirection = delta.toDouble();
+      _variantByFilter[_selectedFilterIndex] = normalized;
+    });
+  }
+
   Future<void> _capture() async {
     final controller = _controller;
     if (controller == null || !controller.value.isInitialized) {
@@ -244,6 +291,63 @@ class _CheckinCameraViewState extends State<CheckinCameraView>
             onSwitchCameraTap: _switchCamera,
           ),
         ),
+        if (_activeOverlay != null)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: AppSize.checkinFilterBottomOffset +
+                AppSize.checkinFilterBarHeight +
+                (_activeVariants.length > 1
+                    ? AppSize.checkinVariantDotsHeight + AppSpacing.md
+                    : 0) +
+                AppSpacing.lg,
+            child: Padding(
+              padding: AppInsets.pageHorizontal,
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onHorizontalDragEnd: _activeVariants.length > 1
+                    ? _onOverlayDragEnd
+                    : null,
+                child: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 220),
+                  switchInCurve: Curves.easeOut,
+                  switchOutCurve: Curves.easeIn,
+                  transitionBuilder: (child, animation) => FadeTransition(
+                    opacity: animation,
+                    child: SlideTransition(
+                      position: Tween<Offset>(
+                        begin: Offset(_lastDragDirection * 0.06, 0),
+                        end: Offset.zero,
+                      ).animate(animation),
+                      child: child,
+                    ),
+                  ),
+                  child: KeyedSubtree(
+                    key: ValueKey(
+                      '${_selectedFilterIndex}_$_activeVariantIndex',
+                    ),
+                    child: CheckinOverlayCard(
+                      overlay: _activeOverlay!,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        if (_activeVariants.length > 1)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: AppSize.checkinFilterBottomOffset +
+                AppSize.checkinFilterBarHeight +
+                AppSpacing.md,
+            child: Center(
+              child: CheckinVariantDots(
+                count: _activeVariants.length,
+                selectedIndex: _activeVariantIndex,
+              ),
+            ),
+          ),
         Positioned(
           left: 0,
           right: 0,
@@ -253,10 +357,7 @@ class _CheckinCameraViewState extends State<CheckinCameraView>
             child: CheckinFilterBar(
               items: widget.overview.filters,
               selectedIndex: _selectedFilterIndex,
-              onTap: (index) {
-                setState(() => _selectedFilterIndex = index);
-                widget.onMessage(widget.overview.messages.filterAction);
-              },
+              onTap: _onFilterTap,
             ),
           ),
         ),

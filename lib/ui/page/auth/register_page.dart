@@ -4,9 +4,12 @@ import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
 import '../../../domain/auth_overview.dart';
+import '../../../provider/auth_form_validators.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
+import '../../components/app_footer_prompt.dart';
+import '../../components/app_primary_button.dart';
 import '../../components/app_sliver_scaffold.dart';
 import '../../components/content_state_view.dart';
 import '../../theme/app_theme.dart';
@@ -86,10 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Text(
                 overview.register.subtitle,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppPalette.textSecondary,
-                      fontSize: AppFontSize.bodyLg,
-                    ),
+                style: AppTextStyles.bodyLargeSecondary(context),
               ),
               const SizedBox(height: AppSpacing.sectionLg),
               AuthTextField(
@@ -159,13 +159,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       },
               ),
               const SizedBox(height: AppSpacing.section),
-              AuthPrimaryButton(
+              AppPrimaryButton(
                 label: overview.register.submitLabel,
                 isLoading: isSubmitting,
                 onPressed: () => _submit(context, overview, provider),
               ),
               const SizedBox(height: AppSpacing.section),
-              AuthFooterPrompt(
+              AppFooterPrompt(
                 prompt: overview.register.loginPromptLabel,
                 actionLabel: overview.register.loginActionLabel,
                 onActionTap: isSubmitting

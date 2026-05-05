@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../di/di.dart';
 import '../domain/auth_overview.dart';
-import '../domain/auth_validation.dart';
 import '../repository/auth_repository.dart';
+import '../util/const/app_constants.dart';
 
 enum AuthSubmissionStatus { idle, submitting, success, failure }
 
@@ -36,7 +37,7 @@ class AuthProvider extends ChangeNotifier {
       _overview = await _repository.getOverview();
     } catch (_) {
       _errorMessage = _overview?.messages.loadErrorMessage ??
-          'Não conseguimos carregar a tela. Tente novamente.';
+          sl<AppConstants>().authLoadErrorMessage;
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -107,43 +108,5 @@ class AuthProvider extends ChangeNotifier {
     _registerStatus = AuthSubmissionStatus.idle;
     _recoveryStatus = AuthSubmissionStatus.idle;
     notifyListeners();
-  }
-}
-
-class AuthFormValidators {
-  AuthFormValidators(this.validation);
-
-  final AuthValidation validation;
-
-  static final RegExp _emailRegex = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
-
-  String? validateEmail(String? value) {
-    final trimmed = value?.trim() ?? '';
-    if (trimmed.isEmpty) return validation.emailRequired;
-    if (!_emailRegex.hasMatch(trimmed)) return validation.emailInvalid;
-    return null;
-  }
-
-  String? validatePassword(String? value, {bool checkLength = true}) {
-    final v = value ?? '';
-    if (v.isEmpty) return validation.passwordRequired;
-    if (checkLength && v.length < 8) return validation.passwordTooShort;
-    return null;
-  }
-
-  String? validatePasswordMatch(String? value, String original) {
-    if ((value ?? '') != original) return validation.passwordsDontMatch;
-    return null;
-  }
-
-  String? validateName(String? value) {
-    final trimmed = value?.trim() ?? '';
-    if (trimmed.isEmpty) return validation.nameRequired;
-    return null;
-  }
-
-  String? validateTerms(bool accepted) {
-    if (!accepted) return validation.termsRequired;
-    return null;
   }
 }

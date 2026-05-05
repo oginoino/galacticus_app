@@ -106,6 +106,55 @@
         "assets/images/prototype/avatar-sofia.jpg",
         "assets/images/prototype/avatar-leo.jpg"
       ]
+    },
+    {
+      "title": "RALLY CREW",
+      "tagsLabel": "Match · Avançado · Convite",
+      "subtitle": "Tennis competitivo no nível avançado.",
+      "membersLabel": "112 membros",
+      "joinLabel": "Solicitar",
+      "imageAsset": "assets/images/prototype/club-rally.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/avatar-gabe.jpg",
+        "assets/images/prototype/paulo.jpg",
+        "assets/images/prototype/avatar-leo.jpg"
+      ]
+    },
+    {
+      "title": "BEACH TENNIS",
+      "tagsLabel": "Beach · Social · Mar",
+      "subtitle": "Pés na areia e jogo nos finais de semana.",
+      "membersLabel": "84 membros",
+      "joinLabel": "Entrar",
+      "imageAsset": "assets/images/prototype/feed-padel-evening.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/avatar-sofia.jpg",
+        "assets/images/prototype/avatar-gabe.jpg"
+      ]
+    },
+    {
+      "title": "MINDSET COACHING",
+      "tagsLabel": "Mental · Performance · Coach",
+      "subtitle": "Mentalidade vencedora dentro e fora da quadra.",
+      "membersLabel": "63 membros",
+      "joinLabel": "Entrar",
+      "imageAsset": "assets/images/prototype/club-mindset.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/coach-marcos.jpg"
+      ]
+    },
+    {
+      "title": "GALÁCTICOS LOUNGE",
+      "tagsLabel": "Social · Networking · Eventos",
+      "subtitle": "Eventos, palestras e momentos de comunidade.",
+      "membersLabel": "201 membros",
+      "joinLabel": "Entrar",
+      "imageAsset": "assets/images/prototype/room-lounge.jpg",
+      "memberAvatarAssets": [
+        "assets/images/prototype/paulo.jpg",
+        "assets/images/prototype/avatar-sofia.jpg",
+        "assets/images/prototype/avatar-leo.jpg"
+      ]
     }
   ]
 }

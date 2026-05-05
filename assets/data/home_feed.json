@@ -100,6 +100,22 @@
       "views": "5.4k views",
       "isAi": false,
       "imageAsset": "assets/images/prototype/lesson-voleio.jpg"
+    },
+    {
+      "duration": "7:58",
+      "title": "Smash potente: explosão e controle",
+      "coach": "Coach Marcos",
+      "views": "9.9k views",
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-smash.jpg"
+    },
+    {
+      "duration": "9:14",
+      "title": "Footwork: deslocamento eficiente",
+      "coach": "Coach Marcos",
+      "views": "7.5k views",
+      "isAi": true,
+      "imageAsset": "assets/images/prototype/lesson-backhand-iniciante.jpg"
     }
   ],
   "leaderboard": [
@@ -181,6 +197,24 @@
       "availability": "Última vaga!",
       "isLastSpot": true,
       "avatarAsset": "assets/images/prototype/avatar-leo.jpg"
+    },
+    {
+      "hostName": "Carlos M.",
+      "sport": "Tennis",
+      "schedule": "Seg, 19 Mai · 19:00",
+      "location": "Quadra Central",
+      "availability": "3 vagas abertas",
+      "isLastSpot": false,
+      "avatarAsset": null
+    },
+    {
+      "hostName": "Ana L.",
+      "sport": "Padel",
+      "schedule": "Ter, 20 Mai · 18:30",
+      "location": "Quadra 03 · Cidade Jardim",
+      "availability": "1 vaga aberta",
+      "isLastSpot": true,
+      "avatarAsset": null
     }
   ],
   "calendar": {

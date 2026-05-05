@@ -1,3 +1,4 @@
+import 'checkin_overlay.dart';
 import 'feed_post_comment_preview.dart';
 import 'feed_post_metric.dart';
 import 'feed_workout_result_card.dart';
@@ -23,6 +24,7 @@ class FeedPost {
     this.metrics = const [],
     this.commentPreview,
     this.workoutResultCard,
+    this.checkinOverlay,
   });
 
   final String layoutType;
@@ -44,4 +46,5 @@ class FeedPost {
   final List<FeedPostMetric> metrics;
   final FeedPostCommentPreview? commentPreview;
   final FeedWorkoutResultCard? workoutResultCard;
+  final CheckinOverlay? checkinOverlay;
 }

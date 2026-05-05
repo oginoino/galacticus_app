@@ -8,14 +8,19 @@ import '../repository/ai_training_repository.dart';
 import '../repository/auth_repository.dart';
 import '../repository/booking_repository.dart';
 import '../repository/checkin_repository.dart';
+import '../repository/club_detail_repository.dart';
 import '../repository/communities_repository.dart';
 import '../repository/feed_repository.dart';
 import '../repository/home_repository.dart';
 import '../repository/lessons_repository.dart';
+import '../repository/matches_repository.dart';
 import '../repository/notifications_repository.dart';
+import '../repository/post_detail_repository.dart';
 import '../repository/profile_repository.dart';
 import '../repository/progress_repository.dart';
 import '../repository/ranking_repository.dart';
+import '../repository/shooting_repository.dart';
+import '../repository/training_detail_repository.dart';
 import '../service/localization/localization_service.dart';
 import '../service/persistence/persistence_service.dart';
 import 'agenda_provider.dart';
@@ -24,16 +29,21 @@ import 'assistant_provider.dart';
 import 'auth_provider.dart';
 import 'booking_provider.dart';
 import 'checkin_provider.dart';
+import 'club_detail_provider.dart';
 import 'communities_provider.dart';
 import 'feed_provider.dart';
 import 'home_provider.dart';
 import 'lessons_provider.dart';
 import 'locale_provider.dart';
+import 'matches_provider.dart';
 import 'notifications_provider.dart';
+import 'post_detail_provider.dart';
 import 'profile_provider.dart';
 import 'progress_provider.dart';
 import 'ranking_provider.dart';
+import 'shooting_provider.dart';
 import 'theme_provider.dart';
+import 'training_detail_provider.dart';
 
 final List<SingleChildWidget> registerProviders = [
   ChangeNotifierProvider<ThemeProvider>(
@@ -116,5 +126,30 @@ final List<SingleChildWidget> registerProviders = [
     create: (_) => AuthProvider(
       sl<AuthRepository>(),
     )..loadOverview(),
+  ),
+  ChangeNotifierProvider<MatchesProvider>(
+    create: (_) => MatchesProvider(
+      sl<MatchesRepository>(),
+    )..loadMatches(),
+  ),
+  ChangeNotifierProvider<ShootingProvider>(
+    create: (_) => ShootingProvider(
+      sl<ShootingRepository>(),
+    )..loadShooting(),
+  ),
+  ChangeNotifierProvider<TrainingDetailProvider>(
+    create: (_) => TrainingDetailProvider(
+      sl<TrainingDetailRepository>(),
+    ),
+  ),
+  ChangeNotifierProvider<ClubDetailProvider>(
+    create: (_) => ClubDetailProvider(
+      sl<ClubDetailRepository>(),
+    ),
+  ),
+  ChangeNotifierProvider<PostDetailProvider>(
+    create: (_) => PostDetailProvider(
+      sl<PostDetailRepository>(),
+    )..loadPost(),
   ),
 ];

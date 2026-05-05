@@ -25,33 +25,29 @@ class AssistantContent extends StatelessWidget {
       children: [
         Positioned.fill(
           child: IgnorePointer(
-            child: Center(
-              child: Container(
-                width: AppSize.assistantGlowWidth,
-                height: double.infinity,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      AppPalette.primary.withValues(alpha: AppOpacity.none),
-                      AppPalette.primary.withValues(alpha: AppOpacity.xxs),
-                      AppPalette.primary.withValues(alpha: AppOpacity.sm),
-                      AppPalette.primary.withValues(alpha: AppOpacity.none),
-                    ],
-                  ),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  center: Alignment.center,
+                  radius: 0.9,
+                  colors: [
+                    AppPalette.primary.withValues(alpha: AppOpacity.md),
+                    AppPalette.primary.withValues(alpha: AppOpacity.xxs),
+                    AppPalette.primary.withValues(alpha: AppOpacity.none),
+                  ],
+                  stops: const [0.0, 0.55, 1.0],
                 ),
-              )
-                  .animate(
-                    onPlay: (controller) => controller.repeat(reverse: true),
-                  )
-                  .fade(
-                    begin: 0.55,
-                    end: 0.9,
-                    duration: AppMotion.assistantScreenGlowDurationMs.ms,
-                    curve: Curves.linear,
-                  ),
-            ),
+              ),
+            )
+                .animate(
+                  onPlay: (controller) => controller.repeat(reverse: true),
+                )
+                .fade(
+                  begin: 0.55,
+                  end: 0.9,
+                  duration: AppMotion.assistantScreenGlowDurationMs.ms,
+                  curve: Curves.linear,
+                ),
           ),
         ),
         Positioned.fill(

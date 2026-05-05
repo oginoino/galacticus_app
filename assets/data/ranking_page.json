@@ -19,7 +19,19 @@
     { "position": 5, "initials": "JR", "name": "Julia R.", "levelLabel": "Intermediário", "points": 1850 },
     { "position": 6, "initials": "RB", "name": "Rafael B.", "levelLabel": "Avançado", "points": 1720 },
     { "position": 7, "initials": "FC", "name": "Fernanda C.", "levelLabel": "Intermediário", "points": 1650 },
-    { "position": 8, "initials": "PH", "name": "Paulo H.", "levelLabel": "Avançado", "points": 1580 }
+    { "position": 8, "initials": "PH", "name": "Paulo H.", "levelLabel": "Avançado", "points": 1580 },
+    { "position": 9, "initials": "GT", "name": "Gabriel T.", "levelLabel": "Intermediário", "points": 1520 },
+    { "position": 10, "initials": "LM", "name": "Leo M.", "levelLabel": "Avançado", "points": 1480 },
+    { "position": 11, "initials": "SP", "name": "Sofia P.", "levelLabel": "Coach", "points": 1450 },
+    { "position": 12, "initials": "MM", "name": "Mateus M.", "levelLabel": "Coach", "points": 1410 },
+    { "position": 13, "initials": "TS", "name": "Talita S.", "levelLabel": "Intermediário", "points": 1380 },
+    { "position": 14, "initials": "BR", "name": "Bruna R.", "levelLabel": "Iniciante", "points": 1320 },
+    { "position": 15, "initials": "DH", "name": "Diego H.", "levelLabel": "Intermediário", "points": 1280 },
+    { "position": 16, "initials": "JP", "name": "Júlia P.", "levelLabel": "Avançado", "points": 1240 },
+    { "position": 17, "initials": "AL2", "name": "Alex L.", "levelLabel": "Iniciante", "points": 1180 },
+    { "position": 18, "initials": "RM", "name": "Renata M.", "levelLabel": "Intermediário", "points": 1140 },
+    { "position": 19, "initials": "VS", "name": "Vitor S.", "levelLabel": "Iniciante", "points": 1080 },
+    { "position": 20, "initials": "LB", "name": "Lúcia B.", "levelLabel": "Iniciante", "points": 1020 }
   ],
   "uiLabels": {
     "navigationHomeLabel": "Início",

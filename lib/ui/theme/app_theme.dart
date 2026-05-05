@@ -332,7 +332,6 @@ abstract final class AppSize {
   static const assistantPromptHeight = 52.0;
   static const assistantInputHeight = 52.0;
   static const assistantSendButton = 36.0;
-  static const assistantGlowWidth = 220.0;
   static const assistantHeroTopGap = 76.0;
   static const assistantPromptTopGap = 44.0;
   static const assistantBottomSpacer = 140.0;
@@ -361,6 +360,9 @@ abstract final class AppSize {
   static const lessonsCoachAvatarRadius = 18.0;
   static const lessonsUpcomingPlayButton = 34.0;
   static const checkinFilterBarHeight = 78.0;
+  static const checkinVariantDotsHeight = 8.0;
+  static const checkinVariantDot = 6.0;
+  static const checkinVariantDotActive = 18.0;
 }
 
 abstract final class AppChartHeights {
@@ -589,6 +591,96 @@ abstract final class AppResponsiveInsets {
   static EdgeInsets listItemGap(bool isLast) => EdgeInsets.only(
         bottom: isLast ? 0 : AppSpacing.xl,
       );
+}
+
+abstract final class AppTextStyles {
+  static TextStyle heading(BuildContext context) =>
+      Theme.of(context).textTheme.headlineSmall!.copyWith(
+            fontWeight: FontWeight.w800,
+            fontSize: AppFontSize.heading,
+            letterSpacing: AppLetterSpacing.tightSm,
+          );
+
+  static TextStyle brandTitle(BuildContext context) =>
+      Theme.of(context).textTheme.headlineMedium!.copyWith(
+            fontWeight: FontWeight.w800,
+            letterSpacing: AppLetterSpacing.tightLg,
+          );
+
+  static TextStyle bodyLarge(BuildContext context) =>
+      Theme.of(context).textTheme.bodyLarge!.copyWith(
+            fontSize: AppFontSize.bodyLg,
+          );
+
+  static TextStyle bodyLargeSecondary(BuildContext context) =>
+      bodyLarge(context).copyWith(color: AppPalette.textSecondary);
+
+  static TextStyle bodyMediumSecondary(BuildContext context) =>
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: AppPalette.textSecondary,
+            fontSize: AppFontSize.bodyLg,
+          );
+
+  static TextStyle formLabel(BuildContext context) =>
+      Theme.of(context).textTheme.labelLarge!.copyWith(
+            color: AppPalette.textSecondary,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.labelLg,
+            letterSpacing: AppLetterSpacing.wideSm,
+          );
+
+  static TextStyle dividerLabel(BuildContext context) =>
+      Theme.of(context).textTheme.labelMedium!.copyWith(
+            color: AppPalette.textHint,
+            fontWeight: FontWeight.w500,
+            letterSpacing: AppLetterSpacing.wideSm,
+          );
+
+  static TextStyle buttonPrimary(BuildContext context) =>
+      Theme.of(context).textTheme.titleMedium!.copyWith(
+            color: AppPalette.black,
+            fontWeight: FontWeight.w700,
+            fontSize: AppFontSize.titleLg,
+          );
+
+  static TextStyle buttonSocial(BuildContext context) =>
+      Theme.of(context).textTheme.titleMedium!.copyWith(
+            color: AppPalette.white,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.titleSm,
+          );
+
+  static TextStyle inputText(BuildContext context) =>
+      Theme.of(context).textTheme.bodyLarge!.copyWith(
+            color: AppPalette.white,
+            fontSize: AppFontSize.titleSm,
+          );
+
+  static TextStyle inputHint(BuildContext context) =>
+      Theme.of(context).textTheme.bodyLarge!.copyWith(
+            color: AppPalette.textHint,
+            fontSize: AppFontSize.titleSm,
+          );
+
+  static TextStyle errorText(BuildContext context) =>
+      Theme.of(context).textTheme.bodySmall!.copyWith(
+            color: AppPalette.danger,
+            fontSize: AppFontSize.labelLg,
+          );
+
+  static TextStyle linkAction(BuildContext context) =>
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: AppPalette.primary,
+            fontWeight: FontWeight.w700,
+            fontSize: AppFontSize.bodyLg,
+          );
+
+  static TextStyle linkSecondary(BuildContext context) =>
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: AppPalette.primary,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.bodyLg,
+          );
 }
 
 class AppTheme {

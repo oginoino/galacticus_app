@@ -7,6 +7,7 @@ import '../domain/feed_overview.dart';
 import '../domain/feed_post.dart';
 import '../domain/feed_story.dart';
 import '../domain/feed_ui_labels.dart';
+import 'checkin_dto.dart';
 
 class FeedDto {
   FeedDto({
@@ -70,6 +71,7 @@ class FeedDto {
           workoutResultCard: _mapWorkoutResultCard(
             item['workoutResultCard'] as Map<String, dynamic>?,
           ),
+          checkinOverlay: parseCheckinOverlay(item['checkinOverlay']),
         ),
       ),
       uiLabels: FeedUiLabels(

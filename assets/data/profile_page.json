@@ -105,23 +105,17 @@
     }
   ],
   "galleryItems": [
-    {
-      "imageAsset": "assets/images/prototype/profile-gallery-1.jpg"
-    },
-    {
-      "imageAsset": "assets/images/prototype/profile-gallery-2.jpg"
-    },
-    {
-      "imageAsset": "assets/images/prototype/profile-gallery-3.jpg"
-    },
-    {
-      "imageAsset": "assets/images/prototype/profile-gallery-4.jpg"
-    },
-    {
-      "imageAsset": "assets/images/prototype/profile-gallery-5.jpg"
-    },
-    {
-      "imageAsset": "assets/images/prototype/profile-gallery-6.jpg"
-    }
+    { "imageAsset": "assets/images/prototype/profile-gallery-1.jpg" },
+    { "imageAsset": "assets/images/prototype/profile-gallery-2.jpg" },
+    { "imageAsset": "assets/images/prototype/profile-gallery-3.jpg" },
+    { "imageAsset": "assets/images/prototype/profile-gallery-4.jpg" },
+    { "imageAsset": "assets/images/prototype/profile-gallery-5.jpg" },
+    { "imageAsset": "assets/images/prototype/profile-gallery-6.jpg" },
+    { "imageAsset": "assets/images/prototype/feed-tennis-match.jpg" },
+    { "imageAsset": "assets/images/prototype/feed-padel-evening.jpg" },
+    { "imageAsset": "assets/images/prototype/hero-court.jpg" },
+    { "imageAsset": "assets/images/prototype/cal-workout-1.jpg" },
+    { "imageAsset": "assets/images/prototype/cal-workout-2.jpg" },
+    { "imageAsset": "assets/images/prototype/cal-workout-3.jpg" }
   ]
 }
