@@ -591,6 +591,96 @@ abstract final class AppResponsiveInsets {
       );
 }
 
+abstract final class AppTextStyles {
+  static TextStyle heading(BuildContext context) =>
+      Theme.of(context).textTheme.headlineSmall!.copyWith(
+            fontWeight: FontWeight.w800,
+            fontSize: AppFontSize.heading,
+            letterSpacing: AppLetterSpacing.tightSm,
+          );
+
+  static TextStyle brandTitle(BuildContext context) =>
+      Theme.of(context).textTheme.headlineMedium!.copyWith(
+            fontWeight: FontWeight.w800,
+            letterSpacing: AppLetterSpacing.tightLg,
+          );
+
+  static TextStyle bodyLarge(BuildContext context) =>
+      Theme.of(context).textTheme.bodyLarge!.copyWith(
+            fontSize: AppFontSize.bodyLg,
+          );
+
+  static TextStyle bodyLargeSecondary(BuildContext context) =>
+      bodyLarge(context).copyWith(color: AppPalette.textSecondary);
+
+  static TextStyle bodyMediumSecondary(BuildContext context) =>
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: AppPalette.textSecondary,
+            fontSize: AppFontSize.bodyLg,
+          );
+
+  static TextStyle formLabel(BuildContext context) =>
+      Theme.of(context).textTheme.labelLarge!.copyWith(
+            color: AppPalette.textSecondary,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.labelLg,
+            letterSpacing: AppLetterSpacing.wideSm,
+          );
+
+  static TextStyle dividerLabel(BuildContext context) =>
+      Theme.of(context).textTheme.labelMedium!.copyWith(
+            color: AppPalette.textHint,
+            fontWeight: FontWeight.w500,
+            letterSpacing: AppLetterSpacing.wideSm,
+          );
+
+  static TextStyle buttonPrimary(BuildContext context) =>
+      Theme.of(context).textTheme.titleMedium!.copyWith(
+            color: AppPalette.black,
+            fontWeight: FontWeight.w700,
+            fontSize: AppFontSize.titleLg,
+          );
+
+  static TextStyle buttonSocial(BuildContext context) =>
+      Theme.of(context).textTheme.titleMedium!.copyWith(
+            color: AppPalette.white,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.titleSm,
+          );
+
+  static TextStyle inputText(BuildContext context) =>
+      Theme.of(context).textTheme.bodyLarge!.copyWith(
+            color: AppPalette.white,
+            fontSize: AppFontSize.titleSm,
+          );
+
+  static TextStyle inputHint(BuildContext context) =>
+      Theme.of(context).textTheme.bodyLarge!.copyWith(
+            color: AppPalette.textHint,
+            fontSize: AppFontSize.titleSm,
+          );
+
+  static TextStyle errorText(BuildContext context) =>
+      Theme.of(context).textTheme.bodySmall!.copyWith(
+            color: AppPalette.danger,
+            fontSize: AppFontSize.labelLg,
+          );
+
+  static TextStyle linkAction(BuildContext context) =>
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: AppPalette.primary,
+            fontWeight: FontWeight.w700,
+            fontSize: AppFontSize.bodyLg,
+          );
+
+  static TextStyle linkSecondary(BuildContext context) =>
+      Theme.of(context).textTheme.bodyMedium!.copyWith(
+            color: AppPalette.primary,
+            fontWeight: FontWeight.w600,
+            fontSize: AppFontSize.bodyLg,
+          );
+}
+
 class AppTheme {
   static ThemeData dark() {
     final base = ThemeData.dark(useMaterial3: true);

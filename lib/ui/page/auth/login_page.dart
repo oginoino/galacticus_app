@@ -4,9 +4,13 @@ import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
 import '../../../domain/auth_overview.dart';
+import '../../../provider/auth_form_validators.dart';
 import '../../../provider/auth_provider.dart';
 import '../../../route/routes/routes.dart';
 import '../../../util/const/app_constants.dart';
+import '../../components/app_footer_prompt.dart';
+import '../../components/app_labeled_divider.dart';
+import '../../components/app_primary_button.dart';
 import '../../components/content_state_view.dart';
 import '../../theme/app_theme.dart';
 import 'widgets/auth_widgets.dart';
@@ -80,19 +84,12 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: AppSpacing.section),
                 Text(
                   overview.login.title,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        fontSize: AppFontSize.heading,
-                        letterSpacing: AppLetterSpacing.tightSm,
-                      ),
+                  style: AppTextStyles.heading(context),
                 ),
                 const SizedBox(height: AppSpacing.sm),
                 Text(
                   overview.login.subtitle,
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: AppPalette.textSecondary,
-                        fontSize: AppFontSize.bodyLg,
-                      ),
+                  style: AppTextStyles.bodyLargeSecondary(context),
                 ),
                 const SizedBox(height: AppSpacing.sectionLg),
                 AuthTextField(
@@ -136,23 +133,18 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: Text(
                       overview.login.forgotLabel,
-                      style:
-                          Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: AppPalette.primary,
-                                fontWeight: FontWeight.w600,
-                                fontSize: AppFontSize.bodyLg,
-                              ),
+                      style: AppTextStyles.linkSecondary(context),
                     ),
                   ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                AuthPrimaryButton(
+                AppPrimaryButton(
                   label: overview.login.submitLabel,
                   isLoading: isSubmitting,
                   onPressed: () => _submit(context, overview, provider),
                 ),
                 const SizedBox(height: AppSpacing.sectionLg),
-                AuthDivider(label: overview.login.socialDividerLabel),
+                AppLabeledDivider(label: overview.login.socialDividerLabel),
                 const SizedBox(height: AppSpacing.lg),
                 ...overview.socialProviders.map(
                   (item) => Padding(
@@ -170,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.section),
-                AuthFooterPrompt(
+                AppFooterPrompt(
                   prompt: overview.login.registerPromptLabel,
                   actionLabel: overview.login.registerActionLabel,
                   onActionTap: isSubmitting

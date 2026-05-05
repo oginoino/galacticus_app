@@ -21,6 +21,7 @@ class AppConstants {
     required this.profileLoadErrorMessage,
     required this.rankingLoadErrorMessage,
     required this.progressLoadErrorMessage,
+    required this.authLoadErrorMessage,
     required this.navigationUnavailableMessage,
     required this.retryLabel,
   });
@@ -44,6 +45,7 @@ class AppConstants {
   final String profileLoadErrorMessage;
   final String rankingLoadErrorMessage;
   final String progressLoadErrorMessage;
+  final String authLoadErrorMessage;
   final String navigationUnavailableMessage;
   final String retryLabel;
 
@@ -67,6 +69,7 @@ class AppConstants {
     profileLoadErrorMessage: 'Não foi possível carregar o perfil agora.',
     rankingLoadErrorMessage: 'Não foi possível carregar o ranking agora.',
     progressLoadErrorMessage: 'Não foi possível carregar o progresso agora.',
+    authLoadErrorMessage: 'Não foi possível carregar a tela de autenticação agora.',
     navigationUnavailableMessage: 'Área disponível na próxima etapa.',
     retryLabel: 'Tentar novamente',
   );
