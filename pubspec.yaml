@@ -30,6 +30,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.7
 
 flutter:
   uses-material-design: true
@@ -57,3 +58,20 @@ flutter_launcher_icons:
   macos:
     generate: true
     image_path: "assets/images/prototype/logo-galacticos.png"
+
+flutter_native_splash:
+  color: "#050708"
+  color_dark: "#050708"
+  image: "assets/images/prototype/logo-galacticos.png"
+  image_dark: "assets/images/prototype/logo-galacticos.png"
+  android_12:
+    color: "#050708"
+    color_dark: "#050708"
+    image: "assets/images/prototype/logo-galacticos.png"
+    image_dark: "assets/images/prototype/logo-galacticos.png"
+    icon_background_color: "#050708"
+    icon_background_color_dark: "#050708"
+  android: true
+  ios: true
+  web: true
+  fullscreen: false
