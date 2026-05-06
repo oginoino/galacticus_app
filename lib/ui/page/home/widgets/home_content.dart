@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
+import '../../../../domain/calendar_event.dart';
 import '../../../../domain/community_event.dart';
 import '../../../../domain/dashboard_overview.dart';
 import '../../../../domain/match_invite.dart';
 import '../../../../domain/quick_access_item.dart';
-import '../../../../route/routes/routes.dart';
 import '../../../components/section_header.dart';
 import '../../../theme/app_theme.dart';
 import 'home_assets.dart';
@@ -25,6 +24,10 @@ class HomeContent extends StatelessWidget {
     required this.onLessonsTap,
     required this.onRankingTap,
     required this.onAgendasTap,
+    required this.onProgressTap,
+    required this.onHeroPrimaryTap,
+    required this.onHeroSecondaryTap,
+    required this.onCalendarEventTap,
     required this.onQuickAccessTap,
     required this.onExploreTap,
     required this.onInviteTap,
@@ -39,6 +42,10 @@ class HomeContent extends StatelessWidget {
   final VoidCallback onLessonsTap;
   final VoidCallback onRankingTap;
   final VoidCallback onAgendasTap;
+  final VoidCallback onProgressTap;
+  final VoidCallback onHeroPrimaryTap;
+  final VoidCallback onHeroSecondaryTap;
+  final ValueChanged<CalendarEvent> onCalendarEventTap;
   final ValueChanged<QuickAccessItem> onQuickAccessTap;
   final ValueChanged<CommunityEvent> onExploreTap;
   final ValueChanged<MatchInvite> onInviteTap;
@@ -80,17 +87,8 @@ class HomeContent extends StatelessWidget {
               const SizedBox(height: AppSpacing.huge),
               HomeHeroCard(
                 overview: overview,
-                onPrimaryTap: () {
-                  final id = overview.heroSuggestedTrainingId;
-                  if (id != null) {
-                    context.push(
-                      Routes.trainingDetail.replaceFirst(':id', id),
-                    );
-                  } else {
-                    context.push(Routes.lessons);
-                  }
-                },
-                onSecondaryTap: () => context.push(Routes.matches),
+                onPrimaryTap: onHeroPrimaryTap,
+                onSecondaryTap: onHeroSecondaryTap,
               ),
               const SizedBox(height: AppSpacing.huge),
               HomeWorkoutCard(
@@ -126,7 +124,10 @@ class HomeContent extends StatelessWidget {
                 onActionTap: onRankingTap,
               ),
               const SizedBox(height: AppSpacing.xl),
-              HomeLeaderboardCard(overview: overview),
+              HomeLeaderboardCard(
+                overview: overview,
+                onProgressTap: onProgressTap,
+              ),
               const SizedBox(height: AppSpacing.sectionLg),
               SectionHeader(
                 title: overview.sections.exploreTitle,
@@ -177,7 +178,10 @@ class HomeContent extends StatelessWidget {
                 onActionTap: onAgendasTap,
               ),
               const SizedBox(height: AppSpacing.xl),
-              HomeCalendarCard(overview: overview),
+              HomeCalendarCard(
+                overview: overview,
+                onEventTap: onCalendarEventTap,
+              ),
               const SizedBox(height: AppSpacing.sectionLg),
               SectionHeader(title: overview.sections.quickAccessTitle),
               const SizedBox(height: AppSpacing.xl),

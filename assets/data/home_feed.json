@@ -222,11 +222,11 @@
     "monthLabel": "maio",
     "weekdays": ["S", "T", "Q", "Q", "S", "S", "D"],
     "days": [
-      { "label": "1", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "2", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "3", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "4", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "5", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "1", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "2", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "3", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "4", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "5", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "6", "isSelected": false, "isActive": true,
         "imageAsset": "assets/images/prototype/cal-workout-1.jpg",
@@ -237,9 +237,9 @@
           "referenceId": "14"
         }
       },
-      { "label": "7", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "8", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "9", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "7", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "8", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "9", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "10", "isSelected": false, "isActive": true,
         "imageAsset": "assets/images/prototype/cal-workout-2.jpg",
@@ -250,9 +250,9 @@
           "referenceId": null
         }
       },
-      { "label": "11", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "12", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "13", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "11", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "12", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "13", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "14", "isSelected": false, "isActive": true,
         "imageAsset": "assets/images/prototype/cal-workout-3.jpg",
@@ -272,7 +272,7 @@
           "referenceId": null
         }
       },
-      { "label": "16", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "16", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "17", "isSelected": false, "isActive": true, "imageAsset": null,
         "event": {
@@ -282,10 +282,10 @@
           "referenceId": null
         }
       },
-      { "label": "18", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "19", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "20", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "21", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "18", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "19", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "20", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "21", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "22", "isSelected": false, "isActive": true,
         "imageAsset": "assets/images/prototype/cal-workout-2.jpg",
@@ -296,7 +296,7 @@
           "referenceId": null
         }
       },
-      { "label": "23", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "23", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "24", "isSelected": false, "isActive": false, "imageAsset": null,
         "event": {
@@ -306,9 +306,9 @@
           "referenceId": null
         }
       },
-      { "label": "25", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "26", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
-      { "label": "27", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "25", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "26", "isSelected": false, "isActive": false, "imageAsset": null },
+      { "label": "27", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "28", "isSelected": false, "isActive": true,
         "imageAsset": "assets/images/prototype/cal-workout-3.jpg",
@@ -329,7 +329,7 @@
           "referenceId": "galacticos-rally"
         }
       },
-      { "label": "30", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "30", "isSelected": false, "isActive": false, "imageAsset": null },
       {
         "label": "31", "isSelected": false, "isActive": true,
         "imageAsset": "assets/images/prototype/cal-workout-1.jpg",

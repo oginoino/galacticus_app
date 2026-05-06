@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../../di/di.dart';
+import '../../../domain/calendar_event.dart';
 import '../../../domain/community_event.dart';
 import '../../../domain/dashboard_overview.dart';
 import '../../../domain/match_invite.dart';
@@ -57,6 +58,12 @@ class HomePage extends StatelessWidget {
                   onLessonsTap: () => context.push(Routes.lessons),
                   onAgendasTap: () => context.push(Routes.agendas),
                   onRankingTap: () => context.push(Routes.ranking),
+                  onProgressTap: () => context.push(Routes.progress),
+                  onHeroPrimaryTap: () =>
+                      _handleHeroPrimaryTap(context, overview),
+                  onHeroSecondaryTap: () => context.push(Routes.matches),
+                  onCalendarEventTap: (event) =>
+                      _handleCalendarEventTap(context, event),
                   onQuickAccessTap: (item) =>
                       _handleQuickAccessTap(context, item, overview),
                   onExploreTap: (event) => _handleExploreTap(context, event),
@@ -158,6 +165,56 @@ class HomePage extends StatelessWidget {
 
   void _handleInviteTap(BuildContext context, MatchInvite invite) {
     context.push(Routes.matches);
+  }
+
+  void _handleHeroPrimaryTap(
+    BuildContext context,
+    DashboardOverview overview,
+  ) {
+    final id = overview.heroSuggestedTrainingId;
+    if (id != null) {
+      context.push(Routes.trainingDetail.replaceFirst(':id', id));
+      return;
+    }
+    context.push(Routes.lessons);
+  }
+
+  void _handleCalendarEventTap(
+    BuildContext context,
+    CalendarEvent event,
+  ) {
+    final referenceId = event.referenceId;
+    switch (event.type) {
+      case 'training':
+        if (referenceId != null) {
+          context.push(Routes.trainingDetail.replaceFirst(':id', referenceId));
+          return;
+        }
+        context.push(Routes.agendas);
+        return;
+      case 'club':
+        if (referenceId != null) {
+          context.push(Routes.clubDetail.replaceFirst(':slug', referenceId));
+          return;
+        }
+        context.push(Routes.communities);
+        return;
+      case 'match':
+        context.push(Routes.matches);
+        return;
+      case 'lesson':
+        context.push(Routes.lessons);
+        return;
+      case 'booking':
+        context.push(Routes.booking);
+        return;
+      case 'checkin':
+        context.push(Routes.checkin);
+        return;
+      case 'event':
+      default:
+        context.push(Routes.agendas);
+    }
   }
 
   static void _showSnack(BuildContext context, String message) {
