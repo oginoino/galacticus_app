@@ -214,7 +214,7 @@ class _HomeCalendarCardState extends State<HomeCalendarCard> {
 
     _eventsByDate = {
       for (final day in widget.overview.calendarDays)
-        if (day.isActive)
+        if (day.isActive || day.event != null)
           DateTime(
             _baseMonth.year,
             _baseMonth.month,
@@ -222,6 +222,8 @@ class _HomeCalendarCardState extends State<HomeCalendarCard> {
           ): _HomeCalendarEvent(
             imageAsset: day.imageAsset,
             hasMarker: true,
+            type: day.event?.type,
+            referenceId: day.event?.referenceId,
           ),
     };
   }
@@ -312,7 +314,7 @@ class _HomeCalendarCardState extends State<HomeCalendarCard> {
 
               if (cell.event?.imageAsset != null) {
                 return GestureDetector(
-                  onTap: () => _selectDate(cell.date),
+                  onTap: () => _openEvent(cell.date),
                   child: Column(
                   children: [
                     Expanded(
@@ -353,7 +355,9 @@ class _HomeCalendarCardState extends State<HomeCalendarCard> {
               }
 
               return GestureDetector(
-                onTap: () => _selectDate(cell.date),
+                onTap: () => cell.event?.hasMarker == true
+                    ? _openEvent(cell.date)
+                    : _selectDate(cell.date),
                 child: Center(
                   child: Text(
                     cell.label,
@@ -394,6 +398,41 @@ class _HomeCalendarCardState extends State<HomeCalendarCard> {
     setState(() {
       _selectedDate = date;
     });
+  }
+
+  void _openEvent(DateTime date) {
+    setState(() {
+      _selectedDate = date;
+    });
+    final event = _eventsByDate[date];
+    context.push(_routeForEvent(event));
+  }
+
+  String _routeForEvent(_HomeCalendarEvent? event) {
+    final referenceId = event?.referenceId;
+    switch (event?.type) {
+      case 'training':
+        if (referenceId != null) {
+          return Routes.trainingDetail.replaceFirst(':id', referenceId);
+        }
+        return Routes.agendas;
+      case 'club':
+        if (referenceId != null) {
+          return Routes.clubDetail.replaceFirst(':slug', referenceId);
+        }
+        return Routes.communities;
+      case 'match':
+        return Routes.matches;
+      case 'lesson':
+        return Routes.lessons;
+      case 'booking':
+        return Routes.booking;
+      case 'checkin':
+        return Routes.checkin;
+      case 'event':
+      default:
+        return Routes.agendas;
+    }
   }
 
   List<_HomeCalendarGridCell> _buildCalendarCells(DateTime month) {
@@ -600,10 +639,14 @@ class _HomeCalendarEvent {
   const _HomeCalendarEvent({
     this.imageAsset,
     required this.hasMarker,
+    this.type,
+    this.referenceId,
   });
 
   final String? imageAsset;
   final bool hasMarker;
+  final String? type;
+  final String? referenceId;
 }
 
 int _monthNumberFromLabel(String label) {

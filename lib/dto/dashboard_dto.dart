@@ -1,5 +1,6 @@
 import '../domain/app_user.dart';
 import '../domain/calendar_day.dart';
+import '../domain/calendar_event.dart';
 import '../domain/community_event.dart';
 import '../domain/dashboard_overview.dart';
 import '../domain/home_messages.dart';
@@ -110,6 +111,7 @@ class DashboardDto {
           isSelected: item['isSelected'] as bool,
           isActive: item['isActive'] as bool,
           imageAsset: item['imageAsset'] as String?,
+          event: _parseCalendarEvent(item['event']),
         ),
       ),
       calendarWeekdays: (calendar['weekdays'] as List<dynamic>)
@@ -187,5 +189,16 @@ class DashboardDto {
         .cast<Map<String, dynamic>>()
         .map(mapper)
         .toList(growable: false);
+  }
+
+  CalendarEvent? _parseCalendarEvent(Object? value) {
+    if (value is! Map) return null;
+    final map = value.cast<String, dynamic>();
+    return CalendarEvent(
+      type: map['type'] as String,
+      title: map['title'] as String,
+      subtitle: map['subtitle'] as String,
+      referenceId: map['referenceId'] as String?,
+    );
   }
 }
