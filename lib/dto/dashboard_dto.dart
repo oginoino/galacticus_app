@@ -55,6 +55,7 @@ class DashboardDto {
       heroSubtitle: hero['subtitle'] as String,
       primaryAction: hero['primaryAction'] as String,
       secondaryAction: hero['secondaryAction'] as String,
+      heroSuggestedTrainingId: hero['suggestedTrainingId'] as String?,
       lessons: _mapList(
         payload['lessons'] as List<dynamic>,
         (item) => Lesson(

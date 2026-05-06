@@ -25,6 +25,7 @@ class DashboardOverview {
     required this.heroSubtitle,
     required this.primaryAction,
     required this.secondaryAction,
+    this.heroSuggestedTrainingId,
     required this.lessons,
     required this.leaderboard,
     required this.weeklyHeadline,
@@ -61,6 +62,7 @@ class DashboardOverview {
   final String heroSubtitle;
   final String primaryAction;
   final String secondaryAction;
+  final String? heroSuggestedTrainingId;
   final List<Lesson> lessons;
   final List<LeaderboardEntry> leaderboard;
   final String weeklyHeadline;
