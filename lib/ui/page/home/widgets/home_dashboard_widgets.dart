@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
+import '../../../../domain/calendar_event.dart';
 import '../../../../domain/dashboard_overview.dart';
-import '../../../../route/routes/routes.dart';
 import '../../../components/glow_card.dart';
 import '../../../theme/app_theme.dart';
 
 class HomeLeaderboardCard extends StatelessWidget {
-  const HomeLeaderboardCard({super.key, required this.overview});
+  const HomeLeaderboardCard({
+    super.key,
+    required this.overview,
+    required this.onProgressTap,
+  });
 
   final DashboardOverview overview;
+  final VoidCallback onProgressTap;
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +109,7 @@ class HomeLeaderboardCard extends StatelessWidget {
             AppSpacing.huge,
             AppSpacing.xxxl,
           ),
-          onTap: () => context.push(Routes.progress),
+          onTap: onProgressTap,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -180,9 +184,14 @@ class HomeLeaderboardCard extends StatelessWidget {
 }
 
 class HomeCalendarCard extends StatefulWidget {
-  const HomeCalendarCard({super.key, required this.overview});
+  const HomeCalendarCard({
+    super.key,
+    required this.overview,
+    required this.onEventTap,
+  });
 
   final DashboardOverview overview;
+  final ValueChanged<CalendarEvent> onEventTap;
 
   @override
   State<HomeCalendarCard> createState() => _HomeCalendarCardState();
@@ -222,8 +231,7 @@ class _HomeCalendarCardState extends State<HomeCalendarCard> {
           ): _HomeCalendarEvent(
             imageAsset: day.imageAsset,
             hasMarker: true,
-            type: day.event?.type,
-            referenceId: day.event?.referenceId,
+            event: day.event,
           ),
     };
   }
@@ -404,34 +412,9 @@ class _HomeCalendarCardState extends State<HomeCalendarCard> {
     setState(() {
       _selectedDate = date;
     });
-    final event = _eventsByDate[date];
-    context.push(_routeForEvent(event));
-  }
-
-  String _routeForEvent(_HomeCalendarEvent? event) {
-    final referenceId = event?.referenceId;
-    switch (event?.type) {
-      case 'training':
-        if (referenceId != null) {
-          return Routes.trainingDetail.replaceFirst(':id', referenceId);
-        }
-        return Routes.agendas;
-      case 'club':
-        if (referenceId != null) {
-          return Routes.clubDetail.replaceFirst(':slug', referenceId);
-        }
-        return Routes.communities;
-      case 'match':
-        return Routes.matches;
-      case 'lesson':
-        return Routes.lessons;
-      case 'booking':
-        return Routes.booking;
-      case 'checkin':
-        return Routes.checkin;
-      case 'event':
-      default:
-        return Routes.agendas;
+    final event = _eventsByDate[date]?.event;
+    if (event != null) {
+      widget.onEventTap(event);
     }
   }
 
@@ -639,14 +622,12 @@ class _HomeCalendarEvent {
   const _HomeCalendarEvent({
     this.imageAsset,
     required this.hasMarker,
-    this.type,
-    this.referenceId,
+    this.event,
   });
 
   final String? imageAsset;
   final bool hasMarker;
-  final String? type;
-  final String? referenceId;
+  final CalendarEvent? event;
 }
 
 int _monthNumberFromLabel(String label) {
