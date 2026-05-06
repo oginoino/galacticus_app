@@ -221,37 +221,124 @@
     "monthLabel": "maio",
     "weekdays": ["S", "T", "Q", "Q", "S", "S", "D"],
     "days": [
-      { "label": "1", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "2", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "3", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "4", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "5", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "6", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-1.jpg" },
-      { "label": "7", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "8", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "9", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "10", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-2.jpg" },
-      { "label": "11", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "12", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "13", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "14", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-3.jpg" },
-      { "label": "15", "isSelected": true, "isActive": true, "imageAsset": null },
-      { "label": "16", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "17", "isSelected": false, "isActive": true, "imageAsset": null },
-      { "label": "18", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "19", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "20", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "21", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "22", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-2.jpg" },
-      { "label": "23", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "24", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "25", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "26", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "27", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "28", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-3.jpg" },
-      { "label": "29", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/hero-court.jpg" },
-      { "label": "30", "isSelected": false, "isActive": false, "imageAsset": null },
-      { "label": "31", "isSelected": false, "isActive": true, "imageAsset": "assets/images/prototype/cal-workout-1.jpg" }
+      { "label": "1", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "2", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "3", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "4", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "5", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "6", "isSelected": false, "isActive": true,
+        "imageAsset": "assets/images/prototype/cal-workout-1.jpg",
+        "event": {
+          "type": "training",
+          "title": "Sessão técnica",
+          "subtitle": "Tennis · Quadra 02",
+          "referenceId": "14"
+        }
+      },
+      { "label": "7", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "8", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "9", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "10", "isSelected": false, "isActive": true,
+        "imageAsset": "assets/images/prototype/cal-workout-2.jpg",
+        "event": {
+          "type": "match",
+          "title": "Match play A",
+          "subtitle": "Tênis · Quadra Central",
+          "referenceId": null
+        }
+      },
+      { "label": "11", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "12", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "13", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "14", "isSelected": false, "isActive": true,
+        "imageAsset": "assets/images/prototype/cal-workout-3.jpg",
+        "event": {
+          "type": "training",
+          "title": "Bloco funcional",
+          "subtitle": "Studio · 18:00",
+          "referenceId": "14"
+        }
+      },
+      {
+        "label": "15", "isSelected": true, "isActive": true, "imageAsset": null,
+        "event": {
+          "type": "checkin",
+          "title": "Check-in livre",
+          "subtitle": "Hoje · clube",
+          "referenceId": null
+        }
+      },
+      { "label": "16", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "17", "isSelected": false, "isActive": true, "imageAsset": null,
+        "event": {
+          "type": "event",
+          "title": "Torneio de Duplas",
+          "subtitle": "Sáb · 14 vagas",
+          "referenceId": null
+        }
+      },
+      { "label": "18", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "19", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "20", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "21", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "22", "isSelected": false, "isActive": true,
+        "imageAsset": "assets/images/prototype/cal-workout-2.jpg",
+        "event": {
+          "type": "lesson",
+          "title": "Aula com Marcos",
+          "subtitle": "Padel · 17:00",
+          "referenceId": null
+        }
+      },
+      { "label": "23", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "24", "isSelected": false, "isActive": false, "imageAsset": null,
+        "event": {
+          "type": "booking",
+          "title": "Sala 02 reservada",
+          "subtitle": "Sáb · 8:30",
+          "referenceId": null
+        }
+      },
+      { "label": "25", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "26", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      { "label": "27", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "28", "isSelected": false, "isActive": true,
+        "imageAsset": "assets/images/prototype/cal-workout-3.jpg",
+        "event": {
+          "type": "club",
+          "title": "Treino Galácticos Padel",
+          "subtitle": "Quadra 02",
+          "referenceId": "galacticos-padel"
+        }
+      },
+      {
+        "label": "29", "isSelected": false, "isActive": true,
+        "imageAsset": "assets/images/prototype/hero-court.jpg",
+        "event": {
+          "type": "club",
+          "title": "Galácticos Rally",
+          "subtitle": "Match play",
+          "referenceId": "galacticos-rally"
+        }
+      },
+      { "label": "30", "isSelected": false, "isActive": false, "imageAsset": null, "event": null },
+      {
+        "label": "31", "isSelected": false, "isActive": true,
+        "imageAsset": "assets/images/prototype/cal-workout-1.jpg",
+        "event": {
+          "type": "match",
+          "title": "Beach Tennis",
+          "subtitle": "Arena Beach · 16:00",
+          "referenceId": null
+        }
+      }
     ]
   },
   "quickAccess": [
