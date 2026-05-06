@@ -205,7 +205,7 @@
       "location": "Quadra Central",
       "availability": "3 vagas abertas",
       "isLastSpot": false,
-      "avatarAsset": null
+      "avatarAsset": "assets/images/prototype/coach-marcos.jpg"
     },
     {
       "hostName": "Ana L.",
@@ -214,7 +214,7 @@
       "location": "Quadra 03 · Cidade Jardim",
       "availability": "1 vaga aberta",
       "isLastSpot": true,
-      "avatarAsset": null
+      "avatarAsset": "assets/images/prototype/avatar-sofia.jpg"
     }
   ],
   "calendar": {
