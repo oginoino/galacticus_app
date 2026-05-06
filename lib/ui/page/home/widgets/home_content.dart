@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../../domain/community_event.dart';
 import '../../../../domain/dashboard_overview.dart';
 import '../../../../domain/match_invite.dart';
 import '../../../../domain/quick_access_item.dart';
+import '../../../../route/routes/routes.dart';
 import '../../../components/section_header.dart';
 import '../../../theme/app_theme.dart';
 import 'home_assets.dart';
@@ -78,8 +80,17 @@ class HomeContent extends StatelessWidget {
               const SizedBox(height: AppSpacing.huge),
               HomeHeroCard(
                 overview: overview,
-                onPrimaryTap: () => onMessage(overview.messages.heroPrimaryAction),
-                onSecondaryTap: () => onMessage(overview.messages.heroSecondaryAction),
+                onPrimaryTap: () {
+                  final id = overview.heroSuggestedTrainingId;
+                  if (id != null) {
+                    context.push(
+                      Routes.trainingDetail.replaceFirst(':id', id),
+                    );
+                  } else {
+                    context.push(Routes.lessons);
+                  }
+                },
+                onSecondaryTap: () => context.push(Routes.matches),
               ),
               const SizedBox(height: AppSpacing.huge),
               HomeWorkoutCard(

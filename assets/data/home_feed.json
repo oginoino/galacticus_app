@@ -66,7 +66,8 @@
     "title": "Ready to play today?",
     "subtitle": "3 jogadores disponíveis perto de você",
     "primaryAction": "Iniciar Treino",
-    "secondaryAction": "Encontrar Partida"
+    "secondaryAction": "Encontrar Partida",
+    "suggestedTrainingId": "14"
   },
   "lessons": [
     {
