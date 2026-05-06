@@ -29,6 +29,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 flutter:
   uses-material-design: true
@@ -38,3 +39,21 @@ flutter:
     - assets/images/png/
     - assets/images/prototype/
     - assets/data/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/prototype/logo-galacticos.png"
+  min_sdk_android: 21
+  remove_alpha_ios: true
+  background_color_ios: "#050708"
+  adaptive_icon_background: "#050708"
+  adaptive_icon_foreground: "assets/images/prototype/logo-galacticos.png"
+  web:
+    generate: true
+    image_path: "assets/images/prototype/logo-galacticos.png"
+    background_color: "#050708"
+    theme_color: "#B7F36B"
+  macos:
+    generate: true
+    image_path: "assets/images/prototype/logo-galacticos.png"
